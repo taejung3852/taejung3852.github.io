@@ -1,14 +1,35 @@
 import React from 'react';
-export default function FowocoDiagram(){return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 680" role="img" aria-labelledby="fw-detail-title fw-detail-desc"><title id="fw-detail-title">Language Assistant 검색의 입력과 후보 선택</title><desc id="fw-detail-desc">요청 목적, 자료, 기한, 제출 방법에서 세 가지 고정 질의를 만들고 Dense와 Sparse 검색 후 결합 후보 최대 30개를 재정렬해 최대 5개 참조 문맥을 반환합니다. 재정렬 실패 시 RRF 상위 5개를 선택합니다. 전체 서비스 연결은 개념도입니다.</desc><defs><marker id="fw-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L8 4L0 8" fill="var(--muted)"/></marker></defs>
-<g opacity=".65"><text x="24" y="48" className="context-title">서비스 맥락</text><text x="24" y="84" className="sub">전체 연결은 개념 표현</text><path className="edge" d="M148 208V248M148 348V388"/><rect className="box" x="24" y="120" width="248" height="88" rx="8"/><text x="48" y="172" className="label">Client</text><rect className="box" x="24" y="256" width="248" height="92" rx="8"/><text x="48" y="312" className="label">Backend · DB</text></g>
-<rect className="focus" x="24" y="396" width="248" height="140" rx="8"/><text x="48" y="440" className="label">AI Runtime</text><text x="48" y="480" className="sub">FastAPI</text><text x="48" y="512" className="sub">Language Assistant</text><path d="M272 464H300Q308 464 308 456V112Q308 104 316 104H344" className="scope-edge"/>
-<text x="360" y="48" className="diagram-title">Language Assistant · 검색 내부</text><text x="360" y="88" className="sub">implemented · 고정 커밋 코드 확인 / 현재 실행 결과 아님</text>
-<path className="edge" d="M700 236H744M1112 236H1156M1368 344V384M1168 476H1120M744 476H708"/>
-<rect className="box" x="360" y="128" width="340" height="216" rx="8"/><text x="388" y="172" className="step">입력</text><text x="388" y="216" className="label">RequestContext</text><text x="388" y="264" className="sub">요청 목적 · 요청 자료</text><text x="388" y="300" className="sub">기한 · 제출 방법</text>
-<rect className="focus" x="752" y="128" width="360" height="216" rx="8"/><text x="780" y="172" className="step">질의 구성</text><text x="780" y="216" className="label">3개 고정 질의</text><text x="780" y="264" className="sub">canonical / reason_items</text><text x="780" y="300" className="sub">action_deadline</text>
-<rect className="box" x="1168" y="128" width="408" height="216" rx="8"/><text x="1196" y="172" className="step">검색</text><text x="1196" y="216" className="label">Dense + Sparse</text><text x="1196" y="264" className="sub">질의별 검색 결과</text><text x="1196" y="300" className="sub">RRF로 후보 순위 결합</text>
-<rect className="box" x="1168" y="392" width="408" height="168" rx="8"/><text x="1196" y="436" className="step">재정렬</text><text x="1196" y="480" className="label">최대 30개 후보</text><text x="1196" y="528" className="sub">표준 한국어 문장으로 평가</text>
-<rect className="box" x="752" y="392" width="360" height="168" rx="8"/><text x="780" y="436" className="step">선택</text><text x="780" y="480" className="label">최대 5개 문맥</text><text x="780" y="528" className="sub">실패 시 RRF 상위 5개</text>
-<rect className="focus" x="360" y="392" width="340" height="168" rx="8"/><text x="388" y="436" className="step">출력</text><text x="388" y="480" className="label">RetrievalResult</text><text x="388" y="528" className="sub">참조 문맥 · 경고 · 선택 근거</text>
-<text x="360" y="612" className="sub">핵심 정보 검사: 요청값 불일치 또는 보호 토큰 누락 시 질의 생성을 거부합니다.</text><text x="360" y="652" className="foot">3 / 30 / 5는 코드의 구성·선택 개수입니다. 검색 품질이나 성공률을 의미하지 않습니다.</text>
-</svg>);}
+
+const Lines = ({x,y,width=90}) => <g className="paper-lines"><path d={`M${x} ${y}h${width}m-${width} 14h${width*.74}m-${width*.74} 14h${width*.9}`}/></g>;
+function Document({x,y,rotate=0,active=false}){return <g transform={`translate(${x} ${y}) rotate(${rotate})`}><path className={active?'paper selected':'paper'} d="M0 0H76L100 24V138H0Z"/><path className="detail-line" d="M76 0V24H100"/><rect className="ink-block" x="15" y="25" width="28" height="7" rx="2"/><Lines x={15} y={52} width={68}/><Lines x={15} y={102} width={48}/></g>}
+export default function FowocoDiagram(){return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 660" role="img" aria-labelledby="fw-title fw-desc">
+<title id="fw-title">서비스에서 Language Assistant 검색 내부로</title><desc id="fw-desc">서비스 화면, 서버와 저장소를 배경에 두고 Agent 검색 영역을 확대합니다. 세 질의가 문서 후보를 검색하고 재정렬한 뒤 최대 다섯 문맥을 선택합니다. 화면과 문서 모양은 설명용 도식입니다.</desc>
+<defs><linearGradient id="fw-depth" x1="0" x2="1"><stop stopColor="var(--rule)" stopOpacity=".05"/><stop offset="1" stopColor="var(--rule)" stopOpacity=".5"/></linearGradient><marker id="fw-tip" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8" fill="var(--muted)"/></marker></defs>
+<g className="service-backdrop">
+<text x="24" y="35" className="eyebrow">FOWOCO · 서비스 맥락</text>
+<g transform="translate(26 74) rotate(-4 120 95)"><rect className="device" width="255" height="164" rx="12"/><path className="detail-line" d="M0 28H255"/><circle className="dot" cx="15" cy="14" r="3"/><circle className="dot" cx="27" cy="14" r="3"/><circle className="dot" cx="39" cy="14" r="3"/><rect className="soft-block" x="14" y="42" width="42" height="105" rx="3"/><rect className="soft-block" x="72" y="48" width="153" height="29" rx="8"/><path className="detail-line" d="M85 59h94M85 67h65"/><rect className="bubble" x="96" y="90" width="142" height="39" rx="8"/><path className="detail-line" d="M109 104h100M109 114h68"/><path className="device" d="M-15 164H270L285 177H-30Z"/></g>
+<text x="35" y="290" className="object-label">Client</text>
+<path className="context-link" d="M147 308V339"/>
+<g transform="translate(35 350)"><rect className="device" width="134" height="39" rx="5"/><rect className="device" y="47" width="134" height="39" rx="5"/><path className="detail-line" d="M16 14h62M16 25h42M16 61h62M16 72h42"/><circle className="dot" cx="113" cy="20" r="4"/><circle className="dot" cx="113" cy="66" r="4"/>
+<g transform="translate(172 2)"><path className="device" d="M0 12V68C0 85 78 85 78 68V12Z"/><ellipse className="device" cx="39" cy="12" rx="39" ry="12"/><path className="detail-line" d="M0 39C0 55 78 55 78 39M0 59C0 75 78 75 78 59"/></g></g>
+<text x="35" y="475" className="object-label">Backend</text><text x="226" y="475" className="object-label">DB</text>
+<path className="context-link" d="M147 491V520"/>
+</g>
+<path fill="url(#fw-depth)" d="M290 541L435 82V602L290 604Z"/>
+<g transform="translate(66 530)"><rect className="agent-chip" width="224" height="76" rx="12"/><path className="detail-line" d="M-8 20h8m-8 18h8m-8 18h8M224 20h8m-8 18h8m-8 18h8"/><text x="26" y="33" className="object-label">Agent</text><text x="26" y="57" className="tiny">Language Assistant</text></g>
+<rect className="workspace-depth" x="451" y="95" width="1122" height="526" rx="18"/>
+<rect className="workspace" x="435" y="79" width="1122" height="526" rx="18"/>
+<text x="471" y="127" className="workspace-title">Language Assistant</text><text x="1519" y="125" textAnchor="end" className="eyebrow">검색 영역 확대</text><path className="separator" d="M471 152H1519"/>
+<text x="475" y="199" className="stage-label">01  질의 구성</text><text x="821" y="199" className="stage-label">02  문서 검색 · 결합</text><text x="1190" y="199" className="stage-label">03  재정렬 · 선택</text>
+<g transform="translate(484 250) rotate(-7 110 90)"><rect className="paper" width="225" height="62" rx="7"/><text x="18" y="37" className="query-label">목적 · 요청 자료</text></g>
+<g transform="translate(489 323) rotate(-2 110 30)"><rect className="paper" width="225" height="62" rx="7"/><text x="18" y="37" className="query-label">기한 · 제출 방법</text></g>
+<g transform="translate(484 400) rotate(5 110 30)"><rect className="paper selected" width="225" height="62" rx="7"/><text x="18" y="37" className="query-label">핵심 정보 보존</text></g>
+<path className="flow-link" d="M742 351H792"/>
+<Document x={842} y={244} rotate={-12}/><Document x={911} y={227} rotate={3}/><Document x={981} y={260} rotate={12}/>
+<g transform="translate(840 415)"><rect className="search-pill" width="110" height="35" rx="17"/><text x="55" y="24" textAnchor="middle" className="tiny">Dense</text><rect className="search-pill" x="121" width="110" height="35" rx="17"/><text x="176" y="24" textAnchor="middle" className="tiny">Sparse</text></g>
+<path className="flow-link" d="M1102 351H1150"/>
+<g transform="translate(1188 234)">{[0,1,2,3,4].map(i=><g key={i} transform={`translate(${i*3} ${i*44})`}><rect className={i===0?'result-sheet selected':'result-sheet'} width="278" height="38" rx="5"/><text x="14" y="26" className="rank-number">0{i+1}</text><path className="detail-line" d="M52 14h170M52 24h118"/><circle className="rank-dot" cx="256" cy="19" r="4"/></g>)}</g>
+<text x="475" y="524" className="object-label">고정 질의 3개</text><text x="821" y="524" className="object-label">검색 결과를 하나로</text><text x="1190" y="524" className="object-label">최대 5개 문맥 반환</text>
+<text x="475" y="555" className="tiny">입력의 핵심 사실을 유지</text><text x="821" y="555" className="tiny">RRF로 후보 순위 결합</text><text x="1190" y="555" className="tiny">최대 30개 후보를 재정렬</text>
+<text x="24" y="647" className="tiny">서비스 연결·화면은 설명용 도식</text><text x="435" y="647" className="tiny">검색 내부: implemented · 재정렬 실패 시 RRF 상위 5개 선택</text>
+</svg>}
