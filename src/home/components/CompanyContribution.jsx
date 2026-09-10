@@ -14,7 +14,10 @@ export default function CompanyContribution() {
       if (!region) return;
       const rect = region.getBoundingClientRect();
       const progress = Math.max(0, Math.min(5, -rect.top / Math.max(1, rect.height - window.innerHeight) * 5));
-      slides.current?.contentWindow?.postMessage({type:'company-fit-progress',progress}, window.location.origin);
+      const root = document.documentElement;
+      const styles = getComputedStyle(root);
+      const palette = Object.fromEntries(['--bg','--ink','--muted','--rule','--surface','--project-highlight'].map(key => [key, styles.getPropertyValue(key).trim()]));
+      slides.current?.contentWindow?.postMessage({type:'company-fit-progress',progress,theme:root.dataset.theme,palette}, window.location.origin);
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     sync.current = schedule;
@@ -22,8 +25,10 @@ export default function CompanyContribution() {
     window.addEventListener('resize',schedule);
     const observer = new ResizeObserver(schedule);
     observer.observe(document.body);
+    const themeObserver = new MutationObserver(schedule);
+    themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','style','class']});
     schedule();
-    return () => {window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);observer.disconnect();cancelAnimationFrame(frame);};
+    return () => {window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);observer.disconnect();themeObserver.disconnect();cancelAnimationFrame(frame);};
   }, []);
   if (!contribution.enabled) return null;
   return (
