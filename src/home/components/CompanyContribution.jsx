@@ -33,9 +33,10 @@ export default function CompanyContribution() {
   if (!contribution.enabled) return null;
   return (
     <section className="contribution shell" id="contribution" aria-labelledby="contribution-title">
-      <div className="contribution-meta"><span className="section-index" aria-hidden="true">02 /</span>{contribution.isGuide && <span className="contribution-guide">회사별 작성 가이드</span>}</div>
+      <div className="contribution-intro-scene"><div className="contribution-meta"><span className="section-index" aria-hidden="true">02 /</span>{contribution.isGuide && <span className="contribution-guide">회사별 작성 가이드</span>}</div>
       <div className="contribution-heading"><h2 id="contribution-title">{contribution.title}</h2><p>{contribution.introduction}</p></div>
-      <div className="contribution-scroll" ref={scrollRegion}>
+      </div><div className="contribution-scroll" ref={scrollRegion}>
+        {Array.from({length:6},(_,i)=><div key={i} className="contribution-snap-point" style={{top:`${i*100}svh`}} aria-hidden="true"/>)}
         <iframe ref={slides} onLoad={() => sync.current()} className="contribution-slides" src="/presentations/company-fit.html" title="스크롤로 읽는 회사별 기여 슬라이드" tabIndex="-1" />
       </div>
     </section>
