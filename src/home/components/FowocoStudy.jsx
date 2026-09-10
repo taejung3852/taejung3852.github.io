@@ -17,7 +17,7 @@ export default function FowocoStudy(){
  <div className="study-nav"><Link to="/#projects">← 주요 프로젝트</Link><span>FOWOCO · 본문 시안 2장</span><a href="#evidence">근거로 이동</a></div>
  <section className="study-scene" aria-labelledby="search-title">
   <header><p className="study-label">Language Assistant · 검색 설계</p><h1 id="search-title">표현은 달라도,<br/><span>요청의 핵심은 남도록.</span></h1><p className="study-intro">검색 관점을 고정하고 핵심 정보 누락을 검사한 뒤,<br/>서로 다른 검색 결과를 결합합니다.</p></header>
-  <div className="study-layout"><figure className="study-diagram fowoco-overview study-block"><FowocoDiagram/><figcaption>서비스 전체는 개념 표현이며, Agent 내부는 기존 조사 초안을 바탕으로 단순화했습니다. 구현 사실·연결·기여 범위는 재대조 전입니다.</figcaption></figure>
+  <div className="study-layout"><figure className="study-diagram fowoco-overview study-block"><FowocoDiagram/><figcaption>검색 내부: implemented · queries.py와 retrieval/service.py의 고정 커밋 대조 완료. 서비스 전체 연결과 개인 기여 범위는 별도 확인이 필요합니다.</figcaption></figure>
   <div className="study-decisions">{fowoco.decisions.map((d,i)=><article className="study-block" key={d.title}><span className="study-step">{String(i+1).padStart(2,'0')}</span><h2>{d.title}</h2><p>{d.text}</p><a href={d.href} target="_blank" rel="noreferrer">관련 코드 ↗</a></article>)}</div></div>
  </section>
  <section className="study-scene study-evidence" id="evidence" aria-labelledby="evidence-title"><header><p className="study-label">Evidence · 확인 범위</p><h2 id="evidence-title">구현한 구조와<br/><span>검증한 효과를 구분합니다.</span></h2></header>
