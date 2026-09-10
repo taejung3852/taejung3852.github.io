@@ -4,12 +4,14 @@ import { BrowserRouter, Routes, Route, Link, useLocation, useParams } from 'reac
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import CompanyContribution from './components/CompanyContribution';
+import { contribution } from './content/contribution';
 import ProjectList from './components/ProjectList';
 import { projects, projectSlugs } from './content/site';
 import './styles/tokens.css';
 import './styles/home.css';
 function LocationEffects(){const {pathname,hash}=useLocation();useEffect(()=>{if(hash){requestAnimationFrame(()=>document.getElementById(hash.slice(1))?.scrollIntoView())}else{window.scrollTo(0,0)}},[pathname,hash]);return null}
-function Home(){return <><Hero/><About/><ProjectList/></>}
+function Home(){return <><Hero/><About/><CompanyContribution/><ProjectList sectionNumber={contribution.enabled ? '03' : '02'}/></>}
 function ProjectPlaceholder(){const {slug}=useParams();const p=projects[projectSlugs.indexOf(slug)];useEffect(()=>{if(slug==='fowoco')window.location.replace('/projects/fowoco/')},[slug]);if(!p)return <NotFound/>;return <section className="placeholder shell"><p className="section-index">프로젝트</p><h1>{p.name}</h1><p>상세 페이지를 준비하고 있습니다.</p><a className="text-link" href={p.href} target="_blank" rel="noreferrer">저장소 보기 ↗</a><Link className="text-link" to="/#projects">← 주요 프로젝트로 돌아가기</Link></section>}
 function NotFound(){return <section className="placeholder shell"><p className="section-index">404</p><h1>페이지를 찾을 수 없습니다.</h1><Link className="text-link" to="/">홈으로 돌아가기 ↗</Link></section>}
 function App(){return <BrowserRouter><LocationEffects/><Header/><main id="main" tabIndex="-1"><Routes><Route path="/" element={<Home/>}/><Route path="/projects/:slug" element={<ProjectPlaceholder/>}/><Route path="*" element={<NotFound/>}/></Routes></main><footer className="site-footer shell"><Link to="/">박태정</Link><a href="/documents/taejung-resume.pdf" download>이력서 다운로드 <span aria-hidden="true">↗</span></a></footer></BrowserRouter>}

@@ -1,0 +1,19 @@
+.contribution{min-height:min(820px,100dvh);display:flex;flex-direction:column;justify-content:center;padding-block:64px 56px;border-bottom:1px solid var(--rule)}
+.contribution-meta{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:32px}
+.contribution-guide{font-size:12px;color:var(--muted);border:1px solid var(--rule);padding:7px 10px}
+.contribution-heading{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);align-items:end;gap:48px;margin-bottom:56px}
+.contribution-heading h2{max-width:15ch;font-size:clamp(32px,4vw,56px);font-weight:650;line-height:1.18;letter-spacing:-.05em;text-wrap:balance}
+.contribution-heading>p{font-size:16px;line-height:1.8;max-width:36ch;color:var(--muted);word-break:keep-all}
+.contribution-flow{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding:0;margin:0}
+.contribution-step{min-width:0;border-top:2px solid var(--project-highlight);padding-top:20px;display:flex;flex-direction:column}
+.contribution-step-label{display:flex;align-items:center;gap:12px;min-height:24px}
+.contribution-number{font-size:12px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.contribution-step-label h3{font-size:15px;font-weight:550;letter-spacing:-.02em}
+.contribution-arrow{margin-left:auto;color:var(--muted);font-size:22px}
+.contribution-statement{font-size:clamp(23px,2.3vw,32px);font-weight:600;line-height:1.35;letter-spacing:-.04em;margin-top:32px;color:var(--project-highlight);word-break:keep-all}
+.contribution-statement span{display:block}
+.contribution-description{font-size:15px;line-height:1.85;color:var(--muted);word-break:keep-all;text-wrap:pretty;margin-block:20px 28px}
+.contribution-evidence{margin-top:auto;border-top:1px dashed var(--rule);padding-top:16px;font-size:12px;line-height:1.7;color:var(--muted)}
+.contribution-note{margin-top:40px;font-size:12px;line-height:1.8;color:var(--muted)}
+@media(max-width:900px){.contribution{min-height:auto;padding-block:56px}.contribution-heading{grid-template-columns:1fr;gap:20px;margin-bottom:40px}.contribution-heading h2{max-width:none}.contribution-heading>p{max-width:50ch}.contribution-flow{gap:24px}.contribution-statement{font-size:24px}}
+@media(max-width:700px){.contribution-flow{grid-template-columns:1fr;gap:32px}.contribution-step{padding-top:16px}.contribution-statement{margin-top:20px;font-size:28px}.contribution-statement span{display:inline}.contribution-statement span+span::before{content:' '}.contribution-description{margin-block:16px 20px}.contribution-arrow{transform:rotate(90deg)}.contribution-meta{margin-bottom:24px}.contribution-note{margin-top:32px}}
