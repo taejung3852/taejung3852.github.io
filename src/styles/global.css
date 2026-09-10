@@ -58,3 +58,44 @@
 .project-item{--rule:color-mix(in srgb,var(--accent) 25%,transparent)}
 [data-theme='dark'] .project-item{--fg-muted:#c0d2ea;--accent:#afd0ff}
 .project-item:nth-child(2),.project-item:nth-child(3){grid-column:auto;grid-row:auto}
+/* Hallmark refinement: personal profile, concise introduction, project evidence. */
+html,body{overflow-x:clip}
+.hero{background:none;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:8%;padding-block:64px 96px}
+.hero-copy{min-width:0}
+.hero-copy h1{font-size:clamp(32px,4.1vw,60px);overflow-wrap:anywhere;min-width:0}
+.hero-description{max-width:38ch;line-height:1.8}
+.profile{max-width:340px;width:100%;justify-self:end}
+.portrait-frame{width:180px;max-width:100%;aspect-ratio:3/4;background:none;border:0;border-radius:4px;mask-image:none;-webkit-mask-image:none}
+.portrait-frame img{width:100%;height:auto;object-fit:initial;mix-blend-mode:normal;filter:none}
+[data-theme='dark'] .portrait-frame{background:none;border:0;mask-image:none;-webkit-mask-image:none}
+[data-theme='dark'] .portrait-frame img{filter:none}
+.profile figcaption{margin-top:24px}.profile-name{font-size:28px}.profile-role{font-size:17px;margin-top:10px}
+.profile-contact{font-style:normal;display:grid;gap:12px;margin-top:24px;font-size:15px}
+.profile-contact a{display:flex;align-items:center;gap:12px;white-space:nowrap;width:fit-content;max-width:100%}
+.profile-contact a>span{font-size:12px;color:var(--fg-muted);min-width:42px}
+.profile-contact a:hover{color:var(--accent)}.profile-contact .icon{width:15px;height:15px}
+.about{padding-block:64px;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:8%;border-block:1px solid var(--rule)}
+.about-copy>p:first-child{font-size:20px;line-height:1.85;letter-spacing:0}
+.about-copy>p+p{font-size:17px;line-height:1.85;margin-top:16px}
+#projects{padding-block:88px 96px}
+.site-footer{padding-block:28px 40px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:24px;font-size:14px;color:var(--fg-muted)}
+.site-footer a{white-space:nowrap}.site-footer a:hover{color:var(--accent)}
+@media(max-width:1023px){
+ .hero{grid-template-columns:minmax(0,1fr);gap:40px;align-content:center;padding-block:48px 64px}
+ .hero-copy h1{font-size:clamp(25px,5.5vw,48px)}
+ .hero-description{font-size:18px;max-width:44ch;margin-top:24px}
+ .hero-links{margin-top:24px}
+ .profile{grid-row:auto;max-width:none;justify-self:start;display:grid;grid-template-columns:144px minmax(0,1fr);gap:28px;align-items:center}
+ .portrait-frame{width:144px}.profile figcaption{margin-top:0}
+ .about{grid-template-columns:minmax(0,1fr);gap:24px}
+}
+@media(max-width:480px){
+ .hero{gap:36px;padding-block:32px 48px}
+ .hero-copy h1{font-size:clamp(23px,6.6vw,32px)}
+ .hero-description{font-size:16px}
+ .profile{grid-template-columns:100px minmax(0,1fr);gap:20px;align-items:start}
+ .portrait-frame{width:100px}.profile-name{font-size:23px}.profile-role{font-size:13px;margin-top:8px}
+ .profile-contact{font-size:12px;gap:10px;margin-top:16px}.profile-contact a{gap:6px}.profile-contact a>span{display:none}
+ .about{padding-block:40px}.about-copy>p:first-child{font-size:18px}
+ #projects{padding-block:64px}.site-footer{padding-block:24px 32px}
+}
