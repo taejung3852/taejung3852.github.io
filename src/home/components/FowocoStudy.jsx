@@ -3,25 +3,31 @@ import {Link} from 'react-router-dom';
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {fowoco} from '../content/fowoco';
-import '../styles/study.css';
 import FowocoDiagram from './FowocoDiagram';
+import '../styles/study.css';
 import '../styles/diagram.css';
 gsap.registerPlugin(ScrollTrigger);
+const descriptions=[
+ '요청 목적·자료·기한·제출 방법을 유지하며, 세 가지 고정 질의를 구성합니다.',
+ 'Dense와 Sparse의 검색 결과를 결합하고, 질의별 후보를 다시 모읍니다.',
+ '결합한 후보를 재정렬해 참조 문맥을 선택합니다. 재정렬 실패 시에는 RRF 순위를 사용합니다.'
+];
+function DetailVisual({step}){
+ if(step===0)return <div className="fact-composition scene-object"><div className="fact-paper"><span className="visual-caption">요청에 담긴 핵심 정보</span>{['요청 목적','요청 자료','기한','제출 방법'].map(t=><div className="fact-field" key={t}><span>{t}</span><i/></div>)}</div><div className="query-stack">{['canonical','reason_items','action_deadline'].map((t,i)=><div className="query-sheet" key={t}><small>질의 0{i+1}</small><strong>{t}</strong><div className="paper-rules"><i/><i/></div></div>)}</div><p className="visual-foot">요청값 불일치 또는 보호 토큰 누락 시 질의 생성 거부</p></div>;
+ if(step===1)return <div className="retrieval-composition scene-object"><div className="search-lanes">{['Dense','Sparse'].map((t,i)=><div className="search-lane" key={t}><span className="visual-caption">{t}</span><div className="document-fan">{[0,1,2].map(n=><div className="mini-document" key={n} style={{'--tilt':`${(n-1)*9}deg`}}><div className="paper-rules"><i/><i/><i/><i/></div></div>)}</div></div>)}</div><div className="merged-documents"><span className="visual-caption">RRF · 후보 순위 결합</span>{[0,1,2,3].map(n=><div className="rank-paper" key={n}><span>0{n+1}</span><div className="paper-rules"><i/><i/></div></div>)}</div><p className="visual-foot">문서 모양과 나열 순서는 처리 과정을 설명하기 위한 도식입니다.</p></div>;
+ return <div className="selection-composition scene-object"><div className="candidate-stack"><span className="visual-caption">재정렬 대상</span><strong>최대 <b>30</b>개</strong><div className="candidate-grid">{Array.from({length:30},(_,i)=><i key={i}/>)}</div></div><div className="selected-stack"><span className="visual-caption">반환할 참조 문맥</span>{[0,1,2,3,4].map(n=><div className="rank-paper" key={n}><span>0{n+1}</span><div className="paper-rules"><i/><i/></div></div>)}</div><p className="visual-foot">실패 시 RRF 상위 5개 선택 · 개수는 성능 지표가 아닌 코드의 선택 한도</p></div>
+}
 export default function FowocoStudy(){
  const root=useRef(null);
- useEffect(()=>{document.title='FOWOCO · 본문 시안 | 박태정';const media=gsap.matchMedia();media.add('(prefers-reduced-motion: no-preference)',()=>{
-  const ctx=gsap.context(()=>{gsap.utils.toArray('.study-block').forEach(block=>gsap.fromTo(block,{y:48,opacity:.7},{y:0,opacity:1,ease:'none',scrollTrigger:{trigger:block,start:'top 92%',end:'top 55%',scrub:.5}}))},root);
-  return()=>ctx.revert();
- });return()=>{media.revert();document.title='박태정 | AI Agent / LLM Application Developer'}},[]);
- return <div ref={root} className="study shell">
- <div className="study-nav"><Link to="/#projects">← 주요 프로젝트</Link><span>FOWOCO · 본문 시안 2장</span><a href="#evidence">근거로 이동</a></div>
- <section className="study-scene" aria-labelledby="search-title">
-  <header><p className="study-label">Language Assistant · 검색 설계</p><h1 id="search-title">표현은 달라도,<br/><span>요청의 핵심은 남도록.</span></h1><p className="study-intro">검색 관점을 고정하고 핵심 정보 누락을 검사한 뒤,<br/>서로 다른 검색 결과를 결합합니다.</p></header>
-  <div className="study-layout"><figure className="study-diagram fowoco-overview study-block"><FowocoDiagram/><figcaption>검색 내부: implemented · queries.py와 retrieval/service.py의 고정 커밋 대조 완료. 서비스 전체 연결과 개인 기여 범위는 별도 확인이 필요합니다.</figcaption></figure>
-  <div className="study-decisions">{fowoco.decisions.map((d,i)=><article className="study-block" key={d.title}><span className="study-step">{String(i+1).padStart(2,'0')}</span><h2>{d.title}</h2><p>{d.text}</p><a href={d.href} target="_blank" rel="noreferrer">관련 코드 ↗</a></article>)}</div></div>
- </section>
- <section className="study-scene study-evidence" id="evidence" aria-labelledby="evidence-title"><header><p className="study-label">Evidence · 확인 범위</p><h2 id="evidence-title">구현한 구조와<br/><span>검증한 효과를 구분합니다.</span></h2></header>
- <div className="evidence-visual"><div className="evidence-boundary study-block"><span>구현</span><div className="boundary-gap" aria-hidden="true">≠</div><span>효과 검증</span><p>코드가 있다는 사실만으로<br/>검색 품질의 향상을 말할 수는 없습니다.</p></div><div className="scope-list">{fowoco.scope.map(s=><article className="scope-item study-block" key={s.title}><div><span className="scope-state">{s.state}</span><h3>{s.title}</h3></div><p>{s.text}</p>{s.href&&<a href={s.href} target="_blank" rel="noreferrer">코드 확인 ↗</a>}</article>)}</div></div>
- <p className="study-source">기존 조사 초안 기준 · 코드 링크는 고정된 커밋을 가리킵니다. 이번 디자인 작업에서 실행·성능을 재검증하지 않았습니다.</p>
- </section></div>
+ useEffect(()=>{document.title='FOWOCO | 박태정';document.documentElement.classList.add('fowoco-reading');const media=gsap.matchMedia();media.add('(prefers-reduced-motion: no-preference) and (min-width: 901px)',()=>{
+ const ctx=gsap.context(()=>{gsap.utils.toArray('.detail-scene').forEach(scene=>{gsap.fromTo(scene.querySelector('.scene-object'),{y:90,scale:.94},{y:0,scale:1,ease:'power2.out',scrollTrigger:{trigger:scene,start:'top 85%',end:'top 10%',scrub:.45}});});},root);return()=>ctx.revert();});return()=>{media.revert();document.documentElement.classList.remove('fowoco-reading');document.title='박태정 | AI Agent / LLM Application Developer'}},[]);
+ return <div ref={root} className="study">
+ <section className="study-scene overview-scene" aria-labelledby="search-title"><div className="scene-inner">
+ <div className="study-nav"><Link to="/#projects">← 주요 프로젝트</Link></div>
+ <header className="overview-heading"><div><p className="study-label">FOWOCO · Language Assistant</p><h1 id="search-title">표현은 달라도,<br/><span>요청의 핵심은 남도록.</span></h1></div><p className="study-intro">검색 관점을 고정하고 핵심 정보 누락을 검사한 뒤,<br/>서로 다른 검색 결과를 결합합니다.</p></header>
+ <figure className="study-diagram fowoco-overview"><FowocoDiagram/></figure>
+ </div></section>
+ {fowoco.decisions.map((d,i)=><section className="study-scene detail-scene" aria-labelledby={`decision-${i}`} key={d.title}><div className="scene-inner detail-inner"><header><p className="study-label">0{i+1} / 검색 설계 · implemented</p><h2 id={`decision-${i}`}>{d.title}</h2><p className="study-intro">{descriptions[i]}</p><a className="source-link" href={d.href} target="_blank" rel="noreferrer">구현 코드 ↗</a></header><DetailVisual step={i}/></div></section>)}
+ <section className="study-scene detail-scene" id="evidence" aria-labelledby="evidence-title"><div className="scene-inner detail-inner"><header><p className="study-label">04 / Evidence · 확인 범위</p><h2 id="evidence-title">구현한 구조와<br/><span>검증한 효과를<br/>구분합니다.</span></h2><p className="study-intro">코드가 있다는 사실만으로 검색 품질의 향상을 말할 수는 없습니다.</p></header><div className="evidence-composition scene-object"><div className="evidence-boundary"><span>구현</span><b>≠</b><span>효과 검증</span></div><div className="scope-list">{fowoco.scope.map((s,i)=><article className="scope-item" key={s.title}><div><span className="scope-state">{i===0?'implemented':i===1?'observed at the time · 원문 재확인 필요':'미확인'}</span><h3>{s.title}</h3></div><p>{s.text}</p>{s.href&&<a className="source-link" href={s.href} target="_blank" rel="noreferrer">코드 확인 ↗</a>}</article>)}</div><p className="visual-foot">고정 커밋 코드 확인 · 현재 실행·성능 및 개인 기여 범위는 별도 검증 필요</p></div></div></section>
+ </div>
 }
