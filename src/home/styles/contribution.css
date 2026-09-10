@@ -25,3 +25,10 @@
 
 .contribution-scroll{position:relative;height:600vh;height:600dvh;width:100vw;margin-inline:calc(50% - 50vw);margin-top:40px;background:var(--bg)}
 .contribution-scroll .contribution-slides{position:sticky;top:0;height:100vh;height:100dvh;width:100%;aspect-ratio:auto;margin:0;border:0;pointer-events:none}
+
+.contribution{padding-top:88px}
+.contribution-heading{display:block;margin-bottom:0;padding-bottom:0}
+.contribution-heading h2{max-width:none;font-size:clamp(28px,2.6vw,40px);line-height:1.25;letter-spacing:-.045em;font-weight:600;text-wrap:pretty}
+.contribution-heading>p{margin-top:24px;max-width:54ch;font-size:16px;line-height:1.85}
+.contribution-scroll{margin-top:0}
+@media(max-width:600px){.contribution{padding-top:56px}.contribution-heading h2{font-size:28px}}

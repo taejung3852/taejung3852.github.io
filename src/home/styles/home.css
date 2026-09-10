@@ -9,3 +9,16 @@
 
 .project-identity{min-width:0;flex:1}
 .project-image-guide{width:min(100%,180px);aspect-ratio:16/9;margin-top:20px;display:grid;place-items:center;border:1px dashed var(--rule);background:var(--surface);color:var(--muted);font-size:11px;letter-spacing:.02em}
+
+/* Give each project its own reading space. */
+.project-row{padding-block:72px;column-gap:64px;grid-template-columns:minmax(0,.85fr) minmax(0,1fr) 100px}
+.project-summary{max-width:35ch;font-size:20px;line-height:1.85}
+.project-role{max-width:48ch;margin-top:32px;font-size:15px;line-height:1.9}
+.project-status{margin-top:16px;font-size:13px;max-width:48ch}
+.projects-heading{margin-bottom:64px}
+@media(max-width:1000px){.project-row{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:32px;padding-block:56px}.repository-link{grid-column:2;justify-self:start}}
+@media(max-width:600px){.project-row{grid-template-columns:1fr;gap:28px;padding-block:44px}.repository-link{grid-column:1}.project-summary{font-size:19px}.project-role{margin-top:24px}}
+
+.projects-heading{display:block}.projects-heading .section-intro{margin-top:24px;max-width:54ch}
+.about{display:block;padding-block:88px}.about-copy{padding-top:28px;max-width:64ch}.about .section-heading,.projects .section-heading{gap:24px}
+@media(max-width:600px){.about{padding-block:56px}.about-copy{padding-top:24px}}
