@@ -9,6 +9,6 @@ Home uses React, Vite and React Router with local Pretendard assets and neutral 
 
 Home components and styles live in `src/home/`. The supplied HTML remains unchanged in `prototypes/taejung-portfolio.html`. Existing Astro components remain available for the preserved detail. No new project case study or company theme is implemented.
 
-The desktop profile is capped at 380px, with a 4:3 image. Below 900px the photo becomes compact. Reduced motion, keyboard focus, skip navigation, local theme persistence, mobile menu and downloadable resume are supported. The three future project URLs have minimal shared placeholders, and unknown URLs have a home link.
+The text-only profile is capped at 380px. It contains the name, role and contact links without a portrait. Reduced motion, keyboard focus, skip navigation, local theme persistence, mobile menu and downloadable resume are supported. The three future project URLs have minimal shared placeholders, and unknown URLs have a home link.
 
 Publishing uses the existing project in `.openai/hosting.json`. Saving a version does not update the public site.
