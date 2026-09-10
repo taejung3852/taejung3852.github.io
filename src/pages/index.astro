@@ -36,7 +36,6 @@ import { profile, projects } from '../content/portfolio';
    <div class="projects-heading"><h2 id="projects-title" class="section-title">주요 프로젝트</h2>
    <p class="section-intro">어떤 문제를 만났고, 왜 그렇게 설계했는지.<br />구현과 검증의 근거를 함께 담았습니다.</p></div>
    <div class="project-list">{projects.map(project => <article class="project-item">
-    <details class="project-visual" open><summary>{project.visualTitle}<span aria-hidden="true">＋</span></summary><ol class="flow">{project.steps.map(([name,detail]) => <li><span>{name}</span><small>{detail}</small></li>)}</ol></details>
     <div class="project-copy"><h3>{project.name}</h3><p>{project.summary}</p><p class="project-role">{project.role}</p><p class="project-status">{project.status}</p><a class="text-link" href={project.href} target={project.href.startsWith('https') ? '_blank' : undefined} rel={project.href.startsWith('https') ? 'noreferrer' : undefined}>{project.linkLabel}<Icon name="arrow" /></a></div>
    </article>)}</div>
   </section>
