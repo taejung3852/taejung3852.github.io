@@ -15,3 +15,5 @@ html.home-reading{scroll-snap-type:y proximity;scroll-padding-top:0}
 @media(min-width:901px) and (max-height:850px){.home-reading .hero{padding-block:48px}.home-project-scene{padding-block:32px}.home-project-scene .projects-heading{margin-bottom:12px}.home-project-scene .project-row{padding-block:24px}.home-project-scene .project-role{margin-top:20px}}
 @media(max-width:900px){html.home-reading{scroll-snap-type:none}.home-reading .hero{min-height:calc(100svh - 97px)}.home-project-scene{padding-block:56px}.home-project-scene .project-row{padding:16px 0}.home-project-scene:last-child{padding-bottom:110px}.contribution-snap-point{scroll-snap-align:none}.home-reading .about-copy>p:first-child{font-size:24px}}
 @media(max-width:600px){.home-reading .hero{min-height:calc(100svh - 77px)}.home-project-scene .project-image-guide{width:180px}.home-project-scene .project-row{gap:20px}.project-detail-link{margin-top:16px}}
+
+.home-project-scene .project-cover{display:block;width:min(100%,420px);margin-top:28px}.project-cover img{display:block;width:100%;height:auto;aspect-ratio:2380/1334;object-fit:contain}

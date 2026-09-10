@@ -22,3 +22,10 @@
 .projects-heading{display:block}.projects-heading .section-intro{margin-top:24px;max-width:54ch}
 .about{display:block;padding-block:88px}.about-copy{padding-top:28px;max-width:64ch}.about .section-heading,.projects .section-heading{gap:24px}
 @media(max-width:600px){.about{padding-block:56px}.about-copy{padding-top:24px}}
+
+/* Keep the portrait and identity together at every viewport. */
+.profile .identity{display:grid;grid-template-columns:130px minmax(0,1fr);align-items:center;justify-content:start;gap:24px}
+.profile-portrait{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#fff}
+.profile-bio{min-width:0}.profile-bio .profile-role{margin-top:10px}
+@media(max-width:1100px){.profile .identity{grid-template-columns:112px minmax(0,1fr);gap:20px}}
+@media(max-width:600px){.profile .identity{grid-template-columns:104px minmax(0,1fr);gap:20px}}
