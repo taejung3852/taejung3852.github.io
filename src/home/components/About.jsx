@@ -1,0 +1,2 @@
+import React from 'react';
+export default function About(){return <section className="about shell" id="about" aria-labelledby="about-title"><div className="section-heading"><span className="section-index" aria-hidden="true">01 /</span><h2 id="about-title">기술을 고르는 기준</h2></div><div className="about-copy"><p>기술 자체보다 왜 필요한지, 어떤 한계가 있는지, 사람이 어디서 개입하고 검증해야 하는지를 기준으로 설계합니다.</p><p>문제를 정의하고 완료 기준을 세운 뒤, AI가 만든 결과를 근거와 함께 확인합니다. 마지막 판단은 사람이 내릴 수 있어야 합니다.</p></div></section>}
