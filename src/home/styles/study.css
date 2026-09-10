@@ -3,3 +3,14 @@ html.fowoco-reading{scroll-snap-type:y proximity;scroll-padding-top:0}
 @media(max-width:1200px){.scene-inner{width:calc(100% - 80px)}.detail-inner{gap:48px;grid-template-columns:1fr 1.5fr}.study-intro{font-size:18px}.fact-composition,.retrieval-composition,.selection-composition{gap:24px}.fact-paper{padding:20px}.query-sheet{padding:18px}.query-sheet strong{font-size:17px}}
 @media(max-width:900px){html.fowoco-reading{scroll-snap-type:none}.scene-inner{width:calc(100% - 40px);padding:64px 0}.overview-scene .scene-inner{padding:24px 0 48px}.study-scene{min-height:100svh}.overview-heading,.detail-inner{display:block}.study h1,.study h2{font-size:38px}.overview-heading .study-intro{margin-top:24px}.study-diagram{max-width:none;overflow:auto;margin-top:40px}.fowoco-overview svg{min-width:1050px}.detail-inner header{max-width:600px;margin-bottom:56px}.study-intro{max-width:45ch}.scene-object{max-width:700px;margin:auto}.overview-heading br{display:none}.evidence-boundary{font-size:28px}}
 @media(max-width:500px){.fact-composition,.retrieval-composition,.selection-composition{grid-template-columns:1fr;gap:28px}.fact-paper{transform:none}.query-sheet{transform:none}.search-lanes{grid-template-columns:1fr 1fr;gap:12px}.mini-document{width:58px;height:85px;padding:10px}.visual-caption{font-size:15px}.scope-item{grid-template-columns:1fr}.scope-item .source-link{grid-column:1}.visual-foot{margin-top:12px}}
+/* Include the site header in the first snap destination. */
+html.fowoco-reading .site-header{scroll-snap-align:start}
+.overview-scene{scroll-snap-align:none;min-height:calc(100svh - var(--study-header-height,98px))}
+.overview-scene .scene-inner{max-width:1460px}
+.overview-heading{grid-template-columns:1fr .85fr;gap:72px}
+.study-diagram{max-width:min(1460px,calc((100svh - var(--study-header-height,98px) - 300px)*2.424));margin:24px 0 0}
+.overview-heading .study-intro{max-width:38ch}
+#evidence{position:relative;padding-bottom:90px}
+.study-footer{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:calc(100% - 160px);max-width:1600px;display:flex;justify-content:space-between;align-items:center;min-height:80px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}
+@media(max-width:1200px){.study-footer{width:calc(100% - 80px)}}
+@media(max-width:900px){.study-diagram{max-width:none;margin-top:32px}.study-footer{width:calc(100% - 40px)}#evidence{padding-bottom:90px}.overview-heading{display:block}}
