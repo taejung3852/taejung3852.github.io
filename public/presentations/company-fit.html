@@ -20,7 +20,14 @@ html.embedded,html.embedded body{height:100%;overflow:hidden}
 .slide{will-change:transform;backface-visibility:hidden}.slide:not([hidden]) .visual{animation:none}
 .chapter-nav span{font-size:20px;color:var(--muted)}.chapter-nav span.active{color:var(--accent);}
 
-@media(prefers-reduced-motion:reduce){.slide{will-change:auto}}
+/* Highlight the current reasoning step, while keeping all text readable. */
+.visual [data-focus]{position:relative;padding-left:28px}
+.visual [data-focus]::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(var(--step-progress,0));transform-origin:top;pointer-events:none}
+.visual [data-focus=current]{background:var(--surface)}
+.visual [data-focus=current] b,.visual [data-focus=current] h2{color:var(--fg);font-weight:700}
+.visual [data-focus=current] .stamp,.visual [data-focus=current] .plan-stage,.visual [data-focus=current] small{color:var(--fg)}
+@media(prefers-reduced-motion:reduce){.slide{will-change:auto}.visual [data-focus]{background:none}.visual [data-focus]::after{display:none}}
+
 @media print{html,body{height:auto;overflow:visible}#viewport{position:static;height:auto;overflow:visible}.slide{transform:none!important;opacity:1!important}}
 </style>
 </head>
@@ -85,14 +92,23 @@ let scrollProgress=0;
 const details=slides.map(slide=>[...slide.querySelectorAll('.node,.evidence,.connection-bridge,.decision,.plan-row,.metric')]);
 function paintFeedback(){
  slides.forEach((slide,index)=>{
-  // The incoming page starts with every label readable; scrolling focuses each step.
-  const phase=Math.max(0,Math.min(1,(scrollProgress-index+.28)));
-  const visual=slide.querySelector('.visual');
-  visual.style.transform=reduced.matches?'none':`translateY(${12-phase*24}px) scale(${.985+phase*.015})`;
+  const start=index===0?0:index-.28;
+  const end=index===slides.length-1?5:index+.72;
+  const phase=Math.max(0,Math.min(1,(scrollProgress-start)/(end-start)));
+  const count=details[index].length;
+  const step=Math.min(count-1,Math.floor(phase*count));
+  slide.querySelector('.visual').style.transform='none';
   details[index].forEach((item,i)=>{
-   const focus=Math.max(0,Math.min(1,phase*details[index].length-i));
-   item.style.opacity=reduced.matches?'1':String(.68+.32*focus);
-   item.style.transform=reduced.matches?'none':`translateY(${(1-focus)*12}px)`;
+   const progress=Math.max(0,Math.min(1,phase*count-i));
+   item.dataset.focus=reduced.matches?'complete':i===step?'current':i<step?'complete':'upcoming';
+   item.style.setProperty('--step-progress',String(reduced.matches?1:progress));
+   item.style.opacity='1';
+   item.style.transform='none';
+  });
+  slide.querySelectorAll('.connector').forEach((item,i)=>{
+   const progress=Math.max(0,Math.min(1,phase*count-i-.65)*3);
+   item.style.opacity=String(reduced.matches?1:.25+.75*progress);
+   item.style.transform=reduced.matches?'none':`translateY(${(1-progress)*-8}px)`;
   });
  });
 }
