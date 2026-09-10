@@ -38,8 +38,6 @@ export default function CompanyContribution() {
       <div className="contribution-scroll" ref={scrollRegion}>
         <iframe ref={slides} onLoad={() => sync.current()} className="contribution-slides" src="/presentations/company-fit.html" title="스크롤로 읽는 회사별 기여 슬라이드" tabIndex="-1" />
       </div>
-      <div className="contribution-slide-help"><p>아래로 스크롤하면 다음 장으로, 위로 스크롤하면 이전 장으로 이동합니다.</p><a href="/presentations/company-fit.html" target="_blank" rel="noreferrer">슬라이드 별도 창으로 열기 ↗</a></div>
-      {contribution.isGuide && <p className="contribution-note">회사별 작성 가이드입니다. 실제 회사 분석과 성과 수치는 아직 입력하지 않았습니다.</p>}
     </section>
   );
 }
