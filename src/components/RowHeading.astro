@@ -1,0 +1,20 @@
+---
+interface Props {
+  index: string;
+  name: string;
+  href?: string;
+}
+const { index, name, href } = Astro.props as Props;
+---
+
+<div class="flex items-baseline gap-4">
+  <span class="font-mono text-[13px] text-[var(--accent)]">{index}</span>
+  <h3 class="text-3xl font-semibold tracking-tight md:text-4xl">
+    {name}
+    {href && (
+      <span class="ml-2 inline-block translate-x-0 text-[var(--accent)] opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100" aria-hidden="true">
+        →
+      </span>
+    )}
+  </h3>
+</div>

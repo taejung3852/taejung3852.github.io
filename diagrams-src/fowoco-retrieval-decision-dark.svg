@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fowoco-retrieval-dark-title fowoco-retrieval-dark-desc">
+      <title id="fowoco-retrieval-dark-title">FOWOCO 검색 파이프라인의 판단 흐름</title>
+      <desc id="fowoco-retrieval-dark-desc">사용자 질의가 3개의 고정된 검색 관점과 Protected Facts 검사를 거쳐 Dense·Sparse 검색으로 나뉘고, 2단계 RRF로 결합된 뒤 reranker가 성공하면 최종 컨텍스트 5개를 선별하고, reranker가 실패하면 RRF 상위 5개로 대체하는 흐름을 보여준다.</desc>
+      <defs>
+<style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+KR:wght@400;500;600&amp;display=swap');</style>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a8a59c"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bf7c52"/></marker>
+        <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a8a59c"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#121210"/>
+
+      <!-- Arrows (drawn first, behind nodes) -->
+      <!-- Input -> Focal -->
+      <line x1="500" y1="88" x2="500" y2="128" stroke="#a8a59c" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <!-- Focal -> Dense (left+down elbow, exits at x=460) -->
+      <path d="M460,192 H392 Q400,192 400,200 V224 Q400,232 408,232 H340" fill="none" stroke="#a8a59c" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <!-- Focal -> Sparse (right+down elbow, exits at x=540) -->
+      <path d="M540,192 H592 Q600,192 600,200 V224 Q600,232 608,232 H660" fill="none" stroke="#a8a59c" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <!-- Dense -> RRF (right+down elbow, enters at x=460) -->
+      <path d="M340,288 H392 Q400,288 400,296 V320 Q400,328 408,328 H460" fill="none" stroke="#a8a59c" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <!-- Sparse -> RRF (left+down elbow, enters at x=540) -->
+      <path d="M660,288 H608 Q600,288 600,296 V320 Q600,328 592,328 H540" fill="none" stroke="#a8a59c" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <!-- RRF -> Reranker -->
+      <line x1="500" y1="384" x2="500" y2="424" stroke="#a8a59c" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <!-- Reranker -> Success ("성공") -->
+      <line x1="500" y1="520" x2="500" y2="560" stroke="#a8a59c" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <!-- Reranker -> Fallback ("실패", dashed / optional path) -->
+      <line x1="600" y1="472" x2="760" y2="472" stroke="#a8a59c" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+      <!-- Arrow labels -->
+      <!-- 성공 (vertical segment: label to the side, 8px gap from the line at x=500) -->
+      <rect x="508" y="532" width="36" height="16" rx="2" fill="#121210"/>
+      <text x="526" y="544" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">성공</text>
+
+      <!-- 실패 (horizontal segment: label above the line, 8px gap above y=472) -->
+      <rect x="662" y="448" width="36" height="16" rx="2" fill="#121210"/>
+      <text x="680" y="460" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">실패</text>
+
+      <!-- Input (oval, start) -->
+      <rect x="420" y="40" width="160" height="48" rx="24" fill="#a8a59c" fill-opacity="0.10" stroke="#8f8c82" stroke-width="1"/>
+      <text x="500" y="68" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">사용자 질의</text>
+
+      <!-- Focal step: the judgment this section is about -->
+      <rect x="340" y="128" width="320" height="64" rx="6" fill="#bf7c52" fill-opacity="0.10" stroke="#bf7c52" stroke-width="1"/>
+      <text x="500" y="156" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">3개 고정 관점으로 재구성</text>
+      <text x="500" y="176" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">+ Protected Facts 검사</text>
+
+      <!-- Dense retrieval -->
+      <rect x="260" y="232" width="160" height="56" rx="6" fill="#1b1a17" stroke="#f2f0ea" stroke-width="1"/>
+      <text x="340" y="258" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Dense 검색</text>
+      <text x="340" y="274" fill="#a8a59c" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.04em">BGE-M3</text>
+
+      <!-- Sparse retrieval -->
+      <rect x="580" y="232" width="160" height="56" rx="6" fill="#1b1a17" stroke="#f2f0ea" stroke-width="1"/>
+      <text x="660" y="258" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Sparse 검색</text>
+      <text x="660" y="274" fill="#a8a59c" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.04em">lexical</text>
+
+      <!-- RRF fusion -->
+      <rect x="400" y="328" width="200" height="56" rx="6" fill="#1b1a17" stroke="#f2f0ea" stroke-width="1"/>
+      <text x="500" y="354" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">2단계 RRF 결합</text>
+      <text x="500" y="370" fill="#a8a59c" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">TOP 30</text>
+
+      <!-- Reranker (decision diamond) -->
+      <polygon points="500,424 600,472 500,520 400,472" fill="#1b1a17" stroke="#f2f0ea" stroke-width="1"/>
+      <text x="500" y="476" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Reranker</text>
+
+      <!-- Success end -->
+      <rect x="400" y="560" width="200" height="56" rx="28" fill="#f2f0ea" fill-opacity="0.03" stroke="#f2f0ea" stroke-opacity="0.30" stroke-width="1"/>
+      <text x="500" y="586" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">최종 컨텍스트 5개</text>
+      <text x="500" y="602" fill="#a8a59c" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.04em">reranked</text>
+
+      <!-- Fallback end (optional / exception path) -->
+      <rect x="760" y="444" width="200" height="56" rx="28" fill="#f2f0ea" fill-opacity="0.02" stroke="#f2f0ea" stroke-opacity="0.20" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="860" y="470" fill="#f2f0ea" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">RRF 상위 5개로 대체</text>
+      <text x="860" y="486" fill="#a8a59c" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.04em">fallback</text>
+
+      <!-- Legend (Korean legend text uses the 12px sans register, not the 8px mono eyebrow register) -->
+      <line x1="40" y1="644" x2="960" y2="644" stroke="#f2f0ea" stroke-opacity="0.10" stroke-width="0.8"/>
+      <text x="40" y="664" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif">범례</text>
+
+      <rect x="100" y="656" width="24" height="12" rx="6" fill="#a8a59c" fill-opacity="0.10" stroke="#8f8c82" stroke-width="1"/>
+      <text x="132" y="666" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif">시작</text>
+
+      <rect x="220" y="656" width="24" height="12" rx="2" fill="#1b1a17" stroke="#f2f0ea" stroke-width="1"/>
+      <text x="252" y="666" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif">단계</text>
+
+      <polygon points="340,662 352,656 364,662 352,668" fill="#1b1a17" stroke="#f2f0ea" stroke-width="1"/>
+      <text x="380" y="666" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif">판단</text>
+
+      <rect x="460" y="656" width="24" height="12" rx="6" fill="#f2f0ea" fill-opacity="0.02" stroke="#f2f0ea" stroke-opacity="0.20" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="492" y="666" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif">예외 경로</text>
+
+      <rect x="620" y="656" width="24" height="12" rx="2" fill="#bf7c52" fill-opacity="0.10" stroke="#bf7c52" stroke-width="1"/>
+      <text x="652" y="666" fill="#a8a59c" font-size="12" font-family="'Geist', 'Noto Sans KR', sans-serif">핵심 판단</text>
+    </svg>

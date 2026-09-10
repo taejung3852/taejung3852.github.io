@@ -1,0 +1,25 @@
+{/* POC 리뷰 전용 도구입니다. Phase 4 이전에 제거합니다. */}
+<div
+  id="accent-switcher"
+  class="fixed bottom-5 right-5 z-50 flex items-center gap-2 border border-black/10 bg-white/90 px-3 py-2 text-[11px] font-mono shadow-[0_2px_12px_rgba(0,0,0,0.12)] backdrop-blur"
+>
+  <span class="text-black/50">POC 색상 비교</span>
+  <button type="button" data-accent-choice="a" class="accent-btn border border-black/15 px-2 py-1">A 앰버</button>
+  <button type="button" data-accent-choice="b" class="accent-btn border border-black/15 px-2 py-1">B 시에나</button>
+  <button type="button" data-accent-choice="c" class="accent-btn border border-black/15 px-2 py-1">C 오커</button>
+</div>
+
+<script>
+  const KEY = "poc-accent";
+  const root = document.documentElement;
+  const saved = localStorage.getItem(KEY);
+  if (saved) root.dataset.accent = saved;
+
+  document.querySelectorAll<HTMLButtonElement>(".accent-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const choice = btn.dataset.accentChoice ?? "a";
+      root.dataset.accent = choice;
+      localStorage.setItem(KEY, choice);
+    });
+  });
+</script>
