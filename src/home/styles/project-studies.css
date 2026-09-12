@@ -1,0 +1,76 @@
+.domain-composition{min-width:0}.domain-composition.paired{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}.template-paper{padding:30px;background:var(--surface);border:1px solid var(--rule);transform:rotate(-3deg);min-width:0}.template-paper:nth-child(2){transform:rotate(3deg)}.form-table{margin:32px 0}.form-table>div{display:grid;grid-template-columns:1fr 1.2fr;min-height:52px;border:1px solid var(--rule);border-bottom:0}.form-table>div:last-child{border-bottom:1px solid var(--rule)}.form-table span{padding:14px 10px;font-size:16px;word-break:keep-all}.form-table span+span{border-left:1px solid var(--rule)}.field-focus{outline:1px solid var(--ink);outline-offset:-3px}.mapping-item{border-left:2px solid var(--muted);padding:12px 20px;margin-top:18px;font-size:24px}.field-map .paper-rules{max-width:200px}.plan-document{max-width:580px;margin:auto;padding:36px;border:1px solid var(--rule);background:var(--surface);transform:rotate(-2deg)}.domain-composition h3{font-size:32px;line-height:1.4;letter-spacing:-.03em;word-break:keep-all}.review-board{padding:28px 0}.review-row{display:flex;gap:24px;align-items:center;font-size:23px;padding:24px 0;border-top:1px solid var(--rule)}.review-index{font-size:14px;color:var(--muted)}.approval-receipt{border:1px solid var(--ink);padding:22px;display:flex;justify-content:space-between;gap:20px;transform:rotate(4deg);background:var(--bg)}.approval-receipt>span{color:var(--muted)}.domain-note{margin-top:30px;font-size:17px;color:var(--muted);line-height:1.7}.comparison-caption{grid-column:1/-1;font-size:18px;color:var(--muted);line-height:1.7;margin-top:20px}.code-window{background:var(--surface);border:1px solid var(--rule);padding:32px;transform:rotate(-3deg)}.code-line{font-size:24px;margin-top:40px}.code-window .paper-rules{margin-bottom:32px}.evidence-file{max-width:700px;margin:auto;border:1px solid var(--rule);padding:36px;background:var(--surface);transform:rotate(-2deg)}.evidence-file-header{font-size:36px;margin-bottom:36px}.evidence-file-row{padding:25px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1.5fr;gap:24px;font-size:22px}.evidence-file-row span{color:var(--muted)}.human-review{border:1px solid var(--rule);padding:28px 36px;border-radius:12px}.review-toolbar{display:flex;justify-content:space-between;font-size:24px;gap:24px;padding-bottom:24px;border-bottom:1px solid var(--rule)}.review-toolbar span{font-size:14px;color:var(--muted)}.decision-draft{background:var(--surface);border:1px dashed var(--muted);padding:22px;font-size:18px}.provider-composition{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}.gateway-service{padding:32px;border:1px solid var(--ink);background:var(--surface);transform:rotate(-3deg)}.provider-stack{display:grid;gap:24px}.provider-module{font-size:23px;border:1px solid var(--rule);padding:28px 24px;border-radius:8px}.provider-module span{display:block;font-size:13px;margin-top:12px;color:var(--muted)}.runtime-card{padding:28px;min-height:330px;border:1px solid var(--rule);background:var(--surface)}.runtime-card .visual-caption{font-size:15px}.cloud-outline{border:1px solid var(--muted);border-radius:70% 60% 30% 30%;height:130px;display:grid;place-items:center;margin-top:40px;font-size:28px;color:var(--muted)}.server-stack{display:grid;gap:10px;margin-top:40px}.server-stack>div{height:36px;border:1px solid var(--muted);border-radius:4px;display:flex;align-items:center;justify-content:space-between;padding:12px}.server-stack i{height:3px;width:60%;background:var(--rule)}.server-stack span{width:6px;height:6px;border-radius:50%;background:var(--muted)}.protocol-row{padding:36px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:.8fr 1fr 1.5fr;gap:24px;align-items:center;font-size:22px}.protocol-row>strong{font-size:34px}.protocol-row>span{color:var(--muted)}.request-packet{padding:20px;border:1px solid var(--ink);font-size:20px;text-align:center}.stream-packets{display:flex;gap:10px}.stream-packets i{width:25%;height:60px;background:var(--surface);border:1px solid var(--muted);transform:skewY(-6deg)}
+@media(min-width:901px) and (max-height:850px){.project-study .detail-inner{gap:48px}.project-study .study-intro{font-size:17px}.project-study .review-row{padding:18px 0}.plan-document,.evidence-file{padding:26px}.form-table>div{min-height:42px}.template-paper{padding:20px}.project-study .visual-foot{margin-top:24px}}
+@media(max-width:1100px){.domain-composition.paired,.provider-composition{gap:20px}.template-paper,.runtime-card,.gateway-service{padding:18px}.review-row{font-size:20px}.protocol-row{gap:16px;font-size:18px}.protocol-row>strong{font-size:28px}}
+@media(max-width:600px){.domain-composition.paired,.provider-composition{grid-template-columns:1fr;gap:28px}.template-paper,.template-paper:nth-child(2),.code-window,.gateway-service,.plan-document,.evidence-file{transform:none}.form-table span{font-size:16px}.protocol-row{grid-template-columns:1fr 1.5fr}.protocol-row>div{grid-column:1/-1}.evidence-file-row{font-size:18px}.human-review{padding:22px}.comparison-caption{margin:0}.domain-composition h3{font-size:26px}}
+
+/* How the tool grew: in-project code, then MCP, then Skills. */
+.origin-composition{min-width:0}
+.origin-steps{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.origin-steps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:20px;align-items:baseline;padding:24px 0;border-top:1px solid var(--rule)}
+.origin-steps li:last-child{border-bottom:1px solid var(--rule)}
+.origin-index{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.origin-steps strong{display:block;font-size:22px;font-weight:600;letter-spacing:-.03em;word-break:keep-all}
+.origin-steps span{display:block;margin-top:8px;font-size:15px;line-height:1.7;color:var(--muted);word-break:keep-all}
+
+/* Each blank cell records why it is blank. */
+.disposition-list{display:grid;gap:0}
+.disposition-row{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:24px;align-items:baseline;padding:16px 0;border-top:1px solid var(--rule)}
+.disposition-row:last-child{border-bottom:1px solid var(--rule)}
+.disposition-row code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;color:var(--ink);overflow-wrap:anywhere}
+.disposition-row span{font-size:16px;line-height:1.6;color:var(--muted);word-break:keep-all}
+
+.boundary-scene .boundary-composition{width:100%}
+
+@media(max-width:900px){
+ .origin-steps li{grid-template-columns:1fr;gap:6px;padding:20px 0}
+ .origin-steps strong{font-size:20px}
+ .disposition-row{grid-template-columns:1fr;gap:4px;padding:14px 0}
+}
+
+/* Product name vs package name, stated plainly. */
+.naming-table{display:grid;gap:0}
+.naming-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:24px;align-items:baseline;padding:20px 0;border-top:1px solid var(--rule)}
+.naming-row:last-child{border-bottom:1px solid var(--rule)}
+.naming-row span{font-size:14px;color:var(--muted);word-break:keep-all}
+.naming-row strong{font-size:24px;font-weight:600;letter-spacing:-.03em;word-break:keep-all}
+
+/* The designed verification flow. */
+.lifecycle-composition{min-width:0}
+.lifecycle-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+.lifecycle-steps li{display:flex;align-items:baseline;gap:16px;padding:18px 0;border-top:1px solid var(--rule);min-width:0}
+.lifecycle-index{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lifecycle-steps strong{font-size:20px;font-weight:600;letter-spacing:-.02em;overflow-wrap:anywhere}
+
+@media(max-width:900px){
+ .naming-row{grid-template-columns:1fr;gap:4px;padding:16px 0}
+ .naming-row strong{font-size:22px}
+ .lifecycle-steps{grid-template-columns:1fr}
+}
+
+/* The earlier threshold gate: every condition had to pass. */
+.threshold-gate{border:1px solid var(--rule);padding:28px}
+.threshold-rows{display:grid;gap:0;margin-top:16px}
+.threshold-row{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--rule);font-size:18px}
+.threshold-row b{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:.08em}
+.threshold-row:last-child b{visibility:hidden}
+.threshold-fallback{margin-top:20px;padding-top:16px;border-top:1px dashed var(--muted);font-size:15px;line-height:1.7;color:var(--muted);word-break:keep-all}
+
+/* Four criteria, their units and direction. */
+.criteria-table{display:grid;gap:0}
+.criteria-row{display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr) minmax(0,180px);gap:20px;align-items:baseline;padding:18px 0;border-top:1px solid var(--rule)}
+.criteria-row:last-child{border-bottom:1px solid var(--rule)}
+.criteria-row strong{font-size:19px;font-weight:600;letter-spacing:-.02em}
+.criteria-row code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;color:var(--muted);overflow-wrap:anywhere}
+.criteria-row span{font-size:15px;color:var(--muted);word-break:keep-all}
+
+/* The weighted sum, written out. */
+.weights-formula{border:1px solid var(--rule);padding:32px}
+.formula-line{margin-top:18px;font-size:clamp(16px,1.6vw,21px);line-height:1.9;letter-spacing:-.01em;overflow-wrap:anywhere}
+.formula-line em{font-style:normal;font-weight:600}
+.formula-line sub{font-size:.7em}
+.formula-note{margin-top:22px;padding-top:16px;border-top:1px solid var(--rule);font-size:15px;line-height:1.7;color:var(--muted);word-break:keep-all}
+
+@media(max-width:900px){
+ .threshold-gate,.weights-formula{padding:20px}
+ .criteria-row{grid-template-columns:1fr;gap:4px;padding:14px 0}
+}

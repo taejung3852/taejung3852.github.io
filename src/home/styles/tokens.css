@@ -1,0 +1,7 @@
+@font-face{font-family:Pretendard;font-style:normal;font-weight:45 920;font-display:swap;src:url('/fonts/PretendardVariable.woff2') format('woff2')}
+:root{color-scheme:light;--bg:#fff;--surface:#f7f7f7;--ink:#111;--muted:#666;--rule:#d9d9d9;--accent:var(--ink);--shell:1400px;--ease:cubic-bezier(.2,.7,.2,1)}
+:root[data-theme=dark]{color-scheme:dark;--bg:#0b0b0b;--surface:#151515;--ink:#f5f5f5;--muted:#a3a3a3;--rule:#303030}
+
+/* Company variants override these two values; shared Home markup stays unchanged. */
+:root{--project-highlight-light:#555;--project-highlight-dark:#c4c4c4;--project-highlight:var(--project-highlight-light)}
+:root[data-theme=dark]{--project-highlight:var(--project-highlight-dark)}

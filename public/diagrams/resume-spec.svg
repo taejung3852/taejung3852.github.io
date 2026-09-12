@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="880" height="440" role="img" aria-labelledby="resume-spec-title resume-spec-desc">
+  <title id="resume-spec-title">A4 2페이지 엄수 레이아웃 및 빌드 검증 파이프라인</title>
+  <desc id="resume-spec-desc">resume.html의 1페이지와 2페이지 섹션 구성, CSS 페이지 브레이크 경계, 그리고 Headless Chrome과 Swift PDFKit을 통한 2페이지 검증 및 PDF 생성 흐름 다이어그램</desc>
+  
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+KR:wght@400;500;600&amp;display=swap');</style>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#56534a"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aa5119"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="100%" height="100%" fill="#f7f6f3"/>
+
+  <!-- ZONES (z-order: background -> zones -> connectors -> nodes) -->
+  <!-- Zone 1: Page 1 Layout -->
+  <rect x="40" y="48" width="224" height="296" rx="8" fill="rgba(22, 21, 15, 0.02)" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <rect x="56" y="42" width="128" height="14" rx="2" fill="#f7f6f3"/>
+  <text x="120" y="53" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.12em">PAGE 1 (Top A4)</text>
+
+  <!-- Zone 2: Boundary & Page 2 Layout -->
+  <rect x="304" y="48" width="232" height="296" rx="8" fill="rgba(22, 21, 15, 0.02)" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <rect x="320" y="42" width="132" height="14" rx="2" fill="#f7f6f3"/>
+  <text x="386" y="53" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.12em">PAGE 2 (Bottom A4)</text>
+
+  <!-- Zone 3: Build & Verification Guard -->
+  <rect x="576" y="48" width="264" height="296" rx="8" fill="rgba(22, 21, 15, 0.02)" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <rect x="592" y="42" width="168" height="14" rx="2" fill="#f7f6f3"/>
+  <text x="676" y="53" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.12em">VERIFICATION (PDFKit)</text>
+
+  <!-- CONNECTORS (drawn before boxes) -->
+  <!-- Connector 1: Page 1 Projects -> Page 2 Projects via page break boundary -->
+  <line x1="224" y1="264" x2="328" y2="124" stroke="#aa5119" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+  <rect x="250" y="186" width="64" height="12" rx="2" fill="#f7f6f3"/>
+  <text x="282" y="195" fill="#aa5119" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.06em">PAGE BREAK</text>
+
+  <!-- Connector 2: Page 2 Credentials -> Chrome Headless -->
+  <line x1="504" y1="264" x2="600" y2="124" stroke="#56534a" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="526" y="186" width="60" height="12" rx="2" fill="#f7f6f3"/>
+  <text x="556" y="195" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.06em">RENDER</text>
+
+  <!-- Connector 3: Chrome Headless -> Swift PDFKit -->
+  <line x1="708" y1="164" x2="708" y2="224" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+  <rect x="718" y="186" width="80" height="12" rx="2" fill="#f7f6f3"/>
+  <text x="758" y="195" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.06em">COUNT CHECK</text>
+
+  <!-- NODES -->
+  <!-- Node 1: Header & Profile -->
+  <rect x="64" y="84" width="168" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="64" y="84" width="168" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="72" y="92" width="28" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="86" y="101" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">TOP</text>
+  <text x="148" y="120" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Header &amp; Profile</text>
+  <text x="148" y="136" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Contact · GitHub · SVG QR</text>
+  <text x="148" y="152" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">3줄 역량 요약 (Single Column)</text>
+
+  <!-- Node 2: Key Projects Part 1 (FOWOCO & HWPX) -->
+  <rect x="64" y="224" width="168" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="64" y="224" width="168" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="72" y="232" width="28" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="86" y="241" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">P1</text>
+  <text x="148" y="260" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Projects Part 1</text>
+  <text x="148" y="276" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">FOWOCO · HWPX Plugin</text>
+  <text x="148" y="292" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">1페이지 하단 여백 완벽 마감</text>
+
+  <!-- Node 3: Key Projects Part 2 (OwnHands & Gateway) -->
+  <rect x="328" y="84" width="176" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="328" y="84" width="176" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="336" y="92" width="28" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="350" y="101" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">P2</text>
+  <text x="416" y="120" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Projects Part 2</text>
+  <text x="416" y="136" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">OwnHands · LLM Gateway</text>
+  <text x="416" y="152" fill="#aa5119" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle">break-before: page 적용</text>
+
+  <!-- Node 4: Credentials & Tech Stacks -->
+  <rect x="328" y="224" width="176" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="328" y="224" width="176" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="336" y="232" width="36" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="354" y="241" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SPEC</text>
+  <text x="416" y="260" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Education &amp; Stacks</text>
+  <text x="416" y="276" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">인하대 · KT AIVLE · 자격 5종</text>
+  <text x="416" y="292" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">3페이지 밀림 없는 정밀 여백</text>
+
+  <!-- Node 5: Chrome Headless (Export Engine) -->
+  <rect x="600" y="84" width="208" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="600" y="84" width="208" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="608" y="92" width="28" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="622" y="101" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">PDF</text>
+  <text x="708" y="120" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Chrome Headless</text>
+  <text x="708" y="136" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">--print-to-pdf engine</text>
+  <text x="708" y="152" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">A4 10mm 15mm 마진 렌더링</text>
+
+  <!-- Node 6: Swift PDFKit Guard (Focal Node) -->
+  <rect x="600" y="224" width="208" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="600" y="224" width="208" height="80" rx="6" fill="rgba(170, 81, 25, 0.08)" stroke="#aa5119" stroke-width="1.2"/>
+  <rect x="608" y="232" width="36" height="12" rx="2" fill="rgba(170, 81, 25, 0.15)" stroke="#aa5119" stroke-width="0.8"/>
+  <text x="626" y="241" fill="#aa5119" font-size="7" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.08em">FOCAL</text>
+  <text x="708" y="260" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Swift PDFKit Guard</text>
+  <text x="708" y="276" fill="#aa5119" font-size="9" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle">pageCount == 2 (Strict)</text>
+  <text x="708" y="292" fill="#2e5aa8" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" font-weight="600" text-anchor="middle">정확히 2페이지 통과 확인</text>
+
+  <!-- LEGEND (bottom horizontal strip) -->
+  <line x1="40" y1="376" x2="840" y2="376" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <text x="40" y="402" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" letter-spacing="0.14em">LEGEND</text>
+
+  <!-- Legend Item 1: Internal Component Flow -->
+  <line x1="120" y1="398" x2="148" y2="398" stroke="#56534a" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="156" y="402" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif">페이지 레이아웃 흐름</text>
+
+  <!-- Legend Item 2: Page Break Boundary -->
+  <line x1="280" y1="398" x2="308" y2="398" stroke="#aa5119" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+  <text x="316" y="402" fill="#aa5119" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" font-weight="600">페이지 분할 경계 (.page-break)</text>
+
+  <!-- Legend Item 3: Verification Check -->
+  <line x1="476" y1="398" x2="504" y2="398" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+  <text x="512" y="402" fill="#2e5aa8" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif">PDFKit 2페이지 검증 통과</text>
+
+  <!-- Legend Item 4: Focal Guard -->
+  <rect x="668" y="392" width="12" height="12" rx="2" fill="rgba(170, 81, 25, 0.12)" stroke="#aa5119" stroke-width="0.8"/>
+  <text x="688" y="402" fill="#16150f" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif">무결성 가드 코어 (Focal)</text>
+</svg>

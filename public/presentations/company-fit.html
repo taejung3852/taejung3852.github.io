@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이 회사에서 기여할 수 있는 것 · 박태정</title>
+<script>
+(()=>{let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';try{const saved=localStorage.getItem('theme');if(saved==='light'||saved==='dark')theme=saved;if(parent!==window&&['light','dark'].includes(parent.document.documentElement.dataset.theme))theme=parent.document.documentElement.dataset.theme;}catch{}document.documentElement.dataset.theme=theme;})();
+</script>
+<style>
+@font-face{font-family:Pretendard;src:url('../fonts/PretendardVariable.woff2') format('woff2');font-weight:45 920;font-display:swap}
+:root{color-scheme:light;--bg:#fff;--fg:#111;--muted:#666;--line:#d9d9d9;--surface:#f7f7f7;--accent:#555}
+:root[data-theme=dark]{color-scheme:dark;--bg:#0b0b0b;--fg:#f5f5f5;--muted:#a3a3a3;--line:#303030;--surface:#151515;--accent:#c4c4c4}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--fg);font-family:Pretendard,system-ui,sans-serif}button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:3px solid var(--accent);outline-offset:6px}button:disabled{opacity:.3;cursor:default}#viewport{position:absolute;inset:0;display:grid;place-items:center}#deck{position:absolute;width:1920px;height:1080px;transform-origin:top left;background:var(--bg);overflow:hidden}.slide{position:absolute;inset:0;padding:76px 104px 150px;display:flex;flex-direction:column}.slide[hidden]{display:none}.topline{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:23px;letter-spacing:.01em}.part{color:var(--fg);font-weight:500}.guide{border:1px solid var(--line);padding:10px 16px;font-size:20px}.layout{display:grid;grid-template-columns: .96fr 1.04fr;gap:84px;align-items:center;flex:1;min-height:0}.copy h1{font-size:56px;line-height:1.22;letter-spacing:-.045em;font-weight:620;margin:0;word-break:keep-all}.copy h1 span{display:block}.shine{color:var(--accent);}.lead{font-size:29px;line-height:1.8;letter-spacing:-.018em;color:var(--muted);margin:34px 0 0;max-width:25em;word-break:keep-all;text-wrap:pretty}.prompt{margin-top:48px;padding-left:24px;border-left:2px solid var(--accent);font-size:24px;line-height:1.85;color:var(--fg);word-break:keep-all}.prompt strong{display:block;font-size:19px;font-weight:500;color:var(--muted);margin-bottom:8px}.visual{min-width:0}.node{padding:28px 34px;border:1px solid var(--line);background:var(--bg)}.node small,.eyebrow{display:block;font-size:19px;line-height:1.5;color:var(--muted);margin-bottom:10px}.node b{display:block;font-size:33px;line-height:1.4;font-weight:550;word-break:keep-all}.node p{font-size:23px;line-height:1.6;color:var(--muted);margin:12px 0 0;word-break:keep-all}.lit{border-color:var(--accent);}.connector{height:46px;display:grid;place-items:center;color:var(--accent);font-size:28px;}.visual-caption{font-size:20px;color:var(--muted);line-height:1.6;margin:28px 0 0}.evidence-stack{display:grid;gap:20px}.evidence{display:grid;grid-template-columns:100px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}.evidence .stamp{font-size:20px;color:var(--muted);padding-top:5px}.evidence b{font-size:32px;font-weight:550}.evidence p{font-size:23px;line-height:1.7;color:var(--muted);margin:10px 0 0;word-break:keep-all}.evidence:last-child{border-bottom-color:var(--accent)}.connection-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.connection-grid .node{min-height:212px}.connection-bridge{grid-column:1/-1;text-align:center;padding:28px;border-block:1px solid var(--accent);}.connection-bridge b{font-size:34px;font-weight:550}.connection-bridge p{font-size:23px;color:var(--muted);margin:10px 0 0}.connection-grid .connector{height:24px}.decision{border-left:1px solid var(--line);padding:0 0 28px 38px;position:relative;margin-left:12px}.decision::before{content:'';position:absolute;left:-6px;top:12px;width:11px;height:11px;border-radius:50%;background:var(--accent);}.decision:last-child{border-left-color:transparent;padding-bottom:0}.decision h2{font-size:33px;line-height:1.4;margin:0 0 10px;font-weight:550}.decision p{font-size:24px;line-height:1.7;color:var(--muted);margin:0 0 16px}.evidence-tag{display:inline-block;font-size:19px;color:var(--accent);border:1px solid var(--line);padding:9px 14px}.plan-row{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:start;padding:30px 0;border-bottom:1px solid var(--line)}.plan-row:last-child{border-color:var(--accent)}.plan-stage{font-size:24px;color:var(--muted);padding-top:4px}.plan-row b{font-size:32px;font-weight:550;line-height:1.4}.plan-row p{font-size:23px;line-height:1.6;color:var(--muted);margin:12px 0 0}.chart-list{display:grid;gap:34px}.metric-heading{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:20px}.metric-heading h2{margin:0;font-size:28px;font-weight:550}.metric-heading span{font-size:18px;color:var(--muted)}.chart-row{display:grid;grid-template-columns:64px 1fr 100px;gap:18px;align-items:center;margin-top:14px;font-size:19px;color:var(--muted)}.bar-track{height:26px;border:1px dashed var(--line);position:relative;background:var(--surface)}.bar{height:100%;background:var(--muted);width:0}.chart-row.after .bar{background:var(--accent);}.bar-track.has-value{border:0}.chart-row output{text-align:right;color:var(--fg);font-variant-numeric:tabular-nums}.chart-note{font-size:19px;line-height:1.6;color:var(--muted);margin:24px 0 0}.source{position:absolute;bottom:130px;left:104px;right:104px;font-size:18px;line-height:1.6;color:var(--muted)}.controls{position:absolute;bottom:34px;left:104px;right:104px;border-top:1px solid var(--line);padding-top:24px;display:flex;align-items:center;justify-content:space-between;gap:24px}.chapter-nav{display:flex;gap:30px}.chapter-nav button{background:none;border:0;padding:12px 0;font-size:20px;color:var(--muted)}.chapter-nav button[aria-current=true]{color:var(--accent);}.paging{display:flex;align-items:center;gap:22px}.paging button{min-width:56px;height:48px;border:1px solid var(--line);background:transparent;font-size:24px}.paging button:hover:not(:disabled){border-color:var(--accent);}#counter{font-size:20px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:60px;text-align:center}#fullscreen{padding-inline:18px;font-size:18px;min-width:110px}#notice{font-size:17px;color:var(--muted);position:absolute;right:104px;bottom:104px}.slide:not([hidden]) .visual{animation:appear .3s ease-out}@keyframes appear{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}@media print{html,body{height:auto;overflow:visible}#viewport{position:static;display:block}#deck{position:static;transform:none!important;width:1920px;height:auto}.slide,.slide[hidden]{display:flex;position:relative;width:1920px;height:1080px;break-after:page}.controls{display:none}}
+
+/* Native vertical scrolling drives a horizontal presentation, without wheel interception. */
+html{overflow-x:hidden;overflow-y:auto;height:auto;scroll-behavior:auto}body{height:600vh;height:600dvh;overflow:visible}
+#viewport{position:sticky;top:0;height:100vh;height:100dvh;display:block;overflow:hidden}
+html.embedded,html.embedded body{height:100%;overflow:hidden}
+.slide{will-change:transform;backface-visibility:hidden}.slide:not([hidden]) .visual{animation:none}
+.chapter-nav span{font-size:20px;color:var(--muted)}.chapter-nav span.active{color:var(--accent);}
+
+/* Each complete idea moves as one block. */
+.visual [data-focus]{transform-origin:center;will-change:transform,opacity}
+.connector{visibility:hidden;height:30px}
+.visual,.copy{transform-origin:center;will-change:transform,opacity}
+@media(prefers-reduced-motion:reduce){.visual [data-focus]{will-change:auto}}
+@media print{html,body{height:auto;overflow:visible}#viewport{position:static;height:auto;overflow:visible}.slide{transform:none!important;opacity:1!important}}
+</style>
+</head>
+<body>
+<div id="viewport"><main id="deck" aria-label="회사별 기여 발표 슬라이드" tabindex="-1">
+<section class="slide" aria-label="1장. 회사의 과제 정의">
+<header class="topline"><span class="part">회사의 과제 · 과제 정의</span><span class="guide">회사별 작성 가이드</span></header>
+<div class="layout"><div class="copy"><h1><span>회사의 목표에서,</span><span class="shine">내가 풀 과제로.</span></h1><p class="lead">회사의 사업 방향을 나열하기보다,<br>지원 직무와 맞닿은 문제를 하나 고릅니다.</p><div class="prompt"><strong>이 장에 넣을 핵심 문장</strong>누가, 어떤 상황에서, 무엇 때문에<br>어려움을 겪는지 한 문장으로 적습니다.</div></div><div class="visual"><div class="node"><small>출발점</small><b>채용 공고와 제품</b><p>회사가 명시한 목표와 직무의 책임</p></div><div class="connector" aria-hidden="true">↓</div><div class="node"><small>사용자 관점</small><b>해결되지 않은 문제</b><p>사용 흐름에서 발생하는 불편과 제약</p></div><div class="connector" aria-hidden="true">↓</div><div class="node lit"><small>집중할 범위</small><b class="shine">내가 기여할 수 있는 과제</b><p>직무의 범위 안에서 정의한 구체적인 문제</p></div></div></div>
+<p class="source">작성 근거: 채용 공고 또는 공식 제품 자료의 링크와 확인 날짜를 기입합니다.</p>
+</section>
+<section class="slide" hidden aria-label="2장. 회사 과제의 근거">
+<header class="topline"><span class="part">회사의 과제 · 근거 확인</span><span class="guide">회사별 작성 가이드</span></header>
+<div class="layout"><div class="copy"><h1><span>중요한 문제인지,</span><span class="shine">근거로 확인합니다.</span></h1><p class="lead">확인한 사실과 나의 해석을 구분합니다.<br>내부 사정을 추측해 단정하지 않습니다.</p><div class="prompt"><strong>이 장에 넣을 핵심 문장</strong>관찰한 사실이 사용자나 업무에<br>어떤 영향을 주는지 설명합니다.</div></div><div class="visual evidence-stack"><div class="evidence"><span class="stamp">관찰</span><div><b>무엇을 확인했는가</b><p>공고의 요구사항, 공식 자료의 설명,<br>직접 사용하며 확인한 동작을 적습니다.</p></div></div><div class="evidence"><span class="stamp">해석</span><div><b>어떤 과제로 연결되는가</b><p>관찰한 사실을 바탕으로 해석하되,<br>확인이 필요한 부분은 가설로 표시합니다.</p></div></div><div class="evidence"><span class="stamp shine">영향</span><div><b class="shine">왜 해결할 가치가 있는가</b><p>사용자 경험, 운영 부담, 결과의 신뢰성 중<br>해당 과제와 연결되는 영향을 설명합니다.</p></div></div></div></div>
+<p class="source">수치를 인용한다면 출처·기간·측정 대상을 함께 기입하고, 실제 값에 맞는 그래프로 표현합니다.</p>
+</section>
+<section class="slide" hidden aria-label="3장. 나의 경험 연결">
+<header class="topline"><span class="part">나의 연결점 · 경험 연결</span><span class="guide">회사별 작성 가이드</span></header>
+<div class="layout"><div class="copy"><h1><span>같은 기술보다,</span><span class="shine">닮은 문제를 연결합니다.</span></h1><p class="lead">사용한 도구의 이름보다,<br>비슷한 제약을 다뤄 본 경험을 보여 줍니다.</p><div class="prompt"><strong>이 장에 넣을 핵심 문장</strong>회사의 과제와 내 프로젝트가 공유하는<br>문제 또는 제약을 구체적으로 적습니다.</div></div><div class="visual connection-grid"><div class="node"><small>회사의 과제</small><b>요구되는 결과</b><p>사용자·업무·운영 환경에서<br>지켜야 할 조건</p></div><div class="node"><small>나의 경험</small><b>다뤄 본 문제</b><p>관련 프로젝트에서<br>내가 맡았던 범위</p></div><div class="connector" aria-hidden="true">↓</div><div class="connector" aria-hidden="true">↓</div><div class="connection-bridge lit"><span class="eyebrow">두 경험을 연결하는 핵심</span><b class="shine">공통된 제약과 설계 기준</b><p>무엇이 닮았고, 어떤 차이는 다시 검토해야 하는가</p></div></div></div>
+<p class="source">관련 경험은 FOWOCO · HWPX · OwnHands · LLM Gateway 중 과제에 가장 잘 맞는 것을 고릅니다.</p>
+</section>
+<section class="slide" hidden aria-label="4장. 나의 판단과 구현 근거">
+<header class="topline"><span class="part">나의 연결점 · 판단의 근거</span><span class="guide">회사별 작성 가이드</span></header>
+<div class="layout"><div class="copy"><h1><span>내가 한 판단을,</span><span class="shine">구현의 근거와 연결합니다.</span></h1><p class="lead">팀이 만든 결과와 내가 한 일을 구분하고,<br>선택의 이유와 검증 방법을 설명합니다.</p><div class="prompt"><strong>이 장에 넣을 핵심 문장</strong>어떤 대안 사이에서 무엇을 선택했으며,<br>그 판단을 어떻게 확인했는지 적습니다.</div></div><div class="visual"><div class="decision"><h2>문제와 제약</h2><p>기존 방식의 한계와 반드시 지켜야 했던 조건</p><span class="evidence-tag">근거: 이슈 · 요구사항</span></div><div class="decision"><h2 class="shine">내가 내린 설계 판단</h2><p>비교한 대안, 선택 이유, 내가 구현한 범위</p><span class="evidence-tag">근거: 설계 기록 · PR · 코드</span></div><div class="decision"><h2>검증과 남은 한계</h2><p>확인한 동작과 아직 확인하지 못한 부분</p><span class="evidence-tag">근거: 테스트 · 실행 결과</span></div></div></div>
+<p class="source">대표 근거를 하나 골라 화면 또는 다이어그램과 함께 제시합니다. 개인 기여를 확인할 수 있는 링크를 붙입니다.</p>
+</section>
+<section class="slide" hidden aria-label="5장. 기여 계획">
+<header class="topline"><span class="part">기여와 근거 · 기여 계획</span><span class="guide">회사별 작성 가이드</span></header>
+<div class="layout"><div class="copy"><h1><span>기여할 일은,</span><span class="shine">산출물까지 구체적으로.</span></h1><p class="lead">막연한 포부 대신,<br>무엇을 만들고 어떻게 확인할지 제안합니다.</p><div class="prompt"><strong>이 장에 넣을 핵심 문장</strong>합의가 필요한 조건을 먼저 밝히고,<br>기여할 일과 예상 산출물을 적습니다.</div></div><div class="visual"><div class="plan-row"><span class="plan-stage">범위 합의</span><div><b>문제와 완료 기준을 정리합니다.</b><p>산출물: 요구사항과 검증 기준</p></div></div><div class="plan-row"><span class="plan-stage">작은 구현</span><div><b>핵심 가정을 확인할 구현을 만듭니다.</b><p>산출물: 검토 가능한 기능 또는 시제품</p></div></div><div class="plan-row"><span class="plan-stage shine">검증과 공유</span><div><b class="shine">결과와 남은 한계를 공유합니다.</b><p>산출물: 측정 결과와 후속 개선안</p></div></div></div></div>
+<p class="source">이 장은 기여 계획입니다. 회사와 합의하지 않은 일정이나 성과를 확정된 약속처럼 표현하지 않습니다.</p>
+</section>
+<section class="slide" hidden aria-label="6장. 성과 측정과 증명">
+<header class="topline"><span class="part">기여와 근거 · 성과 검증</span><span class="guide">회사별 작성 가이드</span></header>
+<div class="layout"><div class="copy"><h1><span>성과는 숫자로,</span><span class="shine">판단은 근거와 함께.</span></h1><p class="lead">같은 조건에서 측정한 전후 값을 비교하고,<br>숫자가 의미하는 변화와 한계를 설명합니다.</p><div class="prompt"><strong>이 장에 넣을 핵심 문장</strong>무엇을 어떻게 측정했으며,<br>어떤 변화가 확인됐는지 적습니다.</div></div><div class="visual"><div class="chart-list" id="metrics"></div><p class="chart-note">실제 측정값 입력 전입니다. 막대 길이와 비율을 임의로 표시하지 않습니다.</p></div></div>
+<p class="source">측정 조건·기간·표본 수·출처를 기입합니다. 목표값을 사용할 때는 측정 결과와 구분해 표시합니다.</p>
+</section>
+<footer class="controls" aria-label="슬라이드 진행 상태"><div class="chapter-nav"><span data-chapter="0">회사의 과제</span><span data-chapter="1">나의 연결점</span><span data-chapter="2">기여와 근거</span></div></footer>
+</main></div>
+<script>
+// Replace null with verified, non-negative measurements. Percentages use a 0–100 scale.
+const metrics = [
+ {label:'처리 시간',unit:'초',before:null,after:null},
+ {label:'완료율',unit:'%',before:null,after:null},
+ {label:'오류율',unit:'%',before:null,after:null},
+];
+const metricRoot=document.getElementById('metrics');
+metrics.forEach(metric=>{
+ const group=document.createElement('section');group.className='metric';
+ const valid=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0&&(metric.unit!=='%'||value<=100);
+ const both=valid(metric.before)&&valid(metric.after);
+ const scale=metric.unit==='%'?100:Math.max(metric.before||0,metric.after||0,1);
+ const heading=document.createElement('div');heading.className='metric-heading';
+ const name=document.createElement('h2');name.textContent=metric.label;heading.append(name);
+ const unit=document.createElement('span');unit.textContent=both?'동일한 측정 조건으로 비교':'측정값 미입력';heading.append(unit);group.append(heading);
+ ['before','after'].forEach((key,index)=>{const row=document.createElement('div');row.className='chart-row '+key;const label=document.createElement('span');label.textContent=index?'개선 후':'개선 전';row.append(label);const track=document.createElement('div');track.className='bar-track'+(both?' has-value':'');track.setAttribute('aria-hidden','true');if(both){const bar=document.createElement('div');bar.className='bar';bar.style.width=(metric[key]/scale*100)+'%';track.append(bar)}row.append(track);const value=document.createElement('output');value.textContent=both?new Intl.NumberFormat('ko-KR',{maximumFractionDigits:2}).format(metric[key])+metric.unit:'미입력';row.append(value);group.append(row)});metricRoot.append(group);
+});
+if(metrics.every(m=>typeof m.before==='number'&&typeof m.after==='number'))document.querySelector('.chart-note').textContent='막대 길이는 지표별 공통 눈금으로 비교합니다. 비율은 0~100% 기준입니다.';
+const slides=[...document.querySelectorAll('.slide')],deck=document.getElementById('deck');
+const embedded=window.parent!==window;document.documentElement.classList.toggle('embedded',embedded);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');let current=0,target=0,raf=0,startTime=null,from=0;
+const threshold=.72, duration=440;
+let scrollProgress=0;
+const details=slides.map(slide=>[...slide.querySelectorAll('.node,.evidence,.connection-bridge,.decision,.plan-row,.metric')]);
+function paintFeedback(){
+ const clamp=value=>Math.max(0,Math.min(1,value));
+ slides.forEach((slide,index)=>{
+  const start=index===0?0:index-.28,end=index===slides.length-1?5:index+.72;
+  const phase=clamp((scrollProgress-start)/(end-start));
+  const arrive=1-Math.pow(1-clamp(phase/.42),3);
+  const leave=clamp((phase-.78)/.22);
+  const visual=slide.querySelector('.visual'),copy=slide.querySelector('.copy');
+  // Move the entire composition as one object, with a slower text layer.
+  visual.style.transform=reduced.matches?'none':`translate3d(${(1-arrive)*100-leave*28}px,${(1-arrive)*70-leave*18}px,0) scale(${.88+.12*arrive+.025*phase-.035*leave})`;
+  visual.style.opacity=reduced.matches?'1':String(.6+.4*arrive-.15*leave);
+  copy.style.transform=reduced.matches?'none':`translate3d(0,${(1-arrive)*24-leave*10}px,0)`;
+  details[index].forEach(item=>{delete item.dataset.focus;item.style.opacity='1';item.style.transform='none'});
+ });
+}
+function paint(){
+ paintFeedback();
+ const position=reduced.matches?Math.round(target):current;
+ const active=Math.max(0,Math.min(5,Math.round(position)));
+ slides.forEach((slide,index)=>{slide.hidden=false;slide.style.transform=`translate3d(${(index-position)*1920}px,0,0)`;slide.style.opacity=String(reduced.matches?(index===active?1:0):Math.max(0,1-Math.abs(index-position)*.28));slide.setAttribute('aria-hidden',String(index!==active));});
+ document.querySelectorAll('[data-chapter]').forEach(item=>item.classList.toggle('active',Number(item.dataset.chapter)===Math.floor(active/2)));
+}
+// Hold a complete page until the threshold is crossed; then finish the transition
+// even if scrolling stops. Hysteresis prevents jitter at a page boundary.
+function animate(time){
+ if(startTime===null)startTime=time;
+ const t=Math.min(1,(time-startTime)/duration);
+ const eased=t<.5?16*t*t*t*t*t:1-Math.pow(-2*t+2,5)/2;
+ current=from+(target-from)*eased;
+ if(t===1)current=target;
+ paint();
+ if(t<1)raf=requestAnimationFrame(animate);else{raf=0;startTime=null}
+}
+function update(value){
+ const progress=Math.max(0,Math.min(5,value));scrollProgress=progress;paintFeedback();let next=target;
+ while(next<5&&progress>=next+threshold)next++;
+ while(next>0&&progress<=next-threshold)next--;
+ if(next===target)return;
+ target=next;
+ if(raf){cancelAnimationFrame(raf);raf=0}
+ if(reduced.matches){current=target;paint();return}
+ from=current;startTime=null;raf=requestAnimationFrame(animate);
+}
+function onScroll(){if(!embedded)update(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*5)}
+function fit(){const scale=Math.min(innerWidth/1920,innerHeight/1080);deck.style.transform=`scale(${scale})`;deck.style.left=`${(innerWidth-1920*scale)/2}px`;deck.style.top=`${(innerHeight-1080*scale)/2}px`;onScroll()}
+window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',fit);reduced.addEventListener('change',()=>{current=target;paint()});
+function applyPalette(theme,palette){
+ if(theme==='light'||theme==='dark')document.documentElement.dataset.theme=theme;
+ const names={'--bg':'--bg','--ink':'--fg','--muted':'--muted','--rule':'--line','--surface':'--surface','--project-highlight':'--accent'};
+ if(palette)Object.entries(names).forEach(([source,destination])=>{if(typeof palette[source]==='string'&&CSS.supports('color',palette[source]))document.documentElement.style.setProperty(destination,palette[source])});
+}
+window.addEventListener('message',event=>{if(embedded&&event.source===parent&&event.origin===location.origin&&event.data?.type==='company-fit-progress'){applyPalette(event.data.theme,event.data.palette);if(Number.isFinite(event.data.progress))update(event.data.progress)}});
+function syncStandaloneTheme(){if(embedded)return;let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';try{const saved=localStorage.getItem('theme');if(saved==='light'||saved==='dark')theme=saved}catch{}applyPalette(theme)}
+window.addEventListener('storage',syncStandaloneTheme);matchMedia('(prefers-color-scheme: dark)').addEventListener('change',syncStandaloneTheme);
+new ResizeObserver(fit).observe(document.documentElement);fit();paint();
+</script>
+</body>
+</html>

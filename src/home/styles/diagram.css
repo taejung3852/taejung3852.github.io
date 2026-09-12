@@ -1,0 +1,10 @@
+.fowoco-overview text{font-family:Pretendard,system-ui,sans-serif;fill:var(--ink)}
+.fowoco-overview .service-backdrop{opacity:.55}
+.fowoco-overview .device,.fowoco-overview .paper,.fowoco-overview .result-sheet{fill:var(--surface);stroke:var(--rule);stroke-width:2}
+.fowoco-overview .workspace{fill:var(--bg);stroke:var(--rule);stroke-width:2}.fowoco-overview .workspace-depth{fill:var(--surface)}
+.fowoco-overview .agent-chip{fill:var(--surface);stroke:var(--ink);stroke-width:2}.fowoco-overview .selected{stroke:var(--ink);stroke-width:2}
+.fowoco-overview .detail-line,.fowoco-overview .paper-lines{fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round}.fowoco-overview .paper-lines{opacity:.55}
+.fowoco-overview .soft-block{fill:var(--rule);opacity:.5}.fowoco-overview .bubble,.fowoco-overview .search-pill{fill:var(--surface);stroke:var(--muted)}
+.fowoco-overview .dot,.fowoco-overview .ink-block,.fowoco-overview .rank-dot{fill:var(--muted)}.fowoco-overview .separator{stroke:var(--rule)}
+.fowoco-overview .flow-link,.fowoco-overview .context-link{fill:none;stroke:var(--muted);stroke-width:2;marker-end:url(#fw-tip)}
+.fowoco-overview .workspace-title{font-size:32px;font-weight:650}.fowoco-overview .object-label{font-size:24px;font-weight:600}.fowoco-overview .stage-label{font-size:21px;font-weight:500;fill:var(--muted)}.fowoco-overview .query-label{font-size:21px;font-weight:500}.fowoco-overview .eyebrow,.fowoco-overview .tiny{font-size:18px;fill:var(--muted)}.fowoco-overview .rank-number{font-size:19px;font-weight:600}

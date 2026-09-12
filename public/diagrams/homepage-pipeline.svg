@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="880" height="440" role="img" aria-labelledby="homepage-pipeline-title homepage-pipeline-desc">
+  <title id="homepage-pipeline-title">이력서 작성 및 웹 포트폴리오 자동화 파이프라인</title>
+  <desc id="homepage-pipeline-desc">resume 디렉토리의 HTML 소스를 Headless Chrome과 PDFKit으로 컴파일하여 portfolio 정적 웹사이트에 직결하는 아키텍처 다이어그램</desc>
+  
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+KR:wght@400;500;600&amp;display=swap');</style>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#56534a"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aa5119"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="100%" height="100%" fill="#f7f6f3"/>
+
+  <!-- ZONES (z-order: background -> zones -> connectors -> nodes) -->
+  <!-- Zone 1: Authoring -->
+  <rect x="40" y="48" width="224" height="296" rx="8" fill="rgba(22, 21, 15, 0.02)" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <rect x="56" y="42" width="132" height="14" rx="2" fill="#f7f6f3"/>
+  <text x="122" y="53" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.12em">AUTHORING (resume/)</text>
+
+  <!-- Zone 2: Engine & Scripts -->
+  <rect x="304" y="48" width="264" height="296" rx="8" fill="rgba(22, 21, 15, 0.02)" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <rect x="320" y="42" width="144" height="14" rx="2" fill="#f7f6f3"/>
+  <text x="392" y="53" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.12em">PIPELINE (scripts/)</text>
+
+  <!-- Zone 3: Distribution & Web -->
+  <rect x="608" y="48" width="232" height="296" rx="8" fill="rgba(22, 21, 15, 0.02)" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <rect x="624" y="42" width="168" height="14" rx="2" fill="#f7f6f3"/>
+  <text x="708" y="53" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.12em">DISTRIBUTION (portfolio/)</text>
+
+  <!-- CONNECTORS (drawn before boxes) -->
+  <!-- Connector 1: resume.html -> export-resume.mjs -->
+  <line x1="224" y1="124" x2="328" y2="124" stroke="#56534a" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="250" y="106" width="56" height="12" rx="2" fill="#f7f6f3"/>
+  <text x="278" y="115" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.06em">READS</text>
+
+  <!-- Connector 2: export-resume.mjs -> Chrome Headless -->
+  <line x1="436" y1="164" x2="436" y2="216" stroke="#aa5119" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+  <rect x="446" y="184" width="76" height="12" rx="2" fill="#f7f6f3"/>
+  <text x="484" y="193" fill="#aa5119" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.06em">RUNS ENGINE</text>
+
+  <!-- Connector 3: Chrome Headless -> taejung-resume.pdf (orthogonal elbow path) -->
+  <path d="M 544,256 H 708 Q 716,256 716,248 V 172" fill="none" stroke="#aa5119" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+  <rect x="584" y="238" width="88" height="12" rx="2" fill="#f7f6f3"/>
+  <text x="628" y="247" fill="#aa5119" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.06em">EXPORTS PDF</text>
+
+  <!-- Connector 4: taejung-resume.pdf -> Web Portfolio -->
+  <line x1="716" y1="164" x2="716" y2="216" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+  <rect x="726" y="184" width="84" height="12" rx="2" fill="#f7f6f3"/>
+  <text x="768" y="193" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.06em">SERVES ASSET</text>
+
+  <!-- NODES -->
+  <!-- Node 1: resume.html -->
+  <rect x="64" y="84" width="160" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="64" y="84" width="160" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="72" y="92" width="28" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="86" y="101" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SRC</text>
+  <text x="144" y="122" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">resume.html</text>
+  <text x="144" y="138" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">A4 2-Page Strict Layout</text>
+  <text x="144" y="152" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">인쇄용 CSS Paged Media</text>
+
+  <!-- Node 2: resume.md -->
+  <rect x="64" y="224" width="160" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="64" y="224" width="160" height="80" rx="6" fill="#ffffff" stroke="rgba(22, 21, 15, 0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="72" y="232" width="28" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="86" y="241" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">DOC</text>
+  <text x="144" y="262" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">resume.md</text>
+  <text x="144" y="278" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Text &amp; Prompt Spec</text>
+  <text x="144" y="292" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">LLM 및 텍스트 복사용</text>
+
+  <!-- Node 3: export-resume.mjs -->
+  <rect x="328" y="84" width="216" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="328" y="84" width="216" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="336" y="92" width="28" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="350" y="101" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">CLI</text>
+  <text x="436" y="120" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">export-resume.mjs</text>
+  <text x="436" y="136" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">npm run export:resume</text>
+  <text x="436" y="152" fill="#aa5119" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">Swift PDFKit (2-Page Guard)</text>
+
+  <!-- Node 4: Chrome Headless (Focal Node) -->
+  <rect x="328" y="224" width="216" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="328" y="224" width="216" height="80" rx="6" fill="rgba(170, 81, 25, 0.08)" stroke="#aa5119" stroke-width="1.2"/>
+  <rect x="336" y="232" width="36" height="12" rx="2" fill="rgba(170, 81, 25, 0.15)" stroke="#aa5119" stroke-width="0.8"/>
+  <text x="354" y="241" fill="#aa5119" font-size="7" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.08em">FOCAL</text>
+  <text x="436" y="260" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Chrome Headless</text>
+  <text x="436" y="276" fill="#aa5119" font-size="9" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle">--print-to-pdf engine</text>
+  <text x="436" y="292" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">브라우저 샌드박스 우회 컴파일</text>
+
+  <!-- Node 5: taejung-resume.pdf -->
+  <rect x="632" y="84" width="168" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="632" y="84" width="168" height="80" rx="6" fill="#ffffff" stroke="#16150f" stroke-width="1"/>
+  <rect x="640" y="92" width="36" height="12" rx="2" fill="transparent" stroke="rgba(22, 21, 15, 0.40)" stroke-width="0.8"/>
+  <text x="658" y="101" fill="rgba(22, 21, 15, 0.8)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">ASSET</text>
+  <text x="716" y="120" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">taejung-resume.pdf</text>
+  <text x="716" y="136" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">public/documents/</text>
+  <text x="716" y="152" fill="#2e5aa8" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" font-weight="600" text-anchor="middle">정확히 2페이지 A4 규격 검증</text>
+
+  <!-- Node 6: Web Portfolio -->
+  <rect x="632" y="224" width="168" height="80" rx="6" fill="#f7f6f3"/>
+  <rect x="632" y="224" width="168" height="80" rx="6" fill="#ffffff" stroke="#2e5aa8" stroke-width="1"/>
+  <rect x="640" y="232" width="28" height="12" rx="2" fill="transparent" stroke="rgba(46, 90, 168, 0.40)" stroke-width="0.8"/>
+  <text x="654" y="241" fill="#2e5aa8" font-size="7" font-family="'Geist Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.08em">WEB</text>
+  <text x="716" y="260" fill="#16150f" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">Web Portfolio</text>
+  <text x="716" y="276" fill="#56534a" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Astro 7 + React 19</text>
+  <text x="716" y="292" fill="#2e5aa8" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" text-anchor="middle">이력서 다운로드 버튼 직결</text>
+
+  <!-- LEGEND (bottom horizontal strip) -->
+  <line x1="40" y1="376" x2="840" y2="376" stroke="rgba(22, 21, 15, 0.12)" stroke-width="0.8"/>
+  <text x="40" y="402" fill="#56534a" font-size="8" font-family="'Geist Mono', monospace" font-weight="600" letter-spacing="0.14em">LEGEND</text>
+
+  <!-- Legend Item 1: Source Flow -->
+  <line x1="120" y1="398" x2="148" y2="398" stroke="#56534a" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="156" y="402" fill="#56534a" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif">소스 로드 및 파싱</text>
+
+  <!-- Legend Item 2: Automated Pipeline -->
+  <line x1="280" y1="398" x2="308" y2="398" stroke="#aa5119" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+  <text x="316" y="402" fill="#aa5119" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif" font-weight="600">빌드 &amp; 자동 컴파일</text>
+
+  <!-- Legend Item 3: Public Web Asset -->
+  <line x1="448" y1="398" x2="476" y2="398" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+  <text x="484" y="402" fill="#2e5aa8" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif">배포 및 다운로드 연동</text>
+
+  <!-- Legend Item 4: Focal Engine -->
+  <rect x="632" y="392" width="12" height="12" rx="2" fill="rgba(170, 81, 25, 0.12)" stroke="#aa5119" stroke-width="0.8"/>
+  <text x="652" y="402" fill="#16150f" font-size="8" font-family="'Geist', 'Noto Sans KR', sans-serif">Headless 컴파일 코어 (Focal)</text>
+</svg>
