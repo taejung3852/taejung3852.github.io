@@ -1,4 +1,8 @@
 html.home-reading{scroll-padding-top:0}
+.project-question{font-size:clamp(22px,2vw,30px);font-weight:600;line-height:1.5;word-break:keep-all;text-wrap:pretty;letter-spacing:-.03em}
+.project-decision{margin-top:20px;font-size:18px;line-height:1.85;color:var(--muted);word-break:keep-all;text-wrap:pretty}
+.project-role-label{display:block;font-size:12px;margin-bottom:8px;color:var(--muted)}
+.home-reading .projects .home-project-scene:last-child{padding-bottom:56px;border-bottom:1px solid var(--rule)}
 .home-reading .hero{min-height:calc(100svh - 97px)}
 .home-reading .about{padding-block:96px 104px}
 .home-reading .projects{padding-block:0}.home-project-scene{padding-block:56px;position:relative;border-bottom:1px solid var(--rule)}

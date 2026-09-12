@@ -11,7 +11,7 @@ export default function About() {
     <section className="about capabilities shell" id="about" aria-labelledby="about-title">
       <div className="capabilities-heading">
         <div className="section-heading">
-          <span className="section-index" aria-hidden="true">01 /</span>
+          <span className="section-index" aria-hidden="true">02 /</span>
           <h2 id="about-title">{capabilities.title}</h2>
         </div>
         <p className="section-intro">{capabilities.introduction}</p>

@@ -1,7 +1,7 @@
 // Capability summary shown on the home page. Each entry links to the projects that evidence it.
 export const capabilities = {
-  title: '구현 경험과 설계 역량',
-  introduction: '맡을 수 있는 일을 세 가지로 정리했습니다. 숙련도 점수나 운영 성과가 아니라, 실제로 구현하고 판단한 범위입니다.',
+  title: '이 경험으로 할 수 있는 일',
+  introduction: '업무 맥락을 AI 기능으로 연결하고, 도구의 책임과 사람이 확인할 지점을 설계합니다.',
   principle: '기술 자체보다 필요한 이유와 한계, 사람이 확인할 지점을 기준으로 설계합니다.',
   items: [
     {
