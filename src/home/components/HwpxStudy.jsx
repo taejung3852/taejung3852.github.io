@@ -22,7 +22,8 @@ export default function HwpxStudy(){
   <h1>양식의 구조를 읽고,<br/>확인한 값만 반영합니다.</h1>
   <p className="fw-lead">기존 HWPX 양식을 분석해 어느 칸에 무엇을 쓸지 찾고, 사용자에게 확인한 값만 그 칸에 반영하는 Agent Plugin입니다. 분석·계획·승인·적용·검증을 각각 다른 단계로 나눴습니다.</p>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
-  <figure className="fw-cover"><img src="/images/hwpx-band-2.png" alt="편집한 통합신청서에서 변경된 칸이 빨간 사각형으로 표시된 비교 이미지" width="794" height="423" loading="eager"/><figcaption>대표 양식을 실제로 편집한 뒤 원본과 비교한 결과입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 외국인등록번호처럼 한 값이 여러 칸으로 나뉜 필드도 각 칸 단위로 확인합니다.</figcaption></figure>
+  <ul className="hx-summary"><li><strong>20개</strong><span>요청 항목 전부가 지정한 칸에</span></li><li><strong>0건</strong><span>요청하지 않은 칸의 변경</span></li><li><strong>유지</strong><span>표·페이지 구조와 서식</span></li></ul>
+  <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 렌더된 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 렌더된 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">절차</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
 
@@ -51,8 +52,8 @@ export default function HwpxStudy(){
    </div>
   </div>
   <figure className="fw-cover">
-   <img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/>
-   <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 ‘전화번호 Phone No.’가 본국 주소·학교·원 근무처·예정 근무처 옆에 같은 문구로 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다.</figcaption>
+   <a href="/images/hwpx-blank-2.png" target="_blank" rel="noreferrer" aria-label="빈 원본 양식 원본 크기로 보기"><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/></a>
+   <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 ‘전화번호 Phone No.’가 본국 주소·학교·원 근무처·예정 근무처 옆에 같은 문구로 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
   </figure>
  </section>
 
@@ -64,9 +65,9 @@ export default function HwpxStudy(){
    <div><h3>구역 분할</h3><p>한 페이지를 최대 세 구역으로 나눠, 편집 대상이 포함된 구역만 원본과 상세 비교합니다.</p></div>
   </div>
   <div className="hx-bands">
-   {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></div></figure>)}
+   {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
   </div>
-  <p className="fw-note">대표 양식 1건을 실제로 편집한 뒤 생성된 상세 비교 이미지입니다. 한 페이지를 세 구역으로 나눠 각각 원본과 대조했으며, 빨간 표시가 이번 편집에서 바뀐 칸입니다.</p>
+  <p className="fw-note">대표 양식 1건을 실제로 편집한 뒤 생성된 상세 비교 이미지입니다. 한 페이지를 세 구역으로 나눠 각각 원본과 대조했으며, 빨간 표시가 이번 편집에서 바뀐 칸입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 

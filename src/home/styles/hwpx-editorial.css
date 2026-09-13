@@ -1,4 +1,9 @@
 /* HWPX study additions. The editorial base (.fw-*) is shared with the FOWOCO page. */
+/* Result summary in the hero, so the outcome is visible without reading to section 05. */
+.hx-summary{display:flex;flex-wrap:wrap;gap:12px 40px;list-style:none;margin:0 0 4px;padding:22px 0 0;border-top:1px solid var(--rule)}
+.hx-summary li{min-width:0}
+.hx-summary strong{display:block;font-size:23px;font-weight:600;letter-spacing:-.03em;line-height:1.25}
+.hx-summary span{display:block;font-size:13px;color:var(--muted);margin-top:6px;word-break:keep-all}
 .hx-bands{margin-top:28px!important;display:grid;gap:20px}
 .hx-bands figure{display:grid;grid-template-columns:92px minmax(0,1fr);gap:20px;align-items:start;padding-top:20px;border-top:1px solid var(--rule)}
 .hx-bands figure:first-child{border-top:0;padding-top:0}
