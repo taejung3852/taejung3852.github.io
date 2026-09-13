@@ -1,0 +1,12 @@
+/* HWPX study additions. The editorial base (.fw-*) is shared with the FOWOCO page. */
+.hx-bands{margin-top:28px!important;display:grid;gap:20px}
+.hx-bands figure{display:grid;grid-template-columns:92px minmax(0,1fr);gap:20px;align-items:start;padding-top:20px;border-top:1px solid var(--rule)}
+.hx-bands figure:first-child{border-top:0;padding-top:0}
+.hx-bands .fw-kicker{margin-bottom:0!important;padding-top:4px}
+.hx-bands img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
+.hx-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:30px 0 0;border-top:1px solid var(--rule)}
+.hx-metrics>div{padding:24px 24px 24px 0;border-bottom:1px solid var(--rule)}
+.hx-metrics strong{display:block;font-size:30px;font-weight:600;letter-spacing:-.035em;line-height:1.2}
+.hx-metrics span{display:block;font-size:14px;color:var(--muted);margin-top:10px;word-break:keep-all}
+@media(max-width:860px){.hx-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.hx-bands figure{grid-template-columns:1fr;gap:10px}.hx-bands .fw-kicker{padding-top:0}.hx-metrics{grid-template-columns:1fr}.hx-metrics>div{padding:18px 0}.hx-metrics strong{font-size:26px}}
