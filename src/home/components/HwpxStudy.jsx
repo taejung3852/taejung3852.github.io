@@ -99,7 +99,7 @@ export default function HwpxStudy(){
    <article><span className="fw-kicker">mcp.json</span><h3>MCP 서버</h3><p>도구 25종<br/>문서를 실제로 다루는 동작</p></article>
    <div className="fw-connection"><span className="fw-connection-label">plugin.json 으로 함께 묶임</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div>
    <article><span className="fw-kicker">skills</span><h3>Agent Skills</h3><p>절차 5종<br/>언제 무엇을 호출할지 판단</p></article>
-   <figcaption>사용자가 MCP 설정을 직접 편집하지 않아도 되도록, 서버 실행 방법과 작업 절차를 하나의 플러그인 패키지로 묶었습니다.</figcaption>
+   <figcaption>사용자가 MCP 설정을 직접 편집하지 않아도 되도록, 서버 실행 방법과 작업 절차를 하나의 플러그인 패키지로 묶었습니다. 2인 팀 프로젝트이며, 저장소에 함께 있는 WASM 뷰어 실험은 다른 팀원의 작업입니다.</figcaption>
   </figure>
   <div className="fw-proof-links"><Source href={base+'/plugin.json'}>plugin.json</Source><Source href={base+'/mcp.json'}>mcp.json</Source></div>
  </section>
