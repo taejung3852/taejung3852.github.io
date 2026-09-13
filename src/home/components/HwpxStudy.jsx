@@ -43,11 +43,17 @@ export default function HwpxStudy(){
    <div className="fw-copy">
     <h3>구조는 읽히는데, 대응이 없습니다</h3>
     <p>HWPX는 XML을 압축한 형식이라 문단·표·셀의 위치와 이미 들어 있는 값은 정확히 읽을 수 있습니다. 그런데 “이 질문의 답을 어느 칸에 쓰는가”는 파일 안에 적혀 있지 않습니다. 질문과 입력칸의 대응은 사람이 문서를 볼 때의 배치로만 드러납니다.</p>
-    <h3>구조만 보고 추론하면 틀립니다</h3>
-    <p>대표로 사용한 통합신청서에는 ‘전화번호’ 칸이 다섯 곳 있습니다. 휴대전화, 근무처, 학교, 본국, 예정 근무처가 각각 따로입니다. 성과 명, 생년월일의 년·월·일, 외국인등록번호 열세 자리도 모두 다른 셀로 나뉩니다. 구조 정보만으로 위치를 추론하면 엉뚱한 칸을 고칠 수 있습니다.</p>
-    <p className="fw-example-label">같은 이름의 칸이 다섯 곳 · 한 값이 열세 칸으로 나뉨</p>
+    <h3>같은 문구의 칸이 네 곳입니다</h3>
+    <p>대표로 사용한 통합신청서에는 전화·연락처를 적는 칸이 여섯 곳 있습니다. 그중 네 곳은 <strong>‘전화번호 Phone No.’라는 완전히 같은 문구</strong>입니다. 본국 주소, 학교, 원 근무처, 예정 근무처에 각각 하나씩 붙어 있습니다. 문구만으로는 어느 것이 어느 것인지 구분할 수 없고, 표에서 어느 행에 놓였는지로만 갈립니다.</p>
+    <h3>한 값이 여러 칸으로 흩어집니다</h3>
+    <p>생년월일은 년·월·일 세 칸에, 외국인등록번호는 열세 칸에 한 자씩 들어갑니다. 성과 명도 각각 다른 칸입니다. 값 하나를 어디에 쓸지가 아니라, 어떻게 쪼개 넣을지까지 정해야 합니다.</p>
+    <p className="fw-example-label">셀 157개 · 같은 문구의 칸 4곳 · 한 값이 13칸으로 분할</p>
    </div>
   </div>
+  <figure className="fw-cover">
+   <img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/>
+   <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 ‘전화번호 Phone No.’가 본국 주소·학교·원 근무처·예정 근무처 옆에 같은 문구로 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다.</figcaption>
+  </figure>
  </section>
 
  <section id="analyze" className="fw-section">
@@ -65,14 +71,14 @@ export default function HwpxStudy(){
  </section>
 
  <section id="values" className="fw-section">
-  <Heading n="03 / 확인한 값" title="빈칸마다, 비운 이유가 다릅니다.">값을 받은 칸과 사용자가 일부러 비운 칸, 나중에 손으로 쓸 칸을 같은 공란으로 두지 않습니다. 입력 인터뷰에서 각 칸의 처리를 다섯 가지로 구분해 기록합니다.</Heading>
+  <Heading n="03 / 확인한 값" title="빈칸마다, 비운 이유가 다릅니다.">사용자가 모든 칸을 채워 주지는 않습니다. 남은 칸을 에이전트가 추측해 채우면 문서가 사실과 달라집니다. 그렇다고 전부 똑같이 비워 두면 아직 받지 못한 값과 일부러 비운 값이 구분되지 않아, 무엇을 더 물어봐야 하는지 알 수 없습니다. 그래서 각 칸의 처리를 다섯 가지로 나눠 기록합니다.</Heading>
   <dl className="fw-metric-guide">{dispositions.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
   <p className="fw-note">다섯 값은 <code>fields.py</code>의 Disposition 정의 그대로입니다. 이 구분 덕분에 “아직 못 받은 값”과 “받지 않기로 한 값”이 섞이지 않습니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/fields.py'}>Disposition 정의</Source><Source href={base+'/src/hwp_mcp/server.py'}>update_field_interview</Source></div>
  </section>
 
  <section id="process" className="fw-section">
-  <Heading n="04 / 절차" title="바꾸기 전에, 무엇을 어디에 쓸지 확인받습니다.">수정 위치와 값을 하나의 계획으로 모은 뒤, 승인과 적용을 별도 단계로 분리했습니다.</Heading>
+  <Heading n="04 / 절차" title="바꾸기 전에, 무엇을 어디에 쓸지 확인받습니다.">앞의 판단이 맞았는지는 문서를 실제로 고쳐 봐야 드러납니다. 그런데 고치고 난 뒤에는 이미 늦습니다. 그래서 수정할 위치와 값을 먼저 한 곳에 모아 확인받고, 승인과 적용을 별도 단계로 분리했습니다.</Heading>
   <ol className="fw-collab-flow">
    <li><b>계획</b><span>수정할 칸과 값을 Edit Plan 하나로 모읍니다.</span></li>
    <li><b>승인</b><span>HMAC-SHA256 승인 영수증을 검증해야 다음으로 넘어갑니다.</span></li>
