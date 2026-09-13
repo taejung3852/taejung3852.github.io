@@ -110,7 +110,6 @@ export default function HwpxStudy(){
    <article><span className="fw-kicker">현재</span><div><h3>로컬 프로세스로 실행됩니다.</h3><p>문서가 사용자의 컴퓨터에 있고, 서버도 같은 컴퓨터에서 실행됩니다. 파일이 밖으로 나가지 않는다는 점은 장점이지만, 쓰려는 사람마다 실행 환경을 설치해야 합니다.</p></div></article>
    <article><span className="fw-kicker">한계</span><div><h3>기기에 묶입니다.</h3><p>다른 컴퓨터에서는 다시 설치해야 하고, 렌더링과 비교 작업의 속도가 그 컴퓨터의 사양에 좌우됩니다. 한 번 확인한 양식의 입력칸 정보를 여러 사람이 나눠 쓰기도 어렵습니다.</p></div></article>
    <article><span className="fw-kicker">계획</span><div><h3>Streamable HTTP로 바꿔 서버에 올립니다.</h3><p>전송 방식을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 렌더 결과·작업공간은 S3에 보관하는 구성을 검토하고 있습니다. 설치 없이 접속만으로 같은 도구를 쓰고, 한 번 확인한 양식의 입력칸 정보를 재사용하는 것이 목표입니다.</p></div></article>
-   <article><span className="fw-kicker">그때 풀 것</span><div><h3>어려운 쪽은 전송이 아닙니다.</h3><p>서버는 FastMCP 위에 있어 전송 방식 자체를 바꾸는 일은 크지 않습니다. 실제 과제는 그동안 “파일이 사용자 컴퓨터를 벗어나지 않는다”는 전제가 떠받치던 부분입니다. 원격으로 옮기면 인증과 권한, 문서가 서버에 머무는 범위, 원본 보존과 격리 작업공간을 서버 쪽에서 다시 설계해야 합니다.</p></div></article>
   </div>
   <p className="fw-note">Streamable HTTP 전환과 원격 배포는 아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 <code>mcp.json</code>과 서버 진입점 모두 STDIO 기준입니다.</p>
   <div className="fw-conclusion">
