@@ -7,6 +7,8 @@ const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f3
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
 const dispositions=[['provided','값을 받아 반영할 칸'],['not_applicable','해당 없음으로 확인된 칸'],['intentionally_blank','사용자가 일부러 비워 두기로 한 칸'],['manual_after_export','문서를 내려받은 뒤 손으로 쓸 칸'],['future_e_signature','전자서명으로 채울 칸']];
 const metrics=[['34 / 34','계획한 변경이 빠짐없이 적용됐습니다'],['0건','요청하지 않은 칸에서 발생한 변경'],['212 → 212','문단 수가 유지됐습니다'],['1 → 1','표 수와 페이지 수가 유지됐습니다'],['0건','원본에 없던 레이아웃 경고'],['통과','수정본을 다시 열어 분석까지 진행']];
+const mcpGroups=[['가져오기 · 등록','3','첨부와 로컬 파일을 허용된 작업 루트 안으로만 들여옵니다.'],['분석 · 매핑','8','구조와 렌더를 함께 읽어 입력칸 후보를 세우고, 틀렸을 때 고칠 수 있게 합니다.'],['입력 확인','2','받은 값을 칸의 형식에 맞게 다듬고, 각 칸을 어떻게 처리할지 기록합니다.'],['편집','4','계획·승인·적용·최종화를 각각 다른 도구로 분리했습니다.'],['검증','4','원본과 수정본을 비교하고, 화면으로 한 번 더 확인합니다.'],['작업 상태','4','중단된 작업을 이어가거나 되돌립니다.']];
+const skills=[['hwpx-document','진입점. 첨부를 가져오고 작업에 맞는 도구를 고르도록 안내합니다.'],['hwpx-form-fill','양식에서 요청한 항목을 찾아 입력하거나, 부족한 정보를 질문합니다.'],['hwpx-picture','그림 객체 교체와 증명사진·서명 배치를 다룹니다.'],['hwpx-styling','글자 서식을 지정하고 셀 넘침을 막습니다.'],['hwpx-verification','수정본을 확인해 검증 결과를 보고하고 최종본을 만듭니다.']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
 export default function HwpxStudy(){
@@ -18,9 +20,9 @@ export default function HwpxStudy(){
   <p className="fw-kicker">HWPX Document Plugin · 2인 팀 프로젝트 · 대표 양식 1건 실행 완료</p>
   <h1>양식의 구조를 읽고,<br/>확인한 값만 반영합니다.</h1>
   <p className="fw-lead">기존 HWPX 양식을 분석해 어느 칸에 무엇을 쓸지 찾고, 사용자에게 확인한 값만 그 칸에 반영하는 Agent Plugin입니다. 분석·계획·승인·적용·검증을 각각 다른 단계로 나눴습니다.</p>
-  <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발</dd></dl>
+  <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
   <figure className="fw-cover"><img src="/images/hwpx-band-2.png" alt="편집한 통합신청서에서 변경된 칸이 빨간 사각형으로 표시된 비교 이미지" width="794" height="423" loading="eager"/><figcaption>대표 양식을 실제로 편집한 뒤 원본과 비교한 결과입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 외국인등록번호처럼 한 값이 여러 칸으로 나뉜 필드도 각 칸 단위로 확인합니다.</figcaption></figure>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">절차</a><a href="#result">결과</a><a href="#boundary">경계</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">절차</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
 
  <section id="problem" className="fw-section">
@@ -79,15 +81,38 @@ export default function HwpxStudy(){
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · validate_document</Source><Source href={base+'/src/hwp_mcp/vision.py'}>렌더 비교 구현</Source></div>
  </section>
 
- <section id="boundary" className="fw-section">
-  <Heading n="경계" title="도구와 절차를 나눠 두었습니다.">무엇을 할 수 있는지는 MCP 도구가, 언제 무엇을 어떤 순서로 할지는 Agent Skills가 담당합니다.</Heading>
+ <section id="compose" className="fw-section">
+  <Heading n="구성" title="도구가 할 수 있는 일과, 언제 그걸 쓸지를 나눴습니다.">문서를 다루는 실제 동작은 MCP 서버가, 어떤 순서로 무엇을 물어보고 확인할지는 Agent Skills가 맡습니다. 둘을 하나의 플러그인으로 묶어 설치 한 번으로 붙도록 만들었습니다.</Heading>
+
+  <Heading n="MCP 서버" title="문서 작업을 25개의 도구로 쪼갰습니다."/>
+  <ol className="fw-ranking">{mcpGroups.map(([name,n,desc])=><li key={name}><span>{n}종</span><div><strong>{name}</strong><small>{desc}</small></div></li>)}</ol>
+  <p className="fw-note">한 번의 호출로 “문서를 고쳐 줘”를 처리하지 않고, 가져오기·분석·확인·편집·검증을 각각 별도 도구로 나눴습니다. 중간에 사람이 끼어들 지점을 만들기 위해서입니다.</p>
+  <Source href={tree+'/src/hwp_mcp'}>MCP 구현</Source>
+
+  <Heading n="Agent Skills" title="진입 스킬 하나에, 작업별 스킬 넷."/>
+  <dl className="fw-metric-guide">{skills.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+  <p className="fw-note">도구 25개를 전부 설명하는 대신, 무엇을 하려는 상황인지에 따라 필요한 절차만 읽히도록 나눴습니다. 에이전트는 <code>hwpx-document</code>로 들어와 작업에 맞는 스킬로 옮겨 갑니다.</p>
+  <Source href={tree+'/skills'}>Agent Skills</Source>
+
+  <Heading n="플러그인" title="설치 한 번이면 도구와 절차가 함께 붙습니다."/>
   <figure className="fw-boundary">
-   <article><span className="fw-kicker">src/hwp_mcp · 도구 25종</span><h3>MCP</h3><p>분석 · 계획 · 승인 · 적용 · 검증<br/>결정적인 실행을 담당</p></article>
-   <div className="fw-connection"><span className="fw-connection-label">도구 호출 / 결과 반환</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div>
-   <article><span className="fw-kicker">skills · 5종</span><h3>Agent Skills</h3><p>안전한 작업 절차와 판단 기준<br/>언제 무엇을 호출할지 안내</p></article>
-   <figcaption>고정 커밋 1a416bc에서 확인한 구성입니다. Plugin 패키징과 WASM 뷰어 실험은 개인 담당 범위 밖입니다.</figcaption>
+   <article><span className="fw-kicker">mcp.json</span><h3>MCP 서버</h3><p>도구 25종<br/>문서를 실제로 다루는 동작</p></article>
+   <div className="fw-connection"><span className="fw-connection-label">plugin.json 으로 함께 묶임</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div>
+   <article><span className="fw-kicker">skills</span><h3>Agent Skills</h3><p>절차 5종<br/>언제 무엇을 호출할지 판단</p></article>
+   <figcaption>사용자가 MCP 설정을 직접 편집하지 않아도 되도록, 서버 실행 방법과 작업 절차를 하나의 플러그인 패키지로 묶었습니다.</figcaption>
   </figure>
-  <div className="fw-proof-links"><Source href={tree+'/src/hwp_mcp'}>MCP 구현</Source><Source href={tree+'/skills'}>Agent Skills</Source></div>
+  <div className="fw-proof-links"><Source href={base+'/plugin.json'}>plugin.json</Source><Source href={base+'/mcp.json'}>mcp.json</Source></div>
+ </section>
+
+ <section id="future" className="fw-section">
+  <Heading n="향후 방향" title="지금은 각자의 컴퓨터에서, 다음은 서버에서.">현재 MCP 서버는 STDIO로 동작합니다. 에이전트가 사용자의 컴퓨터에서 서버 프로세스를 띄우고 표준입출력으로 주고받는 방식입니다.</Heading>
+  <div className="fw-collab-narrative">
+   <article><span className="fw-kicker">현재</span><div><h3>로컬 프로세스로 실행됩니다.</h3><p>문서가 사용자의 컴퓨터에 있고, 서버도 같은 컴퓨터에서 실행됩니다. 파일이 밖으로 나가지 않는다는 점은 장점이지만, 쓰려는 사람마다 실행 환경을 설치해야 합니다.</p></div></article>
+   <article><span className="fw-kicker">한계</span><div><h3>기기에 묶입니다.</h3><p>다른 컴퓨터에서는 다시 설치해야 하고, 렌더링과 비교 작업의 속도가 그 컴퓨터의 사양에 좌우됩니다. 한 번 확인한 양식의 입력칸 정보를 여러 사람이 나눠 쓰기도 어렵습니다.</p></div></article>
+   <article><span className="fw-kicker">계획</span><div><h3>Streamable HTTP로 바꿔 서버에 올립니다.</h3><p>전송 방식을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 렌더 결과·작업공간은 S3에 보관하는 구성을 검토하고 있습니다. 설치 없이 접속만으로 같은 도구를 쓰고, 한 번 확인한 양식의 입력칸 정보를 재사용하는 것이 목표입니다.</p></div></article>
+   <article><span className="fw-kicker">그때 풀 것</span><div><h3>어려운 쪽은 전송이 아닙니다.</h3><p>서버는 FastMCP 위에 있어 전송 방식 자체를 바꾸는 일은 크지 않습니다. 실제 과제는 그동안 “파일이 사용자 컴퓨터를 벗어나지 않는다”는 전제가 떠받치던 부분입니다. 원격으로 옮기면 인증과 권한, 문서가 서버에 머무는 범위, 원본 보존과 격리 작업공간을 서버 쪽에서 다시 설계해야 합니다.</p></div></article>
+  </div>
+  <p className="fw-note">Streamable HTTP 전환과 원격 배포는 아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 <code>mcp.json</code>과 서버 진입점 모두 STDIO 기준입니다.</p>
   <div className="fw-conclusion">
    <Heading n="남은 것" title="한 건의 기록으로 말할 수 있는 범위까지만."/>
    <p className="fw-takeaway">분석·확인·승인·검증 장치를 갖췄고, 대표 양식 한 건에서 실제로 동작하는 것까지 확인했습니다. 다만 양식의 배치는 서식마다 다르므로, 다른 양식에서도 같은 정확도가 나오는지는 같은 방식의 기록을 더 쌓은 뒤에 말하려 합니다.</p>
