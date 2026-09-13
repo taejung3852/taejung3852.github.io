@@ -8,6 +8,7 @@ const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · �
 const dispositions=[['provided','값을 받아 반영할 칸'],['not_applicable','해당 없음으로 확인된 칸'],['intentionally_blank','사용자가 일부러 비워 두기로 한 칸'],['manual_after_export','문서를 내려받은 뒤 손으로 쓸 칸'],['future_e_signature','전자서명으로 채울 칸']];
 const metrics=[['34 / 34','계획한 변경이 빠짐없이 적용됐습니다'],['0건','요청하지 않은 칸에서 발생한 변경'],['212 → 212','문단 수가 유지됐습니다'],['1 → 1','표 수와 페이지 수가 유지됐습니다'],['0건','원본에 없던 레이아웃 경고'],['통과','수정본을 다시 열어 분석까지 진행']];
 const mcpGroups=[['가져오기 · 등록','3','첨부와 로컬 파일을 허용된 작업 루트 안으로만 들여옵니다.'],['분석 · 매핑','8','구조와 렌더를 함께 읽어 입력칸 후보를 세우고, 틀렸을 때 고칠 수 있게 합니다.'],['입력 확인','2','받은 값을 칸의 형식에 맞게 다듬고, 각 칸을 어떻게 처리할지 기록합니다.'],['편집','4','계획·승인·적용·최종화를 각각 다른 도구로 분리했습니다.'],['검증','4','원본과 수정본을 비교하고, 화면으로 한 번 더 확인합니다.'],['작업 상태','4','중단된 작업을 이어가거나 되돌립니다.']];
+const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD','체크 표시'],['NGUYEN','성 Surname','텍스트'],['VAN AN','명 Given names','텍스트'],['1995-04-12','생년월일 Date of Birth','년·월·일 세 칸으로 분할'],['9504125000000','외국인등록번호 Foreign Resident Registration No.','열세 칸에 한 자씩'],['010-0000-0000','휴대전화 Cell phone No.','텍스트'],['031-000-0000','전화번호 Phone No. — 근무처 행','텍스트'],['3000','연 소득금액 Annual Income Amount','금액 칸']];
 const skills=[['hwpx-document','진입점. 첨부를 가져오고 작업에 맞는 도구를 고르도록 안내합니다.'],['hwpx-form-fill','양식에서 요청한 항목을 찾아 입력하거나, 부족한 정보를 질문합니다.'],['hwpx-picture','그림 객체 교체와 증명사진·서명 배치를 다룹니다.'],['hwpx-styling','글자 서식을 지정하고 셀 넘침을 막습니다.'],['hwpx-verification','수정본을 확인해 검증 결과를 보고하고 최종본을 만듭니다.']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
@@ -22,8 +23,19 @@ export default function HwpxStudy(){
   <p className="fw-lead">기존 HWPX 양식을 분석해 어느 칸에 무엇을 쓸지 찾고, 사용자에게 확인한 값만 그 칸에 반영하는 Agent Plugin입니다. 분석·계획·승인·적용·검증을 각각 다른 단계로 나눴습니다.</p>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
   <figure className="fw-cover"><img src="/images/hwpx-band-2.png" alt="편집한 통합신청서에서 변경된 칸이 빨간 사각형으로 표시된 비교 이미지" width="794" height="423" loading="eager"/><figcaption>대표 양식을 실제로 편집한 뒤 원본과 비교한 결과입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 외국인등록번호처럼 한 값이 여러 칸으로 나뉜 필드도 각 칸 단위로 확인합니다.</figcaption></figure>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">절차</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">절차</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
+
+ <section id="origin" className="fw-section">
+  <Heading n="00 / 시작" title="FOWOCO 안의 서브그래프 하나에서 시작했습니다.">처음부터 별도 프로젝트는 아니었습니다. 외국인 근로자 행정업무를 돕는 FOWOCO에서 HWPX 문서를 다루던 코드가 떨어져 나온 결과입니다.</Heading>
+  <div className="fw-collab-narrative">
+   <article><span className="fw-kicker">처음</span><div><h3>에이전트 흐름 안의 한 갈래였습니다.</h3><p>문서 작업은 LangGraph 흐름 안의 서브그래프였습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
+   <article><span className="fw-kicker">커지면서</span><div><h3>책임이 한 덩어리로 섞였습니다.</h3><p>양식마다 구조가 다르다는 걸 알게 되면서 분석과 확인, 검증이 계속 붙었습니다. 업무 흐름을 조율하는 일과 문서를 다루는 일이 같은 자리에서 자라기 시작했습니다.</p></div></article>
+   <article><span className="fw-kicker">판단</span><div><h3>내부 함수로 정리하지 않았습니다.</h3><p>함수로 묶어도 FOWOCO 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 밖에서도 쓸 데가 보였고, 더 키울 여지도 컸습니다. 그래서 에이전트 안에 두지 않고 MCP 도구로 경계를 그었습니다.</p></div></article>
+  </div>
+  <p className="fw-takeaway">그 경계 밖으로 떼어낸 것이 이 프로젝트입니다. 에이전트는 작업 흐름을 조율하고, 문서 도구는 문서만 맡습니다.</p>
+  <p><Link className="fw-source" to="/projects/fowoco">FOWOCO에서의 분리 과정 보기 →</Link></p>
+ </section>
 
  <section id="problem" className="fw-section">
   <div className="fw-two">
@@ -71,7 +83,18 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="05 / 결과" title="대표 양식 한 건을, 실제로 편집하고 검증했습니다.">출입국관리법 시행규칙 별지 제34호 통합신청서에 가상 정보를 입력하고, 원본과 수정본을 자동으로 비교했습니다. 아래는 그 검증 리포트에서 읽은 값입니다.</Heading>
+  <Heading n="05 / 결과" title="요청한 값이, 요청한 칸에 들어갔습니다.">출입국관리법 시행규칙 별지 제34호 통합신청서에 가상 정보를 입력했습니다. 앞에서 문제로 꼽은 칸들이 실제로 어떻게 처리됐는지부터 봅니다.</Heading>
+  <div className="fw-table" tabIndex="0" role="region" aria-label="요청한 값과 실제로 입력된 칸">
+   <table>
+    <caption>편집 계획에 기록된 값과, 그 값이 들어간 칸의 양식 문구</caption>
+    <thead><tr><th scope="col">요청한 값</th><th scope="col">들어간 칸</th><th scope="col">칸의 형태</th></tr></thead>
+    <tbody>{mapping.map(([v,cell,kind])=><tr key={v}><th scope="row">{v}</th><td>{cell}</td><td>{kind}</td></tr>)}</tbody>
+   </table>
+  </div>
+  <p className="fw-note">스무 개 항목 전부가 이렇게 기록됐고, 값의 출처는 스무 건 모두 사용자 입력이었습니다. 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다. 성과 명이 각각 다른 칸으로, 생년월일과 등록번호가 여러 칸으로 나뉘었고, <strong>‘전화번호’라는 같은 문구의 칸이 여럿인데 휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
+  <Source href={base+'/src/hwp_mcp/application/editing.py'}>편집 계획·적용 구현</Source>
+
+  <Heading n="구조 보존" title="값을 넣은 뒤에도, 문서가 그대로인지 확인했습니다.">원본과 수정본을 자동으로 비교한 검증 리포트에서 읽은 값입니다.</Heading>
   <div className="hx-metrics">{metrics.map(([v,d])=><div key={d}><strong>{v}</strong><span>{d}</span></div>)}</div>
   <div className="fw-context-note">
    <h3>“값을 넣었다”와 “문서가 멀쩡하다”는 다릅니다.</h3>
