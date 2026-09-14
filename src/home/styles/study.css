@@ -134,3 +134,8 @@ html.fowoco-reading{scroll-padding-top:0}
  .study-footer{display:block;padding-top:20px}
  .study-footer-utils{margin-top:20px;justify-content:space-between;gap:20px}
 }
+
+/* Unify case-study width with the other project pages: min(viewport - 80px, 1100px).
+   The .scene-inner width is set in several places above; override once here. */
+.scene-inner,.overview-scene .scene-inner{width:calc(100% - 80px);max-width:1100px}
+@media(max-width:900px){.scene-inner,.overview-scene .scene-inner{width:calc(100% - 40px)}}

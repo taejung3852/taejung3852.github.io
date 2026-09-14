@@ -1,4 +1,4 @@
-.gateway-study{width:calc(100% - 96px);max-width:1040px;margin-inline:auto;padding:42px 0 0;color:var(--ink)}
+.gateway-study{width:calc(100% - 80px);max-width:1100px;margin-inline:auto;padding:42px 0 0;color:var(--ink)}
 .gateway-study .gw-back,.gateway-study .gw-source{font-size:15px;text-decoration:underline;text-underline-offset:5px}
 .gateway-study .gw-kicker{font-size:14px;font-weight:550;color:var(--muted);letter-spacing:.025em}
 .gateway-study .gw-hero{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:40px;align-items:center;margin-top:52px}.gateway-study .gw-hero .gw-screen{margin:0}.gateway-study .gw-hero figcaption{font-size:12px}
