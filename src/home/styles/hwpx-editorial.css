@@ -4,10 +4,9 @@
 .hx-summary li{min-width:0}
 .hx-summary strong{display:block;font-size:23px;font-weight:600;letter-spacing:-.03em;line-height:1.25}
 .hx-summary span{display:block;font-size:13px;color:var(--muted);margin-top:6px;word-break:keep-all}
-.hx-bands{margin-top:28px!important;display:grid;gap:20px}
-.hx-bands figure{display:grid;grid-template-columns:92px minmax(0,1fr);gap:20px;align-items:start;padding-top:20px;border-top:1px solid var(--rule)}
-.hx-bands figure:first-child{border-top:0;padding-top:0}
-.hx-bands .fw-kicker{margin-bottom:0!important;padding-top:4px}
+.hx-bands{margin-top:28px!important;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
+.hx-bands figure{min-width:0}
+.hx-bands .fw-kicker{margin-bottom:10px!important}
 .hx-bands img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 /* FOWOCO nests its heading inside .fw-two; these sections put it above, where
    nothing supplies the gap. Same for the result table. */
@@ -16,8 +15,8 @@
 /* Notes run full width at 13px, which is far past a comfortable line. */
 .fw-note{max-width:800px}
 
-/* The remark after a definition list is a different kind of content; let it breathe. */
-.fw-metric-guide+.fw-note,.fw-ranking+.fw-note{margin-top:30px}
+/* A note is a remark on the block above it, not its last line; 14px reads as the latter. */
+.fw-two+.fw-note,.fw-table+.fw-note,.fw-context-note+.fw-note,.hx-bands+.fw-note,.fw-cover+.fw-note{margin-top:30px}
 /* FOWOCO highlights a table's last row as a total; this one is a plain list of fields. */
 #result .fw-table tbody tr:last-child{background:none}
 #result .fw-table th[scope="row"]{font-weight:550;color:var(--ink)}
@@ -27,4 +26,5 @@
 .hx-metrics strong{display:block;font-size:30px;font-weight:600;letter-spacing:-.035em;line-height:1.2}
 .hx-metrics span{display:block;font-size:14px;color:var(--muted);margin-top:10px;word-break:keep-all}
 @media(max-width:860px){.hx-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.hx-bands figure{grid-template-columns:1fr;gap:10px}.hx-bands .fw-kicker{padding-top:0}.hx-metrics{grid-template-columns:1fr}.hx-metrics>div{padding:18px 0}.hx-metrics strong{font-size:26px}}
+@media(max-width:760px){.hx-bands{grid-template-columns:1fr;gap:18px}}
+@media(max-width:600px){.hx-metrics{grid-template-columns:1fr}.hx-metrics>div{padding:18px 0}.hx-metrics strong{font-size:26px}}
