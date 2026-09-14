@@ -55,21 +55,26 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="그래서 XML과 렌더 이미지를 함께 봅니다.">XML만 파싱하면 훨씬 빠릅니다. 그런데 그 방법으로는 ‘전화번호 Phone No.’ 네 곳을 끝내 구분할 수 없었습니다. 속도를 내주고 정확도를 샀습니다.</Heading>
+  <Heading n="02 / 분석" title="렌더가 필요한 곳은 매핑이 아니었습니다.">처음에는 XML만으로 ‘전화번호 Phone No.’ 네 곳을 구분할 수 없다고 봤고, 그래서 렌더를 분석의 기본 경로에 넣었습니다. 같은 문서로 확인해 보니 그 근거는 성립하지 않았습니다.</Heading>
+  <div className="fw-findings">
+   <article><span className="fw-kicker">XML 셀 표만</span><strong>20 / 20</strong><h3>정확히 매핑</h3><p>행·열 위치와 각 셀의 문구만 제공. 렌더 이미지 없음.</p></article>
+   <article><span className="fw-kicker">XML + 렌더 이미지</span><strong>20 / 20</strong><h3>정확히 매핑</h3><p>같은 자료에 페이지 렌더 1장을 더해 제공.</p></article>
+  </div>
+  <p className="fw-note">실제 실행에서 사용자가 확인한 매핑 20건을 정답으로 두고, 같은 모델에 자료만 다르게 주어 각각 풀게 했습니다. <strong>두 조건이 다르게 답한 항목은 0건</strong>이었습니다. 양식 한 종류를 한 번 돌린 기록입니다.</p>
   <div className="hx-pairs">
-   <div><h3>포기한 것 — 속도</h3><p>렌더가 조건부 보조 수단이 아니라 분석의 기본 경로라, 모든 작업이 그만큼 느려집니다.</p></div>
-   <div><h3>얻은 것 — 애초에 못 풀던 문제</h3><p>셀의 실제 좌표를 얻으면 문항과 빈 칸의 관계가 배치로 드러납니다. 같은 문구가 네 번 반복돼도 어느 행에 있는지로 갈립니다.</p></div>
-   <div><h3>대가로 생긴 것 — 렌더러 의존</h3><p>뒤에 나오는 검증도 같은 렌더러 기준이라, 한글 프로그램에서의 실제 표시와 일치하는지는 이 안에서 확인할 수 없습니다.</p></div>
-   <div><h3>한 페이지를 세 구역으로</h3><p>페이지를 한 장으로 보면 글자가 작아 대조가 어렵습니다. 편집 대상이 든 구역만 나눠 원본과 비교합니다.</p></div>
+   <div><h3>매핑은 구조로 풀렸습니다</h3><p>행·열 위치와 이웃 칸의 문구가 이미 배치를 담고 있습니다. 같은 행에 ‘원 근무처 · 사업자등록번호 · 전화번호’가 나란히 있으면, 그 행의 빈칸이 근무처 전화라는 게 문구만으로 드러납니다. 이 표는 렌더러 없이 XML 파싱만으로 만들 수 있습니다.</p></div>
+   <div><h3>자평은 근거가 아니었습니다</h3><p>이미지를 받은 쪽은 “이미지가 결정적이었다”고 스스로 보고했습니다. 그런데 이미지를 받지 않은 쪽이 같은 답을 냈습니다. 도움이 됐다는 진술만으로는 도움이 됐다고 말할 수 없습니다.</p></div>
+   <div><h3>그래도 렌더가 필요합니다 — 보여주기</h3><p>값을 넣기 전에 “이 칸이 맞습니까”를 사람에게 물으려면 그림이 있어야 합니다. 셀 ID를 나열해 놓고 확인받을 수는 없습니다. 다음 섹션의 파란 박스가 렌더 결과입니다.</p></div>
+   <div><h3>그래도 렌더가 필요합니다 — 검증</h3><p>값을 넣은 뒤 표가 밀렸는지, 글자가 칸을 넘쳤는지는 XML로 보이지 않습니다. 원본과 수정본을 각각 렌더해 구역별로 대조해야 드러납니다. 아래가 그 비교 결과입니다.</p></div>
   </div>
   <div className="fw-tradeoff">
-   <h3>느려지는 걸 알고도 기본 경로로 뒀습니다.</h3>
-   <p>렌더를 조건부로 두면 빠른 경우가 생깁니다. 그런데 어떤 양식이 모호한지는 열어 보기 전에 알 수 없습니다. 판단이 필요한 순간을 한 번 놓치면 값이 엉뚱한 칸에 들어가고, 그렇게 만들어진 문서는 제출한 뒤에야 틀린 걸 알게 됩니다. 되돌릴 수 없는 쪽의 비용이 더 크다고 봐서, 느린 쪽을 기본으로 뒀습니다.</p>
+   <h3>가정을 그대로 두지 않았습니다.</h3>
+   <p>렌더를 기본 경로로 둔 처음 이유는 매핑 정확도였습니다. 확인해 보니 그 이유는 틀렸고, 렌더는 다른 곳에서 값을 하고 있었습니다. 근거가 사라진 만큼 매핑 단계의 렌더는 줄일 여지가 생겼지만, 확인 화면과 검증에는 그대로 필요합니다. 이 판단은 양식 한 종류의 기록이라, 배치가 더 복잡한 양식에서도 같은지는 아직 모릅니다.</p>
   </div>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
   </div>
-  <p className="fw-note">대표 양식 1건을 실제로 편집한 뒤 생성된 상세 비교 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
+  <p className="fw-note">수정 후 검증에 쓰는 구역별 대조입니다. 한 페이지를 세 구역으로 나눠 각각 원본과 비교하며, 빨간 표시가 이번 편집에서 바뀐 칸입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
