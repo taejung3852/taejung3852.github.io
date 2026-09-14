@@ -11,6 +11,10 @@
 /* FOWOCO nests its heading inside .fw-two; these sections put it above, where
    nothing supplies the gap. Same for the result table. */
 .fw-heading+.fw-two,.fw-heading+.fw-table{margin-top:34px}
+/* 1fr/1.15fr is sized for heading-then-copy; with the heading above, the two
+   columns are peers and should match. */
+.fw-heading+.fw-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:760px){.fw-heading+.fw-two{grid-template-columns:minmax(0,1fr)}}
 
 /* Notes run full width at 13px, which is far past a comfortable line. */
 .fw-note{max-width:800px}

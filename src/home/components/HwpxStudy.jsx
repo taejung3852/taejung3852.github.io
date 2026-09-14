@@ -39,20 +39,23 @@ export default function HwpxStudy(){
  </section>
 
  <section id="problem" className="fw-section">
+  <Heading n="01 / 문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다."/>
   <div className="fw-two">
-   <Heading n="01 / 문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다."/>
    <div className="fw-copy">
     <h3>문항은 XML에 다 있습니다</h3>
     <p>HWPX는 XML을 압축한 형식이라, 양식에 어떤 문항이 있는지는 그대로 읽힙니다. ‘성 Surname’, ‘생년월일 Date of Birth’ 같은 문구가 어느 셀에 있는지도 정확히 알 수 있습니다.</p>
     <h3>답을 쓸 칸은 적혀 있지 않습니다</h3>
     <p>문제는 그다음입니다. 그 문항의 <strong>답을 어느 칸에 써야 하는지</strong>는 파일 어디에도 없습니다. 문항과 답 칸을 이어 주는 정보가 XML에 존재하지 않습니다. 사람이 문서를 볼 때의 배치로만 드러납니다.</p>
+   </div>
+   <div className="fw-copy">
     <h3>같은 문구의 칸이 네 곳입니다</h3>
-    <p>대표로 사용한 통합신청서에는 전화·연락처를 적는 칸이 여섯 곳 있습니다. 그중 네 곳은 <strong>‘전화번호 Phone No.’라는 완전히 같은 문구</strong>입니다. 본국 주소, 학교, 원 근무처, 예정 근무처에 각각 하나씩 붙어 있습니다. 문구만으로는 어느 것이 어느 것인지 구분할 수 없고, 표에서 어느 행에 놓였는지로만 갈립니다.</p>
+    <p>대표로 사용한 통합신청서에는 전화·연락처를 적는 칸이 여섯 곳 있습니다. 그중 네 곳은 <strong>‘전화번호 Phone No.’라는 완전히 같은 문구</strong>입니다. 본국 주소, 학교, 원 근무처, 예정 근무처에 각각 하나씩 붙어 있어, 문구만으로는 구분할 수 없습니다.</p>
     <h3>한 값이 여러 칸으로 흩어집니다</h3>
     <p>생년월일은 년·월·일 세 칸에, 외국인등록번호는 열세 칸에 한 자씩 들어갑니다. 성과 명도 각각 다른 칸입니다. 값 하나를 어디에 쓸지가 아니라, 어떻게 쪼개 넣을지까지 정해야 합니다.</p>
-    <p className="fw-example-label">셀 157개 · 같은 문구의 칸 4곳 · 한 값이 13칸으로 분할</p>
    </div>
   </div>
+  <p className="fw-example-label">셀 157개 · 같은 문구의 칸 4곳 · 한 값이 13칸으로 분할</p>
+  
   <figure className="fw-cover">
    <a href="/images/hwpx-blank-2.png" target="_blank" rel="noreferrer" aria-label="빈 원본 양식 원본 크기로 보기"><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/></a>
    <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 ‘전화번호 Phone No.’가 본국 주소·학교·원 근무처·예정 근무처 옆에 같은 문구로 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
