@@ -5,7 +5,6 @@ import '../styles/hwpx-editorial.css';
 const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f35c59856f9b40909337fa443175e42';
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
-const dispositions=[['provided','값을 받아 반영할 칸'],['not_applicable','해당 없음으로 확인된 칸'],['intentionally_blank','사용자가 일부러 비워 두기로 한 칸'],['manual_after_export','문서를 내려받은 뒤 손으로 쓸 칸'],['future_e_signature','전자서명으로 채울 칸']];
 const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD','체크 표시'],['NGUYEN','성 Surname','텍스트'],['VAN AN','명 Given names','텍스트'],['1995-04-12','생년월일 Date of Birth','년·월·일 세 칸으로 분할'],['9504125000000','외국인등록번호 Foreign Resident Registration No.','열세 칸에 한 자씩'],['010-0000-0000','휴대전화 Cell phone No.','텍스트'],['031-000-0000','전화번호 Phone No. — 근무처 행','텍스트'],['3000','연 소득금액 Annual Income Amount','금액 칸']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
@@ -24,7 +23,7 @@ export default function HwpxStudy(){
   <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 그려낸 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 그려낸 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   </div>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
 
  <section id="origin" className="fw-section">
@@ -55,21 +54,20 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="직접 ChatGPT 웹에서 시켜봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔습니다. 전부는 아니었습니다.</Heading>
+  <Heading n="02 / 분석" title="직접 ChatGPT 웹에서 시켜봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>웬만한 칸은 찾습니다</h3><p>이름·주소·전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 맞게 들어갑니다. 구조만 읽어도 어느 정도는 됩니다.</p></div>
-   <div><h3>그런데 전부는 아닙니다</h3><p>열세 칸으로 나뉜 등록번호는 칸에 맞추지 못해 앞쪽에 뭉칩니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처는 채워졌습니다. 신청인이 아닌 <strong>배우자·부모 서명란에까지 글자가 들어갔습니다.</strong></p></div>
-   <div><h3>한 칸이 틀리면 다시 냅니다</h3><p>공문서에는 부분 점수가 없습니다. 한 칸만 어긋나도 접수처에서 되돌아옵니다. <strong>대체로 맞는 것으로는 부족했습니다.</strong></p></div>
-   <div><h3>정리해서 주면 달라집니다</h3><p>셀 위치와 문항을 표로 정리해 건네면 요청한 값이 정확히 배정됩니다. 별도로 확인해 본 결과입니다. 문제는 <strong>그 정리를 아무도 대신 해 주지 않는다</strong>는 것이었습니다.</p></div>
+   <div><h3>맞는 칸이 더 많았습니다</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다. 파일 구조만 읽어도 어느 정도는 찾아냅니다.</p></div>
+   <div><h3>어긋난 칸도 있었습니다</h3><p>아래 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 작성 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 배우자·부모 서명란까지 채워졌습니다.</p></div>
   </div>
   <figure className="fw-cover hx-overfill">
-   <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 서명란에 이름이 적히고, 외국인등록번호가 칸에 맞지 않게 뭉개져 있으며, 성별이 체크되지 않았다." width="1132" height="1596" loading="lazy"/></a>
-   <figcaption>플러그인 없이 같은 양식을 채우게 했을 때의 출력입니다. 외국인등록번호가 열세 칸에 맞춰지지 못해 앞 칸에 뭉쳤고, 성별은 체크되지 않았으며, 요청하지 않은 예정 근무처와 <strong>배우자·부모 서명란</strong>까지 채워졌습니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+   <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></a>
+   <figcaption>플러그인 없이 같은 양식을 채우게 했을 때의 출력입니다. 외국인등록번호와 성별, 서명란을 보면 어긋난 자리가 보입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
   </figure>
-  <div className="fw-tradeoff">
-   <h3>대체로 맞는 것과, 정확한 것은 다릅니다.</h3>
-   <p>대부분의 칸을 맞히는 것만으로는 공문서를 대신 쓸 수 없습니다. 그래서 정확도를 조금 더 올리는 대신, <strong>각 칸을 어떻게 처리할지 미리 정해 두고 값을 넣기 전에 사람에게 자리를 확인받는</strong> 쪽으로 갔습니다. 손은 더 가지만 되돌아오는 문서는 줄어듭니다.</p>
+  <div className="fw-findings">
+   <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 어긋난 칸을 아무도 못 봅니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 어느 칸이 어떤 근거로 채워졌는지는 남지 않아, 틀린 자리는 문서를 낸 뒤에 드러납니다.</p></article>
+   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 작업이 중간에 멈춥니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 그만큼 시간이 더 걸립니다.</p></article>
   </div>
+  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 한 번에 끝나는 편의보다, 틀린 자리를 넘기지 않는 쪽이 이 작업에서는 더 중요하다고 봤습니다.</p>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
   </div>
@@ -77,21 +75,12 @@ export default function HwpxStudy(){
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
- <section id="values" className="fw-section">
-  <Heading n="03 / 확인한 값" title="빈칸마다, 비운 이유가 다릅니다.">앞에서 본 것처럼, 비워 둬야 할 칸을 채워 버리는 게 실제 위험이었습니다. 그런데 “아직 값을 못 받은 칸”과 “비워 두기로 한 칸”을 똑같이 빈칸으로 두면, 무엇을 더 물어야 하는지도 알 수 없습니다.</Heading>
-  <dl className="fw-metric-guide">{dispositions.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
-  <p className="fw-note">각 칸의 처리를 다섯 가지로 나눠 기록합니다. 다섯 값은 <code>fields.py</code>의 정의 그대로입니다. 서명란은 <code>future_e_signature</code>, 해당 없는 항목은 <code>not_applicable</code>로 표시되므로 “빈칸이니 채워 넣자”가 성립하지 않습니다.</p>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/fields.py'}>Disposition 정의</Source><Source href={base+'/src/hwp_mcp/server.py'}>update_field_interview</Source></div>
- </section>
-
  <section id="process" className="fw-section">
-  <Heading n="04 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">확인받으면 안전해지지만, 물을 때마다 사용자가 멈춰야 합니다. 그래서 무엇을 묻고 무엇은 묻지 않을지를 갈랐습니다.</Heading>
+  <Heading n="03 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">값을 넣기 전에 에이전트가 멈춥니다. 어느 칸에 무엇을 넣을지 그림으로 보여주고, 사용자가 답할 때까지 기다립니다.</Heading>
   <div className="fw-two">
    <div className="fw-copy">
-    <h3>묻기로 한 것 — 값이 들어갈 자리</h3>
-    <p>대상 칸을 파란 박스로 표시해 보여주고 확인받습니다. 아니라고 하면 고쳐 다시 묻습니다. 여기가 틀리면 문서가 틀리므로 단일 항목을 고칠 때도 건너뛰지 않습니다.</p>
-    <h3>묻지 않기로 한 것 — 매핑 자체의 승인</h3>
-    <p>확인된 대응을 템플릿으로 저장할 때 그 저장까지 승인받게 할 수도 있었지만 넣지 않았습니다. 사용자가 판단하기 어려운 것을 묻는 절차는 안전 대신 복잡함만 늘립니다.</p>
+    <h3>자리를 그림으로 보여줍니다</h3>
+    <p>값을 넣을 칸을 파란 박스로 표시한 그림을 만들어 보여줍니다. 아니라고 하면 위치를 고쳐 다시 묻습니다. 한 항목만 고칠 때도 이 단계를 건너뛰지 않습니다.</p>
    </div>
    <div className="fw-copy">
     <h3>한 번에 다 묻지 않습니다</h3>
@@ -111,7 +100,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="05 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서를 예로 썼습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 봅니다.</Heading>
+  <Heading n="04 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">예로 쓴 문서는 <strong>통합신청서</strong>입니다. 출입국관리법 시행규칙 별지 제34호 서식으로, 외국인 체류 관련 신청에 쓰입니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 봅니다.</Heading>
   <div className="fw-table" tabIndex="0" role="region" aria-label="요청한 값과 실제로 입력된 칸">
    <table>
     <caption>양식의 문항과, 그 문항의 답으로 입력된 값</caption>
@@ -124,10 +113,8 @@ export default function HwpxStudy(){
 
   <Heading n="구조 보존" title="값을 넣은 뒤에도, 문서가 그대로인지 확인합니다.">“값을 넣었다”와 “문서가 멀쩡하다”는 다릅니다. 값이 바뀌어도 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 적용 결과와 문서 상태를 따로 봅니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>계획과 일치하는가</h3><p>적용된 변경이 승인받은 계획과 같은지 대조하고, 계획에 없던 칸이 바뀌지 않았는지 함께 확인합니다.</p></div>
-   <div><h3>문서가 그대로인가</h3><p>문단·표·페이지 수와 레이아웃 경고를 원본과 비교합니다. 경고가 있느냐가 아니라 <strong>원본에 없던 경고가 새로 생겼느냐</strong>를 봅니다.</p></div>
-   <div><h3>다시 열리는가</h3><p>만들어진 파일을 처음부터 다시 읽어 분석까지 통과하는지 확인합니다. 저장은 됐지만 열리지 않는 파일을 걸러냅니다.</p></div>
-   <div><h3>이번 양식에서는</h3><p>세 가지 모두 통과했고 계획에 없던 변경은 없었습니다. 감지된 레이아웃 경고 한 건은 <strong>빈 원본에도 똑같이 있던 것</strong>이라, 편집으로 새로 생긴 경고는 없었습니다.</p></div>
+   <div><h3>무엇을 보는가</h3><p>적용된 변경이 확인받은 자리와 같은지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 그리고 만들어진 파일이 다시 열리는지를 봅니다.</p></div>
+   <div><h3>이번 양식에서는</h3><p>네 가지 모두 통과했습니다. 감지된 레이아웃 경고 한 건은 <strong>빈 원본에도 똑같이 있던 것</strong>이라, 편집으로 새로 생긴 문제는 없었습니다.</p></div>
   </div>
   <p className="fw-note">양식 한 종류를 한 번 실행한 기록이라, 다른 양식이나 반복 실행의 성공률로 확대할 수 없습니다. 검증은 플러그인의 렌더러 기준이며 한글 프로그램 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · validate_document</Source><Source href={base+'/src/hwp_mcp/vision.py'}>이미지 비교 구현</Source></div>
