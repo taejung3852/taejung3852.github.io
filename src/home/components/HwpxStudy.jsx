@@ -5,7 +5,6 @@ import '../styles/hwpx-editorial.css';
 const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f35c59856f9b40909337fa443175e42';
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
-const metrics=[['34 / 34','계획한 변경이 빠짐없이 적용됐습니다'],['0건','요청하지 않은 칸에서 발생한 변경'],['212 → 212','문단 수가 유지됐습니다'],['1 → 1','표 수와 페이지 수가 유지됐습니다'],['0건','원본에 없던 레이아웃 경고'],['통과','수정본을 다시 열어 분석까지 진행']];
 const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD','체크 표시'],['NGUYEN','성 Surname','텍스트'],['VAN AN','명 Given names','텍스트'],['1995-04-12','생년월일 Date of Birth','년·월·일 세 칸으로 분할'],['9504125000000','외국인등록번호 Foreign Resident Registration No.','열세 칸에 한 자씩'],['010-0000-0000','휴대전화 Cell phone No.','텍스트'],['031-000-0000','전화번호 Phone No. — 근무처 행','텍스트'],['3000','연 소득금액 Annual Income Amount','금액 칸']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
@@ -55,10 +54,10 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="이미지까지 읽는 이유는, 모델에 따라 달랐습니다.">처음에는 XML만으로 ‘전화번호 Phone No.’ 네 곳을 구분할 수 없다고 봤습니다. 확인해 보니 성능이 높은 모델은 셀 구조만으로 스무 개를 전부 맞혔습니다. 가정이 틀렸습니다.</Heading>
+  <Heading n="02 / 분석" title="XML만으로 되는지, 직접 재봤습니다.">처음에는 XML만으로 ‘전화번호 Phone No.’ 네 곳을 구분할 수 없다고 봤습니다. 확인해 보니 셀 구조만으로도 요청한 항목이 전부 맞는 칸에 배정됐습니다. 가정이 틀렸습니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>구조만으로도 풀렸습니다</h3><p>같은 문서·같은 스무 개 항목을 자료만 다르게 주어 풀게 했습니다. 셀 표만 준 쪽도, 이미지를 더한 쪽도 전부 맞혔고 <strong>답이 다른 항목은 0건</strong>이었습니다. 행·열 위치와 이웃 칸 문구가 이미 배치를 담고 있었고, 그 표는 XML 파싱만으로 만들 수 있습니다.</p></div>
-   <div><h3>못 한 게 아니라, 들쭉날쭉했습니다</h3><p>같은 요청을 플러그인 없이 돌린 기록이 둘 있습니다. 하나는 XML을 직접 고쳐 스무 개 중 <strong>열아홉 개</strong>를 맞혔고, 다른 하나는 작업 폴더에 남아 있던 이전 산출물을 첨부 파일로 착각해 <strong>“이미 다 입력돼 있다”며 아무것도 하지 않았습니다</strong>. 매핑 실력의 문제가 아니라, 무엇을 근거로 그렇게 판단했는지 확인할 방법이 없다는 게 문제였습니다.</p></div>
+   <div><h3>구조만으로도 풀렸습니다</h3><p>같은 문서·같은 항목을 자료만 다르게 주어 풀게 했습니다. 셀 표만 준 쪽도, 이미지를 더한 쪽도 전부 맞혔고 <strong>답이 다른 항목은 0건</strong>이었습니다. 행·열 위치와 이웃 칸 문구가 이미 배치를 담고 있었고, 그 표는 XML 파싱만으로 만들 수 있습니다.</p></div>
+   <div><h3>못 한 게 아니라, 들쭉날쭉했습니다</h3><p>같은 요청을 플러그인 없이 돌린 기록이 둘 있습니다. 하나는 XML을 직접 고쳐 <strong>거의 전부</strong>를 맞혔고, 다른 하나는 작업 폴더에 남아 있던 이전 산출물을 첨부 파일로 착각해 <strong>“이미 다 입력돼 있다”며 아무것도 하지 않았습니다</strong>. 매핑 실력의 문제가 아니라, 무엇을 근거로 그렇게 판단했는지 확인할 방법이 없다는 게 문제였습니다.</p></div>
    <div><h3>보여주려면 그림이 있어야 합니다</h3><p>값을 넣기 전에 “이 칸이 맞습니까”를 사람에게 물으려면 셀 ID 목록으로는 안 됩니다. 다음 섹션의 파란 박스가 그 결과입니다.</p></div>
    <div><h3>검증에도 필요합니다</h3><p>값을 넣은 뒤 표가 밀렸는지, 글자가 칸을 넘쳤는지는 XML로 보이지 않습니다. 원본과 수정본을 각각 그려 구역별로 대조해야 드러납니다.</p></div>
   </div>
@@ -83,14 +82,13 @@ export default function HwpxStudy(){
     <p>확인된 대응을 템플릿으로 저장할 때 그 저장까지 승인받게 할 수도 있었지만 넣지 않았습니다. 사용자가 판단하기 어려운 것을 묻는 절차는 안전 대신 복잡함만 늘립니다.</p>
    </div>
    <div className="fw-copy">
-    <h3>스무 개를 한 번에 묻지 않았습니다</h3>
-    <p>스무 개를 한 화면에 늘어놓으면 확인이 형식적인 ‘예’로 바뀝니다. 대표 실행에서는 인적사항·여권·주소·근무처처럼 묶어 <strong>일곱 번에 나눠</strong> 물었습니다. 왕복은 늘지만 어디를 보고 답할지 알 수 있습니다.</p>
-    <p className="fw-example-label">확인 7회 · 항목 20개 · 되돌림 0회</p>
+    <h3>한 번에 다 묻지 않습니다</h3>
+    <p>항목을 한 화면에 늘어놓으면 확인이 형식적인 ‘예’로 바뀝니다. 인적사항·여권·주소·근무처처럼 성격이 같은 것끼리 묶어 나눠 묻습니다. 왕복은 늘지만 문서의 어디를 보고 답할지 알 수 있습니다.</p>
    </div>
   </div>
   <div className="fw-tradeoff">
-   <h3>일곱 번 묻는 쪽을 택했습니다.</h3>
-   <p>자동으로 넣고 끝내면 사용자는 한 번도 멈추지 않습니다. 대신 틀렸을 때 알아차리는 사람도 없습니다. 제출한 뒤에 발견하는 비용이 확인하느라 멈추는 비용보다 크다고 봤습니다. 다만 묻는 횟수 자체가 부담이라, 항목을 묶어 일곱 번으로 줄였습니다.</p>
+   <h3>멈춰 세우는 쪽을 택했습니다.</h3>
+   <p>자동으로 넣고 끝내면 사용자는 한 번도 멈추지 않습니다. 대신 틀렸을 때 알아차리는 사람도 없습니다. 제출한 뒤에 발견하는 비용이 확인하느라 멈추는 비용보다 크다고 봤습니다. 다만 묻는 횟수 자체가 부담이라, 성격이 같은 항목끼리 묶어 횟수를 줄였습니다.</p>
   </div>
   <figure className="fw-cover">
    <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
@@ -101,7 +99,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="04 / 결과" title="스무 개 항목이, 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서에 가상 정보를 입력했습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 항목별로 봅니다.</Heading>
+  <Heading n="04 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서를 예로 썼습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 봅니다.</Heading>
   <div className="fw-table" tabIndex="0" role="region" aria-label="요청한 값과 실제로 입력된 칸">
    <table>
     <caption>양식의 문항과, 그 문항의 답으로 입력된 값</caption>
@@ -112,11 +110,12 @@ export default function HwpxStudy(){
   <p className="fw-note">스무 건 모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — <strong>같은 문구의 ‘전화번호’ 칸이 여럿인데, 휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
   <Source href={base+'/src/hwp_mcp/application/editing.py'}>편집 계획·적용 구현</Source>
 
-  <Heading n="구조 보존" title="값을 넣은 뒤에도, 문서가 그대로인지 확인했습니다.">원본과 수정본을 자동으로 비교한 검증 리포트에서 읽은 값입니다.</Heading>
-  <div className="hx-metrics">{metrics.map(([v,d])=><div key={d}><strong>{v}</strong><span>{d}</span></div>)}</div>
-  <div className="fw-context-note">
-   <h3>“값을 넣었다”와 “문서가 멀쩡하다”는 다릅니다.</h3>
-   <p>값이 바뀌어도 표가 밀리거나 글자가 칸을 넘칠 수 있습니다. 그래서 적용한 값이 계획과 일치하는지와 별개로, 문단·표·페이지 수와 레이아웃 경고를 원본과 대조합니다. 이번 실행에서 감지된 레이아웃 경고 한 건은 빈 원본에도 동일하게 있던 것이며, 편집으로 새로 생긴 경고는 없었습니다.</p>
+  <Heading n="구조 보존" title="값을 넣은 뒤에도, 문서가 그대로인지 확인합니다.">“값을 넣었다”와 “문서가 멀쩡하다”는 다릅니다. 값이 바뀌어도 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 적용 결과와 문서 상태를 따로 봅니다.</Heading>
+  <div className="hx-pairs">
+   <div><h3>계획과 일치하는가</h3><p>적용된 변경이 승인받은 계획과 같은지 대조하고, 계획에 없던 칸이 바뀌지 않았는지 함께 확인합니다.</p></div>
+   <div><h3>문서가 그대로인가</h3><p>문단·표·페이지 수와 레이아웃 경고를 원본과 비교합니다. 경고가 있느냐가 아니라 <strong>원본에 없던 경고가 새로 생겼느냐</strong>를 봅니다.</p></div>
+   <div><h3>다시 열리는가</h3><p>만들어진 파일을 처음부터 다시 읽어 분석까지 통과하는지 확인합니다. 저장은 됐지만 열리지 않는 파일을 걸러냅니다.</p></div>
+   <div><h3>이번 양식에서는</h3><p>세 가지 모두 통과했고 계획에 없던 변경은 없었습니다. 감지된 레이아웃 경고 한 건은 <strong>빈 원본에도 똑같이 있던 것</strong>이라, 편집으로 새로 생긴 경고는 없었습니다.</p></div>
   </div>
   <p className="fw-note">양식 한 종류를 한 번 실행한 기록이라, 다른 양식이나 반복 실행의 성공률로 확대할 수 없습니다. 검증은 플러그인의 렌더러 기준이며 한글 프로그램 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · validate_document</Source><Source href={base+'/src/hwp_mcp/vision.py'}>이미지 비교 구현</Source></div>
@@ -147,7 +146,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="future" className="fw-section">
-  <Heading n="향후 방향" title="지금은 각자의 컴퓨터에서, 다음은 서버에서.">MCP 서버는 STDIO로 동작합니다. 에이전트가 사용자의 컴퓨터에서 서버를 띄우고 표준입출력으로 주고받습니다. 이 선택에도 값이 있었습니다.</Heading>
+  <Heading n="향후 방향" title="지금은 로컬에서, 다음은 서버에서.">MCP 서버는 STDIO로 동작합니다. 에이전트가 사용자의 컴퓨터에서 서버를 띄우고 표준입출력으로 주고받습니다. 이 선택에도 값이 있었습니다.</Heading>
   <div className="hx-pairs">
    <div><h3>얻고 있는 것</h3><p>문서가 사용자의 컴퓨터를 벗어나지 않습니다. 공문서에는 주민등록번호나 여권번호가 들어가므로, 이 전제가 설계의 상당 부분을 떠받치고 있습니다.</p></div>
    <div><h3>대신 치르고 있는 것</h3><p>쓰려는 사람마다 실행 환경을 설치해야 하고, 이미지를 그리고 대조하는 속도가 그 컴퓨터 사양에 좌우됩니다. 한 번 확인한 양식 정보를 여러 사람이 나눠 쓸 수도 없습니다.</p></div>
