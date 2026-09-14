@@ -114,7 +114,7 @@ export default function HwpxStudy(){
     <tbody>{mapping.map(([v,cell,kind])=><tr key={v}><th scope="row">{cell}</th><td>{v}</td><td>{kind}</td></tr>)}</tbody>
    </table>
   </div>
-  <p className="fw-note">스무 개 항목 전부가 이렇게 기록됐고, 값의 출처는 스무 건 모두 사용자 입력이었습니다. 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다. 성과 명이 각각 다른 칸으로, 생년월일과 등록번호가 여러 칸으로 나뉘었고, <strong>‘전화번호’라는 같은 문구의 칸이 여럿인데 휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
+  <p className="fw-note">스무 건 모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — <strong>같은 문구의 ‘전화번호’ 칸이 여럿인데, 휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
   <Source href={base+'/src/hwp_mcp/application/editing.py'}>편집 계획·적용 구현</Source>
 
   <Heading n="구조 보존" title="값을 넣은 뒤에도, 문서가 그대로인지 확인했습니다.">원본과 수정본을 자동으로 비교한 검증 리포트에서 읽은 값입니다.</Heading>
@@ -123,7 +123,7 @@ export default function HwpxStudy(){
    <h3>“값을 넣었다”와 “문서가 멀쩡하다”는 다릅니다.</h3>
    <p>값이 바뀌어도 표가 밀리거나 글자가 칸을 넘칠 수 있습니다. 그래서 적용한 값이 계획과 일치하는지와 별개로, 문단·표·페이지 수와 레이아웃 경고를 원본과 대조합니다. 이번 실행에서 감지된 레이아웃 경고 한 건은 빈 원본에도 동일하게 있던 것이며, 편집으로 새로 생긴 경고는 없었습니다.</p>
   </div>
-  <p className="fw-note">양식 한 종류를 한 번 실행한 기록입니다. 다른 양식이나 반복 실행의 성공률로 확대해 말할 수 없습니다. 비교와 재개방 확인은 플러그인이 사용하는 렌더러 기준이며, 한글 프로그램에서의 표시나 PDF 변환의 양식 보존은 이 결과에 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
+  <p className="fw-note">양식 한 종류를 한 번 실행한 기록이라, 다른 양식이나 반복 실행의 성공률로 확대할 수 없습니다. 검증은 플러그인의 렌더러 기준이며 한글 프로그램 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · validate_document</Source><Source href={base+'/src/hwp_mcp/vision.py'}>렌더 비교 구현</Source></div>
  </section>
 
