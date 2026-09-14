@@ -54,20 +54,20 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="직접 ChatGPT 웹에서 시켜봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
+  <Heading n="02 / 분석" title="ChatGPT 웹에서, 플러그인 없이 해봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
   <div className="hx-pairs">
    <div><h3>맞는 칸이 더 많았습니다</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다. 파일 구조만 읽어도 어느 정도는 찾아냅니다.</p></div>
-   <div><h3>어긋난 칸도 있었습니다</h3><p>아래 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 작성 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 배우자·부모 서명란까지 채워졌습니다.</p></div>
+   <div><h3>어긋난 칸이 있었습니다</h3><p>아래 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 작성 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 배우자·부모 서명란까지 채워졌습니다.</p></div>
   </div>
   <figure className="fw-cover hx-overfill">
    <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></a>
    <figcaption>플러그인 없이 같은 양식을 채우게 했을 때의 출력입니다. 외국인등록번호와 성별, 서명란을 보면 어긋난 자리가 보입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
   </figure>
   <div className="fw-findings">
-   <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 어긋난 칸을 아무도 못 봅니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 어느 칸이 어떤 근거로 채워졌는지는 남지 않아, 틀린 자리는 문서를 낸 뒤에 드러납니다.</p></article>
-   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 작업이 중간에 멈춥니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 그만큼 시간이 더 걸립니다.</p></article>
+   <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 완성되기 전까지 볼 수 없습니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
+   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 시간이 더 걸립니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 한 번에 끝낼 때보다 오래 걸립니다.</p></article>
   </div>
-  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 한 번에 끝나는 편의보다, 틀린 자리를 넘기지 않는 쪽이 이 작업에서는 더 중요하다고 봤습니다.</p>
+  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 빨리 끝나는 것보다, 잘못 들어간 칸을 완성 전에 잡는 쪽이 이 작업에서는 더 중요하다고 봤습니다.</p>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
   </div>
@@ -83,19 +83,18 @@ export default function HwpxStudy(){
     <p>값을 넣을 칸을 파란 박스로 표시한 그림을 만들어 보여줍니다. 아니라고 하면 위치를 고쳐 다시 묻습니다. 한 항목만 고칠 때도 이 단계를 건너뛰지 않습니다.</p>
    </div>
    <div className="fw-copy">
-    <h3>한 번에 다 묻지 않습니다</h3>
-    <p>항목을 한 화면에 늘어놓으면 확인이 형식적인 ‘예’로 바뀝니다. 인적사항·여권·주소·근무처처럼 성격이 같은 것끼리 묶어 나눠 묻습니다. 왕복은 늘지만 문서의 어디를 보고 답할지 알 수 있습니다.</p>
+    <h3>보기 편하게 묶어서 보여줍니다</h3>
+    <p>인적사항, 여권, 주소, 근무처처럼 성격이 같은 항목끼리 묶습니다. 문서에서도 가까이 붙어 있는 칸들이라, 한 화면에서 한눈에 확인할 수 있습니다.</p>
    </div>
   </div>
   <div className="fw-tradeoff">
-   <h3>멈춰 세우는 쪽을 택했습니다.</h3>
-   <p>자동으로 넣고 끝내면 사용자는 한 번도 멈추지 않습니다. 대신 틀렸을 때 알아차리는 사람도 없습니다. 제출한 뒤에 발견하는 비용이 확인하느라 멈추는 비용보다 크다고 봤습니다. 다만 묻는 횟수 자체가 부담이라, 성격이 같은 항목끼리 묶어 횟수를 줄였습니다.</p>
+   <h3>중간에 검증을 받는 쪽을 택했습니다.</h3>
+   <p>값을 다 넣고 결과만 건네면 작업은 빨리 끝납니다. 대신 잘못 들어간 칸은 문서를 다 만든 뒤에야 드러납니다. 그래서 값을 쓰기 전에 한 번씩 확인을 받도록 했습니다. 확인 단계가 늘어나는 만큼, 항목을 묶어 화면 수를 줄였습니다.</p>
   </div>
   <figure className="fw-cover">
    <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
    <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
   </figure>
-  <p className="fw-note">원본 파일의 해시는 편집 전후로 같았고, 수정본은 별도 파일로 만들어졌습니다. 확인된 칸에만, 원본이 아닌 사본에 씁니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
