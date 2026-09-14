@@ -5,6 +5,7 @@ import '../styles/hwpx-editorial.css';
 const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f35c59856f9b40909337fa443175e42';
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
+const dispositions=[['provided','값을 받아 반영할 칸'],['not_applicable','해당 없음으로 확인된 칸'],['intentionally_blank','사용자가 일부러 비워 두기로 한 칸'],['manual_after_export','문서를 내려받은 뒤 손으로 쓸 칸'],['future_e_signature','전자서명으로 채울 칸']];
 const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD','체크 표시'],['NGUYEN','성 Surname','텍스트'],['VAN AN','명 Given names','텍스트'],['1995-04-12','생년월일 Date of Birth','년·월·일 세 칸으로 분할'],['9504125000000','외국인등록번호 Foreign Resident Registration No.','열세 칸에 한 자씩'],['010-0000-0000','휴대전화 Cell phone No.','텍스트'],['031-000-0000','전화번호 Phone No. — 근무처 행','텍스트'],['3000','연 소득금액 Annual Income Amount','금액 칸']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
@@ -23,7 +24,7 @@ export default function HwpxStudy(){
   <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 그려낸 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 그려낸 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   </div>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
 
  <section id="origin" className="fw-section">
@@ -58,12 +59,12 @@ export default function HwpxStudy(){
   <div className="hx-pairs">
    <div><h3>구조만으로도 풀렸습니다</h3><p>같은 문서·같은 항목을 자료만 다르게 주어 풀게 했습니다. 셀 표만 준 쪽도, 이미지를 더한 쪽도 전부 맞혔고 <strong>답이 다른 항목은 0건</strong>이었습니다. 행·열 위치와 이웃 칸 문구가 이미 배치를 담고 있었고, 그 표는 XML 파싱만으로 만들 수 있습니다.</p></div>
    <div><h3>못 한 게 아니라, 들쭉날쭉했습니다</h3><p>같은 요청을 플러그인 없이 돌린 기록이 둘 있습니다. 하나는 XML을 직접 고쳐 <strong>거의 전부</strong>를 맞혔고, 다른 하나는 작업 폴더에 남아 있던 이전 산출물을 첨부 파일로 착각해 <strong>“이미 다 입력돼 있다”며 아무것도 하지 않았습니다</strong>. 매핑 실력의 문제가 아니라, 무엇을 근거로 그렇게 판단했는지 확인할 방법이 없다는 게 문제였습니다.</p></div>
-   <div><h3>보여주려면 그림이 있어야 합니다</h3><p>값을 넣기 전에 “이 칸이 맞습니까”를 사람에게 물으려면 셀 ID 목록으로는 안 됩니다. 다음 섹션의 파란 박스가 그 결과입니다.</p></div>
-   <div><h3>검증에도 필요합니다</h3><p>값을 넣은 뒤 표가 밀렸는지, 글자가 칸을 넘쳤는지는 XML로 보이지 않습니다. 원본과 수정본을 각각 그려 구역별로 대조해야 드러납니다.</p></div>
+   <div><h3>진짜 문제는 다른 데 있었습니다</h3><p>값은 들어갑니다. 그런데 <strong>건드리지 말아야 할 칸까지 채웁니다.</strong> 신청인 서명란에 이름을 써 넣고, 존재하지도 않는 예정 근무처를 적고, 반환용 계좌번호를 예시값으로 지어냅니다. 열세 칸으로 나뉜 등록번호는 칸에 맞추지 못하고 뭉갭니다.</p></div>
+   <div><h3>공문서에서는 오타가 아닙니다</h3><p>서명란에 이름이 찍히고 없는 근무처가 적힌 신청서는 잘못 쓴 문서가 아니라 <strong>사실과 다른 문서</strong>입니다. 어느 칸을 채웠는지만큼 <strong>어느 칸을 비워 뒀는지가 같이 중요합니다.</strong></p></div>
   </div>
   <div className="fw-tradeoff">
    <h3>가정을 그대로 두지 않았습니다.</h3>
-   <p>이미지를 기본 경로에 넣은 처음 이유는 매핑 정확도였고, 재보니 그 이유는 성립하지 않았습니다. 매핑 자체는 플러그인 없이도 대체로 됩니다. 값을 하는 곳은 <strong>어디에 쓸지 사람에게 확인받는 화면</strong>과 <strong>쓴 뒤에 문서가 멀쩡한지 보는 검증</strong>이었습니다. 양식 한 종류의 기록이라 다른 양식에서도 같은지는 아직 모릅니다.</p>
+   <p>이미지를 기본 경로에 넣은 처음 이유는 매핑 정확도였고, 재보니 그 이유는 성립하지 않았습니다. 매핑 자체는 플러그인 없이도 대체로 됩니다. 문제는 <strong>정확도가 아니라 절제</strong>였습니다. 그래서 다음 두 가지에 힘을 실었습니다. 각 칸을 어떻게 처리할지 미리 정해 두는 것과, 값을 넣기 전에 사람에게 자리를 확인받는 것입니다. 양식 한 종류의 기록이라 다른 양식에서도 같은지는 아직 모릅니다.</p>
   </div>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
@@ -72,8 +73,15 @@ export default function HwpxStudy(){
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
+ <section id="values" className="fw-section">
+  <Heading n="03 / 확인한 값" title="빈칸마다, 비운 이유가 다릅니다.">앞에서 본 것처럼, 비워 둬야 할 칸을 채워 버리는 게 실제 위험이었습니다. 그런데 “아직 값을 못 받은 칸”과 “비워 두기로 한 칸”을 똑같이 빈칸으로 두면, 무엇을 더 물어야 하는지도 알 수 없습니다.</Heading>
+  <dl className="fw-metric-guide">{dispositions.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+  <p className="fw-note">각 칸의 처리를 다섯 가지로 나눠 기록합니다. 다섯 값은 <code>fields.py</code>의 정의 그대로입니다. 서명란은 <code>future_e_signature</code>, 해당 없는 항목은 <code>not_applicable</code>로 표시되므로 “빈칸이니 채워 넣자”가 성립하지 않습니다.</p>
+  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/fields.py'}>Disposition 정의</Source><Source href={base+'/src/hwp_mcp/server.py'}>update_field_interview</Source></div>
+ </section>
+
  <section id="process" className="fw-section">
-  <Heading n="03 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">확인받으면 안전해지지만, 물을 때마다 사용자가 멈춰야 합니다. 그래서 무엇을 묻고 무엇은 묻지 않을지를 갈랐습니다.</Heading>
+  <Heading n="04 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">확인받으면 안전해지지만, 물을 때마다 사용자가 멈춰야 합니다. 그래서 무엇을 묻고 무엇은 묻지 않을지를 갈랐습니다.</Heading>
   <div className="fw-two">
    <div className="fw-copy">
     <h3>묻기로 한 것 — 값이 들어갈 자리</h3>
@@ -99,7 +107,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="04 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서를 예로 썼습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 봅니다.</Heading>
+  <Heading n="05 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서를 예로 썼습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 봅니다.</Heading>
   <div className="fw-table" tabIndex="0" role="region" aria-label="요청한 값과 실제로 입력된 칸">
    <table>
     <caption>양식의 문항과, 그 문항의 답으로 입력된 값</caption>
