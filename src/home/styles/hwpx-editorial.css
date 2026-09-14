@@ -50,3 +50,4 @@
 
 /* The over-filled form is a full page; cap it so it reads as evidence, not a spread. */
 .hx-overfill img{max-height:620px;object-fit:contain;object-position:top}
+.fw-cover+.fw-tradeoff{margin-top:36px}

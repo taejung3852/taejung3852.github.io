@@ -55,20 +55,20 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="XML만으로 되는지, 직접 재봤습니다.">처음에는 XML만으로 ‘전화번호 Phone No.’ 네 곳을 구분할 수 없다고 봤습니다. 확인해 보니 셀 구조만으로도 요청한 항목이 전부 맞는 칸에 배정됐습니다. 가정이 틀렸습니다.</Heading>
+  <Heading n="02 / 분석" title="직접 ChatGPT 웹에서 시켜봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔습니다. 전부는 아니었습니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>구조만으로도 풀렸습니다</h3><p>같은 문서·같은 항목을 자료만 다르게 주어 풀게 했습니다. 셀 표만 준 쪽도, 이미지를 더한 쪽도 전부 맞혔고 <strong>답이 다른 항목은 0건</strong>이었습니다. 행·열 위치와 이웃 칸 문구가 이미 배치를 담고 있었고, 그 표는 XML 파싱만으로 만들 수 있습니다.</p></div>
-   <div><h3>못 한 게 아니라, 들쭉날쭉했습니다</h3><p>같은 요청을 플러그인 없이 돌린 기록이 둘 있습니다. 하나는 XML을 직접 고쳐 <strong>거의 전부</strong>를 맞혔고, 다른 하나는 작업 폴더에 남아 있던 이전 산출물을 첨부 파일로 착각해 <strong>“이미 다 입력돼 있다”며 아무것도 하지 않았습니다</strong>. 매핑 실력의 문제가 아니라, 무엇을 근거로 그렇게 판단했는지 확인할 방법이 없다는 게 문제였습니다.</p></div>
-   <div><h3>진짜 문제는 다른 데 있었습니다</h3><p>값은 들어갑니다. 그런데 <strong>건드리지 말아야 할 칸까지 채웁니다.</strong> 신청인 서명란에 이름을 써 넣고, 존재하지도 않는 예정 근무처를 적고, 반환용 계좌번호를 예시값으로 지어냅니다. 열세 칸으로 나뉜 등록번호는 칸에 맞추지 못하고 뭉갭니다.</p></div>
-   <div><h3>공문서에서는 오타가 아닙니다</h3><p>서명란에 이름이 찍히고 없는 근무처가 적힌 신청서는 잘못 쓴 문서가 아니라 <strong>사실과 다른 문서</strong>입니다. 어느 칸을 채웠는지만큼 <strong>어느 칸을 비워 뒀는지가 같이 중요합니다.</strong></p></div>
+   <div><h3>웬만한 칸은 찾습니다</h3><p>이름·주소·전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 맞게 들어갑니다. 구조만 읽어도 어느 정도는 됩니다.</p></div>
+   <div><h3>그런데 전부는 아닙니다</h3><p>열세 칸으로 나뉜 등록번호는 칸에 맞추지 못해 앞쪽에 뭉칩니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처는 채워졌습니다. 신청인이 아닌 <strong>배우자·부모 서명란에까지 글자가 들어갔습니다.</strong></p></div>
+   <div><h3>한 칸이 틀리면 다시 냅니다</h3><p>공문서에는 부분 점수가 없습니다. 한 칸만 어긋나도 접수처에서 되돌아옵니다. <strong>대체로 맞는 것으로는 부족했습니다.</strong></p></div>
+   <div><h3>정리해서 주면 달라집니다</h3><p>셀 위치와 문항을 표로 정리해 건네면 요청한 값이 정확히 배정됩니다. 별도로 확인해 본 결과입니다. 문제는 <strong>그 정리를 아무도 대신 해 주지 않는다</strong>는 것이었습니다.</p></div>
   </div>
   <figure className="fw-cover hx-overfill">
-   <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="과잉 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 서명란에 이름이 적히고, 예정 근무처와 반환용 계좌번호가 채워졌으며, 외국인등록번호가 칸에 맞지 않게 뭉개져 있다." width="1132" height="1596" loading="lazy"/></a>
-   <figcaption>플러그인 없이 같은 양식을 채우게 했을 때의 출력입니다. <strong>신청인·배우자·부모 서명란</strong>에 글자가 들어갔고, 요청하지 않은 <strong>예정 근무처</strong>와 <strong>반환용 계좌번호</strong>가 채워졌습니다. 외국인등록번호는 열세 칸에 맞추지 못해 앞 칸에 뭉쳤고, 성별은 체크되지 않았습니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+   <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 서명란에 이름이 적히고, 외국인등록번호가 칸에 맞지 않게 뭉개져 있으며, 성별이 체크되지 않았다." width="1132" height="1596" loading="lazy"/></a>
+   <figcaption>플러그인 없이 같은 양식을 채우게 했을 때의 출력입니다. 외국인등록번호가 열세 칸에 맞춰지지 못해 앞 칸에 뭉쳤고, 성별은 체크되지 않았으며, 요청하지 않은 예정 근무처와 <strong>배우자·부모 서명란</strong>까지 채워졌습니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
   </figure>
   <div className="fw-tradeoff">
-   <h3>가정을 그대로 두지 않았습니다.</h3>
-   <p>이미지를 기본 경로에 넣은 처음 이유는 매핑 정확도였고, 재보니 그 이유는 성립하지 않았습니다. 매핑 자체는 플러그인 없이도 대체로 됩니다. 문제는 <strong>정확도가 아니라 절제</strong>였습니다. 그래서 다음 두 가지에 힘을 실었습니다. 각 칸을 어떻게 처리할지 미리 정해 두는 것과, 값을 넣기 전에 사람에게 자리를 확인받는 것입니다. 양식 한 종류의 기록이라 다른 양식에서도 같은지는 아직 모릅니다.</p>
+   <h3>대체로 맞는 것과, 정확한 것은 다릅니다.</h3>
+   <p>대부분의 칸을 맞히는 것만으로는 공문서를 대신 쓸 수 없습니다. 그래서 정확도를 조금 더 올리는 대신, <strong>각 칸을 어떻게 처리할지 미리 정해 두고 값을 넣기 전에 사람에게 자리를 확인받는</strong> 쪽으로 갔습니다. 손은 더 가지만 되돌아오는 문서는 줄어듭니다.</p>
   </div>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
