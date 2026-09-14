@@ -5,7 +5,6 @@ import '../styles/hwpx-editorial.css';
 const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f35c59856f9b40909337fa443175e42';
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
-const dispositions=[['provided','값을 받아 반영할 칸'],['not_applicable','해당 없음으로 확인된 칸'],['intentionally_blank','사용자가 일부러 비워 두기로 한 칸'],['manual_after_export','문서를 내려받은 뒤 손으로 쓸 칸'],['future_e_signature','전자서명으로 채울 칸']];
 const metrics=[['34 / 34','계획한 변경이 빠짐없이 적용됐습니다'],['0건','요청하지 않은 칸에서 발생한 변경'],['212 → 212','문단 수가 유지됐습니다'],['1 → 1','표 수와 페이지 수가 유지됐습니다'],['0건','원본에 없던 레이아웃 경고'],['통과','수정본을 다시 열어 분석까지 진행']];
 const mcpGroups=[['가져오기 · 등록','3','첨부와 로컬 파일을 허용된 작업 루트 안으로만 들여옵니다.'],['분석 · 매핑','8','구조와 렌더를 함께 읽어 입력칸 후보를 세우고, 틀렸을 때 고칠 수 있게 합니다.'],['입력 확인','2','받은 값을 칸의 형식에 맞게 다듬고, 각 칸을 어떻게 처리할지 기록합니다.'],['편집','4','계획·승인·적용·최종화를 각각 다른 도구로 분리했습니다.'],['검증','4','원본과 수정본을 비교하고, 화면으로 한 번 더 확인합니다.'],['작업 상태','4','중단된 작업을 이어가거나 되돌립니다.']];
 const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD','체크 표시'],['NGUYEN','성 Surname','텍스트'],['VAN AN','명 Given names','텍스트'],['1995-04-12','생년월일 Date of Birth','년·월·일 세 칸으로 분할'],['9504125000000','외국인등록번호 Foreign Resident Registration No.','열세 칸에 한 자씩'],['010-0000-0000','휴대전화 Cell phone No.','텍스트'],['031-000-0000','전화번호 Phone No. — 근무처 행','텍스트'],['3000','연 소득금액 Annual Income Amount','금액 칸']];
@@ -27,13 +26,13 @@ export default function HwpxStudy(){
   <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 렌더된 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 렌더된 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   </div>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
 
  <section id="origin" className="fw-section">
-  <Heading n="00 / 시작" title="한글 문서만, 거들어 주는 도구가 없었습니다.">ChatGPT 같은 서비스는 Word와 PowerPoint, 스프레드시트를 열어 고쳐 줍니다. 그런데 한국에서 공문서를 쓸 때 가장 많이 쓰고 가장 손이 많이 가는 HWPX는 빠져 있었습니다. 정작 제일 불편한 형식이 빠져 있어서, 직접 만들기로 했습니다.</Heading>
+  <Heading n="00 / 시작" title="한글 문서 수정을 도와주는 도구가 없었습니다.">ChatGPT 같은 서비스는 Word와 PowerPoint, Excel을 열어 고쳐 줍니다. 그런데 한국에서 공문서를 쓸 때 가장 많이 쓰고 손도 가장 많이 가는 HWPX는 빠져 있었습니다. 그 불편을 처음 마주친 건 외국인 근로자 행정업무를 돕는 FOWOCO를 만들 때였습니다.</Heading>
   <div className="fw-collab-narrative">
-   <article><span className="fw-kicker">처음</span><div><h3>에이전트 흐름 안의 한 갈래였습니다.</h3><p>문서 작업은 LangGraph 흐름 안의 서브그래프였습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
+   <article><span className="fw-kicker">처음</span><div><h3>없으니 직접 만들었습니다.</h3><p>외국인 근로자의 체류 관련 서류는 대부분 HWPX 양식입니다. 그런데 이걸 다뤄 주는 도구가 없어서, 문서 작업을 LangGraph 흐름 안의 서브그래프로 직접 만들었습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
    <article><span className="fw-kicker">커지면서</span><div><h3>책임이 한 덩어리로 섞였습니다.</h3><p>양식마다 구조가 다르다는 걸 알게 되면서 분석과 확인, 검증이 계속 붙었습니다. 업무 흐름을 조율하는 일과 문서를 다루는 일이 같은 자리에서 자라기 시작했습니다.</p></div></article>
    <article><span className="fw-kicker">판단</span><div><h3>내부 함수로 정리하지 않았습니다.</h3><p>함수로 묶어도 FOWOCO 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 밖에서도 쓸 데가 보였고, 더 키울 여지도 컸습니다. 그래서 에이전트 안에 두지 않고 MCP 도구로 경계를 그었습니다.</p></div></article>
   </div>
@@ -76,15 +75,8 @@ export default function HwpxStudy(){
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
- <section id="values" className="fw-section">
-  <Heading n="03 / 확인한 값" title="빈칸마다, 비운 이유가 다릅니다.">사용자가 모든 칸을 채워 주지는 않습니다. 남은 칸을 에이전트가 추측해 채우면 문서가 사실과 달라집니다. 그렇다고 전부 똑같이 비워 두면 아직 받지 못한 값과 일부러 비운 값이 구분되지 않아, 무엇을 더 물어봐야 하는지 알 수 없습니다. 그래서 각 칸의 처리를 다섯 가지로 나눠 기록합니다.</Heading>
-  <dl className="fw-metric-guide">{dispositions.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
-  <p className="fw-note">다섯 값은 <code>fields.py</code>의 Disposition 정의 그대로입니다. 이 구분 덕분에 “아직 못 받은 값”과 “받지 않기로 한 값”이 섞이지 않습니다.</p>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/fields.py'}>Disposition 정의</Source><Source href={base+'/src/hwp_mcp/server.py'}>update_field_interview</Source></div>
- </section>
-
  <section id="process" className="fw-section">
-  <Heading n="04 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">배치를 읽어 찾아낸 답 칸이 정말 맞는지는 사람만 확정할 수 있습니다. 그래서 값을 넣기 전에, 입력하려는 칸을 파란 박스로 표시한 그림을 만들어 보여주고 확인을 받습니다. 아니라고 하면 위치를 고쳐 다시 묻습니다.</Heading>
+  <Heading n="03 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">배치를 읽어 찾아낸 답 칸이 정말 맞는지는 사람만 확정할 수 있습니다. 그래서 값을 넣기 전에, 입력하려는 칸을 파란 박스로 표시한 그림을 만들어 보여주고 확인을 받습니다. 아니라고 하면 위치를 고쳐 다시 묻습니다.</Heading>
   <figure className="fw-cover">
    <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
    <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
@@ -99,7 +91,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="05 / 결과" title="스무 개 항목이, 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서에 가상 정보를 입력했습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 항목별로 봅니다.</Heading>
+  <Heading n="04 / 결과" title="스무 개 항목이, 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서에 가상 정보를 입력했습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 항목별로 봅니다.</Heading>
   <div className="fw-table" tabIndex="0" role="region" aria-label="요청한 값과 실제로 입력된 칸">
    <table>
     <caption>양식의 문항과, 그 문항의 답으로 입력된 값</caption>
