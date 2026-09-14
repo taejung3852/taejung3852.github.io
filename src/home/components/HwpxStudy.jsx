@@ -27,27 +27,28 @@ export default function HwpxStudy(){
   <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 렌더된 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 렌더된 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   </div>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
-  <ul className="hx-summary"><li><strong>20개</strong><span>요청 항목 전부가 지정한 칸에</span></li><li><strong>0건</strong><span>요청하지 않은 칸의 변경</span></li><li><strong>유지</strong><span>표·페이지 구조와 서식</span></li></ul>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">절차</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
 
  <section id="origin" className="fw-section">
-  <Heading n="00 / 시작" title="FOWOCO 안의 서브그래프 하나에서 시작했습니다.">처음부터 별도 프로젝트는 아니었습니다. 외국인 근로자 행정업무를 돕는 FOWOCO에서 HWPX 문서를 다루던 코드가 떨어져 나온 결과입니다.</Heading>
+  <Heading n="00 / 시작" title="한글 문서만, 거들어 주는 도구가 없었습니다.">ChatGPT 같은 서비스는 Word와 PowerPoint, 스프레드시트를 열어 고쳐 줍니다. 그런데 한국에서 공문서를 쓸 때 가장 많이 쓰고 가장 손이 많이 가는 HWPX는 빠져 있었습니다. 정작 제일 불편한 형식이 빠져 있어서, 직접 만들기로 했습니다.</Heading>
   <div className="fw-collab-narrative">
    <article><span className="fw-kicker">처음</span><div><h3>에이전트 흐름 안의 한 갈래였습니다.</h3><p>문서 작업은 LangGraph 흐름 안의 서브그래프였습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
    <article><span className="fw-kicker">커지면서</span><div><h3>책임이 한 덩어리로 섞였습니다.</h3><p>양식마다 구조가 다르다는 걸 알게 되면서 분석과 확인, 검증이 계속 붙었습니다. 업무 흐름을 조율하는 일과 문서를 다루는 일이 같은 자리에서 자라기 시작했습니다.</p></div></article>
    <article><span className="fw-kicker">판단</span><div><h3>내부 함수로 정리하지 않았습니다.</h3><p>함수로 묶어도 FOWOCO 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 밖에서도 쓸 데가 보였고, 더 키울 여지도 컸습니다. 그래서 에이전트 안에 두지 않고 MCP 도구로 경계를 그었습니다.</p></div></article>
   </div>
-  <p className="fw-takeaway">그 경계 밖으로 떼어낸 것이 이 프로젝트입니다. 에이전트는 작업 흐름을 조율하고, 문서 도구는 문서만 맡습니다.</p>
+  <p className="fw-takeaway">기능이 늘어나면서 책임을 나누려고 떼어낸 것이 이 프로젝트입니다. 에이전트는 작업 흐름을 조율하고, 문서 도구는 문서만 맡습니다.</p>
   <p><Link className="fw-source" to="/projects/fowoco">FOWOCO에서의 분리 과정 보기 →</Link></p>
  </section>
 
  <section id="problem" className="fw-section">
   <div className="fw-two">
-   <Heading n="01 / 문제" title="위치는 알 수 있어도, 어느 칸에 쓸지는 알 수 없었습니다."/>
+   <Heading n="01 / 문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다."/>
    <div className="fw-copy">
-    <h3>구조는 읽히는데, 대응이 없습니다</h3>
-    <p>HWPX는 XML을 압축한 형식이라 문단·표·셀의 위치와 이미 들어 있는 값은 정확히 읽을 수 있습니다. 그런데 “이 질문의 답을 어느 칸에 쓰는가”는 파일 안에 적혀 있지 않습니다. 질문과 입력칸의 대응은 사람이 문서를 볼 때의 배치로만 드러납니다.</p>
+    <h3>문항은 XML에 다 있습니다</h3>
+    <p>HWPX는 XML을 압축한 형식이라, 양식에 어떤 문항이 있는지는 그대로 읽힙니다. ‘성 Surname’, ‘생년월일 Date of Birth’ 같은 문구가 어느 셀에 있는지도 정확히 알 수 있습니다.</p>
+    <h3>답을 쓸 칸은 적혀 있지 않습니다</h3>
+    <p>문제는 그다음입니다. 그 문항의 <strong>답을 어느 칸에 써야 하는지</strong>는 파일 어디에도 없습니다. 문항과 답 칸을 이어 주는 정보가 XML에 존재하지 않습니다. 사람이 문서를 볼 때의 배치로만 드러납니다.</p>
     <h3>같은 문구의 칸이 네 곳입니다</h3>
     <p>대표로 사용한 통합신청서에는 전화·연락처를 적는 칸이 여섯 곳 있습니다. 그중 네 곳은 <strong>‘전화번호 Phone No.’라는 완전히 같은 문구</strong>입니다. 본국 주소, 학교, 원 근무처, 예정 근무처에 각각 하나씩 붙어 있습니다. 문구만으로는 어느 것이 어느 것인지 구분할 수 없고, 표에서 어느 행에 놓였는지로만 갈립니다.</p>
     <h3>한 값이 여러 칸으로 흩어집니다</h3>
@@ -62,10 +63,10 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="구조만으로 모호하면, 렌더된 문서와 대조합니다.">파싱한 셀 구조에 렌더 결과의 좌표를 겹쳐, 질문과 입력칸의 대응을 화면에서 확인할 수 있도록 구현했습니다.</Heading>
+  <Heading n="02 / 분석" title="그래서 XML과 렌더 이미지를 함께 봅니다.">XML만으로는 답 칸을 특정할 수 없으므로, 문서를 이미지로 렌더해 배치를 함께 읽습니다. 선택이 아니라 분석 단계에 항상 들어가는 과정입니다.</Heading>
   <div className="fw-reasons">
    <div><h3>구조 파싱</h3><p>문단·표·셀을 읽어 편집할 수 있는 위치와 이미 들어 있는 값을 확인합니다.</p></div>
-   <div><h3>렌더 대조</h3><p>같은 문서를 렌더해 셀의 실제 좌표를 얻고, 구조에서 읽은 값과 연결합니다.</p></div>
+   <div><h3>이미지 대조</h3><p>같은 문서를 렌더해 셀의 실제 좌표를 얻고, 문항과 그 옆·아래의 빈 칸을 배치로 연결합니다.</p></div>
    <div><h3>구역 분할</h3><p>한 페이지를 최대 세 구역으로 나눠, 편집 대상이 포함된 구역만 원본과 상세 비교합니다.</p></div>
   </div>
   <div className="hx-bands">
@@ -83,23 +84,27 @@ export default function HwpxStudy(){
  </section>
 
  <section id="process" className="fw-section">
-  <Heading n="04 / 절차" title="바꾸기 전에, 무엇을 어디에 쓸지 확인받습니다.">앞의 판단이 맞았는지는 문서를 실제로 고쳐 봐야 드러납니다. 그런데 고치고 난 뒤에는 이미 늦습니다. 그래서 수정할 위치와 값을 먼저 한 곳에 모아 확인받고, 승인과 적용을 별도 단계로 분리했습니다.</Heading>
+  <Heading n="04 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">배치를 읽어 찾아낸 답 칸이 정말 맞는지는 사람만 확정할 수 있습니다. 그래서 값을 넣기 전에, 입력하려는 칸을 파란 박스로 표시한 그림을 만들어 보여주고 확인을 받습니다. 아니라고 하면 위치를 고쳐 다시 묻습니다.</Heading>
+  <figure className="fw-cover">
+   <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
+   <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+  </figure>
   <ol className="fw-collab-flow">
-   <li><b>계획</b><span>수정할 칸과 값을 Edit Plan 하나로 모읍니다.</span></li>
-   <li><b>승인</b><span>HMAC-SHA256 승인 영수증을 검증해야 다음으로 넘어갑니다.</span></li>
-   <li><b>적용</b><span>격리된 작업공간의 사본에만 적용하고, 원본은 덮어쓰지 않습니다.</span></li>
+   <li><b>표시</b><span>입력할 칸에 파란 박스를 그린 그림을 만듭니다.</span></li>
+   <li><b>확인</b><span>맞는지 묻고, 답을 듣기 전에는 값을 쓰지 않습니다.</span></li>
+   <li><b>적용</b><span>확인된 칸에만, 원본이 아닌 사본에 씁니다.</span></li>
   </ol>
-  <p className="fw-note">대표 실행에서도 원본 파일의 해시는 편집 전후로 동일했고, 수정본은 별도 파일로 생성됐습니다.</p>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>create · approve · apply_edit_plan</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
+  <p className="fw-note">대표 실행에서는 신청 종류부터 신청일까지 <strong>일곱 번에 나눠</strong> 확인을 받았습니다. 스무 개를 한꺼번에 묻지 않고 인적사항·여권·주소·근무처처럼 묶어서 물어, 어디를 보고 답해야 하는지 알 수 있게 했습니다. 원본 파일의 해시는 편집 전후로 같았고, 수정본은 별도 파일로 만들어졌습니다.</p>
+  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="05 / 결과" title="요청한 값이, 요청한 칸에 들어갔습니다.">출입국관리법 시행규칙 별지 제34호 통합신청서에 가상 정보를 입력했습니다. 앞에서 문제로 꼽은 칸들이 실제로 어떻게 처리됐는지부터 봅니다.</Heading>
+  <Heading n="05 / 결과" title="스무 개 항목이, 각각 어느 칸에 들어갔는지.">출입국관리법 시행규칙 별지 제34호 통합신청서에 가상 정보를 입력했습니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 항목별로 봅니다.</Heading>
   <div className="fw-table" tabIndex="0" role="region" aria-label="요청한 값과 실제로 입력된 칸">
    <table>
-    <caption>편집 계획에 기록된 값과, 그 값이 들어간 칸의 양식 문구</caption>
-    <thead><tr><th scope="col">요청한 값</th><th scope="col">들어간 칸</th><th scope="col">칸의 형태</th></tr></thead>
-    <tbody>{mapping.map(([v,cell,kind])=><tr key={v}><th scope="row">{v}</th><td>{cell}</td><td>{kind}</td></tr>)}</tbody>
+    <caption>양식의 문항과, 그 문항의 답으로 입력된 값</caption>
+    <thead><tr><th scope="col">양식에 적힌 문항</th><th scope="col">입력한 값</th><th scope="col">칸의 형태</th></tr></thead>
+    <tbody>{mapping.map(([v,cell,kind])=><tr key={v}><th scope="row">{cell}</th><td>{v}</td><td>{kind}</td></tr>)}</tbody>
    </table>
   </div>
   <p className="fw-note">스무 개 항목 전부가 이렇게 기록됐고, 값의 출처는 스무 건 모두 사용자 입력이었습니다. 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다. 성과 명이 각각 다른 칸으로, 생년월일과 등록번호가 여러 칸으로 나뉘었고, <strong>‘전화번호’라는 같은 문구의 칸이 여럿인데 휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
