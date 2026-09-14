@@ -51,3 +51,8 @@
 /* The over-filled form is a full page; cap it so it reads as evidence, not a spread. */
 .hx-overfill img{max-height:620px;object-fit:contain;object-position:top}
 .fw-cover+.fw-tradeoff{margin-top:36px}
+/* Result: the mapping table beside the page it produced. */
+.hx-result{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:40px;align-items:start;margin-top:34px}
+.hx-result figure{margin:0!important;min-width:0}
+.hx-result img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
+@media(max-width:860px){.hx-result{grid-template-columns:minmax(0,1fr);gap:26px}.hx-result figure{max-width:420px}}

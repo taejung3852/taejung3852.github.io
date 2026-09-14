@@ -56,7 +56,7 @@ export default function HwpxStudy(){
  <section id="analyze" className="fw-section">
   <Heading n="02 / 분석" title="ChatGPT 웹에서, 플러그인 없이 해봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>맞는 칸이 더 많았습니다</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다. 파일 구조만 읽어도 어느 정도는 찾아냅니다.</p></div>
+   <div><h3>정확하게 인식한 칸은 많았지만</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다. 파일 구조만 읽어도 어느 정도는 찾아냅니다.</p></div>
    <div><h3>어긋난 칸이 있었습니다</h3><p>아래 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 작성 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 배우자·부모 서명란까지 채워졌습니다.</p></div>
   </div>
   <figure className="fw-cover hx-overfill">
@@ -99,40 +99,35 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="04 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">예로 쓴 문서는 <strong>통합신청서</strong>입니다. 출입국관리법 시행규칙 별지 제34호 서식으로, 외국인 체류 관련 신청에 쓰입니다. 앞에서 문제로 꼽았던 칸들이 실제로 어디에 들어갔는지 봅니다.</Heading>
-  <div className="fw-table" tabIndex="0" role="region" aria-label="요청한 값과 실제로 입력된 칸">
-   <table>
-    <caption>양식의 문항과, 그 문항의 답으로 입력된 값</caption>
-    <thead><tr><th scope="col">양식에 적힌 문항</th><th scope="col">입력한 값</th><th scope="col">칸의 형태</th></tr></thead>
-    <tbody>{mapping.map(([v,cell,kind])=><tr key={v}><th scope="row">{cell}</th><td>{v}</td><td>{kind}</td></tr>)}</tbody>
-   </table>
+  <Heading n="04 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">예로 쓴 문서는 <strong>통합신청서</strong>입니다. 출입국관리법 시행규칙 별지 제34호 서식으로, 외국인 체류 관련 신청에 쓰입니다.</Heading>
+  <div className="hx-result">
+   <div className="fw-table" tabIndex="0" role="region" aria-label="양식의 문항과 입력된 값">
+    <table>
+     <thead><tr><th scope="col">양식에 적힌 문항</th><th scope="col">입력한 값</th></tr></thead>
+     <tbody>{mapping.map(([v,cell])=><tr key={v}><th scope="row">{cell}</th><td>{v}</td></tr>)}</tbody>
+    </table>
+   </div>
+   <figure>
+    <a href="/images/hwpx-filled.png" target="_blank" rel="noreferrer" aria-label="작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-filled.png" alt="플러그인으로 작성된 통합신청서 한 페이지" width="794" height="1123" loading="lazy"/></a>
+    <figcaption>왼쪽 표대로 채워진 결과입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+   </figure>
   </div>
-  <p className="fw-note">스무 건 모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — <strong>같은 문구의 ‘전화번호’ 칸이 여럿인데, 휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
-  <Source href={base+'/src/hwp_mcp/application/editing.py'}>편집 계획·적용 구현</Source>
+  <p className="fw-note">모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — 같은 문구의 ‘전화번호’ 칸이 여럿인데, <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
 
-  <Heading n="구조 보존" title="값을 넣은 뒤에도, 문서가 그대로인지 확인합니다.">“값을 넣었다”와 “문서가 멀쩡하다”는 다릅니다. 값이 바뀌어도 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 적용 결과와 문서 상태를 따로 봅니다.</Heading>
+  <Heading n="구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>무엇을 보는가</h3><p>적용된 변경이 확인받은 자리와 같은지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 그리고 만들어진 파일이 다시 열리는지를 봅니다.</p></div>
-   <div><h3>이번 양식에서는</h3><p>네 가지 모두 통과했습니다. 감지된 레이아웃 경고 한 건은 <strong>빈 원본에도 똑같이 있던 것</strong>이라, 편집으로 새로 생긴 문제는 없었습니다.</p></div>
+   <div><h3>기계가 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다.</p></div>
+   <div><h3>그다음 에이전트가 봅니다</h3><p>원본과 수정본을 구역별로 그려 비교한 이미지를 에이전트가 직접 읽고 최종 검토합니다. 수치로 안 걸러지는 어긋남을 눈으로 확인하는 단계입니다.</p></div>
   </div>
-  <p className="fw-note">양식 한 종류를 한 번 실행한 기록이라, 다른 양식이나 반복 실행의 성공률로 확대할 수 없습니다. 검증은 플러그인의 렌더러 기준이며 한글 프로그램 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · validate_document</Source><Source href={base+'/src/hwp_mcp/vision.py'}>이미지 비교 구현</Source></div>
+  <p className="fw-note">양식 한 종류를 한 번 실행한 기록입니다. 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
+  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · review_document_vision</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
  <section id="compose" className="fw-section">
-  <Heading n="구성" title="도구가 할 수 있는 일과, 언제 그걸 쓸지를 나눴습니다.">문서 처리를 에이전트 안의 함수로 둘 수도, 별도 도구로 떼어낼 수도 있었습니다. 두 선택의 값이 달랐습니다.</Heading>
-  <div className="fw-two">
-   <div className="fw-copy">
-    <h3>안에 두었다면</h3>
-    <p>구현이 단순합니다. 호출 왕복도 연결 관리도 필요 없습니다. 대신 FOWOCO 안에서만 쓸 수 있고, 기능을 키우려면 서비스 전체를 건드려야 합니다.</p>
-    <h3>밖으로 뺀 대가</h3>
-    <p>연결 관리와 도구 오류 처리가 새로 생기고, 실행 환경도 사용자마다 설치해야 합니다. 그래도 치른 이유는 문서를 분석하고 고치는 일이 이 서비스 하나에만 쓸 기능이 아니라고 봤기 때문입니다.</p>
-   </div>
-   <div className="fw-copy">
-    <h3>도구만으로는 부족했습니다</h3>
-    <p>도구 25종을 열어 두자 에이전트가 순서를 틀렸습니다. 분석 전에 필드를 조회하고, 원시 셀 ID를 그대로 쓰고, 위치 확인을 건너뛰었습니다.</p>
-    <p>그래서 절차를 Agent Skills 5종으로 고정했습니다. 진입 스킬 하나가 작업을 받아 양식 작성·그림·서식·검증 스킬로 넘깁니다. MCP도 잘못된 순서는 빈 결과 대신 다음 할 일을 알려주도록 고쳤습니다. 안내 문구를 늘리는 대신 실행 단계에서 막는 쪽입니다.</p>
-   </div>
+  <Heading n="구성" title="편집 도구는 MCP로, 쓰는 순서는 스킬로 나눴습니다.">문서 처리를 에이전트 안의 함수로 둘 수도 있었지만, 밖으로 떼어내 MCP 도구로 만들었습니다.</Heading>
+  <div className="hx-pairs">
+   <div><h3>밖으로 뺀 이유</h3><p>안에 두면 구현은 단순하지만 FOWOCO 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 하나에만 쓸 기능이 아니라고 봤습니다. 대신 연결 관리와 도구 오류 처리를 떠안았습니다.</p></div>
+   <div><h3>도구만으로는 부족했습니다</h3><p>도구를 열어 두자 에이전트가 순서를 틀렸습니다. 분석 전에 필드를 조회하고, 위치 확인을 건너뛰었습니다. 그래서 작업 순서를 Agent Skills로 고정하고, 잘못된 순서는 MCP가 거절하도록 했습니다.</p></div>
   </div>
   <figure className="fw-boundary">
    <article><span className="fw-kicker">mcp.json · 도구 25종</span><h3>MCP 서버</h3><p>가져오기 · 분석 · 확인 · 편집 · 검증<br/>문서를 실제로 다루는 동작</p></article>
@@ -144,18 +139,12 @@ export default function HwpxStudy(){
  </section>
 
  <section id="future" className="fw-section">
-  <Heading n="향후 방향" title="지금은 로컬에서, 다음은 서버에서.">MCP 서버는 STDIO로 동작합니다. 에이전트가 사용자의 컴퓨터에서 서버를 띄우고 표준입출력으로 주고받습니다. 이 선택에도 값이 있었습니다.</Heading>
+  <Heading n="향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것.">지금은 각자 컴퓨터에 설치해야 씁니다. 목표는 마켓플레이스 승인을 받아, 설치 없이 ChatGPT 웹에서 문서를 첨부하면 바로 동작하게 하는 것입니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>얻고 있는 것</h3><p>문서가 사용자의 컴퓨터를 벗어나지 않습니다. 공문서에는 주민등록번호나 여권번호가 들어가므로, 이 전제가 설계의 상당 부분을 떠받치고 있습니다.</p></div>
-   <div><h3>대신 치르고 있는 것</h3><p>쓰려는 사람마다 실행 환경을 설치해야 하고, 이미지를 그리고 대조하는 속도가 그 컴퓨터 사양에 좌우됩니다. 한 번 확인한 양식 정보를 여러 사람이 나눠 쓸 수도 없습니다.</p></div>
-   <div><h3>다음 — Streamable HTTP</h3><p>전송을 Streamable HTTP로 바꾸고 서버를 AWS EC2에, 원본과 작업공간을 S3에 두는 구성을 검토하고 있습니다.</p></div>
-   <div><h3>어려운 쪽은 전송이 아닙니다</h3><p>FastMCP 위에 있어 전송 교체 자체는 크지 않습니다. 실제 과제는 <strong>“파일이 로컬을 벗어나지 않는다”는 전제가 떠받치던 것들</strong>입니다. 인증과 권한, 문서가 서버에 머무는 범위, 원본 보존을 전부 다시 설계해야 합니다. 지금 공짜로 얻는 안전을 옮기는 순간 직접 구현해야 합니다.</p></div>
+   <div><h3>그러려면 서버로 올려야 합니다</h3><p>전송을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p></div>
+   <div><h3>먼저 풀어야 할 것</h3><p>지금은 문서가 사용자 컴퓨터를 벗어나지 않는다는 전제로 설계돼 있습니다. 원격으로 옮기면 인증과 권한, 문서가 서버에 머무는 범위를 다시 설계해야 합니다.</p></div>
   </div>
-  <p className="fw-note">Streamable HTTP 전환과 원격 배포는 아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 <code>mcp.json</code>과 서버 진입점 모두 STDIO 기준입니다.</p>
-  <div className="fw-conclusion">
-   <Heading n="남은 것" title="한 건의 기록으로 말할 수 있는 범위까지만."/>
-   <p className="fw-takeaway">분석·확인·검증 장치를 갖췄고, 대표 양식 한 건에서 실제로 동작하는 것까지 확인했습니다. 다만 양식의 배치는 서식마다 다르므로, 다른 양식에서도 같은 정확도가 나오는지는 같은 방식의 기록을 더 쌓은 뒤에 말하려 합니다.</p>
-  </div>
+  <p className="fw-note">아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 STDIO 기준입니다.</p>
  </section>
 
  <footer className="fw-footer"><Link to="/#projects">← 주요 프로젝트</Link><Link to="/projects/ownhands">다음 프로젝트 · OwnHands →</Link></footer>
