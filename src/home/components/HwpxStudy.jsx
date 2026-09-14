@@ -6,9 +6,7 @@ const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f3
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
 const metrics=[['34 / 34','계획한 변경이 빠짐없이 적용됐습니다'],['0건','요청하지 않은 칸에서 발생한 변경'],['212 → 212','문단 수가 유지됐습니다'],['1 → 1','표 수와 페이지 수가 유지됐습니다'],['0건','원본에 없던 레이아웃 경고'],['통과','수정본을 다시 열어 분석까지 진행']];
-const mcpGroups=[['가져오기 · 등록','3','첨부와 로컬 파일을 허용된 작업 루트 안으로만 들여옵니다.'],['분석 · 매핑','8','구조와 렌더를 함께 읽어 입력칸 후보를 세우고, 틀렸을 때 고칠 수 있게 합니다.'],['입력 확인','2','받은 값을 칸의 형식에 맞게 다듬고, 각 칸을 어떻게 처리할지 기록합니다.'],['편집','4','계획·승인·적용·최종화를 각각 다른 도구로 분리했습니다.'],['검증','4','원본과 수정본을 비교하고, 화면으로 한 번 더 확인합니다.'],['작업 상태','4','중단된 작업을 이어가거나 되돌립니다.']];
 const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD','체크 표시'],['NGUYEN','성 Surname','텍스트'],['VAN AN','명 Given names','텍스트'],['1995-04-12','생년월일 Date of Birth','년·월·일 세 칸으로 분할'],['9504125000000','외국인등록번호 Foreign Resident Registration No.','열세 칸에 한 자씩'],['010-0000-0000','휴대전화 Cell phone No.','텍스트'],['031-000-0000','전화번호 Phone No. — 근무처 행','텍스트'],['3000','연 소득금액 Annual Income Amount','금액 칸']];
-const skills=[['hwpx-document','진입점. 첨부를 가져오고 작업에 맞는 도구를 고르도록 안내합니다.'],['hwpx-form-fill','양식에서 요청한 항목을 찾아 입력하거나, 부족한 정보를 질문합니다.'],['hwpx-picture','그림 객체 교체와 증명사진·서명 배치를 다룹니다.'],['hwpx-styling','글자 서식을 지정하고 셀 넘침을 막습니다.'],['hwpx-verification','수정본을 확인해 검증 결과를 보고하고 최종본을 만듭니다.']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
 export default function HwpxStudy(){
@@ -62,31 +60,48 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="그래서 XML과 렌더 이미지를 함께 봅니다.">XML만으로는 답 칸을 특정할 수 없으므로, 문서를 이미지로 렌더해 배치를 함께 읽습니다. 선택이 아니라 분석 단계에 항상 들어가는 과정입니다.</Heading>
-  <div className="fw-reasons">
-   <div><h3>구조 파싱</h3><p>문단·표·셀을 읽어 편집할 수 있는 위치와 이미 들어 있는 값을 확인합니다.</p></div>
-   <div><h3>이미지 대조</h3><p>같은 문서를 렌더해 셀의 실제 좌표를 얻고, 문항과 그 옆·아래의 빈 칸을 배치로 연결합니다.</p></div>
-   <div><h3>구역 분할</h3><p>한 페이지를 최대 세 구역으로 나눠, 편집 대상이 포함된 구역만 원본과 상세 비교합니다.</p></div>
+  <Heading n="02 / 분석" title="빠른 길을 두고, 느린 길을 골랐습니다.">XML만 파싱하면 훨씬 빠릅니다. 파일을 열고 셀을 읽으면 끝입니다. 그런데 그 방법으로는 ‘전화번호 Phone No.’ 네 곳을 끝내 구분할 수 없었습니다.</Heading>
+  <div className="fw-two">
+   <div className="fw-copy">
+    <h3>포기한 것 — 속도</h3>
+    <p>문서를 이미지로 렌더하는 과정이 분석 단계에 매번 들어갑니다. 조건이 맞을 때만 하는 보조 수단이 아니라 기본 경로라, 모든 작업이 그만큼 느려집니다.</p>
+    <h3>얻은 것 — 애초에 못 풀던 문제</h3>
+    <p>렌더 결과에서 셀의 실제 좌표를 얻으면, 문항과 그 옆·아래 빈 칸의 관계가 배치로 드러납니다. 같은 문구가 네 번 반복돼도 어느 행에 있는지로 갈립니다. 속도를 내주고 정확도를 산 셈입니다.</p>
+   </div>
+   <div className="fw-copy">
+    <h3>대가로 생긴 것 — 렌더러 의존</h3>
+    <p>분석이 렌더러의 좌표에 기대게 됐습니다. 뒤에 나오는 검증도 같은 렌더러 기준이라, 한글 프로그램에서의 실제 표시와 일치하는지는 이 안에서 확인할 수 없습니다.</p>
+    <h3>한 페이지를 세 구역으로</h3>
+    <p>페이지 전체를 한 장으로 보면 글자가 작아 대조가 어렵습니다. 편집 대상이 들어간 구역만 나눠서 원본과 상세 비교하도록 했습니다.</p>
+   </div>
   </div>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
   </div>
-  <p className="fw-note">대표 양식 1건을 실제로 편집한 뒤 생성된 상세 비교 이미지입니다. 한 페이지를 세 구역으로 나눠 각각 원본과 대조했으며, 빨간 표시가 이번 편집에서 바뀐 칸입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
+  <p className="fw-note">대표 양식 1건을 실제로 편집한 뒤 생성된 상세 비교 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
  <section id="process" className="fw-section">
-  <Heading n="03 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">배치를 읽어 찾아낸 답 칸이 정말 맞는지는 사람만 확정할 수 있습니다. 그래서 값을 넣기 전에, 입력하려는 칸을 파란 박스로 표시한 그림을 만들어 보여주고 확인을 받습니다. 아니라고 하면 위치를 고쳐 다시 묻습니다.</Heading>
+  <Heading n="03 / 검수" title="물어보는 것도 비용입니다.">사람에게 확인받으면 안전해집니다. 대신 물을 때마다 사용자가 하던 일을 멈춰야 합니다. 그래서 무엇을 묻고 무엇은 묻지 않을지를 갈랐습니다.</Heading>
+  <div className="fw-two">
+   <div className="fw-copy">
+    <h3>묻기로 한 것 — 값이 들어갈 자리</h3>
+    <p>값을 넣기 전에 대상 칸을 파란 박스로 표시한 그림을 만들어 보여주고, 맞는지 확인받습니다. 아니라고 하면 위치를 고쳐 다시 묻습니다. 여기가 틀리면 문서 자체가 틀리기 때문에, 단일 항목을 고칠 때도 이 단계를 건너뛰지 않습니다.</p>
+    <h3>묻지 않기로 한 것 — 매핑 자체의 승인</h3>
+    <p>한 번 확인한 문항–칸 대응을 템플릿으로 저장할 때, 그 저장을 다시 승인받는 단계도 만들 수 있었습니다. 넣지 않았습니다. 사용자가 판단하기 어려운 것을 묻는 절차는 안전을 늘리는 대신 작업만 복잡하게 만듭니다. 위치 확인이 이미 같은 사고를 막고 있습니다.</p>
+   </div>
+   <div className="fw-copy">
+    <h3>스무 개를 한 번에 묻지 않았습니다</h3>
+    <p>대표 실행에서는 신청 종류부터 신청일까지 <strong>일곱 번에 나눠</strong> 확인을 받았습니다. 왕복은 늘어나지만, 인적사항·여권·주소·근무처처럼 묶어서 물으면 사용자가 문서의 어디를 보고 답해야 하는지 알 수 있습니다. 스무 개를 한 화면에 늘어놓으면 확인이 형식적인 ‘예’로 바뀝니다.</p>
+    <p className="fw-example-label">확인 7회 · 항목 20개 · 되돌림 0회</p>
+   </div>
+  </div>
   <figure className="fw-cover">
    <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
    <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
   </figure>
-  <ol className="fw-collab-flow">
-   <li><b>표시</b><span>입력할 칸에 파란 박스를 그린 그림을 만듭니다.</span></li>
-   <li><b>확인</b><span>맞는지 묻고, 답을 듣기 전에는 값을 쓰지 않습니다.</span></li>
-   <li><b>적용</b><span>확인된 칸에만, 원본이 아닌 사본에 씁니다.</span></li>
-  </ol>
-  <p className="fw-note">대표 실행에서는 신청 종류부터 신청일까지 <strong>일곱 번에 나눠</strong> 확인을 받았습니다. 스무 개를 한꺼번에 묻지 않고 인적사항·여권·주소·근무처처럼 묶어서 물어, 어디를 보고 답해야 하는지 알 수 있게 했습니다. 원본 파일의 해시는 편집 전후로 같았고, 수정본은 별도 파일로 만들어졌습니다.</p>
+  <p className="fw-note">원본 파일의 해시는 편집 전후로 같았고, 수정본은 별도 파일로 만들어졌습니다. 확인된 칸에만, 원본이 아닌 사본에 씁니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
@@ -113,39 +128,50 @@ export default function HwpxStudy(){
  </section>
 
  <section id="compose" className="fw-section">
-  <Heading n="구성" title="도구가 할 수 있는 일과, 언제 그걸 쓸지를 나눴습니다.">문서를 다루는 실제 동작은 MCP 서버가, 어떤 순서로 무엇을 물어보고 확인할지는 Agent Skills가 맡습니다. 둘을 하나의 플러그인으로 묶어 설치 한 번으로 붙도록 만들었습니다.</Heading>
-
-  <Heading n="MCP 서버" title="문서 작업을 25개의 도구로 쪼갰습니다."/>
-  <ol className="fw-ranking">{mcpGroups.map(([name,n,desc])=><li key={name}><span>{n}종</span><div><strong>{name}</strong><small>{desc}</small></div></li>)}</ol>
-  <p className="fw-note">한 번의 호출로 “문서를 고쳐 줘”를 처리하지 않고, 가져오기·분석·확인·편집·검증을 각각 별도 도구로 나눴습니다. 중간에 사람이 끼어들 지점을 만들기 위해서입니다.</p>
-  <Source href={tree+'/src/hwp_mcp'}>MCP 구현</Source>
-
-  <Heading n="Agent Skills" title="진입 스킬 하나에, 작업별 스킬 넷."/>
-  <dl className="fw-metric-guide">{skills.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
-  <p className="fw-note">도구 25개를 전부 설명하는 대신, 무엇을 하려는 상황인지에 따라 필요한 절차만 읽히도록 나눴습니다. 에이전트는 <code>hwpx-document</code>로 들어와 작업에 맞는 스킬로 옮겨 갑니다.</p>
-  <Source href={tree+'/skills'}>Agent Skills</Source>
-
-  <Heading n="플러그인" title="설치 한 번이면 도구와 절차가 함께 붙습니다."/>
+  <Heading n="구성" title="안에 두면 간단했지만, 밖에 두면 쓸 데가 많았습니다.">문서 처리를 에이전트 안의 함수로 정리할 수도, 별도 도구로 떼어낼 수도 있었습니다. 두 선택의 값이 달랐습니다.</Heading>
+  <div className="fw-two">
+   <div className="fw-copy">
+    <h3>안에 두었다면</h3>
+    <p>구현이 단순합니다. 호출 왕복도, 연결 관리도, 도구가 죽었을 때의 처리도 필요 없습니다. 대신 FOWOCO 안에서만 쓸 수 있고, 문서 기능을 키우려면 서비스 전체를 건드려야 합니다.</p>
+    <h3>밖으로 뺀 대가</h3>
+    <p>MCP로 분리하면서 연결 관리와 도구 오류 처리가 새로 생겼습니다. 실행 환경도 사용자마다 따로 설치해야 합니다. 그래도 이 비용을 치른 이유는, 문서를 분석하고 고치는 일이 이 서비스 하나에만 쓸 기능이 아니라고 봤기 때문입니다.</p>
+   </div>
+   <div className="fw-copy">
+    <h3>도구만으로는 부족했습니다</h3>
+    <p>도구 25종을 열어 두자 에이전트가 순서를 틀렸습니다. 분석 전에 필드 목록을 조회하고, 문서 내부의 원시 셀 ID를 그대로 쓰고, 위치 확인을 건너뛰고, 중간에 다른 워크플로로 새기도 했습니다.</p>
+    <p>그래서 절차를 Agent Skills 5종으로 따로 고정했습니다. 진입 스킬 하나가 작업을 받아 양식 작성·그림 배치·서식·검증 스킬로 넘깁니다. MCP 쪽도 분석 전 조회에는 빈 목록 대신 다음에 할 일을 알려주고, 원시 ID를 쓰면 올바른 식별자를 쓰라고 거절하도록 고쳤습니다.</p>
+    <p className="fw-note">도구에 “무엇을 할 수 있는지”를, 스킬에 “언제 그걸 하는지”를 나눠 둔 결과입니다. 설명을 늘리는 대신 잘못된 순서를 실행 단계에서 막는 쪽을 택했습니다.</p>
+   </div>
+  </div>
   <figure className="fw-boundary">
-   <article><span className="fw-kicker">mcp.json</span><h3>MCP 서버</h3><p>도구 25종<br/>문서를 실제로 다루는 동작</p></article>
+   <article><span className="fw-kicker">mcp.json · 도구 25종</span><h3>MCP 서버</h3><p>가져오기 · 분석 · 확인 · 편집 · 검증<br/>문서를 실제로 다루는 동작</p></article>
    <div className="fw-connection"><span className="fw-connection-label">plugin.json 으로 함께 묶임</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div>
-   <article><span className="fw-kicker">skills</span><h3>Agent Skills</h3><p>절차 5종<br/>언제 무엇을 호출할지 판단</p></article>
-   <figcaption>사용자가 MCP 설정을 직접 편집하지 않아도 되도록, 서버 실행 방법과 작업 절차를 하나의 플러그인 패키지로 묶었습니다. 2인 팀 프로젝트이며, 저장소에 함께 있는 WASM 뷰어 실험은 다른 팀원의 작업입니다.</figcaption>
+   <article><span className="fw-kicker">skills · 5종</span><h3>Agent Skills</h3><p>진입 스킬 1 + 작업별 4<br/>언제 무엇을 호출할지 강제</p></article>
+   <figcaption>사용자가 MCP 설정을 직접 편집하지 않아도 되도록 하나의 플러그인 패키지로 묶었습니다. 2인 팀 프로젝트이며, 저장소에 함께 있는 WASM 뷰어 실험은 다른 팀원의 작업입니다.</figcaption>
   </figure>
-  <div className="fw-proof-links"><Source href={base+'/plugin.json'}>plugin.json</Source><Source href={base+'/mcp.json'}>mcp.json</Source></div>
+  <div className="fw-proof-links"><Source href={tree+'/src/hwp_mcp'}>MCP 구현</Source><Source href={tree+'/skills'}>Agent Skills</Source><Source href={base+'/plugin.json'}>plugin.json</Source></div>
  </section>
 
  <section id="future" className="fw-section">
-  <Heading n="향후 방향" title="지금은 각자의 컴퓨터에서, 다음은 서버에서.">현재 MCP 서버는 STDIO로 동작합니다. 에이전트가 사용자의 컴퓨터에서 서버 프로세스를 띄우고 표준입출력으로 주고받는 방식입니다.</Heading>
-  <div className="fw-collab-narrative">
-   <article><span className="fw-kicker">현재</span><div><h3>로컬 프로세스로 실행됩니다.</h3><p>문서가 사용자의 컴퓨터에 있고, 서버도 같은 컴퓨터에서 실행됩니다. 파일이 밖으로 나가지 않는다는 점은 장점이지만, 쓰려는 사람마다 실행 환경을 설치해야 합니다.</p></div></article>
-   <article><span className="fw-kicker">한계</span><div><h3>기기에 묶입니다.</h3><p>다른 컴퓨터에서는 다시 설치해야 하고, 렌더링과 비교 작업의 속도가 그 컴퓨터의 사양에 좌우됩니다. 한 번 확인한 양식의 입력칸 정보를 여러 사람이 나눠 쓰기도 어렵습니다.</p></div></article>
-   <article><span className="fw-kicker">계획</span><div><h3>Streamable HTTP로 바꿔 서버에 올립니다.</h3><p>전송 방식을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 렌더 결과·작업공간은 S3에 보관하는 구성을 검토하고 있습니다. 설치 없이 접속만으로 같은 도구를 쓰고, 한 번 확인한 양식의 입력칸 정보를 재사용하는 것이 목표입니다.</p></div></article>
+  <Heading n="향후 방향" title="지금의 안전장치가, 확장을 막고 있습니다.">MCP 서버는 STDIO로 동작합니다. 에이전트가 사용자의 컴퓨터에서 서버를 띄우고 표준입출력으로 주고받습니다. 이 선택에도 값이 있었습니다.</Heading>
+  <div className="fw-two">
+   <div className="fw-copy">
+    <h3>얻고 있는 것</h3>
+    <p>문서가 사용자의 컴퓨터를 벗어나지 않습니다. 공문서에는 주민등록번호나 여권번호 같은 정보가 들어가므로, 파일을 밖으로 보내지 않는다는 전제가 설계의 상당 부분을 떠받치고 있습니다.</p>
+    <h3>대신 치르고 있는 것</h3>
+    <p>쓰려는 사람마다 실행 환경을 설치해야 합니다. 다른 컴퓨터에서는 다시 설치해야 하고, 렌더와 비교 속도가 그 컴퓨터 사양에 좌우됩니다. 한 번 확인한 양식의 입력칸 정보를 여러 사람이 나눠 쓸 수도 없습니다.</p>
+   </div>
+   <div className="fw-copy">
+    <h3>다음 — Streamable HTTP</h3>
+    <p>전송을 STDIO에서 Streamable HTTP로 바꾸고 서버를 AWS EC2에 두려 합니다. 원본과 렌더 결과·작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p>
+    <h3>어려운 쪽은 전송이 아닙니다</h3>
+    <p>서버가 FastMCP 위에 있어 전송 방식을 바꾸는 일 자체는 크지 않습니다. 실제 과제는 <strong>“파일이 로컬을 벗어나지 않는다”는 전제가 떠받치던 것들</strong>입니다. 인증과 권한, 문서가 서버에 머무는 범위, 원본 보존과 격리 작업공간을 전부 서버 쪽에서 다시 설계해야 합니다. 지금 공짜로 얻고 있는 안전을, 옮기는 순간 직접 구현해야 합니다.</p>
+   </div>
   </div>
   <p className="fw-note">Streamable HTTP 전환과 원격 배포는 아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 <code>mcp.json</code>과 서버 진입점 모두 STDIO 기준입니다.</p>
   <div className="fw-conclusion">
    <Heading n="남은 것" title="한 건의 기록으로 말할 수 있는 범위까지만."/>
-   <p className="fw-takeaway">분석·확인·승인·검증 장치를 갖췄고, 대표 양식 한 건에서 실제로 동작하는 것까지 확인했습니다. 다만 양식의 배치는 서식마다 다르므로, 다른 양식에서도 같은 정확도가 나오는지는 같은 방식의 기록을 더 쌓은 뒤에 말하려 합니다.</p>
+   <p className="fw-takeaway">분석·확인·검증 장치를 갖췄고, 대표 양식 한 건에서 실제로 동작하는 것까지 확인했습니다. 다만 양식의 배치는 서식마다 다르므로, 다른 양식에서도 같은 정확도가 나오는지는 같은 방식의 기록을 더 쌓은 뒤에 말하려 합니다.</p>
   </div>
  </section>
 
