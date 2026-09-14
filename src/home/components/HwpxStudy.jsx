@@ -62,6 +62,10 @@ export default function HwpxStudy(){
    <div><h3>진짜 문제는 다른 데 있었습니다</h3><p>값은 들어갑니다. 그런데 <strong>건드리지 말아야 할 칸까지 채웁니다.</strong> 신청인 서명란에 이름을 써 넣고, 존재하지도 않는 예정 근무처를 적고, 반환용 계좌번호를 예시값으로 지어냅니다. 열세 칸으로 나뉜 등록번호는 칸에 맞추지 못하고 뭉갭니다.</p></div>
    <div><h3>공문서에서는 오타가 아닙니다</h3><p>서명란에 이름이 찍히고 없는 근무처가 적힌 신청서는 잘못 쓴 문서가 아니라 <strong>사실과 다른 문서</strong>입니다. 어느 칸을 채웠는지만큼 <strong>어느 칸을 비워 뒀는지가 같이 중요합니다.</strong></p></div>
   </div>
+  <figure className="fw-cover hx-overfill">
+   <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="과잉 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 서명란에 이름이 적히고, 예정 근무처와 반환용 계좌번호가 채워졌으며, 외국인등록번호가 칸에 맞지 않게 뭉개져 있다." width="1132" height="1596" loading="lazy"/></a>
+   <figcaption>플러그인 없이 같은 양식을 채우게 했을 때의 출력입니다. <strong>신청인·배우자·부모 서명란</strong>에 글자가 들어갔고, 요청하지 않은 <strong>예정 근무처</strong>와 <strong>반환용 계좌번호</strong>가 채워졌습니다. 외국인등록번호는 열세 칸에 맞추지 못해 앞 칸에 뭉쳤고, 성별은 체크되지 않았습니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+  </figure>
   <div className="fw-tradeoff">
    <h3>가정을 그대로 두지 않았습니다.</h3>
    <p>이미지를 기본 경로에 넣은 처음 이유는 매핑 정확도였고, 재보니 그 이유는 성립하지 않았습니다. 매핑 자체는 플러그인 없이도 대체로 됩니다. 문제는 <strong>정확도가 아니라 절제</strong>였습니다. 그래서 다음 두 가지에 힘을 실었습니다. 각 칸을 어떻게 처리할지 미리 정해 두는 것과, 값을 넣기 전에 사람에게 자리를 확인받는 것입니다. 양식 한 종류의 기록이라 다른 양식에서도 같은지는 아직 모릅니다.</p>
