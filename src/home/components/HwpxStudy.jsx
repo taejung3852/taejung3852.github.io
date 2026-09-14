@@ -62,6 +62,10 @@ export default function HwpxStudy(){
    <div><h3>대가로 생긴 것 — 렌더러 의존</h3><p>뒤에 나오는 검증도 같은 렌더러 기준이라, 한글 프로그램에서의 실제 표시와 일치하는지는 이 안에서 확인할 수 없습니다.</p></div>
    <div><h3>한 페이지를 세 구역으로</h3><p>페이지를 한 장으로 보면 글자가 작아 대조가 어렵습니다. 편집 대상이 든 구역만 나눠 원본과 비교합니다.</p></div>
   </div>
+  <div className="fw-tradeoff">
+   <h3>느려지는 걸 알고도 기본 경로로 뒀습니다.</h3>
+   <p>렌더를 조건부로 두면 빠른 경우가 생깁니다. 그런데 어떤 양식이 모호한지는 열어 보기 전에 알 수 없습니다. 판단이 필요한 순간을 한 번 놓치면 값이 엉뚱한 칸에 들어가고, 그렇게 만들어진 문서는 제출한 뒤에야 틀린 걸 알게 됩니다. 되돌릴 수 없는 쪽의 비용이 더 크다고 봐서, 느린 쪽을 기본으로 뒀습니다.</p>
+  </div>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
   </div>
@@ -83,6 +87,10 @@ export default function HwpxStudy(){
     <p>스무 개를 한 화면에 늘어놓으면 확인이 형식적인 ‘예’로 바뀝니다. 대표 실행에서는 인적사항·여권·주소·근무처처럼 묶어 <strong>일곱 번에 나눠</strong> 물었습니다. 왕복은 늘지만 어디를 보고 답할지 알 수 있습니다.</p>
     <p className="fw-example-label">확인 7회 · 항목 20개 · 되돌림 0회</p>
    </div>
+  </div>
+  <div className="fw-tradeoff">
+   <h3>일곱 번 묻는 쪽을 택했습니다.</h3>
+   <p>자동으로 넣고 끝내면 사용자는 한 번도 멈추지 않습니다. 대신 틀렸을 때 알아차리는 사람도 없습니다. 제출한 뒤에 발견하는 비용이 확인하느라 멈추는 비용보다 크다고 봤습니다. 다만 묻는 횟수 자체가 부담이라, 항목을 묶어 일곱 번으로 줄였습니다.</p>
   </div>
   <figure className="fw-cover">
    <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
