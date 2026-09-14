@@ -18,12 +18,16 @@ export default function HwpxStudy(){
 
  <header className="fw-hero">
   <Link className="fw-back" to="/#projects">← 주요 프로젝트</Link>
+  <div className="fw-hero-split">
+   <div className="fw-hero-copy">
   <p className="fw-kicker">HWPX Document Plugin · 2인 팀 프로젝트 · 대표 양식 1건 실행 완료</p>
   <h1>양식의 구조를 읽고,<br/>확인한 값만 반영합니다.</h1>
   <p className="fw-lead">기존 HWPX 양식을 분석해 어느 칸에 무엇을 쓸지 찾고, 사용자에게 확인한 값만 그 칸에 반영하는 Agent Plugin입니다. 분석·계획·승인·적용·검증을 각각 다른 단계로 나눴습니다.</p>
+   </div>
+  <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 렌더된 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 렌더된 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
+  </div>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
   <ul className="hx-summary"><li><strong>20개</strong><span>요청 항목 전부가 지정한 칸에</span></li><li><strong>0건</strong><span>요청하지 않은 칸의 변경</span></li><li><strong>유지</strong><span>표·페이지 구조와 서식</span></li></ul>
-  <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 렌더된 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 렌더된 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#values">확인한 값</a><a href="#process">절차</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
 

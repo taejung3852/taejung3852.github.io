@@ -28,4 +28,13 @@
 
 .fw-document-comparison{margin:32px 0!important}.fw-document-comparison img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:8px}.fw-document-comparison figcaption{text-align:center}
 
+/* Hero media sits beside the copy, as on the LLM Gateway page. */
+.fw-hero-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:44px;align-items:center}
+.fw-hero-split .fw-hero-copy{min-width:0}
+.fw-hero-split h1{font-size:clamp(30px,3.3vw,46px)}
+.fw-hero-split>figure{margin:0!important;min-width:0}
+.fw-hero-split .fw-cover img{max-height:none;height:auto}
+.fw-hero-split+.fw-role{margin-top:34px}
+@media(max-width:900px){.fw-hero-split{grid-template-columns:minmax(0,1fr);gap:26px}.fw-hero-split h1{font-size:clamp(36px,4.1vw,60px)}}
+
 .fw-document-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}.fw-document-pair h3{margin-bottom:12px}.fw-document-pair a{display:block}.fw-document-pair img{height:auto;width:100%}@media(max-width:600px){.fw-document-pair{grid-template-columns:1fr}}
