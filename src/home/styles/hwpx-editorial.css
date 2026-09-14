@@ -16,8 +16,13 @@
    column flow keeps the reading order for stacked and screen-reader views. */
 .hx-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,auto);grid-auto-flow:column;gap:32px 48px;margin-top:34px}
 .hx-pairs>div{min-width:0}
-/* FOWOCO places this block after the numbers; here it follows the pairs. */
-.hx-pairs+.fw-tradeoff{margin-top:36px}
+/* FOWOCO places this block after the numbers; here it follows the copy. */
+.hx-pairs+.fw-tradeoff,.fw-two+.fw-tradeoff{margin-top:36px}
+.hx-pairs+.fw-note{margin-top:30px}
+
+/* The metrics grid already closes with a rule; the note's own top border
+   doubled it into a stray line. */
+#result .hx-metrics+.fw-context-note{border-top:0;padding-top:0;margin-top:38px}
 .hx-pairs h3{margin:0 0 10px}
 @media(max-width:760px){.hx-pairs{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-flow:row;gap:26px}}
 

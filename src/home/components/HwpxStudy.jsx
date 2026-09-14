@@ -21,7 +21,7 @@ export default function HwpxStudy(){
   <h1>양식의 구조를 읽고,<br/>확인한 값만 반영합니다.</h1>
   <p className="fw-lead">기존 HWPX 양식을 분석해 어느 칸에 무엇을 쓸지 찾고, 사용자에게 확인한 값만 그 칸에 반영하는 Agent Plugin입니다. 분석·계획·승인·적용·검증을 각각 다른 단계로 나눴습니다.</p>
    </div>
-  <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 렌더된 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 렌더된 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
+  <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 그려낸 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 그려낸 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   </div>
   <dl className="fw-role"><dt>담당 영역</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></dl>
   <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#problem">문제</a><a href="#analyze">분석</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
@@ -55,26 +55,21 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="02 / 분석" title="렌더가 필요한 곳은 매핑이 아니었습니다.">처음에는 XML만으로 ‘전화번호 Phone No.’ 네 곳을 구분할 수 없다고 봤고, 그래서 렌더를 분석의 기본 경로에 넣었습니다. 같은 문서로 확인해 보니 그 근거는 성립하지 않았습니다.</Heading>
-  <div className="fw-findings">
-   <article><span className="fw-kicker">XML 셀 표만</span><strong>20 / 20</strong><h3>정확히 매핑</h3><p>행·열 위치와 각 셀의 문구만 제공. 렌더 이미지 없음.</p></article>
-   <article><span className="fw-kicker">XML + 렌더 이미지</span><strong>20 / 20</strong><h3>정확히 매핑</h3><p>같은 자료에 페이지 렌더 1장을 더해 제공.</p></article>
-  </div>
-  <p className="fw-note">실제 실행에서 사용자가 확인한 매핑 20건을 정답으로 두고, 같은 모델에 자료만 다르게 주어 각각 풀게 했습니다. <strong>두 조건이 다르게 답한 항목은 0건</strong>이었습니다. 양식 한 종류를 한 번 돌린 기록입니다.</p>
+  <Heading n="02 / 분석" title="이미지까지 읽는 이유는, 모델에 따라 달랐습니다.">처음에는 XML만으로 ‘전화번호 Phone No.’ 네 곳을 구분할 수 없다고 봤습니다. 확인해 보니 성능이 높은 모델은 셀 구조만으로 스무 개를 전부 맞혔습니다. 가정이 틀렸습니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>매핑은 구조로 풀렸습니다</h3><p>행·열 위치와 이웃 칸의 문구가 이미 배치를 담고 있습니다. 같은 행에 ‘원 근무처 · 사업자등록번호 · 전화번호’가 나란히 있으면, 그 행의 빈칸이 근무처 전화라는 게 문구만으로 드러납니다. 이 표는 렌더러 없이 XML 파싱만으로 만들 수 있습니다.</p></div>
-   <div><h3>자평은 근거가 아니었습니다</h3><p>이미지를 받은 쪽은 “이미지가 결정적이었다”고 스스로 보고했습니다. 그런데 이미지를 받지 않은 쪽이 같은 답을 냈습니다. 도움이 됐다는 진술만으로는 도움이 됐다고 말할 수 없습니다.</p></div>
-   <div><h3>그래도 렌더가 필요합니다 — 보여주기</h3><p>값을 넣기 전에 “이 칸이 맞습니까”를 사람에게 물으려면 그림이 있어야 합니다. 셀 ID를 나열해 놓고 확인받을 수는 없습니다. 다음 섹션의 파란 박스가 렌더 결과입니다.</p></div>
-   <div><h3>그래도 렌더가 필요합니다 — 검증</h3><p>값을 넣은 뒤 표가 밀렸는지, 글자가 칸을 넘쳤는지는 XML로 보이지 않습니다. 원본과 수정본을 각각 렌더해 구역별로 대조해야 드러납니다. 아래가 그 비교 결과입니다.</p></div>
+   <div><h3>구조만으로도 풀렸습니다</h3><p>같은 문서·같은 스무 개 항목을 자료만 다르게 주어 풀게 했습니다. 셀 표만 준 쪽도, 이미지를 더한 쪽도 전부 맞혔고 <strong>답이 다른 항목은 0건</strong>이었습니다. 행·열 위치와 이웃 칸 문구가 이미 배치를 담고 있었고, 그 표는 XML 파싱만으로 만들 수 있습니다.</p></div>
+   <div><h3>모델이 바뀌면 달라졌습니다</h3><p>성능이 낮은 모델에서는 같은 문서를 주어도 값을 제대로 넣지 못했습니다. 구조를 읽어내는 일 자체가 모델의 추론에 기대고 있었던 겁니다. 이미지 분석은 그 의존을 줄이려는 장치입니다.</p></div>
+   <div><h3>보여주려면 그림이 있어야 합니다</h3><p>값을 넣기 전에 “이 칸이 맞습니까”를 사람에게 물으려면 셀 ID 목록으로는 안 됩니다. 다음 섹션의 파란 박스가 그 결과입니다.</p></div>
+   <div><h3>검증에도 필요합니다</h3><p>값을 넣은 뒤 표가 밀렸는지, 글자가 칸을 넘쳤는지는 XML로 보이지 않습니다. 원본과 수정본을 각각 그려 구역별로 대조해야 드러납니다.</p></div>
   </div>
   <div className="fw-tradeoff">
    <h3>가정을 그대로 두지 않았습니다.</h3>
-   <p>렌더를 기본 경로로 둔 처음 이유는 매핑 정확도였습니다. 확인해 보니 그 이유는 틀렸고, 렌더는 다른 곳에서 값을 하고 있었습니다. 근거가 사라진 만큼 매핑 단계의 렌더는 줄일 여지가 생겼지만, 확인 화면과 검증에는 그대로 필요합니다. 이 판단은 양식 한 종류의 기록이라, 배치가 더 복잡한 양식에서도 같은지는 아직 모릅니다.</p>
+   <p>이미지를 기본 경로에 넣은 처음 이유는 매핑 정확도였고, 재보니 그 이유는 성립하지 않았습니다. 대신 낮은 성능의 모델에서, 그리고 확인 화면과 검증에서 값을 하고 있었습니다. 양식 한 종류의 기록이라 다른 양식에서도 같은지는 아직 모릅니다.</p>
   </div>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
   </div>
-  <p className="fw-note">수정 후 검증에 쓰는 구역별 대조입니다. 한 페이지를 세 구역으로 나눠 각각 원본과 비교하며, 빨간 표시가 이번 편집에서 바뀐 칸입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
+  <p className="fw-note">수정 후 검증에 쓰는 구역별 대조입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
@@ -124,7 +119,7 @@ export default function HwpxStudy(){
    <p>값이 바뀌어도 표가 밀리거나 글자가 칸을 넘칠 수 있습니다. 그래서 적용한 값이 계획과 일치하는지와 별개로, 문단·표·페이지 수와 레이아웃 경고를 원본과 대조합니다. 이번 실행에서 감지된 레이아웃 경고 한 건은 빈 원본에도 동일하게 있던 것이며, 편집으로 새로 생긴 경고는 없었습니다.</p>
   </div>
   <p className="fw-note">양식 한 종류를 한 번 실행한 기록이라, 다른 양식이나 반복 실행의 성공률로 확대할 수 없습니다. 검증은 플러그인의 렌더러 기준이며 한글 프로그램 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · validate_document</Source><Source href={base+'/src/hwp_mcp/vision.py'}>렌더 비교 구현</Source></div>
+  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · validate_document</Source><Source href={base+'/src/hwp_mcp/vision.py'}>이미지 비교 구현</Source></div>
  </section>
 
  <section id="compose" className="fw-section">
@@ -155,7 +150,7 @@ export default function HwpxStudy(){
   <Heading n="향후 방향" title="지금은 각자의 컴퓨터에서, 다음은 서버에서.">MCP 서버는 STDIO로 동작합니다. 에이전트가 사용자의 컴퓨터에서 서버를 띄우고 표준입출력으로 주고받습니다. 이 선택에도 값이 있었습니다.</Heading>
   <div className="hx-pairs">
    <div><h3>얻고 있는 것</h3><p>문서가 사용자의 컴퓨터를 벗어나지 않습니다. 공문서에는 주민등록번호나 여권번호가 들어가므로, 이 전제가 설계의 상당 부분을 떠받치고 있습니다.</p></div>
-   <div><h3>대신 치르고 있는 것</h3><p>쓰려는 사람마다 실행 환경을 설치해야 하고, 렌더와 비교 속도가 그 컴퓨터 사양에 좌우됩니다. 한 번 확인한 양식 정보를 여러 사람이 나눠 쓸 수도 없습니다.</p></div>
+   <div><h3>대신 치르고 있는 것</h3><p>쓰려는 사람마다 실행 환경을 설치해야 하고, 이미지를 그리고 대조하는 속도가 그 컴퓨터 사양에 좌우됩니다. 한 번 확인한 양식 정보를 여러 사람이 나눠 쓸 수도 없습니다.</p></div>
    <div><h3>다음 — Streamable HTTP</h3><p>전송을 Streamable HTTP로 바꾸고 서버를 AWS EC2에, 원본과 작업공간을 S3에 두는 구성을 검토하고 있습니다.</p></div>
    <div><h3>어려운 쪽은 전송이 아닙니다</h3><p>FastMCP 위에 있어 전송 교체 자체는 크지 않습니다. 실제 과제는 <strong>“파일이 로컬을 벗어나지 않는다”는 전제가 떠받치던 것들</strong>입니다. 인증과 권한, 문서가 서버에 머무는 범위, 원본 보존을 전부 다시 설계해야 합니다. 지금 공짜로 얻는 안전을 옮기는 순간 직접 구현해야 합니다.</p></div>
   </div>
