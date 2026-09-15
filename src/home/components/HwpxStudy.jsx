@@ -40,14 +40,16 @@ export default function HwpxStudy(){
 
  <section id="analyze" className="fw-section">
   <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 해봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
-  <div className="hx-pairs">
-   <div><h3>정확하게 인식한 칸은 많았지만</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다.</p></div>
-   <div><h3>어긋난 칸이 있었습니다</h3><p>아래 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
+  <div className="hx-side">
+   <div className="hx-stack">
+    <div><h3>정확하게 인식한 칸은 많았지만</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다.</p></div>
+    <div><h3>어긋난 칸이 있었습니다</h3><p>옆의 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
+   </div>
+   <figure>
+    <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></a>
+    <figcaption>플러그인 없이 채우게 했을 때의 출력입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+   </figure>
   </div>
-  <figure className="fw-cover hx-overfill">
-   <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></a>
-   <figcaption>플러그인 없이 같은 양식을 채우게 했을 때의 출력입니다. 외국인등록번호와 성별, 서명란을 보면 어긋난 자리가 보입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
-  </figure>
   <div className="fw-findings">
    <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 완성되기 전까지 볼 수 없습니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
    <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 시간이 더 걸립니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 한 번에 끝낼 때보다 오래 걸립니다.</p></article>
@@ -93,7 +95,7 @@ export default function HwpxStudy(){
 
  <section id="result" className="fw-section">
   <Heading n="04 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지.">예로 쓴 문서는 <strong>통합신청서</strong>입니다. 출입국관리법 시행규칙 별지 제34호 서식으로, 외국인 체류 관련 신청에 쓰입니다.</Heading>
-  <div className="hx-result">
+  <div className="hx-side">
    <div className="fw-table" tabIndex="0" role="region" aria-label="양식의 문항과 입력된 값">
     <table>
      <thead><tr><th scope="col">양식에 적힌 문항</th><th scope="col">입력한 값</th></tr></thead>
