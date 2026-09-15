@@ -39,15 +39,15 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 해봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
   <div className="hx-side">
    <div className="hx-stack">
+    <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 해봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
     <div><h3>정확하게 인식한 칸은 많았지만</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다.</p></div>
     <div><h3>어긋난 칸이 있었습니다</h3><p>옆의 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
    </div>
    <figure>
     <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></a>
-    <figcaption>플러그인 없이 채우게 했을 때의 출력입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+    <figcaption>누르면 원본 크기로 볼 수 있습니다.</figcaption>
    </figure>
   </div>
   <div className="fw-findings">

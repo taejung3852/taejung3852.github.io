@@ -53,7 +53,14 @@
 .hx-side img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 .hx-stack{display:grid;gap:26px;align-content:start;min-width:0}
 /* Evidence, not a spread: the analyze shot only needs to show the mess. */
-#analyze .hx-side{grid-template-columns:minmax(0,1fr) minmax(0,240px);gap:48px}
+#analyze .hx-side{grid-template-columns:minmax(0,1fr) minmax(0,240px);gap:48px;margin-top:0}
+#analyze .hx-stack>.fw-heading{margin-bottom:8px}
+/* Let the shot end where the copy ends; the image scales to the row. */
+#analyze .hx-side{align-items:stretch}
+#analyze .hx-side figure{display:flex;flex-direction:column}
+#analyze .hx-side figure>a{flex:1;min-height:0;display:block}
+#analyze .hx-side img{height:100%;object-fit:contain;object-position:top}
+@media(max-width:860px){#analyze .hx-side img{height:auto}}
 @media(max-width:860px){.hx-side{grid-template-columns:minmax(0,1fr);gap:26px}.hx-side figure{max-width:420px}}
 
 /* The back link alone left a bare band at the top; name the page there. */
