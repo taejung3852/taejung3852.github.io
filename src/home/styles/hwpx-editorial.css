@@ -67,4 +67,3 @@
    The page is monochrome, so brightness is the accent. */
 .fw-study .hx-link{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px}
 .fw-study .hx-link:hover{color:var(--project-highlight);text-decoration-thickness:2px}
-.fw-study h3 .hx-link{color:inherit}

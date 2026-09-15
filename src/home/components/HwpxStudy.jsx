@@ -30,7 +30,7 @@ export default function HwpxStudy(){
  <section id="origin" className="fw-section">
   <Heading n="00 / 시작" title="한글 문서 수정을 도와주는 도구가 없었습니다.">ChatGPT 같은 서비스는 Word와 PowerPoint, Excel을 열어 고쳐 줍니다. 그런데 한국에서 공문서를 쓸 때 가장 많이 쓰고 손도 가장 많이 가는 HWPX는 빠져 있었습니다. 그 불편을 처음 마주친 건 외국인 근로자 행정업무를 돕는 <Link className="hx-link" to="/projects/fowoco">FOWOCO</Link>를 만들 때였습니다.</Heading>
   <div className="fw-collab-narrative">
-   <article><span className="fw-kicker">처음</span><div><h3>그래서 <Link className="hx-link" to="/projects/fowoco">FOWOCO</Link> 안에서 직접 채웠습니다.</h3><p>외국인 근로자의 체류 관련 서류는 대부분 HWPX 양식입니다. 다뤄 주는 도구가 없으니 LangGraph 흐름 안의 서브그래프로 직접 만들었습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
+   <article><span className="fw-kicker">처음</span><div><h3>그래서 FOWOCO 안에서 직접 채웠습니다.</h3><p>외국인 근로자의 체류 관련 서류는 대부분 HWPX 양식입니다. 다뤄 주는 도구가 없으니 LangGraph 흐름 안의 서브그래프로 직접 만들었습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
    <article><span className="fw-kicker">커지면서</span><div><h3>문서를 다루는 일이 계속 커졌습니다.</h3><p>양식마다 구조가 다르다는 걸 알게 되면서 분석과 확인, 검증이 차례로 붙었습니다. 상담 흐름을 조율하는 코드와 문서를 뜯어보는 코드가 같은 자리에서 뒤섞였습니다.</p></div></article>
    <article><span className="fw-kicker">판단</span><div><h3>문서 쪽만 밖으로 떼어냈습니다.</h3><p>내부 함수로 묶어도 <Link className="hx-link" to="/projects/fowoco">FOWOCO</Link> 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 밖에서도 쓸 데가 보였고, 더 키울 여지도 컸습니다. 그래서 MCP 도구로 경계를 긋고 따로 뒀습니다. 대신 연결 관리와 도구 오류 처리를 떠안았습니다.</p></div></article>
   </div>
