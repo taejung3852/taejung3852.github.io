@@ -70,7 +70,7 @@
 #analyze .hx-side figure{display:flex;flex-direction:column}
 #analyze .hx-side figure>button{flex:1;min-height:0}
 #analyze .hx-side img{height:100%;object-fit:contain;object-position:top}
-@media(max-width:860px){#analyze .hx-side img{height:auto}}
+@media(max-width:860px){#analyze .hx-side{grid-template-columns:minmax(0,1fr);gap:26px}#analyze .hx-side img{height:auto}}
 @media(max-width:860px){.hx-side{grid-template-columns:minmax(0,1fr);gap:26px}.hx-side figure{max-width:420px}}
 
 /* The back link alone left a bare band at the top; name the page there. */
