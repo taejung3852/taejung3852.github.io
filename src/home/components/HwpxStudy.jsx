@@ -70,8 +70,8 @@ export default function HwpxStudy(){
   <p className="fw-example-label">이 양식 한 장에 셀 157개</p>
 
   <figure className="fw-cover">
-   <button type="button" className="hx-zoom" aria-label="빈 원본 양식 크게 보기" onClick={()=>zoom({src:'/images/hwpx-blank-2.png',alt:'빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다.'})}><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/></button>
-   <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 같은 문구의 전화번호 칸이 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 누르면 크게 볼 수 있습니다.</figcaption>
+   <button type="button" className="hx-zoom" aria-label="빈 원본 양식 크게 보기" onClick={()=>zoom({src:'/images/hwpx-blank-2.png',alt:'빈 통합신청서의 인적사항·주소·근무처 구간. 같은 문구의 전화번호 칸 네 곳이 빨간 사각형으로 표시되어 있다.'})}><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 같은 문구의 전화번호 칸 네 곳이 빨간 사각형으로 표시되어 있다." width="794" height="423" loading="lazy"/></button>
+   <figcaption>편집하기 전의 빈 원본입니다. 빨간 사각형 안이 모두 <Field>전화번호 Phone No.</Field>로, 본국 주소·학교·원 근무처·예정 근무처에 하나씩 붙어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
   <div className="fw-findings">
    <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>약 1분</strong><h3>대신 매번 같은 결과가 아닙니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
