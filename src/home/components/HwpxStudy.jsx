@@ -45,18 +45,17 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 두 번 해봤습니다.">같은 양식을 첨부하고 같은 값을 채우게 했습니다. 두 번 돌렸고, 결과가 달랐습니다.</Heading>
+  <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 두 번 해봤습니다.">같은 양식을 첨부하고 값을 채우게 했습니다. 두 번 돌렸고, 결과가 달랐습니다.</Heading>
   <div className="hx-pairs">
    <div><h3>첫 번째 — 여러 칸이 어긋났습니다</h3><p>외국인등록번호가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳤습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
-   <div><h3>두 번째 — 값은 모두 제자리였습니다</h3><p>같은 양식, 같은 값인데 이번엔 낱칸까지 정확했습니다. 성별도 체크됐고, 요청하지 않은 칸은 건드리지 않았습니다.</p></div>
+   <div><h3>두 번째 — 값은 모두 제자리였습니다</h3><p>같은 양식인데 이번엔 낱칸까지 정확했습니다. 성별도 체크됐고, 요청하지 않은 칸은 건드리지 않았습니다.</p></div>
   </div>
   <div className="hx-shots">
    <figure><span className="fw-kicker">첫 번째 실행</span><div><button type="button" className="hx-zoom" aria-label="첫 번째 실행 결과 크게 보기" onClick={()=>zoom({src:'/images/hwpx-overfill.png',alt:'플러그인 없이 작성된 통합신청서 첫 번째 결과. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다.'})}><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서 첫 번째 결과" width="1132" height="1596" loading="lazy"/></button></div></figure>
    <figure><span className="fw-kicker">두 번째 실행</span><div><button type="button" className="hx-zoom" aria-label="두 번째 실행 결과 크게 보기" onClick={()=>zoom({src:'/images/hwpx-web-2nd.png',alt:'플러그인 없이 작성된 통합신청서 두 번째 결과. 외국인등록번호가 낱칸에 한 자씩 들어갔고 성별도 체크되어 있다.'})}><img src="/images/hwpx-web-2nd.png" alt="플러그인 없이 작성된 통합신청서 두 번째 결과" width="794" height="1123" loading="lazy"/></button></div></figure>
   </div>
-  <p className="fw-note">두 실행 모두 플러그인 없이, 같은 원본 파일에 같은 값을 넣게 한 것입니다. 누르면 크게 볼 수 있습니다.</p>
-  <p className="fw-takeaway">못 한다는 게 문제가 아니라, <strong>같은 입력에 같은 결과가 나오지 않는다</strong>는 게 문제였습니다.</p>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
+  <p className="fw-note">두 실행 모두 같은 통합신청서 양식에 플러그인 없이 값을 채우게 한 것입니다. 첫 번째는 다른 예시 값이었고, 두 번째는 아래 04에서 쓴 값과 같습니다. 누르면 크게 볼 수 있습니다.</p>
+  <p className="fw-takeaway">못 한다는 게 문제가 아니라, <strong>같은 양식인데 실행마다 결과가 달라진다</strong>는 게 문제였습니다.</p>
  </section>
 
  <section id="problem" className="fw-section">
@@ -113,7 +112,7 @@ export default function HwpxStudy(){
     <figcaption>왼쪽 표대로 채워진 결과입니다. 누르면 크게 볼 수 있습니다.</figcaption>
    </figure>
   </div>
-  <p className="fw-note">모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — 같은 문구의 전화번호 칸이 여럿인데, <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
+  <p className="fw-note">모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 02에서 문제로 꼽았던 자리도 제대로 나뉘었습니다 — 같은 문구의 전화번호 칸이 여럿인데 <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong> 다만 연 소득금액은 바로 아래 04-1에서 보듯 값 칸이 아니라 단위 라벨 칸에 들어갔습니다.</p>
   <Heading n="04-1 / 대조" title="웹이 만든 문서와, 셀 단위로 맞춰 봤습니다.">같은 원본에 같은 값을 넣은 두 결과를 셀 하나하나 비교했습니다. 157개 중 다른 곳은 8개였고, 그중 5개는 날짜·번호 표기 방식 차이라 내용은 같습니다. 남은 2개가 실제 차이입니다.</Heading>
   <div className="hx-cells">
    <table>
@@ -155,7 +154,7 @@ export default function HwpxStudy(){
   </div>
   <p className="fw-note">에이전트가 읽는 구역별 대조 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 누르면 크게 볼 수 있습니다.</p>
   <p className="fw-note">기대와 일치한다는 건 계획대로 들어갔다는 뜻이지, 계획이 옳았다는 뜻은 아닙니다. 위 소득금액이 그 경우입니다. 양식 한 종류를 한 번 실행한 기록입니다. 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · review_document_vision</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
+  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · review_document_vision</Source><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
  <section id="compose" className="fw-section">
