@@ -62,3 +62,9 @@
 .hx-field{display:inline-block;font-size:.88em;line-height:1.5;padding:0 7px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);color:var(--ink);white-space:nowrap}
 .hx-single{max-width:620px}
 @media(max-width:760px){.hx-topbar{margin-bottom:32px}}
+
+/* Prose links read as plain text at --muted; lift to --ink and underline them.
+   The page is monochrome, so brightness is the accent. */
+.fw-study .hx-link{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px}
+.fw-study .hx-link:hover{color:var(--project-highlight);text-decoration-thickness:2px}
+.fw-study h3 .hx-link{color:inherit}
