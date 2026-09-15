@@ -16,8 +16,6 @@
    column flow keeps the reading order for stacked and screen-reader views. */
 .hx-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,auto);grid-auto-flow:column;gap:32px 48px;margin-top:34px}
 .hx-pairs>div{min-width:0}
-/* FOWOCO places this block after the numbers; here it follows the copy. */
-.hx-pairs+.fw-tradeoff,.fw-two+.fw-tradeoff{margin-top:36px}
 .hx-pairs+.fw-note{margin-top:30px}
 
 /* The metrics grid already closes with a rule; the note's own top border
@@ -50,7 +48,6 @@
 
 /* The over-filled form is a full page; cap it so it reads as evidence, not a spread. */
 .hx-overfill img{max-height:620px;object-fit:contain;object-position:top}
-.fw-cover+.fw-tradeoff{margin-top:36px}
 /* Result: the mapping table beside the page it produced. */
 .hx-result{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:40px;align-items:start;margin-top:34px}
 .hx-result figure{margin:0!important;min-width:0}

@@ -28,11 +28,11 @@ export default function HwpxStudy(){
  </header>
 
  <section id="origin" className="fw-section">
-  <Heading n="00 / 시작" title="한글 문서 수정을 도와주는 도구가 없었습니다.">ChatGPT 같은 서비스는 Word와 PowerPoint, Excel을 열어 고쳐 줍니다. 그런데 한국에서 공문서를 쓸 때 가장 많이 쓰고 손도 가장 많이 가는 HWPX는 빠져 있었습니다. 그 불편을 처음 마주친 건 외국인 근로자 행정업무를 돕는 FOWOCO를 만들 때였습니다.</Heading>
+  <Heading n="00 / 시작" title="한글 문서 수정을 도와주는 도구가 없었습니다.">ChatGPT 같은 서비스는 Word와 PowerPoint, Excel을 열어 고쳐 줍니다. 그런데 한국에서 공문서를 쓸 때 가장 많이 쓰고 손도 가장 많이 가는 HWPX는 빠져 있었습니다. 그 불편을 처음 마주친 건 외국인 근로자 행정업무를 돕는 <Link to="/projects/fowoco">FOWOCO</Link>를 만들 때였습니다.</Heading>
   <div className="fw-collab-narrative">
-   <article><span className="fw-kicker">처음</span><div><h3>문서 작업을 흐름 안에 직접 넣었습니다.</h3><p>외국인 근로자의 체류 관련 서류는 대부분 HWPX 양식입니다. 이걸 다뤄 주는 도구가 없어서, 문서 작업을 LangGraph 흐름 안의 서브그래프로 만들었습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
-   <article><span className="fw-kicker">커지면서</span><div><h3>책임이 한 덩어리로 섞였습니다.</h3><p>양식마다 구조가 다르다는 걸 알게 되면서 분석과 확인, 검증이 계속 붙었습니다. 업무 흐름을 조율하는 일과 문서를 다루는 일이 같은 자리에서 자라기 시작했습니다.</p></div></article>
-   <article><span className="fw-kicker">판단</span><div><h3>내부 함수로 정리하지 않았습니다.</h3><p>함수로 묶어도 FOWOCO 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 밖에서도 쓸 데가 보였고, 더 키울 여지도 컸습니다. 그래서 에이전트 안에 두지 않고 MCP 도구로 경계를 그었습니다.</p></div></article>
+   <article><span className="fw-kicker">처음</span><div><h3>그래서 FOWOCO 안에서 직접 채웠습니다.</h3><p>외국인 근로자의 체류 관련 서류는 대부분 HWPX 양식입니다. 다뤄 주는 도구가 없으니 LangGraph 흐름 안의 서브그래프로 직접 만들었습니다. 정해진 양식에 값을 채워 돌려주면 되는, 흐름의 한 단계였습니다.</p></div></article>
+   <article><span className="fw-kicker">커지면서</span><div><h3>문서를 다루는 일이 계속 커졌습니다.</h3><p>양식마다 구조가 다르다는 걸 알게 되면서 분석과 확인, 검증이 차례로 붙었습니다. 상담 흐름을 조율하는 코드와 문서를 뜯어보는 코드가 같은 자리에서 뒤섞였습니다.</p></div></article>
+   <article><span className="fw-kicker">판단</span><div><h3>문서 쪽만 밖으로 떼어냈습니다.</h3><p>내부 함수로 묶어도 <Link to="/projects/fowoco">FOWOCO</Link> 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 밖에서도 쓸 데가 보였고, 더 키울 여지도 컸습니다. 그래서 MCP 도구로 경계를 긋고 따로 뒀습니다. 대신 연결 관리와 도구 오류 처리를 떠안았습니다.</p></div></article>
   </div>
   <p className="fw-takeaway">기능이 늘어나면서 책임을 나누려고 떼어낸 것이 이 프로젝트입니다. 에이전트는 작업 흐름을 조율하고, 문서 도구는 문서만 맡습니다.</p>
   <p><Link className="fw-source" to="/projects/fowoco">FOWOCO에서의 분리 과정 보기 →</Link></p>
@@ -41,7 +41,7 @@ export default function HwpxStudy(){
  <section id="analyze" className="fw-section">
   <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 해봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>정확하게 인식한 칸은 많았지만</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다. 파일 구조만 읽어도 어느 정도는 찾아냅니다.</p></div>
+   <div><h3>정확하게 인식한 칸은 많았지만</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다.</p></div>
    <div><h3>어긋난 칸이 있었습니다</h3><p>아래 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
   </div>
   <figure className="fw-cover hx-overfill">
@@ -73,7 +73,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="process" className="fw-section">
-  <Heading n="03 / 검수" title="여기가 맞습니까, 하고 먼저 묻습니다.">값을 넣기 전에 에이전트가 멈춥니다. 어느 칸에 무엇을 넣을지 그림으로 보여주고, 사용자가 답할 때까지 기다립니다.</Heading>
+  <Heading n="03 / 검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다.">값을 넣기 전에 에이전트가 멈춥니다. 어느 칸에 무엇을 넣을지 그림으로 보여주고, 사용자가 답할 때까지 기다립니다.</Heading>
   <div className="fw-two">
    <div className="fw-copy">
     <h3>자리를 그림으로 보여줍니다</h3>
@@ -83,10 +83,6 @@ export default function HwpxStudy(){
     <h3>보기 편하게 묶어서 보여줍니다</h3>
     <p>인적사항·여권·주소·근무처처럼 성격이 같은 항목끼리 묶어, 한 화면에서 확인하게 했습니다.</p>
    </div>
-  </div>
-  <div className="fw-tradeoff">
-   <h3>중간에 검증을 받는 쪽을 택했습니다.</h3>
-   <p>값을 다 넣고 결과만 건네면 빨리 끝나지만, 잘못 들어간 칸은 문서를 다 만든 뒤에야 드러납니다. 그래서 쓰기 전에 확인을 받고, 늘어난 확인 횟수는 항목을 묶어 줄였습니다.</p>
   </div>
   <figure className="fw-cover">
    <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
@@ -113,7 +109,7 @@ export default function HwpxStudy(){
 
   <Heading n="구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>기계가 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다.</p></div>
+   <div><h3>룰 기반으로 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다.</p></div>
    <div><h3>그다음 에이전트가 봅니다</h3><p>원본과 수정본을 구역별로 그려 비교한 이미지를 에이전트가 직접 읽고 최종 검토합니다. 수치로 안 걸러지는 어긋남을 눈으로 확인하는 단계입니다.</p></div>
   </div>
   <div className="hx-bands">
@@ -124,10 +120,10 @@ export default function HwpxStudy(){
  </section>
 
  <section id="compose" className="fw-section">
-  <Heading n="구성" title="편집 도구는 MCP로, 쓰는 순서는 스킬로 나눴습니다.">문서 처리를 에이전트 안의 함수로 둘 수도 있었지만, 밖으로 떼어내 MCP 도구로 만들었습니다.</Heading>
-  <div className="hx-pairs">
-   <div><h3>밖으로 뺀 이유</h3><p>에이전트 안에 두면 구현은 단순하지만 그 서비스에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 한 서비스에만 쓸 기능이 아니라고 봤습니다. 대신 연결 관리와 도구 오류 처리를 떠안았습니다.</p></div>
-   <div><h3>MCP만으로는 부족했습니다</h3><p>MCP는 도구를 제공할 뿐, 에이전트는 그 도구를 언제 어떤 순서로 쓰는지 모릅니다. 실제로 분석 전에 필드를 조회하거나 위치 확인을 건너뛰었습니다. 그래서 쓰는 법을 Agent Skills로 알려주고, 둘을 하나의 플러그인으로 묶었습니다.</p></div>
+  <Heading n="구성" title="편집 도구는 MCP로, 쓰는 순서는 Skill로 나눴습니다.">MCP 도구만 열어 두자 에이전트가 순서를 틀렸습니다. 분석 전에 필드를 조회하고, 위치 확인을 건너뛰었습니다.</Heading>
+  <div className="fw-copy hx-single">
+   <h3>MCP는 도구를 줄 뿐, 쓰는 법은 알려주지 않습니다</h3>
+   <p>어떤 도구를 언제 어떤 순서로 부를지는 MCP에 담기지 않습니다. 그 순서를 Agent Skills에 적어 두고, 어긋난 호출은 MCP가 거절하도록 했습니다. 도구와 사용법을 함께 배포해야 해서 둘을 하나의 플러그인으로 묶었습니다.</p>
   </div>
   <figure className="fw-boundary">
    <article><span className="fw-kicker">mcp.json · 도구 25종</span><h3>MCP 서버</h3><p>가져오기 · 분석 · 확인 · 편집 · 검증<br/>문서를 실제로 다루는 동작</p></article>
@@ -141,7 +137,7 @@ export default function HwpxStudy(){
  <section id="future" className="fw-section">
   <Heading n="향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것.">지금은 각자 컴퓨터에 설치해야 씁니다. 목표는 마켓플레이스 승인을 받아, 설치 없이 ChatGPT 웹에서 문서를 첨부하면 바로 동작하게 하는 것입니다.</Heading>
   <div className="fw-copy hx-single">
-   <h3>그러려면 서버로 올려야 합니다</h3>
+   <h3>설치 없이 쓰려면 원격에서 돌아야 합니다</h3>
    <p>전송을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p>
   </div>
   <p className="fw-note">아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 STDIO 기준입니다.</p>
