@@ -60,10 +60,19 @@
 .hx-shots .fw-kicker{margin-bottom:10px!important}
 .hx-shots img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 .hx-shots+.fw-note{margin-top:20px}
-/* Crops of one row across three files; each is read left to right, not compared across. */
-.hx-diffs{display:grid;gap:34px;margin-top:34px;max-width:900px}
-.hx-diffs figure{min-width:0}
-.hx-diffs img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:#fff}
+/* The difference is text, so show the text. A rendered crop was bigger and vaguer. */
+.hx-cells{margin-top:30px;max-width:840px}
+.hx-cells+.hx-cells{margin-top:38px}
+.hx-cells table{width:100%;border-collapse:collapse}
+.hx-cells caption{text-align:left;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px}
+.hx-cells caption span{font-size:12px;font-weight:400;color:var(--muted);margin-left:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.hx-cells th,.hx-cells td{padding:12px 16px 12px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:baseline}
+.hx-cells thead th{font-size:12px;color:var(--muted);font-weight:500}
+.hx-cells th[scope="row"]{width:104px;font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
+.hx-cells code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;color:var(--ink)}
+.hx-cells .hx-gone,.hx-cells td.hx-gone{color:var(--muted);font-size:12.5px}
+.hx-cells>p{font-size:13px!important;margin-top:14px;max-width:760px}
+@media(max-width:700px){.hx-cells{overflow-x:auto}.hx-cells th[scope="row"]{width:auto}}
 @media(max-width:700px){.hx-shots{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:860px){.hx-side{grid-template-columns:minmax(0,1fr);gap:26px}.hx-side figure{max-width:420px}}
 

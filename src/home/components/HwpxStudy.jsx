@@ -115,15 +115,28 @@ export default function HwpxStudy(){
   </div>
   <p className="fw-note">모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — 같은 문구의 전화번호 칸이 여럿인데, <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
   <Heading n="04-1 / 대조" title="웹이 만든 문서와, 셀 단위로 맞춰 봤습니다.">같은 원본에 같은 값을 넣은 두 결과를 셀 하나하나 비교했습니다. 157개 중 다른 곳은 8개였고, 그중 5개는 날짜·번호 표기 방식 차이라 내용은 같습니다. 남은 2개가 실제 차이입니다.</Heading>
-  <div className="hx-diffs">
-   <figure>
-    <button type="button" className="hx-zoom" aria-label="신청 종류 체크란 대조 크게 보기" onClick={()=>zoom({src:'/images/hwpx-diff-check.png',alt:'신청 종류 체크란을 원본·웹·플러그인 순으로 비교한 이미지'})}><img src="/images/hwpx-diff-check.png" alt="신청 종류 체크란을 원본·웹·플러그인 순으로 비교한 이미지" width="798" height="392" loading="lazy"/></button>
-    <figcaption><strong>웹은 체크하면서 양식의 문구를 지웠습니다.</strong> 체크 표시를 넣으며 칸에 인쇄돼 있던 &lsquo;체류기간 연장허가&rsquo;가 사라졌습니다. 값은 맞지만 서식이 바뀌었습니다.</figcaption>
-   </figure>
-   <figure>
-    <button type="button" className="hx-zoom" aria-label="연 소득금액 칸 대조 크게 보기" onClick={()=>zoom({src:'/images/hwpx-diff-income.png',alt:'연 소득금액 행을 원본·웹·플러그인 순으로 비교한 이미지'})}><img src="/images/hwpx-diff-income.png" alt="연 소득금액 행을 원본·웹·플러그인 순으로 비교한 이미지" width="1058" height="290" loading="lazy"/></button>
-    <figcaption><strong>플러그인은 값을 옆 칸에 넣었습니다.</strong> 입력 칸은 단위 라벨 다음 칸인데 라벨 칸 앞에 붙였습니다. 이건 이 플러그인의 오류이고, 고쳐야 할 것으로 남아 있습니다.</figcaption>
-   </figure>
+  <div className="hx-cells">
+   <table>
+    <caption>신청 종류 체크란 <span>section0.table0.row7.cell0</span></caption>
+    <tbody>
+     <tr><th scope="row">원본</th><td><code>[  ] 체류기간 연장허가     EXTENSION OF SOJOURN PERIOD</code></td></tr>
+     <tr><th scope="row">ChatGPT 웹</th><td><code>[√]<span className="hx-gone">          ← 문구 사라짐</span>     EXTENSION OF SOJOURN PERIOD</code></td></tr>
+     <tr><th scope="row">플러그인</th><td><code>[V] 체류기간 연장허가     EXTENSION OF SOJOURN PERIOD</code></td></tr>
+    </tbody>
+   </table>
+   <p>체크 표시를 넣으면서 칸에 인쇄돼 있던 문구가 함께 지워졌습니다. 값은 맞지만 서식이 바뀌었습니다.</p>
+  </div>
+  <div className="hx-cells">
+   <table>
+    <caption>연 소득금액 <span>section0.table0.row26</span></caption>
+    <thead><tr><th scope="col"></th><th scope="col">단위 라벨 칸 · cell1</th><th scope="col">입력 칸 · cell2</th></tr></thead>
+    <tbody>
+     <tr><th scope="row">원본</th><td><code>만원(ten thousand won)</code></td><td className="hx-gone">비어 있음</td></tr>
+     <tr><th scope="row">ChatGPT 웹</th><td><code>만원(ten thousand won)</code></td><td><code>3,000</code></td></tr>
+     <tr><th scope="row">플러그인</th><td><code>3000 만원(ten thousand won)</code></td><td className="hx-gone">비어 있음</td></tr>
+    </tbody>
+   </table>
+   <p>입력 칸은 단위 라벨 다음 칸인데 라벨 칸 앞에 붙였습니다. 이건 이 플러그인의 오류이고, 고쳐야 할 것으로 남아 있습니다.</p>
   </div>
   <p className="fw-takeaway">두 오류 모두 결과물을 눈으로 봐서는 찾기 어렵습니다. 원본과 셀 단위로 맞춰 봐야 드러납니다.</p>
   <div className="hx-boundary-note">
