@@ -76,9 +76,9 @@ export default function HwpxStudy(){
   </figure>
   <div className="fw-findings">
    <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 완성되기 전까지 볼 수 없습니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
-   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 시간이 더 걸립니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 한 번에 끝낼 때보다 오래 걸립니다.</p></article>
+   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 시간이 더 걸립니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 아래 결과를 만든 실행은 <strong>자리 확인 7번, 3분 25초</strong>가 걸렸습니다.</p></article>
   </div>
-  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 빨리 끝나는 것보다, 잘못 들어간 칸을 완성 전에 잡는 쪽이 이 작업에서는 더 중요하다고 봤습니다.</p>
+  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 빨리 끝나는 것보다, 잘못 들어간 칸을 완성 전에 잡는 쪽이 이 작업에서는 더 중요하다고 봤습니다. 3분 25초는 사용자가 확인에 답한 시간을 포함한 실제 소요 시간이며, 한 번의 실행에서 잰 값입니다.</p>
  </section>
 
  <section id="process" className="fw-section">
@@ -131,7 +131,7 @@ export default function HwpxStudy(){
 
   <Heading n="04-1 / 구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>룰 기반으로 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다.</p></div>
+   <div><h3>룰 기반으로 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다. 이 실행에서는 편집 계획 20건으로 <strong>바뀐 셀 34개가 기대와 모두 일치</strong>했고, 어긋난 항목은 없었습니다.</p></div>
    <div><h3>그다음 에이전트가 봅니다</h3><p>원본과 수정본을 구역별로 그려 비교한 이미지를 에이전트가 직접 읽고 최종 검토합니다. 수치로 안 걸러지는 어긋남을 눈으로 확인하는 단계입니다.</p></div>
   </div>
   <div className="hx-bands">
