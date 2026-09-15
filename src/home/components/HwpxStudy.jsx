@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useRef,useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/fowoco-editorial.css';
 import '../styles/hwpx-editorial.css';
@@ -10,8 +10,14 @@ function Source({href,children='구현 근거'}){return <a className="fw-source"
 function Field({children}){return <span className="hx-field">{children}</span>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
 export default function HwpxStudy(){
+ const dialog=useRef(null),[shot,setShot]=useState(null);
+ const zoom=s=>{setShot(s);dialog.current.showModal()};
  useEffect(()=>{document.title='HWPX Document Plugin | 박태정';return()=>{document.title='박태정 | AI Agent / LLM Application Developer'}},[]);
  return <div className="fw-study">
+ <dialog ref={dialog} className="hx-dialog" aria-label={shot?.alt||'이미지 크게 보기'} onClick={e=>{if(e.target===e.currentTarget)dialog.current.close()}}>
+  <button type="button" className="hx-dialog-close" autoFocus onClick={()=>dialog.current.close()} aria-label="닫기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  {shot&&<img src={shot.src} alt={shot.alt}/>}
+ </dialog>
 
  <header className="fw-hero">
   <div className="hx-topbar"><Link className="fw-back" to="/#projects">← 주요 프로젝트</Link><span>HWPX Document Plugin</span></div>
@@ -46,8 +52,8 @@ export default function HwpxStudy(){
     <div><h3>어긋난 칸이 있었습니다</h3><p>옆의 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
    </div>
    <figure>
-    <a href="/images/hwpx-overfill.png" target="_blank" rel="noreferrer" aria-label="플러그인 없이 작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></a>
-    <figcaption>누르면 원본 크기로 볼 수 있습니다.</figcaption>
+    <button type="button" className="hx-zoom" aria-label="플러그인 없이 작성된 신청서 크게 보기" onClick={()=>zoom({src:'/images/hwpx-overfill.png',alt:'플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다.'})}><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></button>
+    <figcaption>누르면 크게 볼 수 있습니다.</figcaption>
    </figure>
   </div>
   <div className="fw-findings">
@@ -69,8 +75,8 @@ export default function HwpxStudy(){
   <p className="fw-example-label">셀 157개 · 같은 문구의 칸 4곳 · 한 값이 13칸으로 분할</p>
 
   <figure className="fw-cover">
-   <a href="/images/hwpx-blank-2.png" target="_blank" rel="noreferrer" aria-label="빈 원본 양식 원본 크기로 보기"><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/></a>
-   <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 같은 문구의 전화번호 칸이 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+   <button type="button" className="hx-zoom" aria-label="빈 원본 양식 크게 보기" onClick={()=>zoom({src:'/images/hwpx-blank-2.png',alt:'빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다.'})}><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/></button>
+   <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 같은 문구의 전화번호 칸이 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
  </section>
 
@@ -87,8 +93,8 @@ export default function HwpxStudy(){
    </div>
   </div>
   <figure className="fw-cover">
-   <a href="/images/hwpx-confirm.png" target="_blank" rel="noreferrer" aria-label="확인 화면 원본 크기로 보기"><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></a>
-   <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+   <button type="button" className="hx-zoom" aria-label="확인 화면 크게 보기" onClick={()=>zoom({src:'/images/hwpx-confirm.png',alt:'통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림'})}><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></button>
+   <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
@@ -103,8 +109,8 @@ export default function HwpxStudy(){
     </table>
    </div>
    <figure>
-    <a href="/images/hwpx-filled.png" target="_blank" rel="noreferrer" aria-label="작성된 신청서 원본 크기로 보기"><img src="/images/hwpx-filled.png" alt="플러그인으로 작성된 통합신청서 한 페이지" width="794" height="1123" loading="lazy"/></a>
-    <figcaption>왼쪽 표대로 채워진 결과입니다. 이미지를 누르면 원본 크기로 볼 수 있습니다.</figcaption>
+    <button type="button" className="hx-zoom" aria-label="작성된 신청서 크게 보기" onClick={()=>zoom({src:'/images/hwpx-filled.png',alt:'플러그인으로 작성된 통합신청서 한 페이지'})}><img src="/images/hwpx-filled.png" alt="플러그인으로 작성된 통합신청서 한 페이지" width="794" height="1123" loading="lazy"/></button>
+    <figcaption>왼쪽 표대로 채워진 결과입니다. 누르면 크게 볼 수 있습니다.</figcaption>
    </figure>
   </div>
   <p className="fw-note">모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — 같은 문구의 전화번호 칸이 여럿인데, <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
@@ -115,9 +121,9 @@ export default function HwpxStudy(){
    <div><h3>그다음 에이전트가 봅니다</h3><p>원본과 수정본을 구역별로 그려 비교한 이미지를 에이전트가 직접 읽고 최종 검토합니다. 수치로 안 걸러지는 어긋남을 눈으로 확인하는 단계입니다.</p></div>
   </div>
   <div className="hx-bands">
-   {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><a href={`/images/hwpx-band-${i+1}.png`} target="_blank" rel="noreferrer" aria-label={`${label} 비교 이미지 원본 크기로 보기`}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></a></div></figure>)}
+   {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><button type="button" className="hx-zoom" aria-label={`${label} 비교 이미지 크게 보기`} onClick={()=>zoom({src:`/images/hwpx-band-${i+1}.png`,alt:`${label} — ${desc} 영역의 원본·수정본 상세 비교`})}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></button></div></figure>)}
   </div>
-  <p className="fw-note">에이전트가 읽는 구역별 대조 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 이미지를 누르면 원본 크기로 볼 수 있습니다. 양식 한 종류를 한 번 실행한 기록이고, 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
+  <p className="fw-note">에이전트가 읽는 구역별 대조 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 누르면 크게 볼 수 있습니다. 양식 한 종류를 한 번 실행한 기록이고, 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · review_document_vision</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
