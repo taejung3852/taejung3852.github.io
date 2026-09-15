@@ -6,7 +6,6 @@ const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f3
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
 const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD'],['NGUYEN','성 Surname'],['VAN AN','명 Given names'],['1995-04-12','생년월일 Date of Birth'],['9504125000000','외국인등록번호 Foreign Resident Registration No.'],['010-0000-0000','휴대전화 Cell phone No.'],['031-000-0000','전화번호 Phone No. — 근무처 행'],['3000','연 소득금액 Annual Income Amount']];
-const compare=[['외국인등록번호 — 낱칸 13개','첫 칸에 뭉치고 나머지는 빈 채로','한 칸에 한 자씩'],['성별 체크','어느 쪽도 체크되지 않음','체크됨'],['서명란','신청인·배우자·부모 칸까지 채움','비워 둠'],['요청하지 않은 예정 근무처','원 근무처 값을 그대로 복사','비워 둠']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Field({children}){return <span className="hx-field">{children}</span>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
@@ -46,17 +45,17 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <div className="hx-side">
-   <div className="hx-stack">
-    <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 해봤습니다.">플러그인 없이 같은 양식을 첨부하고 같은 값을 채우게 했습니다. 대부분은 제자리에 들어갔지만, 몇 칸이 어긋났습니다.</Heading>
-    <div><h3>정확하게 인식한 칸은 많았지만</h3><p>이름, 주소, 전화번호처럼 문항 옆에 빈칸이 하나뿐인 자리는 대체로 제자리에 들어갔습니다.</p></div>
-    <div><h3>어긋난 칸이 있었습니다</h3><p>이 출력물을 보면 <strong>외국인등록번호</strong>가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳐 있습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
-   </div>
-   <figure>
-    <button type="button" className="hx-zoom" aria-label="플러그인 없이 작성된 신청서 크게 보기" onClick={()=>zoom({src:'/images/hwpx-overfill.png',alt:'플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다.'})}><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다." width="1132" height="1596" loading="lazy"/></button>
-    <figcaption>누르면 크게 볼 수 있습니다.</figcaption>
-   </figure>
+  <Heading n="01 / 분석" title="ChatGPT 웹에서, 플러그인 없이 두 번 해봤습니다.">같은 양식을 첨부하고 같은 값을 채우게 했습니다. 두 번 돌렸고, 결과가 달랐습니다.</Heading>
+  <div className="hx-pairs">
+   <div><h3>첫 번째 — 여러 칸이 어긋났습니다</h3><p>외국인등록번호가 한 자씩 들어가는 칸에 맞춰지지 못하고 앞쪽에 뭉쳤습니다. 성별은 체크되지 않았고, 요청하지 않은 예정 근무처와 서명란까지 채워졌습니다.</p></div>
+   <div><h3>두 번째 — 값은 모두 제자리였습니다</h3><p>같은 양식, 같은 값인데 이번엔 낱칸까지 정확했습니다. 성별도 체크됐고, 요청하지 않은 칸은 건드리지 않았습니다.</p></div>
   </div>
+  <div className="hx-shots">
+   <figure><span className="fw-kicker">첫 번째 실행</span><div><button type="button" className="hx-zoom" aria-label="첫 번째 실행 결과 크게 보기" onClick={()=>zoom({src:'/images/hwpx-overfill.png',alt:'플러그인 없이 작성된 통합신청서 첫 번째 결과. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다.'})}><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서 첫 번째 결과" width="1132" height="1596" loading="lazy"/></button></div></figure>
+   <figure><span className="fw-kicker">두 번째 실행</span><div><button type="button" className="hx-zoom" aria-label="두 번째 실행 결과 크게 보기" onClick={()=>zoom({src:'/images/hwpx-web-2nd.png',alt:'플러그인 없이 작성된 통합신청서 두 번째 결과. 외국인등록번호가 낱칸에 한 자씩 들어갔고 성별도 체크되어 있다.'})}><img src="/images/hwpx-web-2nd.png" alt="플러그인 없이 작성된 통합신청서 두 번째 결과" width="794" height="1123" loading="lazy"/></button></div></figure>
+  </div>
+  <p className="fw-note">두 실행 모두 플러그인 없이, 같은 원본 파일에 같은 값을 넣게 한 것입니다. 누르면 크게 볼 수 있습니다.</p>
+  <p className="fw-takeaway">못 한다는 게 문제가 아니라, <strong>같은 입력에 같은 결과가 나오지 않는다</strong>는 게 문제였습니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
@@ -75,10 +74,10 @@ export default function HwpxStudy(){
    <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 같은 문구의 전화번호 칸이 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
   <div className="fw-findings">
-   <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 완성되기 전까지 볼 수 없습니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
-   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 시간이 더 걸립니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 아래 결과를 만든 실행은 <strong>자리 확인 7번, 3분 25초</strong>가 걸렸습니다.</p></article>
+   <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>약 1분</strong><h3>대신 매번 같은 결과가 아닙니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
+   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>3분 25초</strong><h3>대신 매번 같은 절차를 밟습니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 셀 단위로 대조합니다. 아래 결과를 만든 실행은 <strong>자리 확인을 7번</strong> 거쳤습니다.</p></article>
   </div>
-  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 빨리 끝나는 것보다, 잘못 들어간 칸을 완성 전에 잡는 쪽이 이 작업에서는 더 중요하다고 봤습니다. 3분 25초는 사용자가 확인에 답한 시간을 포함한 실제 소요 시간이며, 한 번의 실행에서 잰 값입니다.</p>
+  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 빨리 끝나는 것보다, 결과가 운에 걸리지 않는 쪽이 이 작업에서는 더 중요하다고 봤습니다. 두 시간 모두 한 번의 실행에서 잰 값이고, 3분 25초에는 사용자가 확인에 답한 시간이 포함돼 있습니다.</p>
  </section>
 
  <section id="process" className="fw-section">
@@ -115,30 +114,34 @@ export default function HwpxStudy(){
    </figure>
   </div>
   <p className="fw-note">모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — 같은 문구의 전화번호 칸이 여럿인데, <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
-  <div className="fw-table hx-compare" tabIndex="0" role="region" aria-label="플러그인 없이 채웠을 때와의 대조">
-   <table>
-    <caption>01에서 어긋났던 자리를, 같은 양식에서 다시 보면</caption>
-    <thead><tr><th scope="col">확인한 자리</th><th scope="col">플러그인 없이</th><th scope="col">플러그인</th></tr></thead>
-    <tbody>{compare.map(([where,before,after])=><tr key={where}><th scope="row">{where}</th><td>{before}</td><td><strong>{after}</strong></td></tr>)}</tbody>
-   </table>
+  <Heading n="04-1 / 대조" title="웹이 만든 문서와, 셀 단위로 맞춰 봤습니다.">같은 원본에 같은 값을 넣은 두 결과를 셀 하나하나 비교했습니다. 157개 중 다른 곳은 8개였고, 그중 5개는 날짜·번호 표기 방식 차이라 내용은 같습니다. 남은 2개가 실제 차이입니다.</Heading>
+  <div className="hx-diffs">
+   <figure>
+    <button type="button" className="hx-zoom" aria-label="신청 종류 체크란 대조 크게 보기" onClick={()=>zoom({src:'/images/hwpx-diff-check.png',alt:'신청 종류 체크란을 원본·웹·플러그인 순으로 비교한 이미지'})}><img src="/images/hwpx-diff-check.png" alt="신청 종류 체크란을 원본·웹·플러그인 순으로 비교한 이미지" width="798" height="392" loading="lazy"/></button>
+    <figcaption><strong>웹은 체크하면서 양식의 문구를 지웠습니다.</strong> 체크 표시를 넣으며 칸에 인쇄돼 있던 &lsquo;체류기간 연장허가&rsquo;가 사라졌습니다. 값은 맞지만 서식이 바뀌었습니다.</figcaption>
+   </figure>
+   <figure>
+    <button type="button" className="hx-zoom" aria-label="연 소득금액 칸 대조 크게 보기" onClick={()=>zoom({src:'/images/hwpx-diff-income.png',alt:'연 소득금액 행을 원본·웹·플러그인 순으로 비교한 이미지'})}><img src="/images/hwpx-diff-income.png" alt="연 소득금액 행을 원본·웹·플러그인 순으로 비교한 이미지" width="1058" height="290" loading="lazy"/></button>
+    <figcaption><strong>플러그인은 값을 옆 칸에 넣었습니다.</strong> 입력 칸은 단위 라벨 다음 칸인데 라벨 칸 앞에 붙였습니다. 이건 이 플러그인의 오류이고, 고쳐야 할 것으로 남아 있습니다.</figcaption>
+   </figure>
   </div>
-  <p className="fw-note">두 실행은 넣은 예시 값이 서로 달라 점수로 비교하지 않았습니다. 같은 양식에서 <strong>같은 자리가 어떻게 처리됐는지</strong>를 두 출력물을 놓고 대조한 것입니다.</p>
+  <p className="fw-takeaway">두 오류 모두 결과물을 눈으로 봐서는 찾기 어렵습니다. 원본과 셀 단위로 맞춰 봐야 드러납니다.</p>
   <div className="hx-boundary-note">
    <h3>서명란은 비워 둔 게 아니라, 비우도록 막아 둔 것입니다.</h3>
    <p>서명란에는 <Field>manual_after_export</Field>만, 담당 공무원이 쓰는 공용란에는 <Field>intentionally_blank</Field>만 허용합니다. 에이전트가 이 칸에 값을 넣는 계획을 세우면 편집 단계에서 거절됩니다. 사람이 해야 하는 일을 에이전트가 대신하지 못하도록, 설득이 아니라 규칙으로 막았습니다.</p>
    <Source href={base+'/src/hwp_mcp/plans.py'}>서명란·공용란 거절 규칙</Source>
   </div>
 
-  <Heading n="04-1 / 구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
+  <Heading n="04-2 / 구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
   <div className="hx-pairs">
-   <div><h3>룰 기반으로 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다. 이 실행에서는 편집 계획 20건으로 <strong>바뀐 셀 34개가 기대와 모두 일치</strong>했고, 어긋난 항목은 없었습니다.</p></div>
+   <div><h3>룰 기반으로 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다. 이 실행에서는 편집 계획 20건으로 <strong>바뀐 셀 34개가 기대와 모두 일치</strong>했습니다.</p></div>
    <div><h3>그다음 에이전트가 봅니다</h3><p>원본과 수정본을 구역별로 그려 비교한 이미지를 에이전트가 직접 읽고 최종 검토합니다. 수치로 안 걸러지는 어긋남을 눈으로 확인하는 단계입니다.</p></div>
   </div>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><button type="button" className="hx-zoom" aria-label={`${label} 비교 이미지 크게 보기`} onClick={()=>zoom({src:`/images/hwpx-band-${i+1}.png`,alt:`${label} — ${desc} 영역의 원본·수정본 상세 비교`})}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></button></div></figure>)}
   </div>
   <p className="fw-note">에이전트가 읽는 구역별 대조 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 누르면 크게 볼 수 있습니다.</p>
-  <p className="fw-note">양식 한 종류를 한 번 실행한 기록입니다. 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
+  <p className="fw-note">기대와 일치한다는 건 계획대로 들어갔다는 뜻이지, 계획이 옳았다는 뜻은 아닙니다. 위 소득금액이 그 경우입니다. 양식 한 종류를 한 번 실행한 기록입니다. 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · review_document_vision</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
@@ -159,9 +162,9 @@ export default function HwpxStudy(){
 
  <section id="future" className="fw-section">
   <Heading n="06 / 향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것.">지금은 각자 컴퓨터에 설치해야 씁니다. 목표는 마켓플레이스 승인을 받아, 설치 없이 ChatGPT 웹에서 문서를 첨부하면 바로 동작하게 하는 것입니다.</Heading>
-  <div className="fw-copy hx-single">
-   <h3>설치 없이 쓰려면 원격에서 돌아야 합니다</h3>
-   <p>전송을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p>
+  <div className="hx-pairs">
+   <div><h3>설치 없이 쓰려면 원격에서 돌아야 합니다</h3><p>전송을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p></div>
+   <div><h3>그 전에 고칠 것</h3><p>04-1에서 드러난 소득금액 칸 오배치입니다. 단위 라벨이 붙은 칸을 입력 칸으로 잡았습니다. 라벨과 입력 칸을 가르는 규칙이 아직 없습니다.</p></div>
   </div>
   <p className="fw-note">아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 STDIO 기준입니다.</p>
  </section>
