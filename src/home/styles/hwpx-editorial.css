@@ -10,7 +10,7 @@
 .hx-bands img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 /* FOWOCO nests its heading inside .fw-two; these sections put it above, where
    nothing supplies the gap. Same for the result table. */
-.fw-heading+.fw-two,.fw-heading+.fw-table{margin-top:34px}
+.fw-heading+.fw-two,.fw-heading+.fw-table,.fw-heading+.fw-copy{margin-top:34px}
 /* Two independent columns let the second subheading land wherever the first
    paragraph happened to end. One grid with shared rows keeps them level;
    column flow keeps the reading order for stacked and screen-reader views. */
@@ -35,7 +35,7 @@
 .fw-note{max-width:800px}
 
 /* A note is a remark on the block above it, not its last line; 14px reads as the latter. */
-.fw-two+.fw-note,.fw-table+.fw-note,.fw-context-note+.fw-note,.hx-bands+.fw-note,.fw-cover+.fw-note{margin-top:30px}
+.fw-two+.fw-note,.fw-copy+.fw-note,.fw-table+.fw-note,.fw-context-note+.fw-note,.hx-bands+.fw-note,.fw-cover+.fw-note{margin-top:30px}
 /* FOWOCO highlights a table's last row as a total; this one is a plain list of fields. */
 #result .fw-table tbody tr:last-child{background:none}
 #result .fw-table th[scope="row"]{font-weight:550;color:var(--ink)}
@@ -56,3 +56,12 @@
 .hx-result figure{margin:0!important;min-width:0}
 .hx-result img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 @media(max-width:860px){.hx-result{grid-template-columns:minmax(0,1fr);gap:26px}.hx-result figure{max-width:420px}}
+
+/* The back link alone left a bare band at the top; name the page there. */
+.hx-topbar{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:48px}
+.hx-topbar .fw-back{margin-bottom:0}
+.hx-topbar>span{font-size:14px;color:var(--muted);letter-spacing:-.01em}
+/* Form labels quoted inline were indistinguishable from the prose around them. */
+.hx-field{display:inline-block;font-size:.88em;line-height:1.5;padding:0 7px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);color:var(--ink);white-space:nowrap}
+.hx-single{max-width:620px}
+@media(max-width:760px){.hx-topbar{margin-bottom:32px}}
