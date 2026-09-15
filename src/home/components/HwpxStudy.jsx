@@ -83,7 +83,7 @@ export default function HwpxStudy(){
 
  <section id="process" className="fw-section">
   <Heading n="03 / 검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다.">값을 넣기 전에 에이전트가 멈춥니다. 어느 칸에 무엇을 넣을지 그림으로 보여주고, 사용자가 답할 때까지 기다립니다.</Heading>
-  <div className="hx-three">
+  <div className="fw-two">
    <div>
     <h3>자리를 그림으로 보여줍니다</h3>
     <p>값을 넣을 칸을 파란 박스로 표시한 그림을 보여주고, 아니라고 하면 위치를 고쳐 다시 묻습니다.</p>
@@ -92,16 +92,12 @@ export default function HwpxStudy(){
     <h3>보기 편하게 묶어서 보여줍니다</h3>
     <p>인적사항·여권·주소·근무처처럼 성격이 같은 항목끼리 묶어, 한 화면에서 확인하게 했습니다.</p>
    </div>
-   <div>
-    <h3>물어서도 안 되는 칸이 있습니다</h3>
-    <p>서명란은 사람이 직접 서명할 자리로, 공용란은 담당 공무원이 쓸 자리로 정해 뒀습니다. 여기에 값을 넣는 계획은 편집 단계에서 거절됩니다.</p>
-   </div>
   </div>
   <figure className="fw-cover">
    <button type="button" className="hx-zoom" aria-label="확인 화면 크게 보기" onClick={()=>zoom({src:'/images/hwpx-confirm.png',alt:'통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림'})}><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></button>
    <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/plans.py'}>서명란·공용란 거절 규칙</Source></div>
+  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
  <section id="result" className="fw-section">
@@ -127,6 +123,11 @@ export default function HwpxStudy(){
    </table>
   </div>
   <p className="fw-note">두 실행은 넣은 예시 값이 서로 달라 점수로 비교하지 않았습니다. 같은 양식에서 <strong>같은 자리가 어떻게 처리됐는지</strong>를 두 출력물을 놓고 대조한 것입니다.</p>
+  <div className="hx-boundary-note">
+   <h3>서명란은 비워 둔 게 아니라, 비우도록 막아 둔 것입니다.</h3>
+   <p>서명란에는 <Field>manual_after_export</Field>만, 담당 공무원이 쓰는 공용란에는 <Field>intentionally_blank</Field>만 허용합니다. 에이전트가 이 칸에 값을 넣는 계획을 세우면 편집 단계에서 거절됩니다. 사람이 해야 하는 일을 에이전트가 대신하지 못하도록, 설득이 아니라 규칙으로 막았습니다.</p>
+   <Source href={base+'/src/hwp_mcp/plans.py'}>서명란·공용란 거절 규칙</Source>
+  </div>
 
   <Heading n="04-1 / 구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
   <div className="hx-pairs">
