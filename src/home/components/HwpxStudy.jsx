@@ -175,9 +175,9 @@ export default function HwpxStudy(){
 
  <section id="future" className="fw-section">
   <Heading n="06 / 향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것.">지금은 각자 컴퓨터에 설치해야 씁니다. 목표는 마켓플레이스 승인을 받아, 설치 없이 ChatGPT 웹에서 문서를 첨부하면 바로 동작하게 하는 것입니다.</Heading>
-  <div className="hx-pairs">
-   <div><h3>설치 없이 쓰려면 원격에서 돌아야 합니다</h3><p>전송을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p></div>
-   <div><h3>그 전에 고칠 것</h3><p>04-1에서 드러난 소득금액 칸 오배치입니다. 단위 라벨이 붙은 칸을 입력 칸으로 잡았습니다. 라벨과 입력 칸을 가르는 규칙이 아직 없습니다.</p></div>
+  <div className="fw-copy hx-single">
+   <h3>설치 없이 쓰려면 원격에서 돌아야 합니다</h3>
+   <p>전송을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p>
   </div>
   <p className="fw-note">아직 구현하지 않은 계획입니다. 현재 저장소의 동작은 STDIO 기준입니다.</p>
  </section>
