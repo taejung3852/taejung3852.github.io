@@ -11,6 +11,7 @@
 /* FOWOCO nests its heading inside .fw-two; these sections put it above, where
    nothing supplies the gap. Same for the result table. */
 .fw-heading+.fw-two,.fw-heading+.fw-table,.fw-heading+.fw-copy{margin-top:34px}
+.hx-three+figure.fw-cover{margin-top:38px!important}
 /* Two independent columns let the second subheading land wherever the first
    paragraph happened to end. One grid with shared rows keeps them level;
    column flow keeps the reading order for stacked and screen-reader views. */
@@ -33,7 +34,7 @@
 .fw-note{max-width:800px}
 
 /* A note is a remark on the block above it, not its last line; 14px reads as the latter. */
-.fw-two+.fw-note,.fw-copy+.fw-note,.fw-table+.fw-note,.fw-context-note+.fw-note,.hx-bands+.fw-note,.fw-cover+.fw-note{margin-top:30px}
+.fw-two+.fw-note,.hx-three+.fw-note,.fw-copy+.fw-note,.fw-table+.fw-note,.fw-context-note+.fw-note,.hx-bands+.fw-note,.fw-cover+.fw-note{margin-top:30px}
 /* FOWOCO highlights a table's last row as a total; this one is a plain list of fields. */
 #result .fw-table tbody tr:last-child{background:none}
 #result .fw-table th[scope="row"]{font-weight:550;color:var(--ink)}
@@ -52,6 +53,15 @@
 .hx-side figure{margin:0!important;min-width:0}
 .hx-side img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 .hx-stack{display:grid;gap:26px;align-content:start;min-width:0}
+.hx-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:34px}
+.hx-three>div{min-width:0}
+.hx-three h3{margin:0 0 10px}
+@media(max-width:860px){.hx-three{grid-template-columns:minmax(0,1fr);gap:26px}}
+/* Prose cells, unlike the mapping table's short values, need to wrap. */
+.hx-compare{margin-top:38px}
+.hx-compare table{white-space:normal}
+.hx-compare th[scope="row"]{min-width:190px}
+.hx-compare td{min-width:170px;vertical-align:top}
 /* Evidence, not a spread: the analyze shot only needs to show the mess. */
 #analyze .hx-side{grid-template-columns:minmax(0,1fr) minmax(0,240px);gap:48px;margin-top:0}
 #analyze .hx-stack>.fw-heading{margin-bottom:8px}

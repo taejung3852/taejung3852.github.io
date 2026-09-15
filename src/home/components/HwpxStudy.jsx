@@ -5,7 +5,8 @@ import '../styles/hwpx-editorial.css';
 const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f35c59856f9b40909337fa443175e42';
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
 const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · 여권 · 주소 · 근무처'],['구역 3','동의서 · 서명란 · 공용란']];
-const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD','체크 표시'],['NGUYEN','성 Surname','텍스트'],['VAN AN','명 Given names','텍스트'],['1995-04-12','생년월일 Date of Birth','년·월·일 세 칸으로 분할'],['9504125000000','외국인등록번호 Foreign Resident Registration No.','열세 칸에 한 자씩'],['010-0000-0000','휴대전화 Cell phone No.','텍스트'],['031-000-0000','전화번호 Phone No. — 근무처 행','텍스트'],['3000','연 소득금액 Annual Income Amount','금액 칸']];
+const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD'],['NGUYEN','성 Surname'],['VAN AN','명 Given names'],['1995-04-12','생년월일 Date of Birth'],['9504125000000','외국인등록번호 Foreign Resident Registration No.'],['010-0000-0000','휴대전화 Cell phone No.'],['031-000-0000','전화번호 Phone No. — 근무처 행'],['3000','연 소득금액 Annual Income Amount']];
+const compare=[['외국인등록번호 — 낱칸 13개','첫 칸에 뭉치고 나머지는 빈 채로','한 칸에 한 자씩'],['성별 체크','어느 쪽도 체크되지 않음','체크됨'],['서명란','신청인·배우자·부모 칸까지 채움','비워 둠'],['요청하지 않은 예정 근무처','원 근무처 값을 그대로 복사','비워 둠']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Field({children}){return <span className="hx-field">{children}</span>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
@@ -23,7 +24,7 @@ export default function HwpxStudy(){
   <div className="hx-topbar"><Link className="fw-back" to="/#projects">← 주요 프로젝트</Link><span>HWPX Document Plugin</span></div>
   <div className="fw-hero-split">
    <div className="fw-hero-copy">
-  <p className="fw-kicker">2인 팀 프로젝트 · 대표 양식 1건 실행 완료</p>
+  <p className="fw-kicker">2인 팀 프로젝트</p>
   <h1>양식의 구조를 읽고,<br/>확인한 값만 반영합니다.</h1>
   <p className="fw-lead">기존 HWPX 양식을 분석해 어느 칸에 무엇을 쓸지 찾고, 사용자에게 확인한 값만 그 칸에 반영하는 Agent Plugin입니다. 분석·계획·승인·적용·검증을 각각 다른 단계로 나눴습니다.</p>
    </div>
@@ -56,11 +57,6 @@ export default function HwpxStudy(){
     <figcaption>누르면 크게 볼 수 있습니다.</figcaption>
    </figure>
   </div>
-  <div className="fw-findings">
-   <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 완성되기 전까지 볼 수 없습니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
-   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 시간이 더 걸립니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 한 번에 끝낼 때보다 오래 걸립니다.</p></article>
-  </div>
-  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 빨리 끝나는 것보다, 잘못 들어간 칸을 완성 전에 잡는 쪽이 이 작업에서는 더 중요하다고 봤습니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/vision.py'}>구역 분할·비교 구현</Source><Source href={base+'/src/hwp_mcp/server.py'}>analyze_document · render_document</Source></div>
  </section>
 
@@ -78,25 +74,34 @@ export default function HwpxStudy(){
    <button type="button" className="hx-zoom" aria-label="빈 원본 양식 크게 보기" onClick={()=>zoom({src:'/images/hwpx-blank-2.png',alt:'빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다.'})}><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/></button>
    <figcaption>편집하기 전의 빈 원본입니다. 오른쪽 열을 따라 같은 문구의 전화번호 칸이 반복되고, 외국인등록번호는 낱칸으로 나뉘어 있습니다. 어느 칸이 어떤 질문의 답인지는 이 배치를 봐야 정해집니다. 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
+  <div className="fw-findings">
+   <article className="fw-cost"><span className="fw-kicker">한 번에 맡기면</span><strong>빠릅니다</strong><h3>대신 완성되기 전까지 볼 수 없습니다</h3><p>중간에 멈추지 않으니 결과가 곧바로 나옵니다. 그런데 사용자는 문서가 다 만들어진 뒤에야 내용을 보게 되고, 잘못 들어간 칸도 그때 드러납니다.</p></article>
+   <article className="fw-benefit"><span className="fw-kicker">확인을 거치면</span><strong>정확합니다</strong><h3>대신 시간이 더 걸립니다</h3><p>값을 넣기 전에 자리를 그림으로 보여주고 답을 기다립니다. 넣은 뒤에는 원본과 대조해 문서가 틀어지지 않았는지 봅니다. 한 번에 끝낼 때보다 오래 걸립니다.</p></article>
+  </div>
+  <p className="fw-note">이 프로젝트는 두 번째를 택했습니다. 빨리 끝나는 것보다, 잘못 들어간 칸을 완성 전에 잡는 쪽이 이 작업에서는 더 중요하다고 봤습니다.</p>
  </section>
 
  <section id="process" className="fw-section">
   <Heading n="03 / 검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다.">값을 넣기 전에 에이전트가 멈춥니다. 어느 칸에 무엇을 넣을지 그림으로 보여주고, 사용자가 답할 때까지 기다립니다.</Heading>
-  <div className="fw-two">
-   <div className="fw-copy">
+  <div className="hx-three">
+   <div>
     <h3>자리를 그림으로 보여줍니다</h3>
     <p>값을 넣을 칸을 파란 박스로 표시한 그림을 보여주고, 아니라고 하면 위치를 고쳐 다시 묻습니다.</p>
    </div>
-   <div className="fw-copy">
+   <div>
     <h3>보기 편하게 묶어서 보여줍니다</h3>
     <p>인적사항·여권·주소·근무처처럼 성격이 같은 항목끼리 묶어, 한 화면에서 확인하게 했습니다.</p>
+   </div>
+   <div>
+    <h3>물어서도 안 되는 칸이 있습니다</h3>
+    <p>서명란은 사람이 직접 서명할 자리로, 공용란은 담당 공무원이 쓸 자리로 정해 뒀습니다. 여기에 값을 넣는 계획은 편집 단계에서 거절됩니다.</p>
    </div>
   </div>
   <figure className="fw-cover">
    <button type="button" className="hx-zoom" aria-label="확인 화면 크게 보기" onClick={()=>zoom({src:'/images/hwpx-confirm.png',alt:'통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림'})}><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></button>
    <figcaption>성명·생년월일·성별·국적을 입력하기 전에 실제로 보여준 확인 그림입니다. 파란 박스가 값을 넣을 자리이고, 이 상태에서 답을 기다립니다. 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
-  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
+  <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>preview_field_section · confirm_visual_candidates</Source><Source href={base+'/src/hwp_mcp/plans.py'}>서명란·공용란 거절 규칙</Source></div>
  </section>
 
  <section id="result" className="fw-section">
@@ -114,8 +119,16 @@ export default function HwpxStudy(){
    </figure>
   </div>
   <p className="fw-note">모두 사용자가 준 값이고, 에이전트가 지어내 채운 값은 없습니다. 문제로 꼽았던 함정도 갈라졌습니다 — 같은 문구의 전화번호 칸이 여럿인데, <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
+  <div className="fw-table hx-compare" tabIndex="0" role="region" aria-label="플러그인 없이 채웠을 때와의 대조">
+   <table>
+    <caption>01에서 어긋났던 자리를, 같은 양식에서 다시 보면</caption>
+    <thead><tr><th scope="col">확인한 자리</th><th scope="col">플러그인 없이</th><th scope="col">플러그인</th></tr></thead>
+    <tbody>{compare.map(([where,before,after])=><tr key={where}><th scope="row">{where}</th><td>{before}</td><td><strong>{after}</strong></td></tr>)}</tbody>
+   </table>
+  </div>
+  <p className="fw-note">두 실행은 넣은 예시 값이 서로 달라 점수로 비교하지 않았습니다. 같은 양식에서 <strong>같은 자리가 어떻게 처리됐는지</strong>를 두 출력물을 놓고 대조한 것입니다.</p>
 
-  <Heading n="구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
+  <Heading n="04-1 / 구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다.">값이 들어갔다고 문서가 멀쩡한 건 아닙니다. 표가 밀리거나 글자가 칸을 넘칠 수 있어서, 수정본을 이미지로 그려 원본과 대조합니다.</Heading>
   <div className="hx-pairs">
    <div><h3>룰 기반으로 먼저 거릅니다</h3><p>확인받은 자리에만 값이 들어갔는지, 손대지 않기로 한 칸이 그대로인지, 표와 페이지가 틀어지지 않았는지, 파일이 다시 열리는지를 대조합니다.</p></div>
    <div><h3>그다음 에이전트가 봅니다</h3><p>원본과 수정본을 구역별로 그려 비교한 이미지를 에이전트가 직접 읽고 최종 검토합니다. 수치로 안 걸러지는 어긋남을 눈으로 확인하는 단계입니다.</p></div>
@@ -128,7 +141,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="compose" className="fw-section">
-  <Heading n="구성" title="편집 도구는 MCP로, 쓰는 순서는 Skill로 나눴습니다.">MCP 도구만 열어 두자 에이전트가 순서를 틀렸습니다. 분석 전에 필드를 조회하고, 위치 확인을 건너뛰었습니다.</Heading>
+  <Heading n="05 / 구성" title="편집 도구는 MCP로, 쓰는 순서는 Skill로 나눴습니다.">MCP 도구만 열어 두자 에이전트가 순서를 틀렸습니다. 분석 전에 필드를 조회하고, 위치 확인을 건너뛰었습니다.</Heading>
   <div className="fw-copy hx-single">
    <h3>MCP는 도구를 줄 뿐, 쓰는 법은 알려주지 않습니다</h3>
    <p>어떤 도구를 언제 어떤 순서로 부를지는 MCP에 담기지 않습니다. 그 순서를 Agent Skills에 적어 두고, 어긋난 호출은 MCP가 거절하도록 했습니다. 도구와 사용법을 함께 배포해야 해서 둘을 하나의 플러그인으로 묶었습니다.</p>
@@ -143,7 +156,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="future" className="fw-section">
-  <Heading n="향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것.">지금은 각자 컴퓨터에 설치해야 씁니다. 목표는 마켓플레이스 승인을 받아, 설치 없이 ChatGPT 웹에서 문서를 첨부하면 바로 동작하게 하는 것입니다.</Heading>
+  <Heading n="06 / 향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것.">지금은 각자 컴퓨터에 설치해야 씁니다. 목표는 마켓플레이스 승인을 받아, 설치 없이 ChatGPT 웹에서 문서를 첨부하면 바로 동작하게 하는 것입니다.</Heading>
   <div className="fw-copy hx-single">
    <h3>설치 없이 쓰려면 원격에서 돌아야 합니다</h3>
    <p>전송을 STDIO에서 Streamable HTTP로 바꾸고, 서버를 AWS EC2에 두려 합니다. 원본과 작업공간은 S3에 보관하는 구성을 검토하고 있습니다.</p>
