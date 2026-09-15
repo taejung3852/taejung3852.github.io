@@ -35,6 +35,8 @@
 
 /* A note is a remark on the block above it, not its last line; 14px reads as the latter. */
 .fw-two+.fw-note,.hx-three+.fw-note,.fw-copy+.fw-note,.fw-table+.fw-note,.fw-context-note+.fw-note,.hx-bands+.fw-note,.fw-cover+.fw-note{margin-top:30px}
+/* A second note is a separate remark, not the first one's next line. */
+.fw-note+.fw-note{margin-top:20px}
 /* FOWOCO highlights a table's last row as a total; this one is a plain list of fields. */
 #result .fw-table tbody tr:last-child{background:none}
 #result .fw-table th[scope="row"]{font-weight:550;color:var(--ink)}

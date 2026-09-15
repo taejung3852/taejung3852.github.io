@@ -26,7 +26,7 @@ export default function HwpxStudy(){
    <div className="fw-hero-copy">
   <p className="fw-kicker">2인 팀 프로젝트</p>
   <h1>양식의 구조를 읽고,<br/>확인한 값만 반영합니다.</h1>
-  <p className="fw-lead">기존 HWPX 양식을 분석해 어느 칸에 무엇을 쓸지 찾고, 사용자에게 확인한 값만 그 칸에 반영하는 Agent Plugin입니다. 분석·계획·승인·적용·검증을 각각 다른 단계로 나눴습니다.</p>
+  <p className="fw-lead">분석·계획·승인·적용·검증을 각각 다른 단계로 나눈 Agent Plugin입니다. 값을 쓰기 전에 멈춰 자리를 확인받고, 쓴 뒤에는 원본과 대조합니다.</p>
    </div>
   <figure className="fw-cover"><img src="/images/hwpx-cover.png" alt="HWPX Document Plugin 개요 — 문서의 XML 구조와 그려낸 화면을 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 흐름" width="1672" height="941" loading="eager"/><figcaption>문서의 XML 구조에서 값과 위치를 읽고, 그려낸 화면으로 어느 칸이 어떤 질문의 답인지 확인한 뒤, 사용자에게 확인받은 값만 편집하고 결과를 다시 검증합니다.</figcaption></figure>
   </div>
@@ -41,7 +41,7 @@ export default function HwpxStudy(){
    <article><span className="fw-kicker">커지면서</span><div><h3>문서를 다루는 일이 계속 커졌습니다.</h3><p>양식마다 구조가 다르다는 걸 알게 되면서 분석과 확인, 검증이 차례로 붙었습니다. 상담 흐름을 조율하는 코드와 문서를 뜯어보는 코드가 같은 자리에서 뒤섞였습니다.</p></div></article>
    <article><span className="fw-kicker">판단</span><div><h3>문서 쪽만 밖으로 떼어냈습니다.</h3><p>내부 함수로 묶어도 <Link className="hx-link" to="/projects/fowoco">FOWOCO</Link> 안에서만 쓸 수 있습니다. 문서를 분석하고 고치는 일은 이 서비스 밖에서도 쓸 데가 보였고, 더 키울 여지도 컸습니다. 그래서 MCP 도구로 경계를 긋고 따로 뒀습니다. 대신 연결 관리와 도구 오류 처리를 떠안았습니다.</p></div></article>
   </div>
-  <p className="fw-takeaway">기능이 늘어나면서 책임을 나누려고 떼어낸 것이 이 프로젝트입니다. 에이전트는 작업 흐름을 조율하고, 문서 도구는 문서만 맡습니다.</p>
+  <p className="fw-takeaway">에이전트는 작업 흐름을 조율하고, 문서 도구는 문서만 맡습니다.</p>
   <p><Link className="fw-source" to="/projects/fowoco">FOWOCO에서의 분리 과정 보기 →</Link></p>
  </section>
 
@@ -68,7 +68,7 @@ export default function HwpxStudy(){
    <div><h3>같은 문구의 칸이 네 곳입니다</h3><p>통합신청서에는 <Field>전화번호 Phone No.</Field>가 네 곳에 똑같이 적혀 있습니다. 본국 주소·학교·원 근무처·예정 근무처에 하나씩이라, 문구만으로는 구분되지 않습니다.</p></div>
    <div><h3>한 값이 여러 칸으로 흩어집니다</h3><p>생년월일은 세 칸에, 외국인등록번호는 열세 칸에 한 자씩 들어갑니다. 어디에 쓸지뿐 아니라 어떻게 쪼갤지도 정해야 합니다.</p></div>
   </div>
-  <p className="fw-example-label">셀 157개 · 같은 문구의 칸 4곳 · 한 값이 13칸으로 분할</p>
+  <p className="fw-example-label">이 양식 한 장에 셀 157개</p>
 
   <figure className="fw-cover">
    <button type="button" className="hx-zoom" aria-label="빈 원본 양식 크게 보기" onClick={()=>zoom({src:'/images/hwpx-blank-2.png',alt:'빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다.'})}><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 전화번호 칸이 여러 곳에 반복되고 등록번호가 낱칸으로 나뉘어 있다." width="794" height="423" loading="lazy"/></button>
@@ -136,7 +136,8 @@ export default function HwpxStudy(){
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><button type="button" className="hx-zoom" aria-label={`${label} 비교 이미지 크게 보기`} onClick={()=>zoom({src:`/images/hwpx-band-${i+1}.png`,alt:`${label} — ${desc} 영역의 원본·수정본 상세 비교`})}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></button></div></figure>)}
   </div>
-  <p className="fw-note">에이전트가 읽는 구역별 대조 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 누르면 크게 볼 수 있습니다. 양식 한 종류를 한 번 실행한 기록이고, 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
+  <p className="fw-note">에이전트가 읽는 구역별 대조 이미지입니다. 빨간 표시가 이번 편집에서 바뀐 칸이며, 누르면 크게 볼 수 있습니다.</p>
+  <p className="fw-note">양식 한 종류를 한 번 실행한 기록입니다. 검증은 플러그인이 쓰는 렌더러 기준이라 한글 프로그램에서의 표시나 PDF 변환은 포함되지 않습니다. 입력값은 모두 가상 정보입니다.</p>
   <div className="fw-proof-links"><Source href={base+'/src/hwp_mcp/server.py'}>compare_document_versions · review_document_vision</Source><Source href={base+'/src/hwp_mcp/application/editing.py'}>적용·최종화 구현</Source></div>
  </section>
 
