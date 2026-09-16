@@ -41,12 +41,9 @@
 
 /* Home cards are a catalogue: scannable anchors, one question, no paragraphs. */
 .project-period{margin-top:12px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
-.project-metric{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-top:28px;padding-top:22px;border-top:1px solid var(--rule)}
-.project-metric strong{font-size:34px;font-weight:600;letter-spacing:-.04em;line-height:1.1;white-space:nowrap}
-.project-metric span{font-size:13px;color:var(--muted);word-break:keep-all}
+.project-outcome{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;margin-top:26px;padding-top:22px;border-top:1px solid var(--rule);font-size:15px;line-height:1.7;color:var(--ink);word-break:keep-all}
 .project-role{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;margin-top:22px!important;font-size:14px!important;line-height:1.7!important;color:var(--muted)}
 .project-role-label{font-size:12px;letter-spacing:.04em;color:var(--muted);flex:0 0 auto}
 .project-stack{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:18px 0 0;padding:0}
 .project-stack li{font-size:12px;line-height:1.6;padding:4px 10px;border:1px solid var(--rule);border-radius:3px;color:var(--muted);white-space:nowrap}
-.project-detail-link{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-size:14px;text-decoration:underline;text-underline-offset:5px}
-@media(max-width:600px){.project-metric strong{font-size:28px}}
+@media(max-width:600px){.project-outcome,.project-role{grid-template-columns:minmax(0,1fr);gap:4px}}
