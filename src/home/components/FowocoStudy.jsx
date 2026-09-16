@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useRef,useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/fowoco-editorial.css';
 const base='https://github.com/fowoco/ai/blob/209ebddf3878f750c37e5ebe5651b0fe6aa0a354';
@@ -6,34 +6,160 @@ const base='https://github.com/fowoco/ai/blob/209ebddf3878f750c37e5ebe5651b0fe6a
 const rows=[['단일 Dense','72 / 100','0.61','60'],['단일 Hybrid','81 / 100','0.70','80'],['멀티쿼리 Hybrid','89 / 100','0.77','120'],['멀티쿼리 Hybrid + Re-ranking','93 / 100','0.86','390']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
+function Facts({items}){return <ul className="fw-facts">{items.map(([k,v],i)=><li key={i}><b>{k}</b><span>{v}</span></li>)}</ul>}
 export default function FowocoStudy(){
+ const dialog=useRef(null),[shot,setShot]=useState(null);
+ const zoom=s=>{setShot(s);dialog.current.showModal()};
  useEffect(()=>{document.title='FOWOCO | 박태정';return()=>{document.title='박태정 | AI Agent / LLM Application Developer'}},[]);
  return <div className="fw-study">
- <header className="fw-hero"><Link className="fw-back" to="/#projects">← 주요 프로젝트</Link><div className="fw-hero-split"><div className="fw-hero-copy"><p className="fw-kicker">FOWOCO · 8인 팀 프로젝트 · 시연 완료</p><h1>외국인 근로자 행정업무를<br/>문서 준비부터 소통까지.</h1><p className="fw-lead">E-9 외국인 근로자를 고용하는 제조업 HR 담당자를 위한 AI 업무보조 플랫폼입니다. 업무 요청을 분석해 문서와 다국어 안내를 준비하고, 담당자 승인과 근로자 응답으로 연결합니다.</p><p className="fw-demo-story">대표 시연은 체류기간 연장 준비입니다. HR 담당자가 업무를 요청하면 근로자에게 보낼 안내를 검토·승인하고, 근로자는 링크에서 서류를 제출합니다. 담당자는 제출된 자료를 확인하고 누락된 정보를 보완합니다.</p></div><figure className="fw-demo"><video controls playsInline preload="metadata" poster="/images/fowoco-demo-poster.jpg" aria-label="FOWOCO 서비스 시연 2분 35초"><source src="/videos/fowoco-demo.mp4" type="video/mp4"/>브라우저에서 영상을 재생할 수 없습니다. <a href="/videos/fowoco-demo.mp4">시연 영상 다운로드</a></video><figcaption><strong>서비스 시연 · 2분 35초</strong><span>업무 요청, 담당자 승인, 근로자 서류 제출과 누락 정보 보완 과정을 보여줍니다.</span></figcaption></figure></div><dl className="fw-role"><dt>담당 영역</dt><dd>Language Assistant 설계·구현 · HWPX 문서 자동화 및 MCP 구현 · 팀 협업 조율</dd></dl><nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">문제와 검색 설계</a><a href="#evidence">검색 비교 예시</a><a href="#easy">정보 보존 검사</a><a href="#separation">문서 처리</a><a href="#collaboration">협업</a></nav></header>
- <section id="scope" className="fw-section"><Heading n="서비스 안에서의 역할" title="언어 처리와 문서 자동화를 맡았습니다.">팀이 구현한 전체 업무 흐름 안에서, 안내를 생성하는 Language Assistant와 문서를 준비하는 기능을 담당했습니다.</Heading><figure className="fw-scope"><div className="fw-scope-flow"><div className="fw-scope-stage"><span>HR 담당자</span><h3>업무 요청</h3><p>자연어 입력 · 기한 확인</p></div><div className="fw-scope-stage"><span>팀 구현</span><h3>요청 분석·업무 조율</h3><p>의도 분석 · 정보 조회 · 실행 순서</p></div><div className="fw-scope-owned"><span className="fw-scope-label">박태정 담당</span><article><h3>언어 처리</h3><p>EPS 검색 · 안내 생성 · 정보 보존 검사</p></article><article><h3>문서 자동화</h3><p>HWPX 필드 매핑 · 문서 도구 분리</p></article></div><div className="fw-scope-stage"><span>팀 구현 · 사용자 확인</span><h3>승인·응답</h3><p>HR 검토 · 근로자 확인 및 서류 제출</p></div></div><figcaption>역할 구분을 위한 개념도입니다. 프론트엔드·전체 Supervisor·OCR·서버·DB·인프라는 다른 팀원의 담당 영역이며, 기능 간 연동은 팀과 함께 진행했습니다.</figcaption></figure></section>
- <section id="search" className="fw-section"><div className="fw-two"><Heading n="01 / 문제" title="언어 장벽이, 업무 안내의 장벽이었습니다."/><div className="fw-copy"><h3>인터뷰에서 확인한 문제</h3><p>프로젝트에 앞서 진행한 두 차례 인터뷰에서 공통으로 언어 장벽이 언급됐습니다. 담당자의 안내가 근로자에게 충분히 전달되지 않는 상황에 주목했습니다.</p><h3>표현을 일관되게 전달하려는 판단</h3><p>한국어에 익숙하지 않은 근로자에게 동의어나 맥락에 의존하는 표현은 이해의 부담이 될 수 있다고 보았습니다. 업무에서 사용하는 표현을 일정하게 전달하기 위해, 외국인근로자와 고용사업주를 지원하는 한국산업인력공단 EPS 사이트의 한국어·외국어 대응 자료를 활용하고자 했습니다.</p><h3>검색 근거가 번역까지 이어지도록</h3><p>초기 개발에서는 적절한 EPS 표현을 찾지 못했다고 판단해 일반 번역으로 이어지는 현상을 겪었습니다. 요청에 담긴 여러 정보를 검색 단서로 활용하고, 찾은 자료를 번역에 전달하는 구조를 설계했습니다.</p><Source href="https://eps.hrdkorea.or.kr/e9/user/about/about.do?method=about">EPS 사이트 소개</Source></div></div>
- <Heading n="설계 판단" title="복합 요청의 검색 단서를 나누고, 번역에 쓸 자료를 선별했습니다."/>
- <figure className="fw-pipeline"><div className="fw-query"><span className="fw-kicker">업무 안내 → 세 검색 관점</span><div><b>전체 문장</b><b>요청 사유 + 항목</b><b>제출 방법 + 기한</b></div></div><div className="fw-flow"><article><span>01</span><h3>Dense + Sparse</h3><p>각 질의의 후보 결합</p><small>각 40개 → RRF → 최대 30개</small></article><article><span>02</span><h3>Cross-query RRF</h3><p>세 질의의 순위 결합</p><small>중복 정리 → 최대 30개</small></article><article><span>03</span><h3>Re-ranking</h3><p>요청과 후보를 다시 비교</p><small>상위 5개 → 번역 참고 자료</small></article></div><figcaption>현재 실행 경로의 개념도. 별도의 LLM Query Rewrite 호출은 없습니다.</figcaption></figure>
- <div className="fw-reasons">{[['멀티쿼리','전체 문장 외에도 요청의 부분 정보를 검색 단서로 활용하기 위해.'],['Hybrid Search','정확한 용어 일치와 의미가 비슷한 표현을 함께 찾기 위해.'],['Re-ranking','모아진 후보의 내용을 요청과 다시 비교해 참고 자료를 선별하기 위해.']].map(([a,b])=><div key={a}><h3>{a}</h3><p>{b}</p></div>)}</div><Source href={base+'/app/agents/language/translation.py'}/>
- </section>
- <section id="evidence" className="fw-section"><Heading n="02 / 검색 비교 예시" title="검색 품질을 높이는 대신, 응답 시간은 얼마나 늘어나는가?">검색 구성을 한 단계씩 추가했을 때, 필요한 자료를 찾는 비율과 기다리는 시간을 함께 비교합니다.</Heading>
+ <dialog ref={dialog} className="fw-dialog" aria-label={shot?.alt||'이미지 크게 보기'} onClick={e=>{if(e.target===e.currentTarget)dialog.current.close()}}>
+  <button type="button" className="fw-dialog-close" autoFocus onClick={()=>dialog.current.close()} aria-label="닫기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  {shot&&<img src={shot.src} alt={shot.alt}/>}
+ </dialog>
 
- <div className="fw-findings"><article className="fw-benefit"><span className="fw-kicker">100개 질문 중 필요한 자료를 찾은 질문</span><strong>72 → 93개</strong><h3>검색 성공률 21%p 증가</h3><p>상위 검색 결과 5개 안에 필요한 자료가 하나 이상 포함된 질문 수를 비교한 예시입니다.</p></article><article className="fw-cost"><span className="fw-kicker">검색 결과를 받기까지 걸리는 시간</span><strong>60 → 390ms</strong><h3>대기 시간 330ms 증가</h3><p>더 잘 찾는 대신 얼마나 더 기다리는지도 함께 보여줍니다. 번역 생성 시간은 제외한 예시입니다.</p></article></div>
-<div className="fw-tradeoff"><h3>빠른 응답과 참고 자료의 적합성을 함께 판단합니다.</h3><p>EPS의 대응 표현을 번역에 활용하려는 목적에 맞춰 검색 단서를 넓히고 후보를 다시 비교하도록 설계했습니다. 검색 품질뿐 아니라 추가 대기 시간도 함께 살펴, 필요한 표현을 찾는 이점과 응답 속도 사이의 균형을 판단합니다.</p></div> <div className="fw-table" role="region" aria-label="검색 구성별 비교표" tabIndex="0"><table><caption>검색 구성별 비교</caption><thead><tr><th scope="col">검색 구성</th><th scope="col">자료를 찾은 질문 수</th><th scope="col">첫 관련 자료의 순위 점수</th><th scope="col">검색 대기 시간(ms)</th></tr></thead><tbody>{rows.map(r=><tr key={r[0]}>{r.map((v,i)=>i===0?<th scope="row" key={i}>{v}</th>:<td key={i}>{v}</td>)}</tr>)}</tbody></table></div>
+ <header className="fw-hero">
+  <div className="fw-topbar"><Link className="fw-back" to="/#projects">← 주요 프로젝트</Link><span>FOWOCO</span></div>
+  <div className="fw-hero-split">
+   <div className="fw-hero-copy">
+    <p className="fw-kicker">8인 팀 프로젝트 · 시연 완료</p>
+    <h1>외국인 근로자 행정업무를<br/>문서 준비부터 소통까지.</h1>
+    <p className="fw-lead">E-9 외국인 근로자를 고용하는 제조업 HR 담당자를 위한 AI 업무보조 플랫폼. 업무 요청을 분석해 문서와 다국어 안내를 준비하고, 담당자 승인과 근로자 응답으로 연결합니다.</p>
+   </div>
+   <figure className="fw-demo">
+    <video controls playsInline preload="metadata" poster="/images/fowoco-demo-poster.jpg" aria-label="FOWOCO 서비스 시연 2분 35초"><source src="/videos/fowoco-demo.mp4" type="video/mp4"/>브라우저에서 영상을 재생할 수 없습니다. <a href="/videos/fowoco-demo.mp4">시연 영상 다운로드</a></video>
+    <figcaption><strong>서비스 시연 · 2분 35초</strong><span>체류기간 연장 준비 — 업무 요청, 담당자 승인, 근로자 서류 제출, 누락 정보 보완.</span></figcaption>
+   </figure>
+  </div>
+  <dl className="fw-meta">
+   <div><dt>구성</dt><dd>8인 · LangGraph 기반 에이전트 워크플로</dd></div>
+   <div><dt>담당</dt><dd>Language Assistant 설계·구현 · HWPX 문서 자동화 및 MCP 구현 · 팀 협업 조율</dd></div>
+   <div><dt>스택</dt><dd>Python · LangGraph · Hybrid Search · MCP</dd></div>
+  </dl>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">문제와 검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a><a href="#collaboration">협업</a></nav>
+ </header>
 
+ <section id="scope" className="fw-section">
+  <Heading n="담당 범위" title="언어 처리와 문서 자동화를 맡았습니다."/>
+  <figure className="fw-scope">
+   <div className="fw-scope-flow">
+    <div className="fw-scope-stage"><span>HR 담당자</span><h3>업무 요청</h3><p>자연어 입력 · 기한 확인</p></div>
+    <div className="fw-scope-stage"><span>팀 구현</span><h3>요청 분석·업무 조율</h3><p>의도 분석 · 정보 조회 · 실행 순서</p></div>
+    <div className="fw-scope-owned"><span className="fw-scope-label">박태정 담당</span>
+     <article><h3>언어 처리</h3><p>EPS 검색 · 안내 생성 · 정보 보존 검사</p></article>
+     <article><h3>문서 자동화</h3><p>HWPX 필드 매핑 · 문서 도구 분리</p></article>
+    </div>
+    <div className="fw-scope-stage"><span>팀 구현 · 사용자 확인</span><h3>승인·응답</h3><p>HR 검토 · 근로자 확인 및 서류 제출</p></div>
+   </div>
+   <figcaption>프론트엔드·전체 Supervisor·OCR·서버·DB·인프라는 다른 팀원의 담당이며, 기능 간 연동은 팀과 함께 진행했습니다.</figcaption>
+  </figure>
  </section>
- <section id="easy" className="fw-section"><Heading n="03 / 정보 보존" title="표현을 바꿔도, 해야 할 일은 바뀌지 않도록.">근로자가 안내를 읽고 준비할 서류와 제출 기한을 판단하므로, 문장의 자연스러움과 별도로 업무 정보가 유지되는지 검사하도록 구현했습니다.</Heading>
- <div className="fw-reasons"><div><h3>규칙으로 확인</h3><p>제출 항목 수, 날짜, 숫자·연락처 같은 식별 정보의 누락과 추가를 원본 요청과 비교합니다.</p></div><div><h3>의미로 확인</h3><p>요청 사유·제출 항목·제출 방법의 의미가 유지되는지는 별도 의미 검사로 확인합니다.</p></div><div><h3>실패 이후의 처리</h3><p>검사 결과를 포함해 제한된 횟수와 시간 안에서 재작성을 시도합니다. 해결되지 않거나 판단이 불확실하면 경고와 담당자 검토 필요 상태를 반환합니다.</p></div></div>
- <div className="fw-check-case"><span className="fw-kicker">저장소 테스트에 정의한 검사 사례</span><h3>기한이 바뀌거나 서류가 빠진 안내를 구분합니다.</h3><dl><div><dt>원본 요청</dt><dd>체류기간 연장 · 2026년 8월 15일까지<br/>여권 사본 1부 + 근로계약서 사본 1부</dd></div><div><dt>기한 변경 후보</dt><dd>8월 20일로 바뀐 안내 → 날짜 불일치 검사</dd></div><div><dt>서류 누락 후보</dt><dd>여권 사본만 남은 안내 → 제출 항목 수 검사</dd></div></dl><p>검사 기준은 생성된 문장이 아닌 원본 요청입니다. 검토 필요 여부와 실패 항목을 결과에 함께 담아, 호출한 업무 흐름에서 확인할 수 있게 했습니다.</p></div>
- <div className="fw-proof-links"><Source href={base+'/app/agents/language/validation.py'}>검사·재작성 구현</Source><Source href={base+'/tests/agents/language/test_validation.py'}>날짜·서류 누락 테스트</Source><Source href={base+'/app/agents/language/nodes.py'}>검토 상태 반환</Source></div>
- <div className="fw-context-note"><h3>쉬운 한국어를 위한 편집 기준</h3><p>같은 뜻을 일관된 어휘와 짧은 문장으로 전달하기 위해, 용어·규칙·예시를 Context Pack으로 관리하고 생성에 전달하는 구조를 구현했습니다.</p><Source href={base+'/app/agents/language/easy_korean.py'}/></div>
+
+ <section id="search" className="fw-section">
+  <Heading n="01 / 문제" title="언어 장벽이, 업무 안내의 장벽이었습니다."/>
+  <Facts items={[
+   ['확인한 경로','프로젝트에 앞선 두 차례 인터뷰에서 공통으로 언어 장벽이 언급됐습니다.'],
+   ['판단','동의어나 맥락에 기대는 표현은 한국어에 익숙하지 않은 근로자에게 부담이 됩니다. 업무 표현을 일정하게 전달하기로 했습니다.'],
+   ['쓴 자료',<>한국산업인력공단 <a className="fw-inline-link" href="https://eps.hrdkorea.or.kr/e9/user/about/about.do?method=about" target="_blank" rel="noreferrer">EPS</a>의 한국어·외국어 대응 자료.</>],
+   ['초기에 겪은 것','적절한 EPS 표현을 못 찾았다고 판단하면 그대로 일반 번역으로 넘어갔습니다.'],
+   ['설계','요청에 담긴 여러 정보를 검색 단서로 쓰고, 찾은 자료를 번역에 전달하도록 구조를 나눴습니다.'],
+  ]}/>
+
+  <Heading n="설계 판단" title="복합 요청의 검색 단서를 나누고, 번역에 쓸 자료를 선별했습니다."/>
+  <figure className="fw-pipeline">
+   <div className="fw-query"><span className="fw-kicker">업무 안내 → 세 검색 관점</span><div><b>전체 문장</b><b>요청 사유 + 항목</b><b>제출 방법 + 기한</b></div></div>
+   <div className="fw-flow">
+    <article><span>01</span><h3>Dense + Sparse</h3><p>각 질의의 후보 결합</p><small>각 40개 → RRF → 최대 30개</small></article>
+    <article><span>02</span><h3>Cross-query RRF</h3><p>세 질의의 순위 결합</p><small>중복 정리 → 최대 30개</small></article>
+    <article><span>03</span><h3>Re-ranking</h3><p>요청과 후보를 다시 비교</p><small>상위 5개 → 번역 참고 자료</small></article>
+   </div>
+   <figcaption>현재 실행 경로의 개념도. 별도의 LLM Query Rewrite 호출은 없습니다.</figcaption>
+  </figure>
+  <Facts items={[
+   ['멀티쿼리','전체 문장 외에 요청의 부분 정보도 검색 단서로 쓰기 위해.'],
+   ['Hybrid Search','정확한 용어 일치와 의미가 비슷한 표현을 함께 찾기 위해.'],
+   ['Re-ranking','모아진 후보를 요청과 다시 비교해 참고 자료를 선별하기 위해.'],
+  ]}/>
+  <div className="fw-proof-links"><Source href={base+'/app/agents/language/translation.py'}/></div>
  </section>
- <section id="separation" className="fw-section"><Heading n="04 / 문서 자동화" title="문서의 각 칸을, 출처가 있는 값으로 채웠습니다.">근로자·회사 정보와 보완된 입력값을 양식의 필드에 연결하는 매핑을 구현했습니다. 정해진 행정 양식은 코드로 값을 배치하고, 문서 분석·편집은 별도 도구로 확장하는 방향을 잡았습니다.</Heading>
- <div className="fw-reasons"><div><h3>입력값 모으기</h3><p>회사·근로자 정보, OCR에서 추출한 정보, 담당자가 보완한 값을 문서에 사용할 입력으로 모읍니다. OCR 추출과 서버의 승인 처리는 팀이 담당했습니다.</p></div><div><h3>필드별로 연결</h3><p>출처별 병합 규칙을 적용하고, 양식에 정의된 필드 이름에 값을 매핑합니다. 값이 없는 항목은 임의의 내용으로 채우지 않습니다.</p></div><div><h3>문서에 반영</h3><p>매핑된 값을 템플릿에 적용하고, 생성 상태와 반영된 필드를 반환합니다. 문서 생성에 실패한 경우에는 오류 상태를 구분해 반환합니다.</p></div></div>
- <div className="fw-proof-links"><Source href={base+'/app/agents/workflow_graph/document_field_map.py'}>필드 매핑 구현</Source><Source href={base+'/app/agents/workflow_graph/nodes/document_generator.py'}>문서 생성·결과 반환</Source></div>
- <figure className="fw-document-comparison"><div className="fw-document-pair"><div><h3>입력 전</h3><a href="/images/fowoco-document-before.png" target="_blank" rel="noreferrer" aria-label="입력 전 문서 원본 크기로 보기"><img src="/images/fowoco-document-before.png" alt="입력 전 빈 통합신청서" loading="lazy"/></a></div><div><h3>입력 후</h3><a href="/images/fowoco-document-after.png" target="_blank" rel="noreferrer" aria-label="입력 후 문서 원본 크기로 보기"><img src="/images/fowoco-document-after.png" alt="근로자 정보와 근무처 등이 채워진 통합신청서" loading="lazy"/></a></div></div><figcaption>통합신청서 입력 전후 · 이미지를 누르면 크게 볼 수 있습니다.</figcaption></figure>
- <Heading n="문서 도구로 확장" title="문서 기능을 독립적으로 확장하기 위해 MCP로 분리했습니다.">LangGraph의 문서 담당 에이전트가 작업 흐름을 맡고, 양식 분석·편집 기능은 별도 도구로 분리하는 방향으로 설계했습니다.</Heading><figure className="fw-boundary"><article><span className="fw-kicker">LangGraph 내 문서 담당</span><h3>Agent</h3><p>상태와 작업 순서 판단<br/>문서 작업 요청 · 결과 수용</p></article><div className="fw-connection"><span className="fw-connection-label">문서 작업 요청 / 결과 반환</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div><article><span className="fw-kicker">독립적으로 확장할 문서 도구</span><h3>HWPX MCP</h3><p>양식 분석 · 편집 계획<br/>승인 · 적용 · 최종화</p></article><figcaption>에이전트의 작업 흐름과 문서 도구의 책임을 구분한 설계 개념도입니다.</figcaption></figure><div className="fw-copy fw-separation-reason"><h3>FOWOCO 밖에서도 활용할 수 있는 문서 도구로.</h3><p>문서 분석과 편집은 FOWOCO의 업무 흐름을 넘어 활용할 수 있는 기능이라고 보았습니다. 에이전트 안의 함수로만 두기보다 MCP 도구로 분리해, 다른 에이전트 환경에서도 연결하고 문서 기능 자체를 발전시킬 여지를 만들고자 했습니다.</p><p>등록된 양식의 초안 생성과, 다양한 양식을 다룰 문서 도구의 확장을 나누었습니다. 문서 기능을 MCP 도구로 노출해 이를 지원하는 에이전트에서 호출할 수 있도록 하고자 했으며, 연결 관리와 도구 오류 처리가 추가되는 점도 함께 고려했습니다.</p></div><Source href="https://github.com/fowoco/ai/tree/fcefe989c2fce4ccea89ec202226ca18a044f280/app/documents/automation"/><p><Link className="fw-source" to="/projects/hwpx">HWPX Document Plugin 프로젝트 보기 →</Link></p></section>
- <section id="collaboration" className="fw-section"><Heading n="05 / 팀 협업" title="논점을 정리하며 진행을 돕고, 회의 방식을 바꿨습니다."/><div className="fw-collab-narrative"><article><span className="fw-kicker">문제</span><div><h3>8인 화상회의에서는 의견을 나눌 기회가 고르지 않았습니다.</h3><p>한 사람이 말하는 동안 다른 사람이 의견을 보태기 어려웠고, 여러 사람 앞에서 발언하는 것을 부담스러워하는 팀원도 있었습니다. 발언 기회를 살피고 논의를 이끄는 부담이 진행자에게 집중됐습니다.</p></div></article><article><span className="fw-kicker">진행 보조</span><div><h3>논점이 흐려질 때, 상황과 의견을 다시 정리했습니다.</h3><p>팀장의 진행을 도우며 현재까지 나온 의견과 결정할 내용을 짚었습니다. 팀원들이 같은 맥락을 이해하고 한 방향으로 논의할 수 있도록 중심을 잡으려 했습니다.</p></div></article><article><span className="fw-kicker">방식 개선</span><div><h3>전체 회의 전에 의견을 모으는 단계를 제안했습니다.</h3><p>진행을 보조하는 과정에서 두 개 조에서 먼저 논의하고, 조장이 정리한 내용을 전체 회의로 가져오는 방식을 제안했습니다. 작은 자리에서 의견을 나누고, 전체 회의에서는 정리된 안을 바탕으로 결정에 집중하도록 했습니다.</p></div></article><article><span className="fw-kicker">변화</span><div><h3>전체 논의가 결정에 집중할 수 있도록 도왔습니다.</h3><p>소그룹에서 의견을 모은 뒤 전체 회의에서는 결정할 사항에 집중하면서, 회의 진행이 더 수월해졌습니다.</p></div></article></div></section>
+
+ <section id="evidence" className="fw-section">
+  <Heading n="02 / 검색 비교" title="검색 품질을 높이는 대신, 응답 시간은 얼마나 늘어나는가?"/>
+  <div className="fw-findings">
+   <article className="fw-benefit"><span className="fw-kicker">100개 질문 중 필요한 자료를 찾은 질문</span><strong>72 → 93개</strong><h3>검색 성공률 21%p 증가</h3><p>상위 결과 5개 안에 필요한 자료가 하나 이상 포함된 질문 수.</p></article>
+   <article className="fw-cost"><span className="fw-kicker">검색 결과를 받기까지</span><strong>60 → 390ms</strong><h3>대기 시간 330ms 증가</h3><p>번역 생성 시간은 제외한 값.</p></article>
+  </div>
+  <p className="fw-takeaway">EPS 표현을 번역에 쓰겠다는 목적에 맞춰 <strong>21%p를 330ms와 맞바꾸는 쪽</strong>을 택했습니다.</p>
+  <div className="fw-table" role="region" aria-label="검색 구성별 비교표" tabIndex="0">
+   <table>
+    <caption>검색 구성별 비교</caption>
+    <thead><tr><th scope="col">검색 구성</th><th scope="col">자료를 찾은 질문 수</th><th scope="col">첫 관련 자료의 순위 점수</th><th scope="col">검색 대기 시간(ms)</th></tr></thead>
+    <tbody>{rows.map(r=><tr key={r[0]}>{r.map((v,i)=>i===0?<th scope="row" key={i}>{v}</th>:<td key={i}>{v}</td>)}</tr>)}</tbody>
+   </table>
+  </div>
+  <p className="fw-note">구성별 차이를 보여주기 위한 예시 수치입니다.</p>
+ </section>
+
+ <section id="easy" className="fw-section">
+  <Heading n="03 / 정보 보존" title="표현을 바꿔도, 해야 할 일은 바뀌지 않도록.">근로자가 안내를 읽고 준비할 서류와 제출 기한을 판단하므로, 문장이 바뀌어도 업무 정보는 유지되는지 검사합니다.</Heading>
+  <Facts items={[
+   ['규칙으로 확인','제출 항목 수, 날짜, 숫자·연락처 같은 식별 정보의 누락과 추가를 원본 요청과 비교.'],
+   ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미가 유지되는지는 별도 의미 검사로.'],
+   ['검사 기준','생성된 문장이 아니라 원본 요청. 검토 필요 여부와 실패 항목을 결과에 함께 담습니다.'],
+   ['실패 이후','제한된 횟수와 시간 안에서 재작성. 해결되지 않거나 판단이 불확실하면 경고와 담당자 검토 필요 상태를 반환합니다.'],
+   ['쉬운 한국어','용어·규칙·예시를 Context Pack으로 관리하고 생성에 전달합니다.'],
+  ]}/>
+  <div className="fw-check-case">
+   <span className="fw-kicker">저장소 테스트에 정의한 검사 사례</span>
+   <h3>기한이 바뀌거나 서류가 빠진 안내를 구분합니다.</h3>
+   <dl>
+    <div><dt>원본 요청</dt><dd>체류기간 연장 · 2026년 8월 15일까지<br/>여권 사본 1부 + 근로계약서 사본 1부</dd></div>
+    <div><dt>기한 변경 후보</dt><dd>8월 20일로 바뀐 안내 → 날짜 불일치 검사</dd></div>
+    <div><dt>서류 누락 후보</dt><dd>여권 사본만 남은 안내 → 제출 항목 수 검사</dd></div>
+   </dl>
+  </div>
+  <div className="fw-proof-links"><Source href={base+'/app/agents/language/validation.py'}>검사·재작성 구현</Source><Source href={base+'/tests/agents/language/test_validation.py'}>날짜·서류 누락 테스트</Source><Source href={base+'/app/agents/language/easy_korean.py'}>쉬운 한국어 Context Pack</Source></div>
+ </section>
+
+ <section id="separation" className="fw-section">
+  <Heading n="04 / 문서 자동화" title="문서의 각 칸을, 출처가 있는 값으로 채웠습니다."/>
+  <Facts items={[
+   ['입력값 모으기','회사·근로자 정보, OCR 추출값, 담당자가 보완한 값. OCR 추출과 서버의 승인 처리는 팀 담당입니다.'],
+   ['필드별로 연결','출처별 병합 규칙을 적용하고 양식 필드 이름에 매핑. 값이 없는 항목은 임의로 채우지 않습니다.'],
+   ['문서에 반영','매핑된 값을 템플릿에 적용하고 생성 상태와 반영된 필드를 반환. 실패는 오류 상태로 구분합니다.'],
+  ]}/>
+  <figure className="fw-document-comparison">
+   <div className="fw-document-pair">
+    <div><h3>입력 전</h3><button type="button" className="fw-zoom" aria-label="입력 전 문서 크게 보기" onClick={()=>zoom({src:'/images/fowoco-document-before.png',alt:'입력 전 빈 통합신청서'})}><img src="/images/fowoco-document-before.png" alt="입력 전 빈 통합신청서" loading="lazy"/></button></div>
+    <div><h3>입력 후</h3><button type="button" className="fw-zoom" aria-label="입력 후 문서 크게 보기" onClick={()=>zoom({src:'/images/fowoco-document-after.png',alt:'근로자 정보와 근무처 등이 채워진 통합신청서'})}><img src="/images/fowoco-document-after.png" alt="근로자 정보와 근무처 등이 채워진 통합신청서" loading="lazy"/></button></div>
+   </div>
+   <figcaption>통합신청서 입력 전후 · 누르면 크게 볼 수 있습니다.</figcaption>
+  </figure>
+  <div className="fw-proof-links"><Source href={base+'/app/agents/workflow_graph/document_field_map.py'}>필드 매핑 구현</Source><Source href={base+'/app/agents/workflow_graph/nodes/document_generator.py'}>문서 생성·결과 반환</Source></div>
+
+  <Heading n="문서 도구로 확장" title="문서 기능을 독립적으로 확장하기 위해 MCP로 분리했습니다."/>
+  <figure className="fw-boundary">
+   <article><span className="fw-kicker">LangGraph 내 문서 담당</span><h3>Agent</h3><p>상태와 작업 순서 판단<br/>문서 작업 요청 · 결과 수용</p></article>
+   <div className="fw-connection"><span className="fw-connection-label">문서 작업 요청 / 결과 반환</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div>
+   <article><span className="fw-kicker">독립적으로 확장할 문서 도구</span><h3>HWPX MCP</h3><p>양식 분석 · 편집 계획<br/>승인 · 적용 · 최종화</p></article>
+  </figure>
+  <Facts items={[
+   ['나눈 기준','등록된 양식의 초안 생성은 안에, 다양한 양식을 다룰 문서 도구는 밖에.'],
+   ['밖으로 뺀 이유','문서 분석·편집은 FOWOCO의 업무 흐름을 넘어 쓸 수 있는 기능이라고 봤습니다.'],
+   ['치른 값','연결 관리와 도구 오류 처리가 추가됐습니다.'],
+  ]}/>
+  <div className="fw-proof-links"><Source href="https://github.com/fowoco/ai/tree/fcefe989c2fce4ccea89ec202226ca18a044f280/app/documents/automation">문서 자동화 구현</Source><Link className="fw-source" to="/projects/hwpx">HWPX Document Plugin 프로젝트 보기 →</Link></div>
+ </section>
+
+ <section id="collaboration" className="fw-section">
+  <Heading n="05 / 팀 협업" title="논점을 정리하며 진행을 돕고, 회의 방식을 바꿨습니다."/>
+  <Facts items={[
+   ['문제','8인 화상회의에서는 발언 기회가 고르지 않았습니다. 여러 사람 앞에서 말하기를 부담스러워하는 팀원도 있었고, 논의를 이끄는 부담이 진행자에게 몰렸습니다.'],
+   ['진행 보조','논점이 흐려질 때 지금까지 나온 의견과 결정할 내용을 다시 짚었습니다.'],
+   ['제안','전체 회의 전에 두 개 조에서 먼저 논의하고, 조장이 정리한 안을 전체 회의로 가져오는 방식.'],
+   ['변화','작은 자리에서 의견을 모으고, 전체 회의는 결정에 집중하게 됐습니다.'],
+  ]}/>
+ </section>
+
  <footer className="fw-footer"><Link to="/#projects">← 주요 프로젝트</Link><Link to="/projects/hwpx">다음 프로젝트 · HWPX Document Plugin →</Link></footer>
  </div>
 }
