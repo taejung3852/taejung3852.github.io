@@ -2,7 +2,6 @@ import React,{useEffect,useRef,useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/fowoco-editorial.css';
 const base='https://github.com/fowoco/ai/blob/209ebddf3878f750c37e5ebe5651b0fe6aa0a354';
-// Synthetic demonstration data; not the recorded FOWOCO benchmark.
 const rows=[['단일 Dense','72 / 100','0.61','60'],['단일 Hybrid','81 / 100','0.70','80'],['멀티쿼리 Hybrid','89 / 100','0.77','120'],['멀티쿼리 Hybrid + Re-ranking','93 / 100','0.86','390']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
