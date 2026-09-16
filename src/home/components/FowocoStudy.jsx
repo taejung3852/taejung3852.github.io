@@ -31,7 +31,7 @@ export default function FowocoStudy(){
    </figure>
   </div>
   <dl className="fw-meta">
-   <div><dt>구성</dt><dd>8인 · LangGraph 기반 에이전트 워크플로</dd></div>
+   <div><dt>구성</dt><dd>LangGraph 기반 에이전트 워크플로 · EPS Hybrid Search</dd></div>
    <div><dt>담당</dt><dd>Language Assistant 설계·구현 · HWPX 문서 자동화 및 MCP 구현 · 팀 협업 조율</dd></div>
    <div><dt>스택</dt><dd>Python · LangGraph · Hybrid Search · MCP</dd></div>
   </dl>
@@ -39,7 +39,7 @@ export default function FowocoStudy(){
  </header>
 
  <section id="scope" className="fw-section">
-  <Heading n="담당 범위" title="언어 처리와 문서 자동화를 맡았습니다."/>
+  <Heading n="00 / 담당 범위" title="언어 처리와 문서 자동화를 맡았습니다."/>
   <figure className="fw-scope">
    <div className="fw-scope-flow">
     <div className="fw-scope-stage"><span>HR 담당자</span><h3>업무 요청</h3><p>자연어 입력 · 기한 확인</p></div>
@@ -64,7 +64,7 @@ export default function FowocoStudy(){
    ['설계','요청에 담긴 여러 정보를 검색 단서로 쓰고, 찾은 자료를 번역에 전달하도록 구조를 나눴습니다.'],
   ]}/>
 
-  <Heading n="설계 판단" title="복합 요청의 검색 단서를 나누고, 번역에 쓸 자료를 선별했습니다."/>
+  <Heading n="01-1 / 설계 판단" title="복합 요청의 검색 단서를 나누고, 번역에 쓸 자료를 선별했습니다."/>
   <figure className="fw-pipeline">
    <div className="fw-query"><span className="fw-kicker">업무 안내 → 세 검색 관점</span><div><b>전체 문장</b><b>요청 사유 + 항목</b><b>제출 방법 + 기한</b></div></div>
    <div className="fw-flow">
@@ -136,7 +136,7 @@ export default function FowocoStudy(){
   </figure>
   <div className="fw-proof-links"><Source href={base+'/app/agents/workflow_graph/document_field_map.py'}>필드 매핑 구현</Source><Source href={base+'/app/agents/workflow_graph/nodes/document_generator.py'}>문서 생성·결과 반환</Source></div>
 
-  <Heading n="문서 도구로 확장" title="문서 기능을 독립적으로 확장하기 위해 MCP로 분리했습니다."/>
+  <Heading n="04-1 / 문서 도구로 확장" title="문서 기능을 독립적으로 확장하기 위해 MCP로 분리했습니다."/>
   <figure className="fw-boundary">
    <article><span className="fw-kicker">LangGraph 내 문서 담당</span><h3>Agent</h3><p>상태와 작업 순서 판단<br/>문서 작업 요청 · 결과 수용</p></article>
    <div className="fw-connection"><span className="fw-connection-label">문서 작업 요청 / 결과 반환</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div>

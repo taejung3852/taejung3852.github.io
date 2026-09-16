@@ -31,7 +31,7 @@ export default function GatewayStudy(){
    </figure>
   </div>
   <dl className="fw-meta">
-   <div><dt>구성</dt><dd>2인 · Spring Boot + LangChain4j</dd></div>
+   <div><dt>구성</dt><dd>모델 선택 기준 4종 · WebSocket 스트리밍</dd></div>
    <div><dt>담당</dt><dd>모델 호출·스트리밍 연동 · 모델 메타데이터 확장 · 실행 환경 구성</dd></div>
    <div><dt>스택</dt><dd>Java · LangChain4j · AWS SageMaker JumpStart · Ollama · WebSocket</dd></div>
   </dl>
