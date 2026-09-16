@@ -27,7 +27,7 @@ export default function FowocoStudy(){
    </div>
    <figure className="fw-demo">
     <video controls playsInline preload="metadata" poster="/images/fowoco-demo-poster.jpg" aria-label="FOWOCO 서비스 시연 2분 35초"><source src="/videos/fowoco-demo.mp4" type="video/mp4"/>브라우저에서 영상을 재생할 수 없습니다. <a href="/videos/fowoco-demo.mp4">시연 영상 다운로드</a></video>
-    <figcaption><strong>서비스 시연 · 2분 35초</strong><span>체류기간 연장 준비 — 업무 요청, 담당자 승인, 근로자 서류 제출, 누락 정보 보완.</span></figcaption>
+    <figcaption><strong>서비스 시연 · 2분 35초</strong><span>체류기간 연장 준비 — 업무 요청 · 담당자 승인 · 근로자 서류 제출 · 누락 정보 보완</span></figcaption>
    </figure>
   </div>
   <dl className="fw-meta">
@@ -50,18 +50,18 @@ export default function FowocoStudy(){
     </div>
     <div className="fw-scope-stage"><span>팀 구현 · 사용자 확인</span><h3>승인·응답</h3><p>HR 검토 · 근로자 확인 및 서류 제출</p></div>
    </div>
-   <figcaption>프론트엔드·전체 Supervisor·OCR·서버·DB·인프라는 다른 팀원의 담당이며, 기능 간 연동은 팀과 함께 진행했습니다.</figcaption>
+   <figcaption>프론트엔드 · 전체 Supervisor · OCR · 서버 · DB · 인프라는 다른 팀원 담당. 기능 간 연동은 팀과 함께 진행했습니다.</figcaption>
   </figure>
  </section>
 
  <section id="search" className="fw-section">
   <Heading n="01 / 문제" title="언어 장벽이, 업무 안내의 장벽이었습니다."/>
   <Facts items={[
-   ['확인한 경로','프로젝트에 앞선 두 차례 인터뷰에서 공통으로 언어 장벽이 언급됐습니다.'],
-   ['판단','동의어나 맥락에 기대는 표현은 한국어에 익숙하지 않은 근로자에게 부담이 됩니다. 업무 표현을 일정하게 전달하기로 했습니다.'],
-   ['쓴 자료',<>한국산업인력공단 <a className="fw-inline-link" href="https://eps.hrdkorea.or.kr/e9/user/about/about.do?method=about" target="_blank" rel="noreferrer">EPS</a>의 한국어·외국어 대응 자료.</>],
-   ['초기에 겪은 것','적절한 EPS 표현을 못 찾았다고 판단하면 그대로 일반 번역으로 넘어갔습니다.'],
-   ['설계','요청에 담긴 여러 정보를 검색 단서로 쓰고, 찾은 자료를 번역에 전달하도록 구조를 나눴습니다.'],
+   ['확인한 경로','프로젝트에 앞선 인터뷰 2회 — 공통으로 언어 장벽이 언급됨'],
+   ['판단','동의어·맥락에 기대는 표현은 부담 → 업무 표현을 일정하게 전달하기로'],
+   ['쓴 자료',<>한국산업인력공단 <a className="fw-inline-link" href="https://eps.hrdkorea.or.kr/e9/user/about/about.do?method=about" target="_blank" rel="noreferrer">EPS</a>의 한국어·외국어 대응 자료</>],
+   ['초기에 겪은 것','적절한 EPS 표현을 못 찾으면 그대로 일반 번역으로 넘어감'],
+   ['설계','요청의 여러 정보를 검색 단서로 사용 → 찾은 자료를 번역에 전달'],
   ]}/>
 
   <Heading n="01-1 / 설계 판단" title="복합 요청의 검색 단서를 나누고, 번역에 쓸 자료를 선별했습니다."/>
@@ -75,9 +75,9 @@ export default function FowocoStudy(){
    <figcaption>현재 실행 경로의 개념도. 별도의 LLM Query Rewrite 호출은 없습니다.</figcaption>
   </figure>
   <Facts items={[
-   ['멀티쿼리','전체 문장 외에 요청의 부분 정보도 검색 단서로 쓰기 위해.'],
-   ['Hybrid Search','정확한 용어 일치와 의미가 비슷한 표현을 함께 찾기 위해.'],
-   ['Re-ranking','모아진 후보를 요청과 다시 비교해 참고 자료를 선별하기 위해.'],
+   ['멀티쿼리','전체 문장 외에 요청의 부분 정보도 검색 단서로'],
+   ['Hybrid Search','정확한 용어 일치 + 의미가 비슷한 표현을 함께'],
+   ['Re-ranking','모아진 후보를 요청과 재비교해 참고 자료 선별'],
   ]}/>
   <div className="fw-proof-links"><Source href={base+'/app/agents/language/translation.py'}/></div>
  </section>
@@ -100,13 +100,13 @@ export default function FowocoStudy(){
  </section>
 
  <section id="easy" className="fw-section">
-  <Heading n="03 / 정보 보존" title="표현을 바꿔도, 해야 할 일은 바뀌지 않도록.">근로자가 안내를 읽고 준비할 서류와 제출 기한을 판단하므로, 문장이 바뀌어도 업무 정보는 유지되는지 검사합니다.</Heading>
+  <Heading n="03 / 정보 보존" title="표현을 바꿔도, 해야 할 일은 바뀌지 않도록.">근로자는 안내를 읽고 서류와 기한을 판단합니다. 문장이 바뀌어도 업무 정보는 유지되는지 검사합니다.</Heading>
   <Facts items={[
-   ['규칙으로 확인','제출 항목 수, 날짜, 숫자·연락처 같은 식별 정보의 누락과 추가를 원본 요청과 비교.'],
-   ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미가 유지되는지는 별도 의미 검사로.'],
-   ['검사 기준','생성된 문장이 아니라 원본 요청. 검토 필요 여부와 실패 항목을 결과에 함께 담습니다.'],
-   ['실패 이후','제한된 횟수와 시간 안에서 재작성. 해결되지 않거나 판단이 불확실하면 경고와 담당자 검토 필요 상태를 반환합니다.'],
-   ['쉬운 한국어','용어·규칙·예시를 Context Pack으로 관리하고 생성에 전달합니다.'],
+   ['규칙으로 확인','제출 항목 수 · 날짜 · 숫자·연락처의 누락과 추가를 원본 요청과 비교'],
+   ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미 유지 여부를 별도 검사'],
+   ['검사 기준','생성된 문장이 아니라 원본 요청 · 검토 필요 여부와 실패 항목을 결과에 포함'],
+   ['실패 이후','제한된 횟수·시간 안에서 재작성 → 미해결이면 경고와 담당자 검토 필요 상태 반환'],
+   ['쉬운 한국어','용어·규칙·예시를 Context Pack으로 관리해 생성에 전달'],
   ]}/>
   <div className="fw-check-case">
    <span className="fw-kicker">저장소 테스트에 정의한 검사 사례</span>
@@ -123,9 +123,9 @@ export default function FowocoStudy(){
  <section id="separation" className="fw-section">
   <Heading n="04 / 문서 자동화" title="문서의 각 칸을, 출처가 있는 값으로 채웠습니다."/>
   <Facts items={[
-   ['입력값 모으기','회사·근로자 정보, OCR 추출값, 담당자가 보완한 값. OCR 추출과 서버의 승인 처리는 팀 담당입니다.'],
-   ['필드별로 연결','출처별 병합 규칙을 적용하고 양식 필드 이름에 매핑. 값이 없는 항목은 임의로 채우지 않습니다.'],
-   ['문서에 반영','매핑된 값을 템플릿에 적용하고 생성 상태와 반영된 필드를 반환. 실패는 오류 상태로 구분합니다.'],
+   ['입력값 모으기','회사·근로자 정보 · OCR 추출값 · 담당자 보완값 (OCR·승인 처리는 팀 담당)'],
+   ['필드별로 연결','출처별 병합 규칙 적용 후 양식 필드 이름에 매핑 · 값이 없으면 비워 둠'],
+   ['문서에 반영','템플릿에 적용 후 생성 상태와 반영된 필드 반환 · 실패는 오류 상태로 구분'],
   ]}/>
   <figure className="fw-document-comparison">
    <div className="fw-document-pair">
@@ -143,9 +143,9 @@ export default function FowocoStudy(){
    <article><span className="fw-kicker">독립적으로 확장할 문서 도구</span><h3>HWPX MCP</h3><p>양식 분석 · 편집 계획<br/>승인 · 적용 · 최종화</p></article>
   </figure>
   <Facts items={[
-   ['나눈 기준','등록된 양식의 초안 생성은 안에, 다양한 양식을 다룰 문서 도구는 밖에.'],
-   ['밖으로 뺀 이유','문서 분석·편집은 FOWOCO의 업무 흐름을 넘어 쓸 수 있는 기능이라고 봤습니다.'],
-   ['치른 값','연결 관리와 도구 오류 처리가 추가됐습니다.'],
+   ['나눈 기준','등록된 양식의 초안 생성은 안에 · 다양한 양식을 다룰 문서 도구는 밖에'],
+   ['밖으로 뺀 이유','문서 분석·편집은 이 업무 흐름을 넘어 쓸 수 있는 기능'],
+   ['치른 값','연결 관리와 도구 오류 처리'],
   ]}/>
   <div className="fw-proof-links"><Source href="https://github.com/fowoco/ai/tree/fcefe989c2fce4ccea89ec202226ca18a044f280/app/documents/automation">문서 자동화 구현</Source><Link className="fw-source" to="/projects/hwpx">HWPX Document Plugin 프로젝트 보기 →</Link></div>
  </section>
@@ -153,10 +153,10 @@ export default function FowocoStudy(){
  <section id="collaboration" className="fw-section">
   <Heading n="05 / 팀 협업" title="논점을 정리하며 진행을 돕고, 회의 방식을 바꿨습니다."/>
   <Facts items={[
-   ['문제','8인 화상회의에서는 발언 기회가 고르지 않았습니다. 여러 사람 앞에서 말하기를 부담스러워하는 팀원도 있었고, 논의를 이끄는 부담이 진행자에게 몰렸습니다.'],
-   ['진행 보조','논점이 흐려질 때 지금까지 나온 의견과 결정할 내용을 다시 짚었습니다.'],
-   ['제안','전체 회의 전에 두 개 조에서 먼저 논의하고, 조장이 정리한 안을 전체 회의로 가져오는 방식.'],
-   ['변화','작은 자리에서 의견을 모으고, 전체 회의는 결정에 집중하게 됐습니다.'],
+   ['문제','8인 화상회의에서 발언 기회가 고르지 않음 · 논의를 이끄는 부담이 진행자에게 집중'],
+   ['진행 보조','논점이 흐려질 때 나온 의견과 결정할 내용을 다시 정리'],
+   ['제안','전체 회의 전 2개 조에서 선논의 → 조장이 정리한 안을 전체 회의로'],
+   ['변화','작은 자리에서 의견 수렴 · 전체 회의는 결정에 집중'],
   ]}/>
  </section>
 

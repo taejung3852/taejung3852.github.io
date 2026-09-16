@@ -41,11 +41,11 @@ export default function HwpxStudy(){
  <section id="origin" className="fw-section">
   <Heading n="00 / 시작" title="한글 문서를 다뤄 주는 도구가 없었습니다."/>
   <Facts items={[
-   ['빠져 있던 것','ChatGPT는 Word·PowerPoint·Excel을 열어 고칩니다. 한국 공문서에 가장 많이 쓰는 HWPX는 빠져 있습니다.'],
-   ['처음 만든 곳',<>외국인 근로자 행정업무를 돕는 <Link className="fw-inline-link" to="/projects/fowoco">FOWOCO</Link>. 체류 서류가 대부분 HWPX라, LangGraph 흐름 안의 서브그래프로 직접 만들었습니다.</>],
-   ['커진 이유','양식마다 구조가 달라 분석·확인·검증이 차례로 붙었고, 상담 흐름을 조율하는 코드와 뒤섞였습니다.'],
-   ['내린 판단','내부 함수로 묶으면 그 서비스에서만 씁니다. MCP 도구로 경계를 긋고 밖으로 뺐습니다.'],
-   ['치른 값','연결 관리와 도구 오류 처리를 떠안았습니다.'],
+   ['빠져 있던 것','Word·PowerPoint·Excel은 열어 고칩니다. 한국 공문서에 가장 많이 쓰는 HWPX만 빠져 있었습니다.'],
+   ['처음 만든 곳',<>외국인 근로자 행정업무를 돕는 <Link className="fw-inline-link" to="/projects/fowoco">FOWOCO</Link>. 체류 서류가 대부분 HWPX — LangGraph 흐름의 서브그래프로 직접 구현</>],
+   ['커진 이유','양식마다 구조가 달라 분석·확인·검증이 차례로 추가 · 상담 흐름을 조율하는 코드와 혼재'],
+   ['내린 판단','내부 함수로 두면 그 서비스 전용 → MCP 도구로 경계를 긋고 분리'],
+   ['치른 값','연결 관리와 도구 오류 처리'],
   ]}/>
   <p><Link className="fw-source" to="/projects/fowoco">FOWOCO에서의 분리 과정 보기 →</Link></p>
  </section>
@@ -53,8 +53,8 @@ export default function HwpxStudy(){
  <section id="analyze" className="fw-section">
   <Heading n="01 / 분석" title="플러그인 없이, ChatGPT 웹에서 두 번 돌려봤습니다."/>
   <Facts items={[
-   ['첫 번째','외국인등록번호가 낱칸에 맞춰지지 못하고 뭉침 · 성별 미체크 · 요청하지 않은 예정 근무처와 서명란까지 채움'],
-   ['두 번째','같은 양식인데 낱칸까지 정확 · 성별 체크됨 · 요청하지 않은 칸은 건드리지 않음'],
+   ['첫 번째','외국인등록번호 낱칸 정렬 실패 · 성별 미체크 · 요청하지 않은 예정 근무처와 서명란까지 기입'],
+   ['두 번째','낱칸까지 정확 · 성별 체크 · 요청하지 않은 칸 유지'],
   ]}/>
   <div className="hx-shots">
    <figure><span className="fw-kicker">첫 번째 실행</span><div><button type="button" className="fw-zoom" aria-label="첫 번째 실행 결과 크게 보기" onClick={()=>zoom({src:'/images/hwpx-overfill.png',alt:'플러그인 없이 작성된 통합신청서 첫 번째 결과. 외국인등록번호가 작성 칸에 맞지 않게 뭉개져 있고, 성별이 체크되지 않았으며, 서명란에 글자가 들어가 있다.'})}><img src="/images/hwpx-overfill.png" alt="플러그인 없이 작성된 통합신청서 첫 번째 결과" width="1132" height="1596" loading="lazy"/></button></div></figure>
@@ -71,11 +71,11 @@ export default function HwpxStudy(){
  <section id="problem" className="fw-section">
   <Heading n="02 / 문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다."/>
   <Facts items={[
-   ['읽히는 것',<>HWPX는 XML을 압축한 형식. <Field>성 Surname</Field> 같은 문구가 어느 셀에 있는지는 그대로 읽힙니다.</>],
-   ['읽히지 않는 것','그 문항의 답을 어느 칸에 쓸지는 파일 어디에도 없습니다. 사람이 볼 때의 배치로만 드러납니다.'],
-   ['같은 문구가 네 곳',<><Field>전화번호 Phone No.</Field>가 본국 주소·학교·원 근무처·예정 근무처에 하나씩. 문구만으로는 구분되지 않습니다.</>],
-   ['한 값이 여러 칸','생년월일 3칸, 외국인등록번호 13칸에 한 자씩. 어디에 쓸지뿐 아니라 어떻게 쪼갤지도 정해야 합니다.'],
-   ['규모','이 양식 한 장에 셀 157개'],
+   ['읽히는 것',<>HWPX = 압축된 XML. <Field>성 Surname</Field> 문구가 놓인 셀은 그대로 조회됩니다.</>],
+   ['읽히지 않는 것','그 문항의 답을 쓸 칸. 파일에 없고, 사람이 보는 배치로만 드러납니다.'],
+   ['같은 문구가 네 곳',<><Field>전화번호 Phone No.</Field>— 본국 주소·학교·원 근무처·예정 근무처에 각 1개. 문구로는 구분 불가.</>],
+   ['한 값이 여러 칸','생년월일 3칸 · 외국인등록번호 13칸에 한 자씩. 쓸 위치와 쪼갤 방식을 함께 정해야 합니다.'],
+   ['규모','한 장에 셀 157개'],
   ]}/>
   <figure className="fw-cover">
    <button type="button" className="fw-zoom" aria-label="빈 원본 양식 크게 보기" onClick={()=>zoom({src:'/images/hwpx-blank-2.png',alt:'빈 통합신청서의 인적사항·주소·근무처 구간. 같은 문구의 전화번호 칸 네 곳이 빨간 사각형으로 표시되어 있다.'})}><img src="/images/hwpx-blank-2.png" alt="빈 통합신청서의 인적사항·주소·근무처 구간. 같은 문구의 전화번호 칸 네 곳이 빨간 사각형으로 표시되어 있다." width="794" height="423" loading="lazy"/></button>
@@ -86,9 +86,9 @@ export default function HwpxStudy(){
  <section id="process" className="fw-section">
   <Heading n="03 / 검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다."/>
   <Facts items={[
-   ['자리를 그림으로','값을 넣을 칸을 파란 박스로 표시해 보여주고, 아니라고 하면 위치를 고쳐 다시 묻습니다.'],
-   ['묶어서 묻기','인적사항·여권·주소·근무처처럼 성격이 같은 항목끼리 묶어 확인 화면 수를 줄였습니다.'],
-   ['못 쓰는 칸','서명란은 사람이, 공용란은 담당 공무원이 쓰는 자리. 여기에 값을 넣는 계획은 편집 단계에서 거절됩니다.'],
+   ['자리를 그림으로','값을 넣을 칸을 파란 박스로 표시 → 아니라고 하면 위치를 고쳐 재확인'],
+   ['묶어서 묻기','인적사항·여권·주소·근무처 단위로 묶어 확인 화면 수 축소'],
+   ['금지 구역','서명란은 사람, 공용란은 담당 공무원. 값을 넣는 계획은 편집 단계에서 거절'],
   ]}/>
   <figure className="fw-cover">
    <button type="button" className="fw-zoom" aria-label="확인 화면 크게 보기" onClick={()=>zoom({src:'/images/hwpx-confirm.png',alt:'통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림'})}><img src="/images/hwpx-confirm.png" alt="통합신청서의 성명·생년월일·성별·국적 칸에 파란 사각형이 표시된 확인용 그림" width="794" height="143" loading="lazy"/></button>
@@ -141,10 +141,10 @@ export default function HwpxStudy(){
 
   <Heading n="04-2 / 구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다."/>
   <Facts items={[
-   ['룰 기반 검사','확인받은 자리에만 들어갔는지 · 손대지 않기로 한 칸이 그대로인지 · 표와 페이지가 틀어지지 않았는지 · 파일이 다시 열리는지'],
-   ['이번 실행 결과','편집 계획 20건 → 바뀐 셀 34개가 기대와 모두 일치'],
-   ['에이전트 검토','구역별로 그려 비교한 이미지를 에이전트가 직접 읽고 최종 확인. 수치로 안 걸러지는 어긋남을 잡는 단계입니다.'],
-   ['이 검사의 한계','기대와 일치한다는 건 계획대로 들어갔다는 뜻이지, 계획이 옳았다는 뜻은 아닙니다. 위 소득금액이 그 경우입니다.'],
+   ['룰 기반 검사','확인된 자리만 변경 · 보호 칸 유지 · 표와 페이지 정렬 · 파일 재개봉'],
+   ['이번 실행 결과','편집 계획 20건 → 변경 셀 34개, 기대와 전건 일치'],
+   ['에이전트 검토','구역별 대조 이미지를 에이전트가 직접 판독. 수치로 안 걸러지는 어긋남을 확인'],
+   ['이 검사의 한계','기대 일치 = 계획대로 실행됨. 계획이 옳았다는 뜻은 아닙니다 — 위 소득금액이 그 경우'],
   ]}/>
   <div className="hx-bands">
    {bands.map(([label,desc],i)=><figure key={label}><span className="fw-kicker">{label}</span><div><button type="button" className="fw-zoom" aria-label={`${label} 비교 이미지 크게 보기`} onClick={()=>zoom({src:`/images/hwpx-band-${i+1}.png`,alt:`${label} — ${desc} 영역의 원본·수정본 상세 비교`})}><img src={`/images/hwpx-band-${i+1}.png`} alt={`${label} — ${desc} 영역의 원본·수정본 상세 비교`} loading="lazy"/></button></div></figure>)}
@@ -156,10 +156,10 @@ export default function HwpxStudy(){
  <section id="compose" className="fw-section">
   <Heading n="05 / 구성" title="편집 도구는 MCP로, 쓰는 순서는 Skill로 나눴습니다."/>
   <Facts items={[
-   ['드러난 문제','MCP 도구만 열어 두자 에이전트가 순서를 틀렸습니다. 분석 전에 필드를 조회하고, 위치 확인을 건너뛰었습니다.'],
-   ['원인','MCP는 도구를 제공할 뿐, 언제 어떤 순서로 쓰는지는 담기지 않습니다.'],
-   ['해결','순서를 Agent Skills에 적고, 어긋난 호출은 MCP가 거절하도록 했습니다.'],
-   ['묶은 이유','도구와 사용법을 함께 배포해야 해서 하나의 플러그인으로 패키징했습니다.'],
+   ['드러난 문제','도구만 열어 두자 순서 오류 — 분석 전 필드 조회, 위치 확인 생략'],
+   ['원인','MCP는 도구만 제공. 언제 어떤 순서로 쓰는지는 담기지 않습니다.'],
+   ['해결','순서를 Agent Skills에 정의 · 어긋난 호출은 MCP가 거절'],
+   ['패키징','도구와 사용법을 함께 배포해야 해서 플러그인 하나로 묶음'],
   ]}/>
   <figure className="fw-boundary">
    <article><span className="fw-kicker">mcp.json · 도구 25종</span><h3>MCP 서버</h3><p>가져오기 · 분석 · 확인 · 편집 · 검증<br/>문서를 실제로 다루는 동작</p></article>
@@ -173,9 +173,9 @@ export default function HwpxStudy(){
  <section id="future" className="fw-section">
   <Heading n="06 / 향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것."/>
   <Facts items={[
-   ['목표','마켓플레이스 승인을 받아, 설치 없이 ChatGPT 웹에서 문서를 첨부하면 바로 동작하게 하는 것'],
-   ['필요한 것','전송을 STDIO에서 Streamable HTTP로 전환 · 서버는 AWS EC2 · 원본과 작업공간은 S3'],
-   ['현재','아직 구현하지 않은 계획입니다. 저장소의 동작은 STDIO 기준입니다.'],
+   ['목표','마켓플레이스 승인 → 설치 없이 ChatGPT 웹에서 문서 첨부만으로 동작'],
+   ['필요한 것','STDIO → Streamable HTTP · 서버 AWS EC2 · 원본과 작업공간 S3'],
+   ['현재','미구현 계획. 저장소 동작은 STDIO 기준'],
   ]}/>
  </section>
 

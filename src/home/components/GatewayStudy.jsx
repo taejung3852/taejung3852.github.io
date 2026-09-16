@@ -41,10 +41,10 @@ export default function GatewayStudy(){
  <section id="integration" className="fw-section">
   <Heading n="01 / 모델 연결" title="서로 다른 모델을, 하나의 호출로 부릅니다."/>
   <Facts items={[
-   ['문제','당시 LangChain4j 베타는 일부 오픈소스 모델의 연동을 지원하지 않았습니다. 요청·응답 형식이 다른 모델들을 붙일 방법이 필요했습니다.'],
-   ['해결','지원하는 연동은 그대로 쓰고, 없는 모델은 요청·응답 변환을 직접 구현했습니다.'],
-   ['설계 기준','모델별 차이를 연결 부분에서 흡수해, 서비스는 어느 모델이 선택돼도 같은 방식으로 호출합니다.'],
-   ['확인한 것','개발 당시 인터페이스에서 선택한 모델로 요청이 연결되는 것을 확인했습니다.'],
+   ['문제','당시 LangChain4j 베타가 일부 오픈소스 모델 연동을 미지원 · 요청·응답 형식이 다른 모델을 붙일 방법이 필요'],
+   ['해결','지원하는 연동은 그대로 사용 · 없는 모델은 요청·응답 변환을 직접 구현'],
+   ['설계 기준','모델별 차이를 연결 계층에서 흡수 → 서비스는 항상 같은 방식으로 호출'],
+   ['확인한 것','개발 당시 인터페이스에서 선택한 모델로 요청이 연결되는 것을 확인'],
   ]}/>
   <figure className="fw-boundary">
    <article><span className="fw-kicker">기존 기능 활용</span><h3>LangChain4j 제공 연동</h3><p>기본 연동을 지원하는 모델</p></article>
@@ -61,10 +61,10 @@ export default function GatewayStudy(){
  <section id="runtime" className="fw-section">
   <Heading n="02 / 실행 환경" title="검증은 클라우드에서, 운영은 보유 GPU에서."/>
   <Facts items={[
-   ['문제','직접 GPU 환경을 구축하기 전에, 서비스와 오픈소스 모델이 연결되는지부터 빠르게 확인해야 했습니다.'],
-   ['먼저 택한 것','비용이 들더라도 바로 띄울 수 있는 AWS SageMaker JumpStart. 연동 가능성 확인이 목적이었습니다.'],
-   ['확인 후 전환','클라우드 지출을 줄이기 위해 보유 GPU에 Ollama 환경을 구성했습니다.'],
-   ['결과','약 3주간 베타 서비스를 운영했습니다. 부분 응답과 완료·오류 이벤트를 WebSocket 기반 전달·저장 흐름에 연결했습니다.'],
+   ['문제','GPU 환경 구축 전에 서비스와 오픈소스 모델의 연결 가능 여부부터 확인 필요'],
+   ['먼저 택한 것','AWS SageMaker JumpStart — 비용이 들더라도 바로 띄울 수 있음. 목적은 연동 검증'],
+   ['확인 후 전환','클라우드 지출 절감을 위해 보유 GPU에 Ollama 환경 구성'],
+   ['결과','베타 서비스 약 3주 운영 · 부분 응답과 완료·오류 이벤트를 WebSocket 전달·저장 흐름에 연결'],
   ]}/>
   <div className="fw-proof-links">
    {commits.map(([label,sha])=><Source key={sha} href={repo+'/commit/'+sha}>{label}</Source>)}
@@ -75,10 +75,10 @@ export default function GatewayStudy(){
  <section id="reflection" className="fw-section">
   <Heading n="회고" title="응답 스트리밍에, 양방향 연결이 꼭 필요했을까?"/>
   <Facts items={[
-   ['당시 선택','실시간 채팅을 구현하려고 WebSocket을 썼습니다.'],
-   ['실제 요구','사용자 요청을 한 번 받고, 서버가 생성한 응답을 순차적으로 내려보내는 것이었습니다.'],
-   ['지금이라면','요청은 REST, 응답은 SSE로 내려보내는 구성을 먼저 검토하겠습니다.'],
-   ['남는 질문','양방향 연결과 구독 관리가 실제 요구에 비해 복잡했던 것은 아닌지.'],
+   ['당시 선택','실시간 채팅을 구현하려고 WebSocket 채택'],
+   ['실제 요구','요청을 한 번 받고, 생성된 응답을 순차적으로 내려보내는 것'],
+   ['지금이라면','요청 REST + 응답 SSE 구성을 먼저 검토'],
+   ['남는 질문','양방향 연결과 구독 관리가 실제 요구에 비해 과했던 것은 아닌지'],
   ]}/>
   <p className="fw-note">SSE 전환이나 비교 실험을 수행한 것은 아닙니다. 당시 구현을 돌아본 재설계 방향입니다.</p>
  </section>
