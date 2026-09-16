@@ -1,7 +1,7 @@
 export const profile = {
  name: '박태정', phone: '010-8373-3852', email: 'taejung3852@gmail.com', github: 'https://github.com/taejung3852',
- headline: ['에이전트가 쓸 도구를 만들고,', '그 결과를 검증합니다.'],
- description: ['LLM 애플리케이션과 MCP 도구를 설계하고 구현합니다.', '무엇을 확인했고 무엇을 확인하지 못했는지까지 남기는 것을 일의 범위로 봅니다.'],
+ headline: ['AI의 작업을 통제하고,', '결과를 검증합니다.'],
+ description: ['생성물을 이해하고 설명하며,', '책임질 수 있는 결과로 만드는 AI-native 개발자를 지향합니다.'],
  role: ['AI Agent /', 'LLM Application Developer'],
 };
 export const projects = [
