@@ -17,7 +17,7 @@ export const capabilities = {
     {
       title: 'AI 작업의 검토 기준 구조화',
       description: '완료 조건과 검증 근거, 사람의 최종 판단을 연결하는 흐름을 설계하며 OwnHands를 개발하고 있습니다.',
-      projects: ['ownhands'],
+      projects: ['hwpx', 'ownhands'],
     },
   ],
 };

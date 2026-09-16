@@ -6,12 +6,12 @@ import '../styles/capabilities.css';
 
 const nameOf = slug => projects[projectSlugs.indexOf(slug)]?.name ?? slug;
 
-export default function About() {
+export default function About({ sectionNumber = '02' }) {
   return (
     <section className="about capabilities shell" id="about" aria-labelledby="about-title">
       <div className="capabilities-heading">
         <div className="section-heading">
-          <span className="section-index" aria-hidden="true">02 /</span>
+          <span className="section-index" aria-hidden="true">{sectionNumber} /</span>
           <h2 id="about-title">{capabilities.title}</h2>
         </div>
         <p className="section-intro">{capabilities.introduction}</p>
