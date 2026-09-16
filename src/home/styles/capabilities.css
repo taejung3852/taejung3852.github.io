@@ -28,3 +28,6 @@
  .capability-description{font-size:17px}
  .capability-principle{margin-top:40px}
 }
+
+/* Anchors for scanning: the line stays a sentence, the keywords step forward. */
+.capability-description strong{color:var(--ink);font-weight:600}

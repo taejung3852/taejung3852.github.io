@@ -21,7 +21,7 @@ export default function About({ sectionNumber = '02' }) {
           <li className="capability" key={item.title}>
             <p className="capability-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
             <h3>{item.title}</h3>
-            <p className="capability-description">{item.description}</p>
+            <p className="capability-description">{item.description.split(/\*\*(.+?)\*\*/).map((part, n) => n % 2 ? <strong key={n}>{part}</strong> : part)}</p>
             <p className="capability-projects">
               <span className="capability-projects-label">관련 프로젝트</span>
               {item.projects.map(slug => (
