@@ -31,6 +31,14 @@ export default function About({ sectionNumber = '02' }) {
           </li>
         ))}
       </ol>
+      <dl className="capability-stack">
+        {capabilities.stack.map(([group, tags]) => (
+          <div key={group}>
+            <dt>{group}</dt>
+            <dd><ul className="project-stack">{tags.map(t => <li key={t}>{t}</li>)}</ul></dd>
+          </div>
+        ))}
+      </dl>
       <div className="capability-principle"><p>{capabilities.principle}</p></div>
     </section>
   );

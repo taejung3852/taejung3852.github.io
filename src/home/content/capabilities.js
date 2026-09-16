@@ -4,6 +4,14 @@ export const capabilities = {
   title: '할 수 있는 일',
   introduction: '문제에 맞는 AI 기능을 고르고, 도구의 책임과 사람이 확인할 지점을 나눠 설계합니다.',
   principle: '기술 자체보다 필요한 이유와 한계를 기준으로 설계합니다.',
+  // Same grouping as the resume; keep the two in step.
+  stack: [
+    ['언어', ['Python', 'Java', 'SQL']],
+    ['AI와 Agent', ['LangGraph', 'LangChain', 'LangChain4j', 'MCP', 'Agent Skills / Plugin', 'RAG', 'Context Pack', 'Tool Calling', 'Human-in-the-loop', 'Structured Output']],
+    ['검색과 데이터', ['Qdrant', 'Embedding', 'Hybrid Search', 'Query Rewrite', 'Re-ranking', 'MySQL', 'SQLite']],
+    ['LLM 실행', ['Ollama', 'AWS SageMaker JumpStart']],
+    ['개발 도구', ['Git', 'GitHub']],
+  ],
   items: [
     {
       title: '업무 맥락에 맞는 AI 기능 구현',

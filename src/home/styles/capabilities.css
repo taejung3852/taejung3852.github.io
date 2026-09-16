@@ -31,3 +31,13 @@
 
 /* Anchors for scanning: the line stays a sentence, the keywords step forward. */
 .capability-description strong{color:var(--ink);font-weight:600}
+
+/* A screener matching a job description shouldn't have to assemble the stack
+   from four project cards. Same tag chip as the project list. */
+.capability-stack{margin:52px 0 0;padding-top:34px;border-top:1px solid var(--rule)}
+.capability-stack>div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;padding:14px 0;align-items:baseline}
+.capability-stack>div+div{border-top:1px solid var(--rule)}
+.capability-stack dt{font-size:13px;color:var(--muted);word-break:keep-all}
+.capability-stack dd{margin:0;min-width:0}
+.capability-stack .project-stack{margin:0}
+@media(max-width:600px){.capability-stack>div{grid-template-columns:minmax(0,1fr);gap:10px}}
