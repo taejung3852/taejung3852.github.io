@@ -104,3 +104,18 @@
 .hx-boundary-note{max-width:820px;margin-top:34px;padding:26px 0 0;border-top:1px solid var(--rule)}
 .hx-boundary-note h3{margin:0 0 12px;font-size:21px!important;letter-spacing:-.02em}
 .hx-boundary-note .fw-source{margin-top:16px}
+
+/* Label + one line. Prose paragraphs read as an essay; these read as a spec sheet. */
+.hx-facts{list-style:none;margin:26px 0 0;padding:0;max-width:900px;border-top:1px solid var(--rule)}
+.hx-facts>li{display:grid;grid-template-columns:160px minmax(0,1fr);gap:28px;padding:15px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.hx-facts b{font-size:15px;font-weight:600;color:var(--ink);word-break:keep-all}
+.hx-facts span{font-size:15px;line-height:1.7;color:var(--muted);word-break:keep-all}
+.hx-facts+.hx-shots,.hx-facts+figure,.hx-facts+.hx-bands{margin-top:32px!important}
+.hx-facts+p{margin-top:24px}
+@media(max-width:700px){.hx-facts>li{grid-template-columns:minmax(0,1fr);gap:6px;padding:14px 0}}
+/* Hero meta: period, team, stack at a glance. */
+.hx-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 34px;margin:30px 0 0;padding-top:24px;border-top:1px solid var(--rule)}
+.hx-meta>div{min-width:0}
+.hx-meta dt{font-size:12px;letter-spacing:.04em;color:var(--muted);margin-bottom:8px}
+.hx-meta dd{margin:0;font-size:14px;line-height:1.65;word-break:keep-all}
+@media(max-width:700px){.hx-meta{grid-template-columns:minmax(0,1fr);gap:16px}}
