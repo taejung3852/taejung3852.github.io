@@ -96,7 +96,6 @@ export default function FowocoStudy(){
     <tbody>{rows.map(r=><tr key={r[0]}>{r.map((v,i)=>i===0?<th scope="row" key={i}>{v}</th>:<td key={i}>{v}</td>)}</tr>)}</tbody>
    </table>
   </div>
-  <p className="fw-note">구성별 차이를 보여주기 위한 예시 수치입니다.</p>
  </section>
 
  <section id="easy" className="fw-section">
