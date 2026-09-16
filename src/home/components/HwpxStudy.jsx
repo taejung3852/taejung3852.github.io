@@ -98,7 +98,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="04 / 결과" title="요청한 값이 각각 어느 칸에 들어갔는지."><strong>통합신청서</strong> — 출입국관리법 시행규칙 별지 제34호 서식. 입력값은 모두 가상 정보입니다.</Heading>
+  <Heading n="04 / 결과" title="요청한 값을 각각 지정된 칸에 넣었습니다."><strong>통합신청서</strong> — 출입국관리법 시행규칙 별지 제34호 서식. 입력값은 모두 가상 정보입니다.</Heading>
   <div className="hx-side">
    <div className="fw-table" tabIndex="0" role="region" aria-label="양식의 문항과 입력된 값">
     <table>
@@ -171,7 +171,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="future" className="fw-section">
-  <Heading n="06 / 향후 방향" title="ChatGPT 웹에서 바로 쓸 수 있게 하는 것."/>
+  <Heading n="06 / 향후 방향" title="설치 없이 ChatGPT 웹에서 쓰게 만드는 것이 다음입니다."/>
   <Facts items={[
    ['목표','마켓플레이스 승인 → 설치 없이 ChatGPT 웹에서 문서 첨부만으로 동작'],
    ['필요한 것','STDIO → Streamable HTTP · 서버 AWS EC2 · 원본과 작업공간 S3'],

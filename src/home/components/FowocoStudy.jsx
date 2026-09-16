@@ -55,7 +55,7 @@ export default function FowocoStudy(){
  </section>
 
  <section id="search" className="fw-section">
-  <Heading n="01 / 문제" title="언어 장벽이, 업무 안내의 장벽이었습니다."/>
+  <Heading n="01 / 문제" title="업무 표현을 EPS 대응 자료에서 찾아 쓰기로 했습니다."/>
   <Facts items={[
    ['확인한 경로','프로젝트에 앞선 인터뷰 2회 — 공통으로 언어 장벽이 언급됨'],
    ['판단','동의어·맥락에 기대는 표현은 부담 → 업무 표현을 일정하게 전달하기로'],
@@ -100,7 +100,7 @@ export default function FowocoStudy(){
  </section>
 
  <section id="easy" className="fw-section">
-  <Heading n="03 / 정보 보존" title="표현을 바꿔도, 해야 할 일은 바뀌지 않도록.">근로자는 안내를 읽고 서류와 기한을 판단합니다. 문장이 바뀌어도 업무 정보는 유지되는지 검사합니다.</Heading>
+  <Heading n="03 / 정보 보존" title="번역이 서류와 기한을 바꾸지 않았는지 검사합니다.">근로자는 안내를 읽고 준비할 서류와 제출 기한을 판단합니다.</Heading>
   <Facts items={[
    ['규칙으로 확인','제출 항목 수 · 날짜 · 숫자·연락처의 누락과 추가를 원본 요청과 비교'],
    ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미 유지 여부를 별도 검사'],

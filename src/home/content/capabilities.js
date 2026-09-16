@@ -1,6 +1,6 @@
 // Capability summary shown on the home page. Each entry links to the projects that evidence it.
 export const capabilities = {
-  title: '이 경험으로 할 수 있는 일',
+  title: '할 수 있는 일',
   introduction: '업무 맥락을 AI 기능으로 연결하고, 도구의 책임과 사람이 확인할 지점을 설계합니다.',
   principle: '기술 자체보다 필요한 이유와 한계, 사람이 확인할 지점을 기준으로 설계합니다.',
   items: [
