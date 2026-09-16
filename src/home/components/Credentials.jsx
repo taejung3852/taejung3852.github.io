@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/credentials.css';
 
 // Source: taejung-resume. Keep this in step with the PDF when the resume changes.
-const groups = [
+const education = [
   {
     title: '학력',
     rows: [['2020.03 — 2026.02', '상명대학교 소프트웨어학과', '학점 3.95 / 4.5']],
@@ -14,6 +14,9 @@ const groups = [
       ['2026.09 — 현재', 'KT그룹 AX전략 기획 및 멀티에이전트 서비스 개발 과정', '10주'],
     ],
   },
+];
+
+const certificates = [
   {
     title: '자격증',
     rows: [
@@ -26,6 +29,22 @@ const groups = [
   },
 ];
 
+function Group({ title, rows }) {
+  return (
+    <div className="credentials-group">
+      <h3>{title}</h3>
+      <dl>
+        {rows.map(([period, name, note]) => (
+          <div key={name}>
+            <dt>{name}</dt>
+            <dd>{period && <span className="credentials-period">{period}</span>}{note && <span>{note}</span>}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
 export default function Credentials({ sectionNumber = '03' }) {
   return (
     <section className="credentials shell" id="credentials" aria-labelledby="credentials-title">
@@ -34,19 +53,12 @@ export default function Credentials({ sectionNumber = '03' }) {
         <h2 id="credentials-title">학력과 자격</h2>
       </div>
       <div className="credentials-groups">
-        {groups.map(group => (
-          <div className="credentials-group" key={group.title}>
-            <h3>{group.title}</h3>
-            <dl>
-              {group.rows.map(([period, name, note]) => (
-                <div key={name}>
-                  <dt>{name}</dt>
-                  <dd>{period && <span className="credentials-period">{period}</span>}{note && <span>{note}</span>}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        ))}
+        <div className="credentials-column">
+          {education.map(group => <Group key={group.title} {...group}/>)}
+        </div>
+        <div className="credentials-column">
+          {certificates.map(group => <Group key={group.title} {...group}/>)}
+        </div>
       </div>
     </section>
   );
