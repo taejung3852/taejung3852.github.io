@@ -62,6 +62,14 @@ export default function FowocoStudy(){
    ['제안','전체 회의 전 2개 조에서 선논의 → 조장이 정리한 안을 전체 회의로'],
    ['변화','작은 자리에서 의견 수렴 · 전체 회의는 결정에 집중'],
   ]}/>
+  <figure className="fw-collab">
+   <div className="fw-collab-flow">
+    <div className="fw-scope-stage"><span>전체 회의 전</span><h3>2개 조 논의</h3><p>작은 자리에서 의견을 먼저 꺼냄</p></div>
+    <div className="fw-scope-stage"><span>조장</span><h3>논의 정리</h3><p>나온 의견과 결정할 내용을 정리</p></div>
+    <div className="fw-scope-stage"><span>8인 전체</span><h3>전체 합의</h3><p>회의는 결정에 집중</p></div>
+   </div>
+   <figcaption>회고와 경험 진술에 근거한 내용입니다. 코드나 지표로 뒷받침되는 항목이 아니며, 의사결정 시간 단축 같은 성과는 측정하지 않았습니다.</figcaption>
+  </figure>
  </section>
 
  <section id="search" className="fw-section">

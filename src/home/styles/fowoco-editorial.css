@@ -83,3 +83,9 @@
    tight, near-black h1. Specificity has to beat the mobile `.fw-study p` rule,
    which sets overflow-wrap:anywhere and would break Korean mid-word. */
 .fw-hero .fw-lead{line-height:1.65;color:var(--copy);word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
+
+/* Three even steps; fw-scope-flow's template is pinned to the four-stage scope
+   figure. The stages themselves reuse .fw-scope-stage for the arrows and label. */
+.fw-collab{margin:32px 0;max-width:900px}
+.fw-collab-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;align-items:start}
+@media(max-width:700px){.fw-collab-flow{grid-template-columns:1fr;gap:0}}
