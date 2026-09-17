@@ -6,6 +6,9 @@ import '../styles/capabilities.css';
 
 const nameOf = slug => projects[projectSlugs.indexOf(slug)]?.name ?? slug;
 
+const emphasize = text =>
+  text.split(/\*\*(.+?)\*\*/).map((part, n) => (n % 2 ? <strong key={n}>{part}</strong> : part));
+
 // Lucide paths, inlined: three icons don't justify pulling in the icon package.
 const iconPaths = {
   search: <><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></>,
@@ -35,7 +38,9 @@ export default function About({ sectionNumber = '02' }) {
           <li className="capability" key={item.title}>
             <Icon name={item.icon} />
             <h3>{item.title}</h3>
-            <p className="capability-description">{item.description.split(/\*\*(.+?)\*\*/).map((part, n) => n % 2 ? <strong key={n}>{part}</strong> : part)}</p>
+            <ul className="capability-points">
+              {item.points.map(point => <li key={point}>{emphasize(point)}</li>)}
+            </ul>
             <p className="capability-projects">
               <span className="capability-projects-label">관련 프로젝트</span>
               {item.projects.map(slug => (
