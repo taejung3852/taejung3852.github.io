@@ -39,49 +39,5 @@ export const projectStudies={
    ['개발 중','새 Lifecycle과 Claim 검증. 저장소에는 이후 마일스톤 작업이 있으나 완성된 기능으로 제시하지 않습니다.'],
    ['말할 수 없는 것','이 산출물의 생성은 검토 흐름의 실행이지, 대상 문서나 서비스의 품질이 통과했다는 뜻이 아닙니다.']
   ]
- },
- 'llm-gateway':{
-  name:'LLM Gateway Service',kind:'gateway',
-  purpose:'서로 다른 LLM을 하나의 서비스에서 연결하고, 사용 조건에 맞춰 고르는 흐름을 구현한 서비스',
-  role:{team:'2인 팀',items:['모델 선택 로직 관련 작업','LLM Provider 연동','모델 실행 환경 구성']},
-  judgements:['조건 충족 대신 우선순위 비교로 전환','네 기준을 같은 범위로 환산','당시 선택과 지금의 회고를 구분'],
-  toc:[{label:'초기 방식',href:'#threshold'},{label:'기준 환산',href:'#normalize'},{label:'우선순위 비교',href:'#weights'},{label:'실행 환경',href:'#runtime'},{label:'통신 회고',href:'#protocol'},{label:'결과·근거',href:'#evidence'}],
-  headline:['서로 다른 모델을,','하나의 서비스 안에서.'],
-  intro:'조건을 모두 만족하는 모델만 찾는 대신, 사용자의 우선순위에 맞춰 비교하도록 바꿨습니다.',
-  source:'https://github.com/taejung3852/llm-gateway/blob/fc82bbce0e04934be88684fe2fd400271998a346/src/main/java/site/gatein/backend/chat/service/RouteService.java',
-  note:'고정 커밋 fc82bbc의 RouteService에서 확인한 구조입니다. 이전 Threshold 방식이 주석으로 남아 있어 전후를 같은 파일에서 대조할 수 있었습니다.',
-  figureNote:'고정 커밋 fc82bbc 코드 대조 완료 · 성능 수치나 벤치마크가 아님',
-  overviewLabels:['서비스 요청','모델 선택','실행 환경'],
-  scenes:[
-   {id:'threshold',title:['조건을 다 만족해야','후보가 됐습니다.'],
-    text:'처음에는 비용·속도·지연·Context Length 조건을 모두 통과한 모델만 후보로 남겼습니다. 하나라도 못 맞추면 제외됐고, 남는 모델이 없으면 경고를 남기고 기본 모델로 돌아갔습니다. 조건이 엄격해질수록 후보가 사라지고, 조건에 가까운 모델끼리 비교할 방법도 없었습니다.',
-    visual:'gateway-threshold',state:'이전 구조 · 주석으로 보존됨',
-    caption:'RouteService에 주석으로 남은 isModelMatchingRequirements 기준입니다'},
-   {id:'normalize',title:['네 기준을,','같은 자로 잽니다.'],
-    text:'비용·속도·성능·Context Length를 카탈로그 전체의 최소·최대로 Min-Max 환산해 0~1 범위로 맞췄습니다. 비용만 방향을 뒤집어 낮을수록 높은 점수가 되게 했고, 값이 없는 항목은 제외 대신 0점으로 두었습니다.',
-    visual:'gateway-scoring',state:'코드 근거 · RouteService',
-    caption:'단위는 코드 그대로입니다 · 최대와 최소가 같으면 0으로 두어 분모가 0이 되는 경우를 피합니다'},
-   {id:'weights',title:['무엇을 더','중요하게 볼지.'],
-    text:'사용자가 정한 네 가중치를 각 정규화 점수에 곱해 합산하고, 합이 가장 큰 모델을 고릅니다. 절대 기준을 통과했는지가 아니라, 입력한 기준과 가중치에 따른 상대 평가입니다.',
-    visual:'gateway-weights',state:'코드 근거 · RouteService',
-    caption:'가중치는 각각 100으로 나눠 쓰며, 네 값의 합을 1로 맞추지는 않습니다'},
-   {id:'runtime',title:['빠르게 확인하고,','환경을 옮겼습니다.'],
-    text:'초기에는 SageMaker JumpStart로 모델 연동과 서비스 흐름의 구현 가능성을 빠르게 확인했습니다. 이후 보유 GPU 자원을 활용해 Ollama 기반 오픈소스 LLM을 구동·연동했습니다.',
-    visual:'gateway-runtime',state:'구현 경험',
-    caption:'호스팅과 연동 경험입니다 · 모니터링·트래픽 관리까지 운영한 범위가 아니며 비용 절감률은 측정하지 않았습니다'},
-   {id:'protocol',title:['그때의 선택과,','지금의 관점.'],
-    text:'당시에는 실시간 상호작용에 양방향 통신이 필요하다고 판단해 WebSocket을 선택했습니다. 지금 다시 설계한다면 핵심 요구가 서버에서 전달하는 응답 스트림인지 먼저 구분하고, REST + SSE를 우선 검토하겠습니다.',
-    visual:'gateway-protocol',state:'회고 · 현재 구현 아님',
-    caption:'REST + SSE는 재설계 관점이며 현재 구현이 아닙니다 · WebSocket 스트리밍은 구현에 참여한 범위입니다'}
-  ],
-  criteria:[['비용','per 1M tokens','낮을수록 높은 점수'],['속도','tokens/second','높을수록 높은 점수'],['성능','intelligence · math · coding','높을수록 높은 점수'],['Context Length','토큰 수','높을수록 높은 점수']],
-  next:{label:'FOWOCO',href:'/projects/fowoco'},
-  retrospective:{title:'다시 만든다면',
-   text:'필수로 지켜야 할 조건과 선호도로 비교할 기준은 성격이 다른데, 지금 구조는 모두 가중치로만 다룹니다. 반드시 넘어야 할 선은 따로 두고 나머지를 상대 비교하는 쪽을 검토하겠습니다. 이건 지금 관점이며 당시 구현으로 소급하지 않습니다.'},
-  evidence:[
-   ['코드 근거','고정 커밋 fc82bbc의 RouteService에서 Min-Max 환산, 비용 방향 반전, 가중합, 결측값 0점 처리, 분모 0 회피를 확인했습니다. 이전 Threshold 방식도 같은 파일에 주석으로 남아 있습니다.'],
-   ['범위 구분','2인 팀 프로젝트입니다. 모델 선택 로직·Provider 연동·실행 환경 구성이 개인 담당이며, 서비스 전체를 혼자 설계하지 않았습니다.'],
-   ['미측정','모델별 응답 성능, 실제 비용, 환경 전환에 따른 절감률은 측정하지 않았습니다. 카탈로그의 지표는 당시 기준 시점의 값입니다.']
-  ]
  }
 };

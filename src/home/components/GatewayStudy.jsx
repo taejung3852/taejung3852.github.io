@@ -4,6 +4,8 @@ import '../styles/fowoco-editorial.css';
 import useTocSpy from './useTocSpy';
 const repo='https://github.com/taejung3852/llm-gateway';
 const src=repo+'/blob/b097447c0896589f59d623e68e810354f124d2da/src/main/java/site/gatein/backend';
+const routeSrc=repo+'/blob/fc82bbce0e04934be88684fe2fd400271998a346/src/main/java/site/gatein/backend/chat/service/RouteService.java';
+const criteria=[['비용','per 1M tokens','낮을수록 높은 점수'],['속도','tokens/second','높을수록 높은 점수'],['성능','intelligence · math · coding','높을수록 높은 점수'],['Context Length','토큰 수','높을수록 높은 점수']];
 const commits=[['AWS SageMaker JumpStart 연결 구성','b097447c0896589f59d623e68e810354f124d2da'],['AWS SageMaker JumpStart 연동 비활성화','cbdec737db45b6132156ac6d9e668aabf47560f8'],['Ollama 스트리밍 연결','f26daf703155db4efec78dd8539e81183a918256']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
@@ -38,10 +40,31 @@ export default function GatewayStudy(){
    <div><dt>스택</dt><dd>Java · LangChain4j · AWS SageMaker JumpStart · Ollama · WebSocket</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#integration">모델 연결</a><a href="#runtime">실행 환경</a><a href="#reflection">회고</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#routing">모델 선택</a><a href="#integration">모델 연결</a><a href="#runtime">실행 환경</a><a href="#reflection">회고</a></nav>
+
+ <section id="routing" className="fw-section">
+  <Heading n="01 / 모델 선택" title="조건을 다 만족하는 모델만 찾다가, 우선순위 비교로 바꿨습니다."/>
+  <Facts items={[
+   ['이전 방식','비용·속도·지연·Context Length 조건을 모두 통과한 모델만 후보 · 하나라도 못 맞추면 제외'],
+   ['드러난 문제','조건이 엄격해지면 후보가 사라져 기본 모델로 되돌아감 · 조건에 가까운 모델끼리 비교할 방법도 없음'],
+   ['바꾼 방식','네 기준을 카탈로그 전체의 최소·최대로 0~1 환산 → 사용자 가중치를 곱해 합산 → 합이 가장 큰 모델'],
+   ['뒤집은 것','비용만 방향을 반대로 — 낮을수록 높은 점수 · 값이 없는 항목은 제외 대신 0점'],
+   ['남는 질문','반드시 지켜야 할 조건과 선호도로 비교할 기준은 성격이 다른데, 지금은 모두 가중치로만 다룹니다'],
+  ]}/>
+  <div className="fw-table" role="region" aria-label="모델 선택 기준 4종" tabIndex="0">
+   <table>
+    <caption>환산하는 네 기준</caption>
+    <thead><tr><th scope="col">기준</th><th scope="col">단위</th><th scope="col">방향</th></tr></thead>
+    <tbody>{criteria.map(([k,u,d])=><tr key={k}><th scope="row">{k}</th><td>{u}</td><td>{d}</td></tr>)}</tbody>
+   </table>
+  </div>
+  <p className="fw-note">단위는 코드 그대로입니다. 최대와 최소가 같으면 0으로 두어 분모가 0이 되는 경우를 피하고, 가중치는 각각 100으로 나눠 쓰되 네 값의 합을 1로 맞추지는 않습니다.</p>
+  <p className="fw-note">2인 팀 프로젝트이며 모델 선택 로직에 참여했습니다. 위 내용은 고정 커밋 fc82bbc의 RouteService에서 확인한 구조로, 이전 Threshold 방식이 주석으로 남아 있어 전후를 같은 파일에서 대조했습니다. 성능 수치나 벤치마크가 아닙니다.</p>
+  <div className="fw-proof-links"><Source href={routeSrc}>RouteService · 환산과 가중 합산</Source></div>
+ </section>
 
  <section id="integration" className="fw-section">
-  <Heading n="01 / 모델 연결" title="서로 다른 모델을, 하나의 호출로 부릅니다."/>
+  <Heading n="02 / 모델 연결" title="서로 다른 모델을, 하나의 호출로 부릅니다."/>
   <Facts items={[
    ['문제','당시 LangChain4j 베타가 일부 오픈소스 모델 연동을 미지원 · 요청·응답 형식이 다른 모델을 붙일 방법이 필요'],
    ['해결','지원하는 연동은 그대로 사용 · 없는 모델은 요청·응답 변환을 직접 구현'],
@@ -61,7 +84,7 @@ export default function GatewayStudy(){
  </section>
 
  <section id="runtime" className="fw-section">
-  <Heading n="02 / 실행 환경" title="검증은 클라우드에서, 운영은 보유 GPU에서."/>
+  <Heading n="03 / 실행 환경" title="검증은 클라우드에서, 운영은 보유 GPU에서."/>
   <Facts items={[
    ['문제','GPU 환경 구축 전에 서비스와 오픈소스 모델의 연결 가능 여부부터 확인 필요'],
    ['먼저 택한 것','AWS SageMaker JumpStart — 비용이 들더라도 바로 띄울 수 있음. 목적은 연동 검증'],
