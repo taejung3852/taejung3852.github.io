@@ -12,8 +12,6 @@
 .capability-projects a{min-height:34px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--rule)}
 .capability-projects a:hover{text-decoration-color:currentColor}
 
-.capability-principle{margin-top:56px;padding-top:28px;border-top:1px solid var(--rule)}
-.capability-principle p{max-width:52ch;font-size:16px;line-height:1.85;color:var(--muted);word-break:keep-all}
 
 @media(max-width:1000px){
  .capabilities-heading{margin-bottom:40px}
@@ -26,7 +24,7 @@
  .capabilities-heading{margin-bottom:32px}
  .capability h3{font-size:20px}
  .capability-description{font-size:17px}
- .capability-principle{margin-top:40px}
+
 }
 
 /* Anchors for scanning: the line stays a sentence, the keywords step forward. */

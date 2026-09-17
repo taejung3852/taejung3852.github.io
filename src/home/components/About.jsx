@@ -39,7 +39,6 @@ export default function About({ sectionNumber = '02' }) {
           </div>
         ))}
       </dl>
-      <div className="capability-principle"><p>{capabilities.principle}</p></div>
     </section>
   );
 }
