@@ -1,12 +1,14 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/fowoco-editorial.css';
+import useTocSpy from './useTocSpy';
 const base='https://github.com/fowoco/ai/blob/209ebddf3878f750c37e5ebe5651b0fe6aa0a354';
 const rows=[['단일 Dense','72 / 100','0.61','60'],['단일 Hybrid','81 / 100','0.70','80'],['멀티쿼리 Hybrid','89 / 100','0.77','120'],['멀티쿼리 Hybrid + Re-ranking','93 / 100','0.86','390']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
 function Facts({items}){return <ul className="fw-facts">{items.map(([k,v],i)=><li key={i}><b>{k}</b><span>{v}</span></li>)}</ul>}
 export default function FowocoStudy(){
+ useTocSpy();
  const dialog=useRef(null),[shot,setShot]=useState(null);
  const zoom=s=>{setShot(s);dialog.current.showModal()};
  useEffect(()=>{document.title='FOWOCO | 박태정';return()=>{document.title='박태정 | AI Agent / LLM Application Developer'}},[]);

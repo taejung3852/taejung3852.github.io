@@ -1,6 +1,7 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/fowoco-editorial.css';
+import useTocSpy from './useTocSpy';
 const repo='https://github.com/taejung3852/llm-gateway';
 const src=repo+'/blob/b097447c0896589f59d623e68e810354f124d2da/src/main/java/site/gatein/backend';
 const commits=[['AWS SageMaker JumpStart 연결 구성','b097447c0896589f59d623e68e810354f124d2da'],['AWS SageMaker JumpStart 연동 비활성화','cbdec737db45b6132156ac6d9e668aabf47560f8'],['Ollama 스트리밍 연결','f26daf703155db4efec78dd8539e81183a918256']];
@@ -8,6 +9,7 @@ function Source({href,children='구현 근거'}){return <a className="fw-source"
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
 function Facts({items}){return <ul className="fw-facts">{items.map(([k,v],i)=><li key={i}><b>{k}</b><span>{v}</span></li>)}</ul>}
 export default function GatewayStudy(){
+ useTocSpy();
  const dialog=useRef(null),[shot,setShot]=useState(null);
  const zoom=s=>{setShot(s);dialog.current.showModal()};
  useEffect(()=>{document.title='LLM Gateway Service | 박태정';return()=>{document.title='박태정 | AI Agent / LLM Application Developer'}},[]);

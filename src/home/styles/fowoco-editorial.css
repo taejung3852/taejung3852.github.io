@@ -84,8 +84,13 @@
    which sets overflow-wrap:anywhere and would break Korean mid-word. */
 .fw-hero .fw-lead{line-height:1.65;color:var(--copy);word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
 
-/* Three even steps; fw-scope-flow's template is pinned to the four-stage scope
-   figure. The stages themselves reuse .fw-scope-stage for the arrows and label. */
-.fw-collab{margin:32px 0;max-width:900px}
-.fw-collab-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;align-items:start}
-@media(max-width:700px){.fw-collab-flow{grid-template-columns:1fr;gap:0}}
+/* Above 1400px the page gutter (viewport minus the 1180px column) is wide enough
+   for a rail. Below it the TOC stays inline in the hero, where it already works. */
+@media(min-width:1400px){
+ .fw-toc{position:fixed;left:32px;top:50%;transform:translateY(-50%);z-index:5;
+  flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:0;
+  max-width:158px;border-top:0;padding-top:0}
+ .fw-toc a{padding:7px 0 7px 12px;border-left:2px solid var(--rule);
+  color:var(--muted);font-size:13px;line-height:1.4;word-break:keep-all;text-decoration:none}
+ .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink)}
+}

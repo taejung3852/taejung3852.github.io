@@ -1,6 +1,7 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/fowoco-editorial.css';
+import useTocSpy from './useTocSpy';
 import '../styles/hwpx-editorial.css';
 const base='https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f35c59856f9b40909337fa443175e42';
 const tree='https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
@@ -11,6 +12,7 @@ function Field({children}){return <span className="hx-field">{children}</span>}
 function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
 function Facts({items}){return <ul className="fw-facts">{items.map(([k,v],i)=><li key={i}><b>{k}</b><span>{v}</span></li>)}</ul>}
 export default function HwpxStudy(){
+ useTocSpy();
  const dialog=useRef(null),[shot,setShot]=useState(null);
  const zoom=s=>{setShot(s);dialog.current.showModal()};
  useEffect(()=>{document.title='HWPX Document Plugin | 박태정';return()=>{document.title='박태정 | AI Agent / LLM Application Developer'}},[]);
