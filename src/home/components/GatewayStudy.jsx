@@ -37,8 +37,8 @@ export default function GatewayStudy(){
    <div><dt>담당</dt><dd>모델 호출·스트리밍 연동 · 모델 메타데이터 확장 · 실행 환경 구성</dd></div>
    <div><dt>스택</dt><dd>Java · LangChain4j · AWS SageMaker JumpStart · Ollama · WebSocket</dd></div>
   </dl>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#integration">모델 연결</a><a href="#runtime">실행 환경</a><a href="#reflection">회고</a></nav>
  </header>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#integration">모델 연결</a><a href="#runtime">실행 환경</a><a href="#reflection">회고</a></nav>
 
  <section id="integration" className="fw-section">
   <Heading n="01 / 모델 연결" title="서로 다른 모델을, 하나의 호출로 부릅니다."/>

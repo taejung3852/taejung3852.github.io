@@ -84,13 +84,18 @@
    which sets overflow-wrap:anywhere and would break Korean mid-word. */
 .fw-hero .fw-lead{line-height:1.65;color:var(--copy);word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
 
-/* Above 1400px the page gutter (viewport minus the 1180px column) is wide enough
-   for a rail. Below it the TOC stays inline in the hero, where it already works. */
-@media(min-width:1400px){
- .fw-toc{position:fixed;left:32px;top:50%;transform:translateY(-50%);z-index:5;
-  flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:0;
-  max-width:158px;border-top:0;padding-top:0}
- .fw-toc a{padding:7px 0 7px 12px;border-left:2px solid var(--rule);
-  color:var(--muted);font-size:13px;line-height:1.4;word-break:keep-all;text-decoration:none}
- .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink)}
+/* From 1280px the page splits into a rail and a column, so the contents list can
+   sit beside the text instead of over it — fixed positioning needed a 1560px
+   viewport to clear the 1180px column, which no laptop has. It spans every row
+   and sticks inside that span. Narrower than this it stays in normal flow, in the
+   same place it has always been. */
+@media(min-width:1280px){
+ .fw-study{display:grid;grid-template-columns:188px minmax(0,1fr);column-gap:56px;max-width:1424px;align-items:start}
+ .fw-study>*{grid-column:2;min-width:0}
+ .fw-toc{grid-column:1;grid-row:1/-1;align-self:start;position:sticky;top:104px;
+  flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;
+  border-top:0;padding-top:0;border-left:1px solid var(--rule);font-size:15px}
+ .fw-toc a{padding:12px 0 12px 18px;margin-left:-1px;border-left:2px solid transparent;
+  color:var(--muted);line-height:1.4;word-break:keep-all;text-decoration:none}
+ .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550}
 }

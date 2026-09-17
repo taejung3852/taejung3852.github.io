@@ -37,8 +37,8 @@ export default function HwpxStudy(){
    <div><dt>담당</dt><dd>MCP 전반 설계·구현 · Agent Skills 설계·개발 · Plugin 패키징</dd></div>
    <div><dt>스택</dt><dd>Python · FastMCP · Agent Skills · STDIO</dd></div>
   </dl>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#analyze">분석</a><a href="#problem">문제</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
  </header>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#analyze">분석</a><a href="#problem">문제</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#future">향후 방향</a></nav>
 
  <section id="origin" className="fw-section">
   <Heading n="00 / 시작" title="한글 문서를 다뤄 주는 도구가 없었습니다."/>

@@ -37,8 +37,8 @@ export default function FowocoStudy(){
    <div><dt>결과</dt><dd>검색 성공 72 → 93 / 100개 질문 · 대기 60 → 390ms</dd></div>
    <div><dt>스택</dt><dd>Python · LangGraph · Hybrid Search · MCP</dd></div>
   </dl>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#collaboration">팀 협업</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a></nav>
  </header>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#collaboration">팀 협업</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a></nav>
 
  <section id="scope" className="fw-section">
   <Heading n="00 / 담당 범위" title="언어 처리와 문서 자동화를 맡았습니다."/>
