@@ -3,9 +3,10 @@
 // Points are fragments, not sentences: the column is narrow and they are meant to be scanned.
 export const capabilities = {
   // Heading claims the three verbs; each card's title is the keyword for one of them,
-  // and the intro settles whether this is about building agents or driving them. Both.
+  // and the intro settles whether this is about building agents or driving them: both,
+  // but not both in every project — FOWOCO and the Gateway are built into their service.
   title: '에이전트를 만들고, 붙이고, 검증합니다.',
-  introduction: '에이전트가 쓸 도구와 흐름을 직접 만들고, Claude Code 같은 에이전트에 붙여 씁니다.',
+  introduction: '서비스 안에 직접 만들기도 하고, Claude Code 같은 에이전트에 붙여 쓰는 도구로 떼어내기도 합니다.',
   // Same grouping as the resume; keep the two in step.
   stack: [
     ['언어', ['Python', 'Java', 'SQL']],
