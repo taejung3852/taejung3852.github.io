@@ -2,9 +2,10 @@
 // **text** marks a keyword; About.jsx renders those in --ink so the eye has anchors to land on.
 // Points are fragments, not sentences: the column is narrow and they are meant to be scanned.
 export const capabilities = {
-  // The heading is the positioning; the three items below are the evidence for it.
-  title: '검증할 수 있고, 통제할 수 있는 에이전트.',
-  introduction: '문제에 맞는 AI 기능을 고르고, 도구의 책임과 사람이 확인할 지점을 나눠 설계합니다.',
+  // Heading claims the three verbs; each card's title is the keyword for one of them,
+  // and the intro settles whether this is about building agents or driving them. Both.
+  title: '에이전트를 만들고, 붙이고, 검증합니다.',
+  introduction: '에이전트가 쓸 도구와 흐름을 직접 만들고, Claude Code 같은 에이전트에 붙여 씁니다.',
   // Same grouping as the resume; keep the two in step.
   stack: [
     ['언어', ['Python', 'Java', 'SQL']],
@@ -16,7 +17,7 @@ export const capabilities = {
   items: [
     {
       icon: 'search',
-      title: '표현이 달라도 같은 근거를 찾아냅니다.',
+      title: 'RAG 검색 설계',
       points: [
         '같은 내용을 다른 말로 물어도 **같은 문서**를 찾아옵니다',
         '질문 100개 중 상위 5개 안에 맞는 문서가 든 경우 **72건 → 93건**',
@@ -26,7 +27,7 @@ export const capabilities = {
     },
     {
       icon: 'wrench',
-      title: '도구가 할 수 있는 일을 좁게 고정합니다.',
+      title: 'MCP 도구화',
       points: [
         '문서를 읽고 고치는 기능을 서비스 본체에서 **떼어냈습니다**',
         '도구가 맡는 일이 좁게 정해져 있어, 어디서 불러도 **같은 동작**',
@@ -36,7 +37,7 @@ export const capabilities = {
     },
     {
       icon: 'check',
-      title: '고친 자리를 원본과 대조해 확인합니다.',
+      title: 'AI 작업 검증',
       points: [
         '빈칸을 **추측해서 채우지 않습니다** · 확인받은 자리만 고침',
         '고친 문서를 원본과 **칸 단위**로 대조',
