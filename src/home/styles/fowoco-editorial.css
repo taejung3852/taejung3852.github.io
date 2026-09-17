@@ -78,3 +78,8 @@
 .hx-boundary-note h3{margin:0 0 12px;font-size:21px!important;letter-spacing:-.02em}
 .hx-boundary-note .fw-source{margin-top:16px}
 
+
+/* The lead sat at 1.75 leading in --muted: four loose grey lines right under a
+   tight, near-black h1. Specificity has to beat the mobile `.fw-study p` rule,
+   which sets overflow-wrap:anywhere and would break Korean mid-word. */
+.fw-hero .fw-lead{line-height:1.65;color:var(--copy);word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
