@@ -1,39 +1,43 @@
 import {useEffect} from 'react';
 
-// Marks the fw-toc link for whatever section the reader is on. The observer watches
-// a thin band near the top of the viewport so at most one section is inside it; when
-// none are — between two sections — the last mark stays put rather than flickering.
+// Marks the fw-toc link for the section the reader is on: the last one whose top
+// has passed a line just below the viewport top. Measuring beats an observer band
+// here — a band tall enough to be reliable is also tall enough to hold a section
+// boundary, and then two sections match at once and the earlier one wins wrongly.
 export default function useTocSpy() {
   useEffect(() => {
     const links = [...document.querySelectorAll('.fw-toc a[href^="#"]')];
     if (!links.length) return;
     const ids = links.map(a => a.getAttribute('href').slice(1));
-    // The rail hides the text and shows it on hover, via content:attr(data-label).
+    // The rail hides its text at narrow widths and shows it via content:attr(data-label).
     links.forEach(a => { a.dataset.label = a.textContent.trim(); });
-    const mark = id => links.forEach((a, i) =>
-      ids[i] === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
 
-    const onscreen = new Set();
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting ? onscreen.add(e.target.id) : onscreen.delete(e.target.id));
-      const active = ids.find(id => onscreen.has(id));
-      if (active) mark(active);
-    }, {rootMargin: '-90px 0px -65% 0px'});
-
-    ids.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) io.observe(el);
-    });
-
-    // A click is explicit: mark it now rather than waiting for the jump to land
-    // inside the observed band, which sits right on top of scroll-margin-top.
-    const onclick = e => {
-      const a = e.target.closest('.fw-toc a[href^="#"]');
-      if (a) mark(a.getAttribute('href').slice(1));
+    let current = null;
+    const update = () => {
+      const line = 140;
+      let active = ids[0];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) active = id;
+      });
+      if (active === current) return;
+      current = active;
+      links.forEach((a, i) =>
+        ids[i] === active ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
     };
-    document.addEventListener('click', onclick);
 
-    mark(ids[0]);
-    return () => { io.disconnect(); document.removeEventListener('click', onclick); };
+    let queued = false;
+    const onscroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => { queued = false; update(); });
+    };
+    addEventListener('scroll', onscroll, {passive: true});
+    addEventListener('resize', onscroll);
+    update();
+    return () => {
+      removeEventListener('scroll', onscroll);
+      removeEventListener('resize', onscroll);
+    };
   }, []);
 }
