@@ -31,7 +31,6 @@ export default function About({ sectionNumber = '02' }) {
           <span className="section-index" aria-hidden="true">{sectionNumber} /</span>
           <h2 id="about-title">{capabilities.title}</h2>
         </div>
-        <p className="section-intro">{capabilities.introduction}</p>
       </div>
       <ol className="capability-list">
         {capabilities.items.map(item => (

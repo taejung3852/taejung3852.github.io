@@ -2,11 +2,9 @@
 // **text** marks a keyword; About.jsx renders those in --ink so the eye has anchors to land on.
 // Points are fragments, not sentences: the column is narrow and they are meant to be scanned.
 export const capabilities = {
-  // Heading claims the three verbs; each card's title is the keyword for one of them,
-  // and the intro settles whether this is about building agents or driving them: both,
-  // but not both in every project — FOWOCO and the Gateway are built into their service.
+  // Heading claims the three verbs; each card's title is the keyword for one of them.
+  // No intro line: the cards answer it faster than a paragraph can.
   title: '에이전트를 만들고, 붙이고, 검증합니다.',
-  introduction: '검색과 모델 선택은 서비스 안에 직접 구현하고, 문서 처리는 Claude Code, Codex 같은 에이전트에 붙여 쓰는 도구로 만듭니다.',
   // Same grouping as the resume; keep the two in step.
   stack: [
     ['언어', ['Python', 'Java', 'SQL']],
@@ -32,7 +30,7 @@ export const capabilities = {
       points: [
         '문서를 읽고 고치는 기능을 서비스 본체에서 **떼어냈습니다**',
         '도구가 맡는 일이 좁게 정해져 있어, 어디서 불러도 **같은 동작**',
-        '이 서비스가 아닌 **다른 프로그램**에 그대로 붙여 씁니다',
+        '**Claude Code, Codex** 같은 에이전트에 그대로 붙여 씁니다',
       ],
       projects: ['fowoco', 'hwpx'],
     },
