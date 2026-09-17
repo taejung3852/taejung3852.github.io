@@ -32,9 +32,10 @@ export default function FowocoStudy(){
   <dl className="fw-meta">
    <div><dt>구성</dt><dd>LangGraph 기반 에이전트 워크플로 · EPS Hybrid Search</dd></div>
    <div><dt>담당</dt><dd>Language Assistant 설계·구현 · HWPX 문서 자동화 및 MCP 구현 · 팀 협업 조율</dd></div>
+   <div><dt>결과</dt><dd>검색 성공 72 → 93 / 100개 질문 · 대기 60 → 390ms</dd></div>
    <div><dt>스택</dt><dd>Python · LangGraph · Hybrid Search · MCP</dd></div>
   </dl>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">문제와 검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a><a href="#collaboration">협업</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a><a href="#collaboration">협업</a></nav>
  </header>
 
  <section id="scope" className="fw-section">
@@ -54,30 +55,23 @@ export default function FowocoStudy(){
  </section>
 
  <section id="search" className="fw-section">
-  <Heading n="01 / 문제" title="업무 표현을 EPS 대응 자료에서 찾아 쓰기로 했습니다."/>
+  <Heading n="01 / 검색 설계" title="업무 표현을 EPS 대응 자료에서 찾아 쓰기로 했습니다."/>
   <Facts items={[
-   ['확인한 경로','프로젝트에 앞선 인터뷰 2회 — 공통으로 언어 장벽이 언급됨'],
-   ['판단','동의어·맥락에 기대는 표현은 부담 → 업무 표현을 일정하게 전달하기로'],
-   ['쓴 자료',<>한국산업인력공단 <a className="fw-inline-link" href="https://eps.hrdkorea.or.kr/e9/user/about/about.do?method=about" target="_blank" rel="noreferrer">EPS</a>의 한국어·외국어 대응 자료</>],
-   ['초기에 겪은 것','적절한 EPS 표현을 못 찾으면 그대로 일반 번역으로 넘어감'],
-   ['설계','요청의 여러 정보를 검색 단서로 사용 → 찾은 자료를 번역에 전달'],
+   ['확인한 경로','인터뷰 2회 — 공통으로 언어 장벽이 언급됨'],
+   ['판단','동의어·맥락에 기대는 표현은 부담 → 업무 표현을 일정하게'],
+   ['쓴 자료',<>한국산업인력공단 <a className="fw-inline-link" href="https://eps.hrdkorea.or.kr/e9/user/about/about.do?method=about" target="_blank" rel="noreferrer">EPS</a> 한국어·외국어 대응 자료</>],
+   ['초기 문제','EPS 표현을 못 찾으면 그대로 일반 번역으로 넘어감'],
+   ['설계','요청의 여러 정보를 검색 단서로 → 찾은 자료를 번역에 전달'],
   ]}/>
-
-  <Heading n="01-1 / 설계 판단" title="복합 요청의 검색 단서를 나누고, 번역에 쓸 자료를 선별했습니다."/>
   <figure className="fw-pipeline">
    <div className="fw-query"><span className="fw-kicker">업무 안내 → 세 검색 관점</span><div><b>전체 문장</b><b>요청 사유 + 항목</b><b>제출 방법 + 기한</b></div></div>
    <div className="fw-flow">
-    <article><span>01</span><h3>Dense + Sparse</h3><p>각 질의의 후보 결합</p><small>각 40개 → RRF → 최대 30개</small></article>
+    <article><span>01</span><h3>Dense + Sparse</h3><p>정확한 용어 일치 + 비슷한 의미의 표현</p><small>각 40개 → RRF → 최대 30개</small></article>
     <article><span>02</span><h3>Cross-query RRF</h3><p>세 질의의 순위 결합</p><small>중복 정리 → 최대 30개</small></article>
     <article><span>03</span><h3>Re-ranking</h3><p>요청과 후보를 다시 비교</p><small>상위 5개 → 번역 참고 자료</small></article>
    </div>
    <figcaption>현재 실행 경로의 개념도. 별도의 LLM Query Rewrite 호출은 없습니다.</figcaption>
   </figure>
-  <Facts items={[
-   ['멀티쿼리','전체 문장 외에 요청의 부분 정보도 검색 단서로'],
-   ['Hybrid Search','정확한 용어 일치 + 의미가 비슷한 표현을 함께'],
-   ['Re-ranking','모아진 후보를 요청과 재비교해 참고 자료 선별'],
-  ]}/>
   <div className="fw-proof-links"><Source href={base+'/app/agents/language/translation.py'}/></div>
  </section>
 
@@ -100,11 +94,11 @@ export default function FowocoStudy(){
  <section id="easy" className="fw-section">
   <Heading n="03 / 정보 보존" title="번역이 서류와 기한을 바꾸지 않았는지 검사합니다.">근로자는 안내를 읽고 준비할 서류와 제출 기한을 판단합니다.</Heading>
   <Facts items={[
-   ['규칙으로 확인','제출 항목 수 · 날짜 · 숫자·연락처의 누락과 추가를 원본 요청과 비교'],
-   ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미 유지 여부를 별도 검사'],
-   ['검사 기준','생성된 문장이 아니라 원본 요청 · 검토 필요 여부와 실패 항목을 결과에 포함'],
-   ['실패 이후','제한된 횟수·시간 안에서 재작성 → 미해결이면 경고와 담당자 검토 필요 상태 반환'],
-   ['쉬운 한국어','용어·규칙·예시를 Context Pack으로 관리해 생성에 전달'],
+   ['규칙으로 확인','제출 항목 수·날짜·숫자·연락처를 원본 요청과 대조'],
+   ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미 유지 여부'],
+   ['검사 기준','생성된 문장이 아니라 원본 요청'],
+   ['실패 이후','제한된 횟수 안에서 재작성 → 미해결이면 담당자 검토 필요로 반환'],
+   ['쉬운 한국어','용어·규칙·예시를 Context Pack으로 관리'],
   ]}/>
   <div className="fw-check-case">
    <span className="fw-kicker">저장소 테스트에 정의한 검사 사례</span>
@@ -119,11 +113,11 @@ export default function FowocoStudy(){
  </section>
 
  <section id="separation" className="fw-section">
-  <Heading n="04 / 문서 자동화" title="문서의 각 칸을, 출처가 있는 값으로 채웠습니다."/>
+  <Heading n="04 / 문서 자동화" title="각 칸을 출처가 있는 값으로 채우고, 문서 기능은 밖으로 뺐습니다."/>
   <Facts items={[
-   ['입력값 모으기','회사·근로자 정보 · OCR 추출값 · 담당자 보완값 (OCR·승인 처리는 팀 담당)'],
-   ['필드별로 연결','출처별 병합 규칙 적용 후 양식 필드 이름에 매핑 · 값이 없으면 비워 둠'],
-   ['문서에 반영','템플릿에 적용 후 생성 상태와 반영된 필드 반환 · 실패는 오류 상태로 구분'],
+   ['입력값','회사·근로자 정보 · OCR 추출값 · 담당자 보완값 (OCR·승인은 팀 담당)'],
+   ['필드 연결','병합 규칙 적용 후 양식 필드에 매핑 · 값이 없으면 비워 둠'],
+   ['문서 반영','템플릿 적용 후 반영된 필드 반환 · 실패는 오류 상태로 구분'],
   ]}/>
   <figure className="fw-document-comparison">
    <div className="fw-document-pair">
@@ -132,20 +126,17 @@ export default function FowocoStudy(){
    </div>
    <figcaption>통합신청서 입력 전후 · 누르면 크게 볼 수 있습니다.</figcaption>
   </figure>
-  <div className="fw-proof-links"><Source href={base+'/app/agents/workflow_graph/document_field_map.py'}>필드 매핑 구현</Source><Source href={base+'/app/agents/workflow_graph/nodes/document_generator.py'}>문서 생성·결과 반환</Source></div>
-
-  <Heading n="04-1 / 문서 도구로 확장" title="문서 기능을 독립적으로 확장하기 위해 MCP로 분리했습니다."/>
   <figure className="fw-boundary">
    <article><span className="fw-kicker">LangGraph 내 문서 담당</span><h3>Agent</h3><p>상태와 작업 순서 판단<br/>문서 작업 요청 · 결과 수용</p></article>
    <div className="fw-connection"><span className="fw-connection-label">문서 작업 요청 / 결과 반환</span><span className="fw-connection-arrow" aria-hidden="true">↔</span></div>
    <article><span className="fw-kicker">독립적으로 확장할 문서 도구</span><h3>HWPX MCP</h3><p>양식 분석 · 편집 계획<br/>승인 · 적용 · 최종화</p></article>
   </figure>
   <Facts items={[
-   ['나눈 기준','등록된 양식의 초안 생성은 안에 · 다양한 양식을 다룰 문서 도구는 밖에'],
-   ['밖으로 뺀 이유','문서 분석·편집은 이 업무 흐름을 넘어 쓸 수 있는 기능'],
+   ['나눈 기준','등록된 양식의 초안 생성은 안에 · 여러 양식을 다룰 도구는 밖에'],
+   ['밖으로 뺀 이유','문서 분석·편집은 이 업무 흐름 밖에서도 쓸 수 있는 기능'],
    ['치른 값','연결 관리와 도구 오류 처리'],
   ]}/>
-  <div className="fw-proof-links"><Source href="https://github.com/fowoco/ai/tree/fcefe989c2fce4ccea89ec202226ca18a044f280/app/documents/automation">문서 자동화 구현</Source><Link className="fw-source" to="/projects/hwpx">HWPX Document Plugin 프로젝트 보기 →</Link></div>
+  <div className="fw-proof-links"><Source href={base+'/app/agents/workflow_graph/document_field_map.py'}>필드 매핑 구현</Source><Source href={base+'/app/agents/workflow_graph/nodes/document_generator.py'}>문서 생성·결과 반환</Source><Source href="https://github.com/fowoco/ai/tree/fcefe989c2fce4ccea89ec202226ca18a044f280/app/documents/automation">문서 자동화 구현</Source><Link className="fw-source" to="/projects/hwpx">HWPX Document Plugin 프로젝트 보기 →</Link></div>
  </section>
 
  <section id="collaboration" className="fw-section">
