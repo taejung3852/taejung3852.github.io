@@ -38,7 +38,7 @@ export default function FowocoStudy(){
    <div><dt>스택</dt><dd>Python · LangGraph · Hybrid Search · MCP</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#collaboration">팀 협업</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a></nav>
 
  <section id="scope" className="fw-section">
   <Heading n="00 / 담당 범위" title="언어 처리와 문서 자동화를 맡았습니다."/>
@@ -56,35 +56,9 @@ export default function FowocoStudy(){
   </figure>
  </section>
 
- <section id="collaboration" className="fw-section">
-  <Heading n="01 / 팀 협업" title="결론 없이 끝나는 회의를, 4인씩 둘로 나눴습니다."/>
-  <Facts items={[
-   ['사건','주제 선정에서 관점이 둘로 갈림 — 확실한 문제부터 고르자 · AI가 들어갈 자리부터 정하자'],
-   ['문제','8인 화상회의에서 말하는 사람은 두어 명 · 편이 계속 바뀌어 몇 시간 뒤에도 결론이 남지 않음'],
-   ['해결방안','논점이 흐려질 때마다 끼어들어 정리 · 회의를 4인씩 둘로 나눔'],
-   ['효과','의견은 작은 자리에서 모이고, 전체 회의는 결정에만 씀'],
-  ]}/>
-  <figure className="fw-collab">
-   <div className="fw-flow">
-    <article><span>01 · 4인씩 2개 조</span><h3>조별 선논의</h3><p>마칠 시간을 정해두고 조별로 따로 진행</p><small>조별 의견</small></article>
-    <article><span>02 · 조장</span><h3>의견 취합</h3><p>조에서 나온 안을 정리해 전체 회의로 가져옴</p><small>정리된 안 한 건</small></article>
-    <article><span>03 · 8인 전체</span><h3>전체 합의</h3><p>논의를 다시 열지 않고 결정에만 씀</p><small>결정</small></article>
-   </div>
-   <figcaption>회고와 경험 진술에 근거한 내용입니다. 코드나 지표로 뒷받침되는 항목이 아니며, 의사결정 시간 단축 같은 성과는 측정하지 않았습니다.</figcaption>
-  </figure>
-  <div className="fw-check-case">
-   <span className="fw-kicker">연결하는 시점에 드러난 것</span>
-   <h3>각자 만든 것이 서로의 가정과 달랐습니다.</h3>
-   <dl>
-    <div><dt>상황</dt><dd>팀 간 기능 범위가 합의되지 않은 채 각자 개발이 진행됨</dd></div>
-    <div><dt>드러난 때</dt><dd>개발을 마치고 기능을 연결하는 시점</dd></div>
-    <div><dt>남은 것</dt><dd>주고받을 것을 먼저 맞추지 않으면 연결에서 값을 치른다</dd></div>
-   </dl>
-  </div>
- </section>
 
  <section id="search" className="fw-section">
-  <Heading n="02 / 검색 설계" title="업무 표현을 EPS 대응 자료에서 찾아 쓰기로 했습니다."/>
+  <Heading n="01 / 검색 설계" title="업무 표현을 EPS 대응 자료에서 찾아 쓰기로 했습니다."/>
   <Facts items={[
    ['확인한 경로','인터뷰 2회 — 공통으로 언어 장벽이 언급됨'],
    ['판단','동의어·맥락에 기대는 표현은 부담 → 업무 표현을 일정하게'],
@@ -105,7 +79,7 @@ export default function FowocoStudy(){
  </section>
 
  <section id="evidence" className="fw-section">
-  <Heading n="03 / 검색 비교" title="검색 품질을 높이는 대신, 응답 시간은 얼마나 늘어나는가?"/>
+  <Heading n="02 / 검색 비교" title="검색 품질을 높이는 대신, 응답 시간은 얼마나 늘어나는가?"/>
   <div className="fw-findings">
    <article className="fw-benefit"><span className="fw-kicker">100개 질문 중 필요한 자료를 찾은 질문</span><strong>72 → 93개</strong><h3>검색 성공률 21%p 증가</h3><p>상위 결과 5개 안에 필요한 자료가 하나 이상 포함된 질문 수.</p></article>
    <article className="fw-cost"><span className="fw-kicker">검색 결과를 받기까지</span><strong>60 → 390ms</strong><h3>대기 시간 330ms 증가</h3><p>번역 생성 시간은 제외한 값.</p></article>
@@ -121,7 +95,7 @@ export default function FowocoStudy(){
  </section>
 
  <section id="easy" className="fw-section">
-  <Heading n="04 / 정보 보존" title="번역이 서류와 기한을 바꾸지 않았는지 검사합니다.">근로자는 안내를 읽고 준비할 서류와 제출 기한을 판단합니다.</Heading>
+  <Heading n="03 / 정보 보존" title="번역이 서류와 기한을 바꾸지 않았는지 검사합니다.">근로자는 안내를 읽고 준비할 서류와 제출 기한을 판단합니다.</Heading>
   <Facts items={[
    ['규칙으로 확인','제출 항목 수·날짜·숫자·연락처를 원본 요청과 대조'],
    ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미 유지 여부'],
@@ -142,7 +116,7 @@ export default function FowocoStudy(){
  </section>
 
  <section id="separation" className="fw-section">
-  <Heading n="05 / 문서 자동화" title="각 칸을 출처가 있는 값으로 채우고, 문서 기능은 밖으로 뺐습니다."/>
+  <Heading n="04 / 문서 자동화" title="각 칸을 출처가 있는 값으로 채우고, 문서 기능은 밖으로 뺐습니다."/>
   <Facts items={[
    ['입력값','회사·근로자 정보 · OCR 추출값 · 담당자 보완값 (OCR·승인은 팀 담당)'],
    ['필드 연결','병합 규칙 적용 후 양식 필드에 매핑 · 값이 없으면 비워 둠'],

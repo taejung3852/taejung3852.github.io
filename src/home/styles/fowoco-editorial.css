@@ -105,10 +105,3 @@
  .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550;padding-left:22px}
  @media(prefers-reduced-motion:reduce){.fw-toc a{transition:none}}
 }
-
-/* The step figure reuses .fw-flow from the search pipeline so both diagrams on the
-   page read the same way; only the arrows between steps are added here. */
-.fw-collab{margin:30px 0 0}
-.fw-collab .fw-flow article{position:relative}
-.fw-collab .fw-flow article:not(:last-child)::after{content:'→';position:absolute;right:-19px;top:0;color:var(--muted)}
-@media(max-width:760px){.fw-collab .fw-flow article:not(:last-child)::after{display:none}}
