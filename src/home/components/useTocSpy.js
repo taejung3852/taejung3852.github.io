@@ -8,6 +8,8 @@ export default function useTocSpy() {
     const links = [...document.querySelectorAll('.fw-toc a[href^="#"]')];
     if (!links.length) return;
     const ids = links.map(a => a.getAttribute('href').slice(1));
+    // The rail hides the text and shows it on hover, via content:attr(data-label).
+    links.forEach(a => { a.dataset.label = a.textContent.trim(); });
     const mark = id => links.forEach((a, i) =>
       ids[i] === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
 

@@ -84,23 +84,24 @@
    which sets overflow-wrap:anywhere and would break Korean mid-word. */
 .fw-hero .fw-lead{line-height:1.65;color:var(--copy);word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
 
-/* From 1280px the page splits into a rail and a column, so the contents list can
-   sit beside the text instead of over it — fixed positioning needed a 1560px
-   viewport to clear the 1180px column, which no laptop has. It spans every row
-   and sticks inside that span. Narrower than this it stays in normal flow, in the
-   same place it has always been. */
+/* A labelled rail and centred text do not both fit: the text column is 1100px, so
+   244px of rail either side needs a 1668px viewport and no laptop has one. So the
+   rail carries dots only — 28px lives in the gutter from 1280px up — and the label
+   appears on hover. The page keeps its original single centred column. */
 @media(min-width:1280px){
- .fw-study{display:grid;grid-template-columns:188px minmax(0,1fr);column-gap:56px;max-width:1424px;align-items:start}
- .fw-study>*{grid-column:2;min-width:0}
- .fw-toc{grid-column:1;grid-row:1/-1;align-self:start;position:sticky;
-  /* Roughly vertically centred; sticky takes one offset, so subtract half a
-     typical rail height and keep a floor for short viewports. */
-  top:max(88px,calc(50vh - 150px));
-  flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;
-  border-top:0;padding-top:0;border-left:1px solid var(--rule);font-size:15px}
- .fw-toc a{padding:12px 0 12px 18px;margin-left:-1px;border-left:2px solid transparent;
-  color:var(--muted);line-height:1.4;word-break:keep-all;text-decoration:none;
-  transition:color .3s var(--ease),border-color .3s var(--ease),padding-left .3s var(--ease)}
- .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550;padding-left:25px}
- @media(prefers-reduced-motion:reduce){.fw-toc a{transition:none}}
+ .fw-toc{position:fixed;left:16px;top:max(80px,calc(50vh - 102px));z-index:5;
+  flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:6px;
+  width:28px;border-top:0;padding-top:0}
+ .fw-toc a{position:relative;display:block;width:28px;height:28px;text-indent:-9999px;text-decoration:none}
+ .fw-toc a::before{content:'';position:absolute;left:10px;top:10px;width:8px;height:8px;
+  border-radius:50%;background:var(--rule);
+  transition:background .3s var(--ease),transform .3s var(--ease)}
+ .fw-toc a[aria-current]::before{background:var(--ink);transform:scale(1.5)}
+ .fw-toc a:hover::before{background:var(--muted)}
+ .fw-toc a::after{content:attr(data-label);position:absolute;left:28px;top:50%;
+  transform:translateY(-50%);text-indent:0;white-space:nowrap;font-size:14px;line-height:1;
+  color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:4px;
+  padding:7px 11px;opacity:0;pointer-events:none;transition:opacity .2s var(--ease)}
+ .fw-toc a:hover::after,.fw-toc a:focus-visible::after{opacity:1}
+ @media(prefers-reduced-motion:reduce){.fw-toc a::before,.fw-toc a::after{transition:none}}
 }
