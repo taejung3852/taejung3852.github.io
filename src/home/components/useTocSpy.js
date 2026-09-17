@@ -18,13 +18,22 @@ export default function useTocSpy() {
       entries.forEach(e => e.isIntersecting ? onscreen.add(e.target.id) : onscreen.delete(e.target.id));
       const active = ids.find(id => onscreen.has(id));
       if (active) mark(active);
-    }, {rootMargin: '-12% 0px -76% 0px'});
+    }, {rootMargin: '-90px 0px -65% 0px'});
 
     ids.forEach(id => {
       const el = document.getElementById(id);
       if (el) io.observe(el);
     });
+
+    // A click is explicit: mark it now rather than waiting for the jump to land
+    // inside the observed band, which sits right on top of scroll-margin-top.
+    const onclick = e => {
+      const a = e.target.closest('.fw-toc a[href^="#"]');
+      if (a) mark(a.getAttribute('href').slice(1));
+    };
+    document.addEventListener('click', onclick);
+
     mark(ids[0]);
-    return () => io.disconnect();
+    return () => { io.disconnect(); document.removeEventListener('click', onclick); };
   }, []);
 }
