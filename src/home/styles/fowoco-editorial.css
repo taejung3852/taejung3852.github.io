@@ -95,7 +95,11 @@
   width:min(140px,calc((100vw - 1080px)/2 + 28px));
   flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;
   border-top:0;padding-top:0;border-left:1px solid var(--rule);font-size:14px}
- .fw-toc a{padding:11px 0 11px 16px;margin-left:-1px;border-left:2px solid transparent;
+ /* The rail reports position; it does not navigate. Pointer events off removes a
+    whole class of click-vs-scroll mismatch. Keyboard focus still reaches the links,
+    and below 1200px the same list is an ordinary clickable table of contents. */
+ .fw-toc{pointer-events:none}
+ .fw-toc a{pointer-events:none;padding:11px 0 11px 16px;margin-left:-1px;border-left:2px solid transparent;
   color:var(--muted);line-height:1.4;word-break:keep-all;text-decoration:none;
   transition:color .3s var(--ease),border-color .3s var(--ease),padding-left .3s var(--ease)}
  .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550;padding-left:22px}
