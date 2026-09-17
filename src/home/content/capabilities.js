@@ -1,8 +1,8 @@
 // Capability summary shown on the home page. Each entry links to the projects that evidence it.
 // **text** marks a keyword; About.jsx renders those in --ink so the line has anchors to land on.
 export const capabilities = {
-  // The heading is a claim, not a label; the three items below are the evidence for it.
-  title: '근거, 도구, 그리고 검토 기준.',
+  // The heading is the positioning; the three items below are the evidence for it.
+  title: '검증할 수 있고, 통제할 수 있는 에이전트.',
   introduction: '문제에 맞는 AI 기능을 고르고, 도구의 책임과 사람이 확인할 지점을 나눠 설계합니다.',
   // Same grouping as the resume; keep the two in step.
   stack: [
@@ -19,7 +19,7 @@ export const capabilities = {
       projects: ['fowoco', 'llm-gateway'],
     },
     {
-      title: '문서 처리를 서비스 밖에서도 쓸 수 있게 떼어냅니다.',
+      title: '도구가 할 수 있는 일을 좁게 고정합니다.',
       description: '문서 분석·편집을 **MCP 도구**로 떼어내, 만든 서비스 밖의 클라이언트에서도 같은 기능을 붙일 수 있게 했습니다. **대표 양식 1건**에 대해 읽기부터 편집까지의 흐름을 실행했습니다.',
       projects: ['fowoco', 'hwpx'],
     },
