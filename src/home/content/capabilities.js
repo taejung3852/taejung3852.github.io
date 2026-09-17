@@ -6,7 +6,7 @@ export const capabilities = {
   // and the intro settles whether this is about building agents or driving them: both,
   // but not both in every project — FOWOCO and the Gateway are built into their service.
   title: '에이전트를 만들고, 붙이고, 검증합니다.',
-  introduction: '어떤 기능은 서비스 안에 직접 구현하고, 어떤 기능은 Claude Code, Codex 같은 에이전트에 붙여 쓰는 도구로 만듭니다.',
+  introduction: '검색과 모델 선택은 서비스 안에 직접 구현하고, 문서 처리는 Claude Code, Codex 같은 에이전트에 붙여 쓰는 도구로 만듭니다.',
   // Same grouping as the resume; keep the two in step.
   stack: [
     ['언어', ['Python', 'Java', 'SQL']],
