@@ -20,9 +20,9 @@ export const capabilities = {
       points: [
         '같은 내용을 다른 말로 물어도 **같은 문서**를 찾아옵니다',
         '질문 100개 중 상위 5개 안에 맞는 문서가 든 경우 **72건 → 93건**',
-        '서로 다른 LLM을 **하나의 흐름**에서 골라 씁니다',
+        '검색 품질을 올리는 대신 **대기 330ms**를 받아들였습니다',
       ],
-      projects: ['fowoco', 'llm-gateway'],
+      projects: ['fowoco'],
     },
     {
       icon: 'wrench',

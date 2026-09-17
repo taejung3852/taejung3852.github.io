@@ -20,6 +20,9 @@ export default function useTocSpy() {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= line) active = id;
       });
+      // A short final section never crosses the line; at the foot of the page it
+      // is what the reader is on regardless.
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) active = ids[ids.length - 1];
       if (active === current) return;
       current = active;
       links.forEach((a, i) =>
