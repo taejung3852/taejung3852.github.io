@@ -59,17 +59,16 @@ export default function FowocoStudy(){
  <section id="collaboration" className="fw-section">
   <Heading n="01 / 팀 협업" title="결론 없이 끝나는 회의를, 4인씩 둘로 나눴습니다."/>
   <Facts items={[
-   ['갈린 지점','주제 선정에서 관점이 둘로 — 확실한 문제부터 고르자 · AI가 들어갈 자리부터 정하자'],
-   ['던진 질문','“이 주제로 가면 AI 기능은 어디에 두나요” · 다수결로 정해진 뒤에도 답이 남지 않음'],
-   ['고정되지 않음','같은 편이 유지되지 않고 5:3 · 4:4로 계속 바뀜 → 매번 처음부터 다시 논의'],
-   ['구조 문제','8인 화상회의에서 실제로 말하는 사람은 두어 명 · 몇 시간 뒤에도 결론이 남지 않음'],
-   ['한 일','논점이 흐려질 때마다 끼어들어 정리 · 4인씩 2개 조로 나눠 시간을 정해 선논의'],
+   ['사건','주제 선정에서 관점이 둘로 갈림 — 확실한 문제부터 고르자 · AI가 들어갈 자리부터 정하자'],
+   ['문제','8인 화상회의에서 말하는 사람은 두어 명 · 편이 계속 바뀌어 몇 시간 뒤에도 결론이 남지 않음'],
+   ['해결방안','논점이 흐려질 때마다 끼어들어 정리 · 회의를 4인씩 둘로 나눔'],
+   ['효과','의견은 작은 자리에서 모이고, 전체 회의는 결정에만 씀'],
   ]}/>
   <figure className="fw-collab">
-   <div className="fw-collab-flow">
-    <div className="fw-scope-stage"><span>4인 × 2</span><h3>조별 선논의</h3><p>마칠 시간을 정해두고 따로 진행</p></div>
-    <div className="fw-scope-stage"><span>조장</span><h3>의견 취합</h3><p>조에서 나온 안을 정리해 들고 옴</p></div>
-    <div className="fw-scope-stage"><span>8인 전체</span><h3>전체 합의</h3><p>전체 회의는 결정에만 씀</p></div>
+   <div className="fw-flow">
+    <article><span>01 · 4인씩 2개 조</span><h3>조별 선논의</h3><p>마칠 시간을 정해두고 조별로 따로 진행</p><small>조별 의견</small></article>
+    <article><span>02 · 조장</span><h3>의견 취합</h3><p>조에서 나온 안을 정리해 전체 회의로 가져옴</p><small>정리된 안 한 건</small></article>
+    <article><span>03 · 8인 전체</span><h3>전체 합의</h3><p>논의를 다시 열지 않고 결정에만 씀</p><small>결정</small></article>
    </div>
    <figcaption>회고와 경험 진술에 근거한 내용입니다. 코드나 지표로 뒷받침되는 항목이 아니며, 의사결정 시간 단축 같은 성과는 측정하지 않았습니다.</figcaption>
   </figure>
