@@ -92,10 +92,15 @@
 @media(min-width:1280px){
  .fw-study{display:grid;grid-template-columns:188px minmax(0,1fr);column-gap:56px;max-width:1424px;align-items:start}
  .fw-study>*{grid-column:2;min-width:0}
- .fw-toc{grid-column:1;grid-row:1/-1;align-self:start;position:sticky;top:104px;
+ .fw-toc{grid-column:1;grid-row:1/-1;align-self:start;position:sticky;
+  /* Roughly vertically centred; sticky takes one offset, so subtract half a
+     typical rail height and keep a floor for short viewports. */
+  top:max(88px,calc(50vh - 150px));
   flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;
   border-top:0;padding-top:0;border-left:1px solid var(--rule);font-size:15px}
  .fw-toc a{padding:12px 0 12px 18px;margin-left:-1px;border-left:2px solid transparent;
-  color:var(--muted);line-height:1.4;word-break:keep-all;text-decoration:none}
- .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550}
+  color:var(--muted);line-height:1.4;word-break:keep-all;text-decoration:none;
+  transition:color .3s var(--ease),border-color .3s var(--ease),padding-left .3s var(--ease)}
+ .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550;padding-left:25px}
+ @media(prefers-reduced-motion:reduce){.fw-toc a{transition:none}}
 }
