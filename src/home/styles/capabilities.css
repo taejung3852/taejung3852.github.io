@@ -1,6 +1,6 @@
 .capabilities-heading{margin-bottom:56px}
 
-.capability-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;border-top:2px solid var(--ink)}
+.capability-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
 .capability{min-width:0;display:flex;flex-direction:column;padding-top:28px}
 .capability+.capability{border-left:1px solid var(--rule);padding-left:40px}
 .capability-icon{display:block;flex:none;align-self:flex-start;color:var(--ink)}
