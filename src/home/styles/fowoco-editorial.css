@@ -87,8 +87,12 @@
 /* Dots said nothing without a hover, so the labels are back. They fit because the
    column came down to 1080px: at 1440 that leaves 180px of gutter for a 154px rail,
    and the text stays centred. Below 1440 the list stays in flow under the hero. */
-@media(min-width:1440px){
- .fw-toc{position:fixed;left:14px;top:max(84px,calc(50vh - 140px));z-index:5;width:140px;
+@media(min-width:1200px){
+ /* Width follows the gutter instead of guessing a breakpoint: half the leftover
+    viewport plus the page's own 40px padding, capped at 140. At 1200 that is 88px
+    and it still clears the text; above 1360 it is simply 140. */
+ .fw-toc{position:fixed;left:8px;top:max(84px,calc(50vh - 140px));z-index:5;
+  width:min(140px,calc((100vw - 1080px)/2 + 28px));
   flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;
   border-top:0;padding-top:0;border-left:1px solid var(--rule);font-size:14px}
  .fw-toc a{padding:11px 0 11px 16px;margin-left:-1px;border-left:2px solid transparent;
