@@ -55,7 +55,7 @@
 .hx-side img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 
 /* Two runs of the same task, side by side — capped so a full page stays a thumbnail. */
-.hx-shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px;max-width:700px;margin-top:34px}
+.hx-shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px;max-width:700px;margin:34px auto 0}
 .hx-shots figure{min-width:0}
 .hx-shots .fw-kicker{margin-bottom:10px!important}
 .hx-shots img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
