@@ -41,7 +41,7 @@ export default function HwpxStudy(){
   <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#analyze">분석</a><a href="#problem">문제</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a></nav>
 
  <section id="origin" className="fw-section">
-  <Heading n="00 / 시작" title="한글 문서를 다뤄 주는 도구가 없었습니다."/>
+  <Heading n="00 / 시작" title="에이전트가 한글 문서를 다뤄 줄 방법이 없었습니다."/>
   <Facts items={[
    ['빠져 있던 것','Word·PowerPoint·Excel은 에이전트가 열어 고칩니다. 한국 공문서에 가장 많이 쓰는 HWPX만 없었습니다.'],
    ['처음 만든 곳',<>체류 서류가 대부분 HWPX인 <Link className="fw-inline-link" to="/projects/fowoco">FOWOCO</Link>. 처음에는 그 서비스 안의 함수였습니다.</>],
@@ -51,7 +51,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="analyze" className="fw-section">
-  <Heading n="01 / 분석" title="플러그인 없이, ChatGPT 웹에서 두 번 돌려봤습니다."/>
+  <Heading n="01 / 분석" title="한글 파일을 주고, 그대로 고쳐 달라고 했습니다.">빈 통합신청서를 ChatGPT 웹에 올리고, 같은 요청을 두 번 했습니다.</Heading>
   <Facts items={[
    ['첫 번째','외국인등록번호 낱칸 정렬 실패 · 성별 미체크 · 요청하지 않은 예정 근무처와 서명란까지 기입'],
    ['두 번째','낱칸까지 정확 · 성별 체크 · 요청하지 않은 칸 유지'],
@@ -69,7 +69,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="problem" className="fw-section">
-  <Heading n="02 / 문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다."/>
+  <Heading n="02 / 문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다.">왜 실행마다 달라지는지 보려고 파일을 열었습니다.</Heading>
   <Facts items={[
    ['읽히는 것',<>HWPX = 압축된 XML. <Field>성 Surname</Field> 문구가 놓인 셀은 그대로 조회됩니다.</>],
    ['읽히지 않는 것','그 문항의 답을 쓸 칸. 파일에 없고 사람이 보는 배치로만 드러납니다.'],
@@ -83,7 +83,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="process" className="fw-section">
-  <Heading n="03 / 검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다."/>
+  <Heading n="03 / 검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다.">자리를 파일에서 정할 수 없다면, 추측하지 말고 확인을 받기로 했습니다.</Heading>
   <Facts items={[
    ['자리를 그림으로','값을 넣을 칸을 파란 박스로 표시 → 아니라고 하면 위치를 고쳐 재확인'],
    ['묶어서 묻기','인적사항·여권·주소·근무처 단위로 묶어 확인 화면 수 축소'],
