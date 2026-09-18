@@ -85,3 +85,12 @@
 .hx-field{display:inline-block;font-size:.88em;line-height:1.5;padding:0 7px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);color:var(--ink);white-space:nowrap}
 .hx-single{max-width:620px}
 @media(max-width:760px){.fw-topbar{margin-bottom:32px}}
+
+/* The two cell comparisons sit side by side once there is room. The diff lines
+   switch to white-space:pre there: a wrapped diff is worse than a short scroll. */
+@media(min-width:1100px){
+ .hx-cells-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px;align-items:start}
+ .hx-cells-pair .hx-cells,.hx-cells-pair .hx-cells+.hx-cells{margin-top:30px;max-width:none;overflow-x:auto}
+ .hx-cells-pair code{font-size:12px;white-space:pre}
+ .hx-cells-pair th[scope="row"]{width:70px}
+}

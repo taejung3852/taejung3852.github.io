@@ -113,6 +113,7 @@ export default function HwpxStudy(){
   <p className="fw-note">02에서 꼽은 자리도 나뉘었습니다 — <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
 
   <Heading n="04-1 / 대조" title="웹이 만든 문서와, 셀 단위로 맞춰 봤습니다.">같은 원본에 같은 값을 넣은 두 결과. <strong>157개 중 8개가 다르고 그중 5개는 표기 형식 차이</strong>, 남은 2개가 실제 차이입니다.</Heading>
+  <div className="hx-cells-pair">
   <div className="hx-cells">
    <table>
     <caption>신청 종류 체크란 <span>section0.table0.row7.cell0</span></caption>
@@ -135,6 +136,7 @@ export default function HwpxStudy(){
     </tbody>
    </table>
    <p>플러그인은 값을 입력 칸이 아니라 라벨 칸에 붙였습니다. <strong>이건 이 플러그인의 오류이고, 고쳐야 할 것으로 남아 있습니다.</strong></p>
+  </div>
   </div>
   <p className="fw-takeaway">두 오류 모두 눈으로는 찾기 어렵습니다. 셀 단위로 맞춰 봐야 드러납니다.</p>
 
