@@ -118,8 +118,8 @@ export default function HwpxStudy(){
     <caption>신청 종류 체크란 <span>section0.table0.row7.cell0</span></caption>
     <tbody>
      <tr><th scope="row">원본</th><td><code>[  ] 체류기간 연장허가     EXTENSION OF SOJOURN PERIOD</code></td></tr>
-     <tr><th scope="row">ChatGPT 웹</th><td><code>[√]<span className="hx-gone">          ← 문구 사라짐</span>     EXTENSION OF SOJOURN PERIOD</code></td></tr>
-     <tr><th scope="row">플러그인</th><td><code>[V] 체류기간 연장허가     EXTENSION OF SOJOURN PERIOD</code></td></tr>
+     <tr><th scope="row">ChatGPT 웹</th><td><code>[<ins>√</ins>] <del>체류기간 연장허가</del>     EXTENSION OF SOJOURN PERIOD</code></td></tr>
+     <tr><th scope="row">플러그인</th><td><code>[<ins>V</ins>] 체류기간 연장허가     EXTENSION OF SOJOURN PERIOD</code></td></tr>
     </tbody>
    </table>
    <p>웹은 체크 표시를 넣으면서 칸에 인쇄돼 있던 문구를 함께 지웠습니다.</p>
@@ -127,11 +127,11 @@ export default function HwpxStudy(){
   <div className="hx-cells">
    <table>
     <caption>연 소득금액 <span>section0.table0.row26</span></caption>
-    <thead><tr><th scope="col"></th><th scope="col">단위 라벨 칸 · cell1</th><th scope="col">입력 칸 · cell2</th></tr></thead>
+    <thead><tr><th scope="col"></th><th scope="col">단위 라벨 칸 · cell1</th><th scope="col">값을 넣어야 할 칸 · cell2</th></tr></thead>
     <tbody>
      <tr><th scope="row">원본</th><td><code>만원(ten thousand won)</code></td><td className="hx-gone">비어 있음</td></tr>
-     <tr><th scope="row">ChatGPT 웹</th><td><code>만원(ten thousand won)</code></td><td><code>3,000</code></td></tr>
-     <tr><th scope="row">플러그인</th><td><code>3000 만원(ten thousand won)</code></td><td className="hx-gone">비어 있음</td></tr>
+     <tr><th scope="row">ChatGPT 웹</th><td><code>만원(ten thousand won)</code></td><td><code><ins>3,000</ins></code></td></tr>
+     <tr><th scope="row">플러그인</th><td><code><ins>3000</ins> 만원(ten thousand won)</code></td><td className="hx-gone">비어 있음</td></tr>
     </tbody>
    </table>
    <p>플러그인은 값을 입력 칸이 아니라 라벨 칸에 붙였습니다. <strong>이건 이 플러그인의 오류이고, 고쳐야 할 것으로 남아 있습니다.</strong></p>

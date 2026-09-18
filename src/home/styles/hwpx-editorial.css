@@ -69,7 +69,12 @@
 .hx-cells th,.hx-cells td{padding:12px 16px 12px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:baseline}
 .hx-cells thead th{font-size:12px;color:var(--muted);font-weight:500}
 .hx-cells th[scope="row"]{width:104px;font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
-.hx-cells code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;color:var(--ink)}
+.hx-cells code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:1.75;white-space:pre-wrap;color:var(--ink)}
+/* Three monospace lines asked the reader to diff them by eye. Marking what each
+   run added, and striking what it removed, puts the difference where it happened. */
+.hx-cells ins{text-decoration:none;font-weight:700;background:rgba(17,17,17,.11);padding:1px 4px;border-radius:3px}
+.hx-cells del{color:var(--muted);text-decoration-color:var(--muted)}
+[data-theme=dark] .hx-cells ins{background:rgba(245,245,245,.18)}
 .hx-cells .hx-gone,.hx-cells td.hx-gone{color:var(--muted);font-size:12.5px}
 .hx-cells>p{font-size:13px!important;margin-top:14px;max-width:760px}
 @media(max-width:700px){.hx-cells{overflow-x:auto}.hx-cells th[scope="row"]{width:auto}}
