@@ -8,7 +8,8 @@ const routeSrc=repo+'/blob/fc82bbce0e04934be88684fe2fd400271998a346/src/main/jav
 const criteria=[['비용','per 1M tokens','낮을수록 높은 점수'],['속도','tokens/second','높을수록 높은 점수'],['성능','intelligence · math · coding','높을수록 높은 점수'],['Context Length','토큰 수','높을수록 높은 점수']];
 const commits=[['AWS SageMaker JumpStart 연결 구성','b097447c0896589f59d623e68e810354f124d2da'],['AWS SageMaker JumpStart 연동 비활성화','cbdec737db45b6132156ac6d9e668aabf47560f8'],['Ollama 스트리밍 연결','f26daf703155db4efec78dd8539e81183a918256']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
-function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
+function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h3>{title}</h3>{children&&<p>{children}</p>}</header>}
+function Part({n,title,id}){return <div className="fw-part" id={id}><span>{n}</span><h2>{title}</h2></div>}
 function Facts({items}){return <ul className="fw-facts">{items.map(([k,v],i)=><li key={i}><b>{k}</b><span>{v}</span></li>)}</ul>}
 export default function GatewayStudy(){
  useTocSpy();
@@ -40,10 +41,11 @@ export default function GatewayStudy(){
    <div><dt>스택</dt><dd>Java · LangChain4j · AWS SageMaker JumpStart · Ollama · WebSocket</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#context">배경과 담당</a><a href="#routing">모델 선택</a><a href="#integration">모델 연결</a><a href="#runtime">실행 환경</a><a href="#reflection">회고</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#p-context">배경과 담당</a><a href="#p-model">모델 선택과 연결</a><a href="#p-runtime">실행 환경</a><a href="#p-reflection">회고</a></nav>
 
+ <Part n="00" title="배경과 담당" id="p-context"/>
  <section id="context" className="fw-section">
-  <Heading n="00 / 배경과 담당" title="조건에 맞는 모델을 골라 주는 서비스입니다."/>
+  <Heading n="무엇을 만들었나" title="조건에 맞는 모델을 골라 주는 서비스입니다."/>
   <Facts items={[
    ['무엇','비용·속도·성능·문맥 길이의 중요도를 설정하면, 그 기준에 맞는 모델을 골라 대화하는 서비스'],
    ['팀과 담당','2인 팀 · 모델 선택 로직 참여 · LLM Provider 연동 · 모델 실행 환경 구성'],
@@ -51,8 +53,9 @@ export default function GatewayStudy(){
   ]}/>
  </section>
 
+ <Part n="01" title="모델 선택과 연결" id="p-model"/>
  <section id="routing" className="fw-section">
-  <Heading n="01 / 모델 선택" title="조건을 다 만족하는 모델만 찾다가, 우선순위 비교로 바꿨습니다."/>
+  <Heading n="모델 선택" title="조건을 다 만족하는 모델만 찾다가, 우선순위 비교로 바꿨습니다."/>
   <Facts items={[
    ['이전 방식','비용·속도·지연·Context Length 조건을 모두 통과한 모델만 후보 · 하나라도 못 맞추면 제외'],
    ['드러난 문제','조건이 엄격해지면 후보가 사라져 기본 모델로 되돌아감 · 조건에 가까운 모델끼리 비교할 방법도 없음'],
@@ -73,7 +76,7 @@ export default function GatewayStudy(){
  </section>
 
  <section id="integration" className="fw-section">
-  <Heading n="02 / 모델 연결" title="서로 다른 모델을, 하나의 호출로 부릅니다."/>
+  <Heading n="모델 연결" title="서로 다른 모델을, 하나의 호출로 부릅니다."/>
   <Facts items={[
    ['문제','당시 LangChain4j 베타가 일부 오픈소스 모델 연동을 미지원 · 요청·응답 형식이 다른 모델을 붙일 방법이 필요'],
    ['해결','지원하는 연동은 그대로 사용 · 없는 모델은 요청·응답 변환을 직접 구현'],
@@ -92,8 +95,9 @@ export default function GatewayStudy(){
   <div className="fw-proof-links"><Source href={src+'/chat/config/sagemaker/GemmaChatModel.java'}>요청 구성·응답 변환</Source><Source href={src+'/chat/config/models/opensource/GemmaConfig.java'}>모델 등록</Source><Source href={src+'/chat/service/AssistanceService.java'}>모델 이름별 호출</Source></div>
  </section>
 
+ <Part n="02" title="실행 환경" id="p-runtime"/>
  <section id="runtime" className="fw-section">
-  <Heading n="03 / 실행 환경" title="검증은 클라우드에서, 운영은 보유 GPU에서."/>
+  <Heading n="클라우드에서 보유 GPU로" title="검증은 클라우드에서, 운영은 보유 GPU에서."/>
   <Facts items={[
    ['문제','GPU 환경 구축 전에 서비스와 오픈소스 모델의 연결 가능 여부부터 확인 필요'],
    ['먼저 택한 것','AWS SageMaker JumpStart — 비용이 들더라도 바로 띄울 수 있음. 목적은 연동 검증'],
@@ -106,8 +110,9 @@ export default function GatewayStudy(){
   </div>
  </section>
 
+ <Part n="03" title="회고" id="p-reflection"/>
  <section id="reflection" className="fw-section">
-  <Heading n="회고" title="응답 스트리밍에, 양방향 연결이 꼭 필요했을까?"/>
+  <Heading n="다시 만든다면" title="응답 스트리밍에, 양방향 연결이 꼭 필요했을까?"/>
   <Facts items={[
    ['당시 선택','실시간 채팅을 구현하려고 WebSocket 채택'],
    ['실제 요구','요청을 한 번 받고, 생성된 응답을 순차적으로 내려보내는 것'],

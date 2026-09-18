@@ -105,3 +105,13 @@
  .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550;padding-left:22px}
  @media(prefers-reduced-motion:reduce){.fw-toc a{transition:none}}
 }
+
+/* Two levels: parts carry the h2 and the contents list, sections keep their own
+   headings at h3 underneath. A part already announces what follows, so the
+   section right after it drops the rule that would otherwise separate them. */
+.fw-part{scroll-margin-top:110px;padding:78px 0 0}
+.fw-part>span{display:block;font-size:13px;letter-spacing:.06em;color:var(--muted);margin-bottom:16px}
+.fw-part h2{font-size:clamp(32px,3.4vw,48px);line-height:1.18;letter-spacing:-.045em;font-weight:650;word-break:keep-all}
+.fw-part+.fw-section{border-top:0;padding-top:34px}
+.fw-heading h3{font-size:clamp(21px,2vw,28px);line-height:1.35;letter-spacing:-.03em;font-weight:620;word-break:keep-all}
+@media(max-width:760px){.fw-part{padding-top:52px}.fw-part+.fw-section{padding-top:26px}}

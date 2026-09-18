@@ -5,7 +5,8 @@ import useTocSpy from './useTocSpy';
 const base='https://github.com/fowoco/ai/blob/209ebddf3878f750c37e5ebe5651b0fe6aa0a354';
 const rows=[['단일 Dense','72 / 100','0.61','60'],['단일 Hybrid','81 / 100','0.70','80'],['멀티쿼리 Hybrid','89 / 100','0.77','120'],['멀티쿼리 Hybrid + Re-ranking','93 / 100','0.86','390']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
-function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
+function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h3>{title}</h3>{children&&<p>{children}</p>}</header>}
+function Part({n,title,id}){return <div className="fw-part" id={id}><span>{n}</span><h2>{title}</h2></div>}
 function Facts({items}){return <ul className="fw-facts">{items.map(([k,v],i)=><li key={i}><b>{k}</b><span>{v}</span></li>)}</ul>}
 export default function FowocoStudy(){
  useTocSpy();
@@ -38,10 +39,11 @@ export default function FowocoStudy(){
    <div><dt>스택</dt><dd>Python · LangGraph · Hybrid Search · MCP</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a><a href="#reflection">회고</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#p-scope">배경과 담당</a><a href="#p-language">언어 처리</a><a href="#p-document">문서 자동화</a><a href="#p-reflection">회고</a></nav>
 
+ <Part n="00" title="배경과 담당" id="p-scope"/>
  <section id="scope" className="fw-section">
-  <Heading n="00 / 배경과 담당" title="언어 처리와 문서 자동화를 맡았습니다."/>
+  <Heading n="맡은 범위" title="언어 처리와 문서 자동화를 맡았습니다."/>
   <figure className="fw-scope">
    <div className="fw-scope-flow">
     <div className="fw-scope-stage"><span>HR 담당자</span><h3>업무 요청</h3><p>자연어 입력 · 기한 확인</p></div>
@@ -57,8 +59,9 @@ export default function FowocoStudy(){
  </section>
 
 
+ <Part n="01" title="언어 처리" id="p-language"/>
  <section id="search" className="fw-section">
-  <Heading n="01 / 검색 설계" title="업무 표현을 EPS 대응 자료에서 찾아 쓰기로 했습니다."/>
+  <Heading n="검색 설계" title="업무 표현을 EPS 대응 자료에서 찾아 쓰기로 했습니다."/>
   <Facts items={[
    ['확인한 경로','인터뷰 2회 — 공통으로 언어 장벽이 언급됨'],
    ['판단','동의어·맥락에 기대는 표현은 부담 → 업무 표현을 일정하게'],
@@ -79,7 +82,7 @@ export default function FowocoStudy(){
  </section>
 
  <section id="evidence" className="fw-section">
-  <Heading n="02 / 검색 비교" title="검색 품질을 높이는 대신, 응답 시간은 얼마나 늘어나는가?"/>
+  <Heading n="검색 비교" title="검색 품질을 높이는 대신, 응답 시간은 얼마나 늘어나는가?"/>
   <div className="fw-findings">
    <article className="fw-benefit"><span className="fw-kicker">100개 질문 중 필요한 자료를 찾은 질문</span><strong>72 → 93개</strong><h3>검색 성공률 21%p 증가</h3><p>상위 결과 5개 안에 필요한 자료가 하나 이상 포함된 질문 수.</p></article>
    <article className="fw-cost"><span className="fw-kicker">검색 결과를 받기까지</span><strong>60 → 390ms</strong><h3>대기 시간 330ms 증가</h3><p>번역 생성 시간은 제외한 값.</p></article>
@@ -95,7 +98,7 @@ export default function FowocoStudy(){
  </section>
 
  <section id="easy" className="fw-section">
-  <Heading n="03 / 정보 보존" title="번역이 서류와 기한을 바꾸지 않았는지 검사합니다.">근로자는 안내를 읽고 준비할 서류와 제출 기한을 판단합니다.</Heading>
+  <Heading n="정보 보존" title="번역이 서류와 기한을 바꾸지 않았는지 검사합니다.">근로자는 안내를 읽고 준비할 서류와 제출 기한을 판단합니다.</Heading>
   <Facts items={[
    ['규칙으로 확인','제출 항목 수·날짜·숫자·연락처를 원본 요청과 대조'],
    ['의미로 확인','요청 사유·제출 항목·제출 방법의 의미 유지 여부'],
@@ -115,8 +118,9 @@ export default function FowocoStudy(){
   <div className="fw-proof-links"><Source href={base+'/app/agents/language/validation.py'}>검사·재작성 구현</Source><Source href={base+'/tests/agents/language/test_validation.py'}>날짜·서류 누락 테스트</Source><Source href={base+'/app/agents/language/easy_korean.py'}>쉬운 한국어 Context Pack</Source></div>
  </section>
 
+ <Part n="02" title="문서 자동화" id="p-document"/>
  <section id="separation" className="fw-section">
-  <Heading n="04 / 문서 자동화" title="각 칸을 출처가 있는 값으로 채우고, 문서 기능은 밖으로 뺐습니다."/>
+  <Heading n="필드 매핑과 도구 분리" title="각 칸을 출처가 있는 값으로 채우고, 문서 기능은 밖으로 뺐습니다."/>
   <Facts items={[
    ['입력값','회사·근로자 정보 · OCR 추출값 · 담당자 보완값 (OCR·승인은 팀 담당)'],
    ['필드 연결','병합 규칙 적용 후 양식 필드에 매핑 · 값이 없으면 비워 둠'],
@@ -143,8 +147,9 @@ export default function FowocoStudy(){
  </section>
 
 
+ <Part n="03" title="회고" id="p-reflection"/>
  <section id="reflection" className="fw-section">
-  <Heading n="회고" title="검색 폭과 정보 보존, 어느 쪽이 더 문제였을까?"/>
+  <Heading n="다시 만든다면" title="검색 폭과 정보 보존, 어느 쪽이 더 문제였을까?"/>
   <Facts items={[
    ['당시 선택','고정 질의 3종 — 표현이 달라져도 요청의 핵심이 남도록'],
    ['치른 값','질의 다양성은 그만큼 제한됩니다'],

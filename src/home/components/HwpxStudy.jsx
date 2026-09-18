@@ -9,7 +9,8 @@ const bands=[['구역 1','신청 종류 선택'],['구역 2','인적사항 · �
 const mapping=[['체류기간 연장허가','체류기간 연장허가 EXTENSION OF SOJOURN PERIOD'],['NGUYEN','성 Surname'],['VAN AN','명 Given names'],['1995-04-12','생년월일 Date of Birth'],['9504125000000','외국인등록번호 Foreign Resident Registration No.'],['010-0000-0000','휴대전화 Cell phone No.'],['031-000-0000','전화번호 Phone No. — 근무처 행'],['3000','연 소득금액 Annual Income Amount']];
 function Source({href,children='구현 근거'}){return <a className="fw-source" href={href} target="_blank" rel="noreferrer">{children} ↗</a>}
 function Field({children}){return <span className="hx-field">{children}</span>}
-function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h2>{title}</h2>{children&&<p>{children}</p>}</header>}
+function Heading({n,title,children}){return <header className="fw-heading"><span className="fw-kicker">{n}</span><h3>{title}</h3>{children&&<p>{children}</p>}</header>}
+function Part({n,title,id}){return <div className="fw-part" id={id}><span>{n}</span><h2>{title}</h2></div>}
 function Facts({items}){return <ul className="fw-facts">{items.map(([k,v],i)=><li key={i}><b>{k}</b><span>{v}</span></li>)}</ul>}
 export default function HwpxStudy(){
  useTocSpy();
@@ -38,10 +39,11 @@ export default function HwpxStudy(){
    <div><dt>스택</dt><dd>Python · FastMCP · Agent Skills · STDIO</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#analyze">분석</a><a href="#problem">문제</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#reflection">회고</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#p-origin">배경과 담당</a><a href="#p-problem">문제 확인</a><a href="#p-build">만든 것</a><a href="#p-reflection">회고</a></nav>
 
+ <Part n="00" title="배경과 담당" id="p-origin"/>
  <section id="origin" className="fw-section">
-  <Heading n="00 / 배경과 담당" title="에이전트가 한글 문서를 다뤄 줄 방법이 없었습니다."/>
+  <Heading n="왜 만들었나" title="에이전트가 한글 문서를 다뤄 줄 방법이 없었습니다."/>
   <Facts items={[
    ['빠져 있던 것','Word·PowerPoint·Excel은 에이전트가 열어 고칩니다. 한국 공문서에 가장 많이 쓰는 HWPX만 없었습니다.'],
    ['처음 만든 곳',<>체류 서류가 대부분 HWPX인 <Link className="fw-inline-link" to="/projects/fowoco">FOWOCO</Link>. 처음에는 그 서비스 안의 함수였습니다.</>],
@@ -51,8 +53,9 @@ export default function HwpxStudy(){
   <p><Link className="fw-source" to="/projects/fowoco">FOWOCO에서의 분리 과정 보기 →</Link></p>
  </section>
 
+ <Part n="01" title="문제 확인" id="p-problem"/>
  <section id="analyze" className="fw-section">
-  <Heading n="01 / 분석" title="한글 파일을 주고, 그대로 고쳐 달라고 했습니다.">빈 통합신청서를 ChatGPT 웹에 올리고, 같은 요청을 두 번 했습니다.</Heading>
+  <Heading n="분석" title="한글 파일을 주고, 그대로 고쳐 달라고 했습니다.">빈 통합신청서를 ChatGPT 웹에 올리고, 같은 요청을 두 번 했습니다.</Heading>
   <Facts items={[
    ['첫 번째','외국인등록번호 낱칸 정렬 실패 · 성별 미체크 · 요청하지 않은 예정 근무처와 서명란까지 기입'],
    ['두 번째','낱칸까지 정확 · 성별 체크 · 요청하지 않은 칸 유지'],
@@ -70,7 +73,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="problem" className="fw-section">
-  <Heading n="02 / 문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다.">왜 실행마다 달라지는지 보려고 파일을 열었습니다.</Heading>
+  <Heading n="문제" title="문항은 읽히는데, 답을 쓸 자리가 읽히지 않습니다.">왜 실행마다 달라지는지 보려고 파일을 열었습니다.</Heading>
   <Facts items={[
    ['읽히는 것',<>HWPX = 압축된 XML. <Field>성 Surname</Field> 문구가 놓인 셀은 그대로 조회됩니다.</>],
    ['읽히지 않는 것','그 문항의 답을 쓸 칸. 파일에 없고 사람이 보는 배치로만 드러납니다.'],
@@ -83,8 +86,9 @@ export default function HwpxStudy(){
   </figure>
  </section>
 
+ <Part n="02" title="만든 것" id="p-build"/>
  <section id="process" className="fw-section">
-  <Heading n="03 / 검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다.">자리를 파일에서 정할 수 없다면, 추측하지 말고 확인을 받기로 했습니다.</Heading>
+  <Heading n="검수" title="값을 쓰기 전에, 에이전트가 사람에게 묻습니다.">자리를 파일에서 정할 수 없다면, 추측하지 말고 확인을 받기로 했습니다.</Heading>
   <Facts items={[
    ['자리를 그림으로','값을 넣을 칸을 파란 박스로 표시 → 아니라고 하면 위치를 고쳐 재확인'],
    ['묶어서 묻기','인적사항·여권·주소·근무처 단위로 묶어 확인 화면 수 축소'],
@@ -98,7 +102,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="result" className="fw-section">
-  <Heading n="04 / 결과" title="요청한 값을 각각 지정된 칸에 넣었습니다."><strong>통합신청서</strong> — 출입국관리법 시행규칙 별지 제34호 서식. 입력값은 모두 가상 정보입니다.</Heading>
+  <Heading n="결과" title="요청한 값을 각각 지정된 칸에 넣었습니다."><strong>통합신청서</strong> — 출입국관리법 시행규칙 별지 제34호 서식. 입력값은 모두 가상 정보입니다.</Heading>
   <div className="hx-side">
    <div className="fw-table" tabIndex="0" role="region" aria-label="양식의 문항과 입력된 값">
     <table>
@@ -113,7 +117,7 @@ export default function HwpxStudy(){
   </div>
   <p className="fw-note">02에서 꼽은 자리도 나뉘었습니다 — <strong>휴대전화와 근무처 전화번호가 각기 다른 행에 들어갔습니다.</strong></p>
 
-  <Heading n="04-1 / 대조" title="웹이 만든 문서와, 셀 단위로 맞춰 봤습니다.">같은 원본에 같은 값을 넣은 두 결과. <strong>157개 중 8개가 다르고 그중 5개는 표기 형식 차이</strong>, 남은 2개가 실제 차이입니다.</Heading>
+  <Heading n="대조" title="웹이 만든 문서와, 셀 단위로 맞춰 봤습니다.">같은 원본에 같은 값을 넣은 두 결과. <strong>157개 중 8개가 다르고 그중 5개는 표기 형식 차이</strong>, 남은 2개가 실제 차이입니다.</Heading>
   <div className="hx-cells-pair">
   <div className="hx-cells">
    <table>
@@ -142,7 +146,7 @@ export default function HwpxStudy(){
   </div>
   <p className="fw-takeaway">두 오류 모두 눈으로는 찾기 어렵습니다. 셀 단위로 맞춰 봐야 드러납니다.</p>
 
-  <Heading n="04-2 / 구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다."/>
+  <Heading n="구조 보존" title="값을 넣은 뒤에, 문서를 다시 그려서 봅니다."/>
   <Facts items={[
    ['룰 기반 검사','확인된 자리만 변경 · 보호 칸 유지 · 표와 페이지 정렬 · 파일 재개봉'],
    ['이번 실행','편집 계획 20건 → 변경 셀 34개, 기대와 전건 일치'],
@@ -156,7 +160,7 @@ export default function HwpxStudy(){
  </section>
 
  <section id="compose" className="fw-section">
-  <Heading n="05 / 구성" title="편집 도구는 MCP로, 쓰는 순서는 Skill로 나눴습니다."/>
+  <Heading n="구성" title="편집 도구는 MCP로, 쓰는 순서는 Skill로 나눴습니다."/>
   <Facts items={[
    ['드러난 문제','도구만 열어 두자 순서 오류 — 분석 전 필드 조회, 위치 확인 생략'],
    ['원인','MCP는 도구만 제공. 언제 어떤 순서로 쓸지는 담기지 않습니다.'],
@@ -172,8 +176,9 @@ export default function HwpxStudy(){
  </section>
 
 
+ <Part n="03" title="회고" id="p-reflection"/>
  <section id="reflection" className="fw-section">
-  <Heading n="회고" title="계획대로 실행된 것과, 계획이 옳았던 것."/>
+  <Heading n="다시 만든다면" title="계획대로 실행된 것과, 계획이 옳았던 것."/>
   <Facts items={[
    ['지금 검사하는 것','편집 계획대로 실행됐는지 — 이번 실행은 기대와 전건 일치'],
    ['검사하지 않는 것','그 계획이 옳았는지. 소득금액을 라벨 칸에 넣은 계획은 그대로 통과했습니다'],
