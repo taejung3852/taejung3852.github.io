@@ -116,7 +116,8 @@ export default function HwpxStudy(){
   <div className="hx-cells-pair">
   <div className="hx-cells">
    <table>
-    <caption>신청 종류 체크란 <span>section0.table0.row7.cell0</span></caption>
+    <caption>신청 종류 체크란 <span>section0.table0.row7</span></caption>
+    <thead><tr><th scope="col"></th><th scope="col">셀 내용 · cell0</th></tr></thead>
     <tbody>
      <tr><th scope="row">원본</th><td><code>[  ] 체류기간 연장허가     EXTENSION OF SOJOURN PERIOD</code></td></tr>
      <tr><th scope="row">ChatGPT 웹</th><td><code>[<ins>√</ins>] <del>체류기간 연장허가</del>     EXTENSION OF SOJOURN PERIOD</code></td></tr>

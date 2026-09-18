@@ -61,7 +61,7 @@
 .hx-shots img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:var(--bg)}
 .hx-shots+.fw-note{margin-top:20px}
 /* The difference is text, so show the text. A rendered crop was bigger and vaguer. */
-.hx-cells{margin-top:30px;max-width:840px}
+.hx-cells{margin-top:30px;max-width:840px;display:flex;flex-direction:column;padding:24px 26px;border:1px solid var(--rule);background:var(--surface);border-radius:8px}
 .hx-cells+.hx-cells{margin-top:38px}
 .hx-cells table{width:100%;border-collapse:collapse}
 .hx-cells caption{text-align:left;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px}
@@ -76,7 +76,8 @@
 .hx-cells del{color:var(--muted);text-decoration-color:var(--muted)}
 [data-theme=dark] .hx-cells ins{background:rgba(245,245,245,.18)}
 .hx-cells .hx-gone,.hx-cells td.hx-gone{color:var(--muted);font-size:12.5px}
-.hx-cells>p{font-size:13px!important;margin-top:14px;max-width:760px}
+/* The note sits on the floor of the box, so two boxes side by side end level. */
+.hx-cells>p{font-size:13px!important;margin-top:auto;padding-top:16px;max-width:760px}
 @media(max-width:700px){.hx-cells{overflow-x:auto}.hx-cells th[scope="row"]{width:auto}}
 @media(max-width:700px){.hx-shots{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:860px){.hx-side{grid-template-columns:minmax(0,1fr);gap:26px}.hx-side figure{max-width:420px}}
@@ -89,8 +90,8 @@
 /* The two cell comparisons sit side by side once there is room. The diff lines
    switch to white-space:pre there: a wrapped diff is worse than a short scroll. */
 @media(min-width:1100px){
- .hx-cells-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px;align-items:start}
- .hx-cells-pair .hx-cells,.hx-cells-pair .hx-cells+.hx-cells{margin-top:30px;max-width:none;overflow-x:auto}
+ .hx-cells-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+ .hx-cells-pair .hx-cells,.hx-cells-pair .hx-cells+.hx-cells{margin-top:30px;max-width:none}
  .hx-cells-pair code{font-size:12px;white-space:pre}
  .hx-cells-pair th[scope="row"]{width:70px}
 }
