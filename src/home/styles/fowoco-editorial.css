@@ -26,7 +26,7 @@
 /* Align the problem copy with the title below its section label. */
 @media(min-width:761px){#search>.fw-two:first-child>.fw-copy{padding-top:38.75px}}
 
-.fw-document-comparison{margin:32px 0!important;max-width:760px}.fw-document-comparison img{display:block;width:100%;height:auto;aspect-ratio:1124/1474;object-fit:cover;object-position:top;border:1px solid var(--rule);border-radius:8px}.fw-document-comparison figcaption{text-align:center}
+.fw-document-comparison{margin:32px auto!important;max-width:760px}.fw-document-comparison img{display:block;width:100%;height:auto;aspect-ratio:1124/1474;object-fit:cover;object-position:top;border:1px solid var(--rule);border-radius:8px}.fw-document-comparison figcaption{text-align:center}
 
 /* Hero media sits beside the copy, as on the LLM Gateway page. */
 .fw-hero-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:44px;align-items:center}
