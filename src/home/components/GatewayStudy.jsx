@@ -40,7 +40,16 @@ export default function GatewayStudy(){
    <div><dt>스택</dt><dd>Java · LangChain4j · AWS SageMaker JumpStart · Ollama · WebSocket</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#routing">모델 선택</a><a href="#integration">모델 연결</a><a href="#runtime">실행 환경</a><a href="#reflection">회고</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#context">배경과 담당</a><a href="#routing">모델 선택</a><a href="#integration">모델 연결</a><a href="#runtime">실행 환경</a><a href="#reflection">회고</a></nav>
+
+ <section id="context" className="fw-section">
+  <Heading n="00 / 배경과 담당" title="조건에 맞는 모델을 골라 주는 서비스입니다."/>
+  <Facts items={[
+   ['무엇','비용·속도·성능·문맥 길이의 중요도를 설정하면, 그 기준에 맞는 모델을 골라 대화하는 서비스'],
+   ['팀과 담당','2인 팀 · 모델 선택 로직 참여 · LLM Provider 연동 · 모델 실행 환경 구성'],
+   ['기간과 상태','2025.04 — 2025.10 · 베타 약 3주 운영'],
+  ]}/>
+ </section>
 
  <section id="routing" className="fw-section">
   <Heading n="01 / 모델 선택" title="조건을 다 만족하는 모델만 찾다가, 우선순위 비교로 바꿨습니다."/>

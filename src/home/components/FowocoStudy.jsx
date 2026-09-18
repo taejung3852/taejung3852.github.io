@@ -38,10 +38,10 @@ export default function FowocoStudy(){
    <div><dt>스택</dt><dd>Python · LangGraph · Hybrid Search · MCP</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#scope">담당 범위</a><a href="#search">검색 설계</a><a href="#evidence">검색 비교</a><a href="#easy">정보 보존</a><a href="#separation">문서 자동화</a><a href="#reflection">회고</a></nav>
 
  <section id="scope" className="fw-section">
-  <Heading n="00 / 담당 범위" title="언어 처리와 문서 자동화를 맡았습니다."/>
+  <Heading n="00 / 배경과 담당" title="언어 처리와 문서 자동화를 맡았습니다."/>
   <figure className="fw-scope">
    <div className="fw-scope-flow">
     <div className="fw-scope-stage"><span>HR 담당자</span><h3>업무 요청</h3><p>자연어 입력 · 기한 확인</p></div>
@@ -142,6 +142,16 @@ export default function FowocoStudy(){
   <div className="fw-proof-links"><Source href={base+'/app/agents/workflow_graph/document_field_map.py'}>필드 매핑 구현</Source><Source href={base+'/app/agents/workflow_graph/nodes/document_generator.py'}>문서 생성·결과 반환</Source><Source href="https://github.com/fowoco/ai/tree/fcefe989c2fce4ccea89ec202226ca18a044f280/app/documents/automation">문서 자동화 구현</Source><Link className="fw-source" to="/projects/hwpx">HWPX Document Plugin 프로젝트 보기 →</Link></div>
  </section>
 
+
+ <section id="reflection" className="fw-section">
+  <Heading n="회고" title="검색 폭과 정보 보존, 어느 쪽이 더 문제였을까?"/>
+  <Facts items={[
+   ['당시 선택','고정 질의 3종 — 표현이 달라져도 요청의 핵심이 남도록'],
+   ['치른 값','질의 다양성은 그만큼 제한됩니다'],
+   ['지금이라면','검색 폭과 정보 보존 중 실제 사용에서 어느 쪽이 더 문제였는지, 그 측정을 먼저 설계하겠습니다'],
+  ]}/>
+  <p className="fw-note">측정이나 비교 실험을 수행한 것은 아닙니다. 당시 구현을 돌아본 재설계 방향입니다.</p>
+ </section>
 
  <footer className="fw-footer"><Link to="/#projects">← 주요 프로젝트</Link><Link to="/projects/hwpx">다음 프로젝트 · HWPX Document Plugin →</Link></footer>
  </div>

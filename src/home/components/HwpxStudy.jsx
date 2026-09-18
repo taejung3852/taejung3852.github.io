@@ -38,14 +38,15 @@ export default function HwpxStudy(){
    <div><dt>스택</dt><dd>Python · FastMCP · Agent Skills · STDIO</dd></div>
   </dl>
  </header>
-  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#analyze">분석</a><a href="#problem">문제</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a></nav>
+  <nav className="fw-toc" aria-label="상세 페이지 목차"><a href="#origin">시작</a><a href="#analyze">분석</a><a href="#problem">문제</a><a href="#process">검수</a><a href="#result">결과</a><a href="#compose">구성</a><a href="#reflection">회고</a></nav>
 
  <section id="origin" className="fw-section">
-  <Heading n="00 / 시작" title="에이전트가 한글 문서를 다뤄 줄 방법이 없었습니다."/>
+  <Heading n="00 / 배경과 담당" title="에이전트가 한글 문서를 다뤄 줄 방법이 없었습니다."/>
   <Facts items={[
    ['빠져 있던 것','Word·PowerPoint·Excel은 에이전트가 열어 고칩니다. 한국 공문서에 가장 많이 쓰는 HWPX만 없었습니다.'],
    ['처음 만든 곳',<>체류 서류가 대부분 HWPX인 <Link className="fw-inline-link" to="/projects/fowoco">FOWOCO</Link>. 처음에는 그 서비스 안의 함수였습니다.</>],
    ['떼어낸 이유','내부 함수로 두면 그 서비스 전용 → MCP 도구로 경계를 긋고 분리'],
+   ['팀과 담당','2인 팀 · MCP 서버와 Agent Skills 설계·구현 (저장소의 WASM 뷰어 실험은 다른 팀원 작업)'],
   ]}/>
   <p><Link className="fw-source" to="/projects/fowoco">FOWOCO에서의 분리 과정 보기 →</Link></p>
  </section>
@@ -170,6 +171,16 @@ export default function HwpxStudy(){
   <div className="fw-proof-links"><Source href={tree+'/src/hwp_mcp'}>MCP 구현</Source><Source href={tree+'/skills'}>Agent Skills</Source><Source href={base+'/plugin.json'}>plugin.json</Source></div>
  </section>
 
+
+ <section id="reflection" className="fw-section">
+  <Heading n="회고" title="계획대로 실행된 것과, 계획이 옳았던 것."/>
+  <Facts items={[
+   ['지금 검사하는 것','편집 계획대로 실행됐는지 — 이번 실행은 기대와 전건 일치'],
+   ['검사하지 않는 것','그 계획이 옳았는지. 소득금액을 라벨 칸에 넣은 계획은 그대로 통과했습니다'],
+   ['지금이라면','값을 쓰기 전에 계획 자체를 검사하는 단계를 먼저 두겠습니다'],
+  ]}/>
+  <p className="fw-note">양식 한 종류를 한 번 실행한 기록에서 나온 관찰입니다. 재설계를 수행한 것은 아닙니다.</p>
+ </section>
 
  <footer className="fw-footer"><Link to="/#projects">← 주요 프로젝트</Link><Link to="/projects/ownhands">다음 프로젝트 · OwnHands →</Link></footer>
  </div>
