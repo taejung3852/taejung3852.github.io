@@ -12,7 +12,7 @@ export const homeProjectStories = [
     problem: '공문서 서식 자동화에서 AI의 임의 추측 입력 원천 차단',
     period: '2026.07 — 현재',
     team: '2인 팀',
-    outcome: 'XML 구조 분석과 도구 분리로 확인된 값만 서식 반영 · MCP 도구 25종 및 Skills 구축',
+    outcome: 'XML 구조와 시각 배치 분석으로 확인된 값만 서식 반영 · MCP 도구 25종 및 Skills 구축',
     stack: ['Python', 'MCP', 'Agent Skills', 'HWPX(XML)'],
   },
   {
