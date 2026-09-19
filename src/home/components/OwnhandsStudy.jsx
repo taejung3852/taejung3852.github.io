@@ -96,12 +96,11 @@ export default function OwnhandsStudy() {
           <div className="fw-hero-copy">
             <p className="fw-kicker">개인 프로젝트 · 2026.09 — 현재</p>
             <h1>
-              AI의 작업을 사람이 통제하고,<br />
-              근거로 최종 판단합니다.
+              AI의 작업 완료와<br />
+              사람의 승인을 분리합니다.
             </h1>
             <p className="fw-lead">
-              코딩 에이전트의 생성 속도가 빨라질수록 병목은 코드 작성이 아닌 검증과 이해로 이동합니다.
-              에이전트의 완료 선언과 사람의 승인 상태를 분리하고, Intent에서 시작해 관측된 근거로 검증하는 경량 개발 하네스입니다.
+              코드 생성보다 검증과 이해가 병목이 되는 문제를 해결하기 위해, 작업 의도(Intent)와 관측된 실행 근거를 대조해 사람이 최종 승인하는 AI-native 개발 하네스.
             </p>
           </div>
           <figure className="fw-cover">
@@ -113,25 +112,21 @@ export default function OwnhandsStudy() {
             >
               <img src="/images/ownhands-cover.png" width="648" height="691" alt="OwnHands 로고 및 검증 프레임워크 개요" loading="eager" />
             </button>
-            <figcaption>OwnHands — AI 생성 결과를 사람이 이해하고 신뢰할 수 있는 결정으로 연결하는 개발 하네스</figcaption>
+            <figcaption>OwnHands — 근거 기반 검증과 인간 승인 하네스</figcaption>
           </figure>
         </div>
         <dl className="fw-meta">
           <div>
             <dt>구성</dt>
-            <dd>8단계 라이프사이클 · Thin Harness · Human Gate</dd>
+            <dd>8단계 라이프사이클 · Human Gate</dd>
           </div>
           <div>
             <dt>담당</dt>
-            <dd>문제의식 정립 · Clean-slate V2 설계 · 검증 체계 구축</dd>
-          </div>
-          <div>
-            <dt>결과</dt>
-            <dd>V1 도구 과잉 극복 · 근거 기반 승인 루프 확립</dd>
+            <dd>V2 아키텍처 설계 · 검증 체계 구축</dd>
           </div>
           <div>
             <dt>스택</dt>
-            <dd>Codex · GitHub Native · Agent Skills · Markdown · Continuous Evals</dd>
+            <dd>Codex · GitHub Native · Agent Skills · Continuous Evals</dd>
           </div>
         </dl>
       </header>
