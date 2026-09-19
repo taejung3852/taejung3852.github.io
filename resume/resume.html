@@ -292,6 +292,11 @@
       margin-right: 2px;
     }
 
+    .task-desc strong {
+      color: #0f172a;
+      font-weight: 600;
+    }
+
     /* Education & Certifications */
     .two-col-grid {
       display: grid;
@@ -518,25 +523,23 @@
             <div class="task-block">
               <div class="task-title">도메인 특화 Hybrid Search & Re-ranking RAG 파이프라인 구현 및 검증</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[문제]</span> 고용허가제(EPS) 행정 서식과 외국인 근로자 질의 간 어휘 불일치로 인한 검색 누락 발생</div>
-                <div class="desc-line"><span class="label">[판단·구현]</span> 3개 고정 검색 관점을 수립하고, Dense(BGE-M3)+Sparse 결합 Hybrid Search 및 RRF, Re-ranking 흐름 구현</div>
-                <div class="desc-line"><span class="label">[구현 결과]</span> BGE-M3 dense/sparse → RRF → Re-ranking 검색 흐름 구축 (후보 문서 30개 → 상위 5개 선별)</div>
-                <div class="desc-line"><span class="label">[검증·회고]</span> 정량 벤치마크를 통해 단일 Dense(99%) 대비 3중 분기 지연 시간(60→390ms) 트레이드오프를 확인하고 단순화 방향 도출</div>
+                <div class="desc-line"><span class="label">[문제]</span> 고용허가제(EPS) 행정 서식과 질의 간 어휘 불일치로 인한 검색 누락 발생</div>
+                <div class="desc-line"><span class="label">[해결]</span> 3개 검색 관점 수립 및 <strong>Dense(BGE-M3)+Sparse Hybrid Search · RRF · Re-ranking</strong> 파이프라인 구축 (후보 30개 → <strong>상위 5개 context</strong> 선별)</div>
+                <div class="desc-line"><span class="label">[검증·회고]</span> 정량 벤치마크로 <strong>단일 Dense(99%)</strong> 대비 <strong>3중 분기의 지연 시간(60→390ms)</strong> 트레이드오프를 확인하고 파이프라인 단순화 방향 도출</div>
               </div>
             </div>
             <div class="task-block">
               <div class="task-title">워크플로우 조율과 문서 처리의 책임 분리 (MCP 독립화)</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[문제]</span> LangGraph 에이전트 내부에 HWPX 파싱/편집 로직이 결합되어 그래프 복잡도 증가 및 에러 전파 위험</div>
-                <div class="desc-line"><span class="label">[판단·구현]</span> 문서 처리 로직을 별도 MCP(Model Context Protocol) 서버로 분리해 Agent Workflow와 독립적으로 관리할 수 있는 Tool 경계를 구현</div>
-                <div class="desc-line"><span class="label">[구현 결과]</span> 문서 처리 실패가 Main Workflow로 직접 전파되지 않도록 책임 경계를 분리하고, 독립적으로 관리·재사용할 수 있는 구조로 전환</div>
+                <div class="desc-line"><span class="label">[문제]</span> LangGraph 워크플로우 내부에 HWPX 파싱/편집 로직이 결합되어 복잡도 증가 및 에러 전파 위험</div>
+                <div class="desc-line"><span class="label">[해결]</span> 문서 처리를 <strong>독립 MCP 서버로 분리</strong>하여 Main Workflow로의 장애 전파를 차단하고 재사용 가능한 Tool 경계 구축</div>
               </div>
             </div>
             <div class="task-block">
               <div class="task-title">8인 온라인 협업 조율 및 3단계 의사결정 구조 정립</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[판단·구현]</span> 8인 전원 온라인 협업 환경에서 진행자를 보완해 의견을 정리하고, [2개 조 논의 → 조장 정리 → 전체 합의] 구조로 의사결정 흐름을 개선</div>
-                <div class="desc-line"><span class="label">[변화]</span> 모든 구성원이 의견을 낼 수 있는 참여 구조를 확보하고, 회의의 논점 분산과 갈등을 줄여 의사결정을 원활하게 함</div>
+                <div class="desc-line"><span class="label">[해결]</span> 8인 온라인 협업의 논점 분산을 방지하기 위해 <strong>[2개 조 분할 논의 → 조장 정리 → 전체 합의]</strong>의 3단계 의사결정 구조 정립</div>
+                <div class="desc-line"><span class="label">[성과]</span> 전원 발언 참여 구조를 확보하고 회의 중 논점 분산과 갈등을 최소화하여 일정 지연 없이 프로젝트 완주</div>
               </div>
             </div>
           </div>
@@ -560,15 +563,15 @@
             <div class="task-block">
               <div class="task-title">XML 구조·렌더링 이미지 듀얼 분석 및 잘못된 필드 매핑 위험 제어</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[문제]</span> HWPX의 XML만으로는 라벨·빈칸·표 구조 사이의 의미적 관계와 실제 입력 위치를 충분히 파악하기 어려워 잘못된 필드 매핑 위험 존재</div>
-                <div class="desc-line"><span class="label">[판단·구현]</span> XML 노드 구조와 렌더링 이미지를 함께 분석하는 매핑 방식 설계. [분석 → 인터뷰 확인 → 실행 → 검증] 단계를 Agent Skills로 모듈화하여 공란·수기 여부를 확정 후 반영</div>
-                <div class="desc-line"><span class="label">[통제 방식]</span> 불확실한 필드 매핑을 사용자 확인 대상으로 분리해 AI가 임의로 입력하지 않도록 통제</div>
+                <div class="desc-line"><span class="label">[문제]</span> HWPX XML 구조만으로는 라벨·빈칸·표의 시각적 배치를 파악하기 어려워 오입력 및 잘못된 필드 매핑 위험 존재</div>
+                <div class="desc-line"><span class="label">[해결]</span> <strong>XML 노드와 렌더링 이미지 듀얼 분석</strong> 및 <strong>[분석 → 사용자 확인 → 실행 → 검증]</strong> 4단계 Agent Skills 워크플로우 설계</div>
+                <div class="desc-line"><span class="label">[통제 방식]</span> 불확실한 필드는 <strong>사용자 인터뷰 확인 대상으로 분리</strong>하여 AI의 임의 추측 입력을 원천 차단</div>
               </div>
             </div>
             <div class="task-block">
               <div class="task-title">FOWOCO Node → MCP 책임 분리 → 독립 Agent Plugin으로의 구조 진화</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[진화 과정]</span> FOWOCO 내부 노드로 시작했던 HWPX 처리 로직을 MCP로 1차 분리해 결합도를 낮췄고, 이를 특정 FOWOCO Workflow에 종속되지 않는 독립 Agent Plugin으로 팀과 함께 확장 중</div>
+                <div class="desc-line"><span class="label">[진화 과정]</span> 특정 워크플로우 종속성을 제거하기 위해 <strong>내부 노드 → MCP 서버 분리 → 독립 Agent Plugin(도구 25종)</strong>으로 단계적 구조 진화 주도</div>
               </div>
             </div>
           </div>
@@ -607,16 +610,16 @@
             <div class="task-block">
               <div class="task-title">완료 조건(Spec) 기반 검증 라이프사이클 설계 및 개발</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[문제]</span> AI 코딩 도구가 생성한 diff만으로는 사이드 이펙트나 실제 스펙 충족 여부를 사람이 빠르게 확신하기 어려움</div>
-                <div class="desc-line"><span class="label">[판단·구현]</span> [Issue → Verification Spec → Baseline → 구현 → Review → Human Decision]으로 구현 전 완료 조건과 검증 기준을 고정하는 Lifecycle 파이프라인 설계·개발</div>
-                <div class="desc-line"><span class="label">[구현 상태]</span> 사전 정의한 Spec과 실제 변경·테스트 상태를 연결해 사람이 작업 결과의 수용 여부를 판단할 수 있는 검토 구조를 설계</div>
+                <div class="desc-line"><span class="label">[문제]</span> AI 코딩 도구가 생성한 diff만으로는 사이드 이펙트나 실제 스펙 충족 여부를 검증하기 어려움</div>
+                <div class="desc-line"><span class="label">[해결]</span> 구현 전 완료 조건을 고정하는 <strong>[Issue → Verification Spec → Baseline → 구현 → Review → Human Decision]</strong> 라이프사이클 설계</div>
+                <div class="desc-line"><span class="label">[통제 방식]</span> 사전 정의한 Spec과 테스트 실행 상태를 연결하여 사람이 객관적 근거에 기반해 수용 여부를 결정하도록 통제</div>
               </div>
             </div>
             <div class="task-block">
               <div class="task-title">Claim-Evidence 분리 기반 회귀 판정 코어 엔진 구현</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[판단·구현]</span> AI의 '주장(Claim)'과 실제 실행된 '테스트 로그(Evidence)'를 분리하여 SQLite Event Store에 저장하고, 요구사항별 검증 상태와 Human Decision을 연결하는 회귀 판정 엔진 개발</div>
-                <div class="desc-line"><span class="label">[구현 상태]</span> AI의 Claim과 실행 Evidence를 분리해 저장하고, 사람이 실제 근거를 확인한 뒤 최종 판단하도록 구조화</div>
+                <div class="desc-line"><span class="label">[해결]</span> AI의 <strong>'주장(Claim)'</strong>과 실제 실행된 <strong>'테스트 로그(Evidence)'</strong>를 분리 저장하는 SQLite Event Store 기반 회귀 판정 엔진 개발</div>
+                <div class="desc-line"><span class="label">[통제 방식]</span> AI의 완료 주장을 맹신하지 않고, 실행 Evidence를 사람이 직접 대조한 뒤 승인(Approval)하는 신뢰 구조 정립</div>
               </div>
             </div>
           </div>
@@ -641,15 +644,15 @@
             <div class="task-block">
               <div class="task-title">다기준 모델 우선순위 계산 로직 구현</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[문제]</span> 모델별 특성이 달라 사용자가 목적에 맞는 모델을 비교·선택하기 어렵고, 초기 임계값 방식에서는 조건이 겹칠수록 후보가 사라짐</div>
-                <div class="desc-line"><span class="label">[판단·구현]</span> 비용·속도·성능·Context Length 4대 기준을 Min-Max 정규화하고 사용자 가중치를 반영해 모델 우선순위를 계산하는 상대 평가 라우터 구현</div>
+                <div class="desc-line"><span class="label">[문제]</span> 모델별 특성 차이로 최적 모델 선택이 어렵고, 단순 임계값 필터링 시 조건 중첩 시 후보군이 고갈되는 문제 발생</div>
+                <div class="desc-line"><span class="label">[해결]</span> <strong>비용·속도·성능·Context Length 4대 기준 Min-Max 정규화</strong> 및 가중치 기반 다기준 상대 평가 라우팅 알고리즘 구현</div>
               </div>
             </div>
             <div class="task-block">
               <div class="task-title">오픈소스 LLM 호스팅 및 통신 아키텍처 회고</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[판단·구현]</span> AWS SageMaker JumpStart로 전체 흐름의 구현 가능성을 빠르게 POC한 뒤, 베타 단계에서는 보유 GPU 서버에 오픈소스 LLM(Ollama)을 호스팅하고 LangChain4j로 연동</div>
-                <div class="desc-line"><span class="label">[회고]</span> 당시에는 LLM과 실시간 상호작용하려면 양방향 통신이 필요하다고 판단해 WebSocket을 선택했다. 구현 후 핵심 요구가 서버의 토큰 스트리밍임을 이해했고, 현재라면 REST + SSE를 우선 검토한다.</div>
+                <div class="desc-line"><span class="label">[구현]</span> SageMaker JumpStart POC 검증 후, 보유 GPU 서버에 <strong>오픈소스 LLM(Ollama) 호스팅 및 LangChain4j 연동</strong>으로 상용 API 비용 절감</div>
+                <div class="desc-line"><span class="label">[아키텍처 회고]</span> 초기에는 양방향 통신을 위해 WebSocket을 도입했으나, 핵심 요구가 단방향 토큰 스트리밍임을 확인하여 <strong>차기 구조로 REST + SSE를 도출</strong>하는 기술적 트레이드오프 경험</div>
               </div>
             </div>
           </div>
