@@ -46,6 +46,83 @@ function Facts({ items }) {
   );
 }
 
+/* Step Icons for Pipeline Track */
+function IconIdea() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 5.5v1.5h8V14.5c1.5-1 3-3 3-5.5a7 7 0 0 0-7-7z" />
+    </svg>
+  );
+}
+
+function IconIntent() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+    </svg>
+  );
+}
+
+function IconSpec() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+    </svg>
+  );
+}
+
+function IconPlan() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+      <rect x="9" y="3" width="6" height="4" rx="2" />
+      <path d="m9 14 2 2 4-4" />
+    </svg>
+  );
+}
+
+function IconBuild() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  );
+}
+
+function IconEvidence() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      <line x1="11" y1="8" x2="11" y2="14" />
+      <line x1="8" y1="11" x2="14" y2="11" />
+    </svg>
+  );
+}
+
+function IconVerify() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+    </svg>
+  );
+}
+
+function IconHumanGate() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+  );
+}
+
 export default function OwnhandsStudy() {
   useTocSpy();
   const dialog = useRef(null);
@@ -202,7 +279,12 @@ export default function OwnhandsStudy() {
           title="obra/superpowers GitHub 저장소 보기"
         >
           <div className="oh-repo-info">
-            <span className="oh-repo-title">obra/superpowers ↗</span>
+            <span className="oh-repo-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#F59E0B" stroke="#D97706" strokeWidth="1.5" />
+              </svg>
+              obra/superpowers ↗
+            </span>
             <span className="oh-repo-desc">
               에이전트에게 TDD, Planning, Code Review 등 검증된 엔지니어링 방법론을 Skill 단위로 주입하는 오픈소스 프레임워크
             </span>
@@ -232,13 +314,48 @@ export default function OwnhandsStudy() {
           ]}
         />
 
-        <Heading n="V1의 교훈" title="도구 과잉의 역설과 V2 3대 설계 원칙" />
-        <Facts
-          items={[
-            ['V1의 역설', '통제 강화 목적의 Runner·Dashboard가 오히려 접속·폴링·동기화 등 도구 자체의 운영 복잡성을 가중시킴'],
-            ['V2 방향 전환', '무거운 도구를 걷어내고 플랫폼 네이티브 역량을 활용하는 Clean-slate V2 재설계'],
-          ]}
-        />
+        <Heading n="아키텍처 전환" title="도구 과잉(V1)에서 Native-first 경량 하네스(V2)로" />
+
+        {/* V1 vs V2 Comparison Diagram */}
+        <div className="oh-arch-comparison">
+          <div className="oh-arch-box is-v1">
+            <div className="oh-arch-header">
+              <span className="oh-arch-title">V1: Fat Harness (과잉 통제)</span>
+              <span className="oh-arch-badge">OVERHEAD</span>
+            </div>
+            <div className="oh-arch-chain">
+              <div className="oh-arch-node">Custom Runner</div>
+              <div className="oh-arch-node-arrow">↓</div>
+              <div className="oh-arch-node">SQLite Cache & State</div>
+              <div className="oh-arch-node-arrow">↓</div>
+              <div className="oh-arch-node">Polling Daemon Engine</div>
+              <div className="oh-arch-node-arrow">↓</div>
+              <div className="oh-arch-node">Web Dashboard</div>
+            </div>
+            <div className="oh-arch-footer">
+              ⚠️ 도구 유지보수 부담 &gt; 작업 이해 목적의 역설
+            </div>
+          </div>
+
+          <div className="oh-arch-box is-v2">
+            <div className="oh-arch-header">
+              <span className="oh-arch-title">V2: Thin Harness (Native-first)</span>
+              <span className="oh-arch-badge">OPTIMAL</span>
+            </div>
+            <div className="oh-arch-chain">
+              <div className="oh-arch-node">Platform Native (Codex / Git CLI)</div>
+              <div className="oh-arch-node-arrow">↓</div>
+              <div className="oh-arch-node">Markdown Baseline (intent·spec·plan)</div>
+              <div className="oh-arch-node-arrow">↓</div>
+              <div className="oh-arch-node">Fresh Evidence Observation</div>
+              <div className="oh-arch-node-arrow">↓</div>
+              <div className="oh-arch-node">Human Gate Final Approval</div>
+            </div>
+            <div className="oh-arch-footer">
+              ✅ 운영 오버헤드 0 · 투명한 근거 대조 및 통제권 회복
+            </div>
+          </div>
+        </div>
 
         <div className="oh-principles">
           <div className="oh-principle-card">
@@ -262,49 +379,73 @@ export default function OwnhandsStudy() {
         <div className="oh-flow-container">
           <div className="oh-flow-track">
             <div className="oh-flow-step">
-              <span className="oh-flow-badge">01 START</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">01 START</span>
+                <span className="oh-step-icon"><IconIdea /></span>
+              </div>
               <h4>Idea</h4>
               <p>해결할 문제 포착</p>
             </div>
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step is-baseline">
-              <span className="oh-flow-badge">02 BOUNDARY</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">02 BOUNDARY</span>
+                <span className="oh-step-icon"><IconIntent /></span>
+              </div>
               <h4>Intent</h4>
               <p>의도 및 비목표 선언</p>
             </div>
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step is-baseline">
-              <span className="oh-flow-badge">03 CRITERIA</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">03 CRITERIA</span>
+                <span className="oh-step-icon"><IconSpec /></span>
+              </div>
               <h4>Spec</h4>
               <p>구조와 인수 기준</p>
             </div>
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step is-baseline">
-              <span className="oh-flow-badge">04 PLAN</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">04 PLAN</span>
+                <span className="oh-step-icon"><IconPlan /></span>
+              </div>
               <h4>Plan</h4>
               <p>구현 단위와 검증 계획</p>
             </div>
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step">
-              <span className="oh-flow-badge">05 CODE</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">05 CODE</span>
+                <span className="oh-step-icon"><IconBuild /></span>
+              </div>
               <h4>Build</h4>
               <p>에이전트 구현 실행</p>
             </div>
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step">
-              <span className="oh-flow-badge">06 OBSERVE</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">06 OBSERVE</span>
+                <span className="oh-step-icon"><IconEvidence /></span>
+              </div>
               <h4>Fresh Evidence</h4>
               <p>실제 테스트 로그 수집</p>
             </div>
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step is-gate">
-              <span className="oh-flow-badge">07 CHECK</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">07 CHECK</span>
+                <span className="oh-step-icon"><IconVerify /></span>
+              </div>
               <h4>Verify / Review</h4>
               <p>독립 대조 및 평가</p>
             </div>
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step is-gate">
-              <span className="oh-flow-badge">08 GATE</span>
+              <div className="oh-flow-step-header">
+                <span className="oh-flow-badge">08 GATE</span>
+                <span className="oh-step-icon"><IconHumanGate /></span>
+              </div>
               <h4>Human Decision</h4>
               <p>사람의 최종 머지 승인</p>
             </div>
@@ -386,6 +527,49 @@ export default function OwnhandsStudy() {
           ]}
         />
 
+        <Heading n="향후 로드맵" title="Claude Code 및 Google Antigravity로의 환경 확장" />
+
+        {/* Supported & Roadmap Agent Ecosystem Grid */}
+        <div className="oh-agent-grid">
+          <div className="oh-agent-card">
+            <div className="oh-agent-card-top">
+              <div className="oh-agent-icon-wrap" style={{ background: '#F8FAFC', borderColor: 'rgba(15, 23, 42, 0.15)' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a" aria-hidden="true">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                </svg>
+              </div>
+              <span className="oh-agent-status is-active">ACTIVE BASE</span>
+            </div>
+            <h4>Codex & GitHub Native</h4>
+            <p>CLI 도구, Git Worktree, PR/Issue 등 플랫폼 내장 기능을 최우선 활용하는 V2 기반 하네스.</p>
+            <div className="oh-agent-env">github.com · codex cli</div>
+          </div>
+
+          <div className="oh-agent-card">
+            <div className="oh-agent-card-top">
+              <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
+                <img src="/images/claude.webp" alt="Claude Code" width="28" height="28" />
+              </div>
+              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+            </div>
+            <h4>Claude Code</h4>
+            <p>터미널 네이티브 인터페이스 환경에서 <code>intent.md</code> 및 <code>spec.md</code> 아티팩트와 연동되는 하네스 스킬 확장.</p>
+            <div className="oh-agent-env">claude-code cli · agent skills</div>
+          </div>
+
+          <div className="oh-agent-card">
+            <div className="oh-agent-card-top">
+              <div className="oh-agent-icon-wrap" style={{ background: '#F5F3FF', borderColor: 'rgba(79, 70, 229, 0.25)' }}>
+                <img src="/images/antigravity.webp" alt="Google Antigravity" width="28" height="28" />
+              </div>
+              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+            </div>
+            <h4>Google Antigravity</h4>
+            <p>Antigravity IDE 및 CLI 환경의 Subagent/Skill 프로토콜과 직접 연동하는 검증 하네스 지원.</p>
+            <div className="oh-agent-env">agy cli · antigravity ide</div>
+          </div>
+        </div>
+
         <Heading n="배운 점" title="AI-Native 시대, 개발자에게 남는 5대 핵심 역할" />
         <Facts
           items={[
@@ -394,15 +578,6 @@ export default function OwnhandsStudy() {
             ['Evidence 포착', '에이전트의 주장을 배제하고 객관적으로 검증 가능한 실행 증거를 수집하는 능력'],
             ['경계선 설계', '자동화할 영역과 사람이 개입할 Human Gate의 경계를 설계하는 능력'],
             ['시스템 품질 평가', '단일 성공에 안주하지 않고 지속적인 Evals로 행동 퇴행을 감시하는 능력'],
-          ]}
-        />
-
-        <Heading n="향후 로드맵" title="Claude Code 및 Google Antigravity로의 환경 확장" />
-        <Facts
-          items={[
-            ['현재 기반', 'Codex 및 GitHub CLI 네이티브 역량을 바탕으로 V2 Thin Harness 구조 구축 완료'],
-            ['차세대 에이전트 확장', '향후 터미널 네이티브 에이전트인 Claude Code 및 Google Antigravity 개발 환경으로 하네스 프로토콜 확장 예정'],
-            ['플랫폼 독립 지향', '특정 AI 툴체인에 종속되지 않고, 모든 코딩 에이전트의 완료 상태와 사람의 승인을 분리하는 범용 규격 지향'],
           ]}
         />
 
