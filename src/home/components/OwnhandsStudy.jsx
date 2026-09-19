@@ -527,22 +527,20 @@ export default function OwnhandsStudy() {
           ]}
         />
 
-        <Heading n="향후 로드맵" title="Claude Code 및 Google Antigravity로의 환경 확장" />
+        <Heading n="향후 로드맵" title="Codex 기준 구축(완성 중) 및 멀티 에이전트 확장" />
 
         {/* Supported & Roadmap Agent Ecosystem Grid */}
         <div className="oh-agent-grid">
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
-              <div className="oh-agent-icon-wrap" style={{ background: '#F8FAFC', borderColor: 'rgba(15, 23, 42, 0.15)' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a" aria-hidden="true">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                </svg>
+              <div className="oh-agent-icon-wrap" style={{ background: '#EFF6FF', borderColor: 'rgba(59, 130, 246, 0.25)' }}>
+                <img src="/images/codex.png" alt="OpenAI Codex" width="28" height="28" />
               </div>
-              <span className="oh-agent-status is-active">ACTIVE BASE</span>
+              <span className="oh-agent-status is-progress">IN PROGRESS · 완성 중</span>
             </div>
-            <h4>Codex & GitHub Native</h4>
-            <p>CLI 도구, Git Worktree, PR/Issue 등 플랫폼 내장 기능을 최우선 활용하는 V2 기반 하네스.</p>
-            <div className="oh-agent-env">github.com · codex cli</div>
+            <h4>Codex Native (OpenAI)</h4>
+            <p>현재 Codex CLI 환경을 기준으로 8단계 검증 라이프사이클 및 Thin Harness 아키텍처를 실증하며 완성해나가는 중입니다.</p>
+            <div className="oh-agent-env">codex cli · git native</div>
           </div>
 
           <div className="oh-agent-card">
@@ -550,10 +548,10 @@ export default function OwnhandsStudy() {
               <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
                 <img src="/images/claude.webp" alt="Claude Code" width="28" height="28" />
               </div>
-              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+              <span className="oh-agent-status is-roadmap">ROADMAP · 확장 예정</span>
             </div>
-            <h4>Claude Code</h4>
-            <p>터미널 네이티브 인터페이스 환경에서 <code>intent.md</code> 및 <code>spec.md</code> 아티팩트와 연동되는 하네스 스킬 확장.</p>
+            <h4>Claude Code (Anthropic)</h4>
+            <p>터미널 네이티브 인터페이스 환경에서 <code>intent.md</code> 및 <code>spec.md</code> 아티팩트와 연동되는 하네스 스킬 프로토콜 확장.</p>
             <div className="oh-agent-env">claude-code cli · agent skills</div>
           </div>
 
@@ -562,10 +560,10 @@ export default function OwnhandsStudy() {
               <div className="oh-agent-icon-wrap" style={{ background: '#F5F3FF', borderColor: 'rgba(79, 70, 229, 0.25)' }}>
                 <img src="/images/antigravity.webp" alt="Google Antigravity" width="28" height="28" />
               </div>
-              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+              <span className="oh-agent-status is-roadmap">ROADMAP · 확장 예정</span>
             </div>
             <h4>Google Antigravity</h4>
-            <p>Antigravity IDE 및 CLI 환경의 Subagent/Skill 프로토콜과 직접 연동하는 검증 하네스 지원.</p>
+            <p>Antigravity IDE 및 agy CLI 환경의 Subagent/Skill 프로토콜과 직접 연동하는 독립 검증 하네스 지원.</p>
             <div className="oh-agent-env">agy cli · antigravity ide</div>
           </div>
         </div>

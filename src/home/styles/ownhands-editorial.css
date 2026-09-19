@@ -477,10 +477,12 @@
   color: var(--muted);
 }
 
-.oh-agent-status.is-active {
+.oh-agent-status.is-active,
+.oh-agent-status.is-progress {
   background: rgba(59, 130, 246, 0.08);
   border-color: #3b82f6;
   color: #2563eb;
+  font-weight: 700;
 }
 
 .oh-agent-status.is-roadmap {
