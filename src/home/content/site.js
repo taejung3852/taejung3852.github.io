@@ -1,23 +1,39 @@
 export { profile, projects } from '../../content/portfolio';
 export const projectSlugs = ['fowoco', 'hwpx', 'ownhands', 'llm-gateway'];
 export const homeProjectStories = [
-  { problem: '다양한 표현으로 들어오는 문의를 어떻게 검색할 것인가?', period: '2026.06 — 2026.08', team: '8인 팀',
-    outcome: '검색 성공 72 → 93개 (100개 질문, 상위 5개 내) · 서비스 시연 완료',
-    stack: ['Python', 'LangGraph', 'Qdrant', 'Hybrid Search', 'MCP'] },
-  { problem: 'AI가 문서의 빈칸을 추측해서 채우지 않게 하려면?', period: '2026.07 — 현재', team: '2인 팀',
-    outcome: '대표 양식 1건 실행 · 157셀 대조에서 차이 8셀',
-    stack: ['Python', 'FastMCP', 'Agent Skills', 'HWPX(XML)'] },
-  { problem: 'AI의 완료 보고를 무엇을 근거로 판단할 것인가?', period: '2026.09 — 현재', team: '개인 프로젝트',
-    outcome: '개발 중 · 검증 Core와 Issue 기반 흐름 설계',
-    stack: ['Python', 'SQLite', 'MCP', 'Agent Skills'] },
-  { problem: '사용 조건에 맞는 LLM을 어떻게 선택하고 연결할 것인가?', period: '2025.04 — 2025.10', team: '2인 팀',
-    outcome: '보유 GPU로 전환해 약 3주 베타 운영',
-    stack: ['Java', 'Spring Boot', 'LangChain4j', 'Ollama'] },
+  {
+    problem: '모호한 자연어 질문을 한국산업인력공단 공식 외국어 모음집으로 연결하는 검색 설계',
+    period: '2026.06 — 2026.08',
+    team: '8인 팀',
+    outcome: '단일 Dense 99% 적중 확인 · 파이프라인 과잉 설계(60→390ms)와 단순화 회고',
+    stack: ['Python', 'LangGraph', 'Qdrant', 'Hybrid Search', 'MCP'],
+  },
+  {
+    problem: '공문서 서식 자동화에서 AI의 임의 추측 입력 원천 차단',
+    period: '2026.07 — 현재',
+    team: '2인 팀',
+    outcome: 'XML 구조 분석과 도구 분리로 확인된 값만 서식 반영 · MCP 도구 25종 및 Skills 구축',
+    stack: ['Python', 'MCP', 'Agent Skills', 'HWPX(XML)'],
+  },
+  {
+    problem: 'AI의 완료 주장 대신 사람이 근거를 검증하는 AI‑native SDLC',
+    period: '2026.09 — 현재',
+    team: '개인 프로젝트',
+    outcome: '모르는 영역을 명시(unknown)하고 실행 증거와 설명(Explain)을 대조하는 검증 체계 구축',
+    stack: ['Agent Skills', 'Codex', 'Verification Core', 'SQLite'],
+  },
+  {
+    problem: '비용·속도·성능 조건에 맞춘 최적 LLM 라우팅 및 단일 규격 중계',
+    period: '2025.04 — 2025.10',
+    team: '2인 팀',
+    outcome: '자체 GPU 환경 전환으로 상용 API 비용 절감 · 약 3주간 안정적 사내 베타 운영',
+    stack: ['Java', 'Spring Boot', 'LangChain4j', 'Ollama', 'WebSocket'],
+  },
 ];
 // Exact substrings of the existing copy; presentation does not change project facts.
 export const projectHighlights = {
-  FOWOCO: 'Language Assistant',
-  'HWPX Document Plugin': '사용자에게 확인한 값',
-  OwnHands: '사람이 이해하고 검증하며 최종 판단',
-  'LLM Gateway Service': '사용 조건에 맞춰 선택',
+  FOWOCO: '공식 모음집과 매칭',
+  'HWPX Document Plugin': '확인된 값만 반영',
+  OwnHands: '사람이 직접 검증하고',
+  'LLM Gateway Service': '최적 모델을 선별',
 };

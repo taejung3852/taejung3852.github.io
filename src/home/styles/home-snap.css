@@ -2,7 +2,7 @@ html.home-reading{scroll-padding-top:0}
 .home-reading{--home-copy:#444}
 html.home-reading[data-theme=dark]{--home-copy:#ccc}
 .home-reading .project-details .project-decision,.home-reading .project-details .project-role{color:var(--home-copy)}
-.home-reading .home-project-scene .project-cover-guide{aspect-ratio:2380/1334;border:1px dashed var(--muted);background:var(--surface);display:grid;place-items:center;color:var(--muted);font-size:14px;box-sizing:border-box}
+.home-reading .home-project-scene .project-cover-guide{aspect-ratio:2380/1334;border:1px dashed var(--muted);border-radius:8px;background:var(--surface);display:grid;place-items:center;color:var(--muted);font-size:14px;box-sizing:border-box}
 .project-question{font-size:clamp(22px,2vw,30px);font-weight:600;line-height:1.5;word-break:keep-all;text-wrap:pretty;letter-spacing:-.03em}
 .project-decision{margin-top:20px;font-size:18px;line-height:1.85;color:var(--muted);word-break:keep-all;text-wrap:pretty}
 .project-role-label{display:block;font-size:12px;margin-bottom:8px;color:var(--muted)}
@@ -16,4 +16,4 @@ html.home-reading[data-theme=dark]{--home-copy:#ccc}
 @media(max-width:900px){.home-reading .hero{min-height:calc(100svh - 97px)}.home-project-scene{padding-block:56px}.home-project-scene .project-row{padding:16px 0}.home-project-scene:last-child{padding-bottom:110px}}
 @media(max-width:600px){.home-reading .hero{min-height:calc(100svh - 77px)}.home-project-scene .project-image-guide{width:180px}.home-project-scene .project-row{gap:20px}.project-detail-link{margin-top:16px}}
 
-.home-project-scene .project-cover{display:block;width:min(100%,520px);margin-top:28px}.project-cover img{display:block;width:100%;height:auto;aspect-ratio:2380/1334;object-fit:contain;object-position:left center}
+.home-project-scene .project-cover{display:block;width:min(100%,520px);margin-top:28px}.project-cover img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:8px;transition:border-color .22s var(--ease)}.project-cover:hover img,.project-row:hover .project-cover img{border-color:var(--muted)}

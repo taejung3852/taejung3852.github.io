@@ -1,22 +1,28 @@
 ## Development
 
-When starting the dev server, use background mode:
+Run the Vite dev server:
 
+```bash
+npm run dev
 ```
-astro dev --background
+
+Build the production bundle and prepare static routes:
+
+```bash
+npm run build
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+Preview the built production bundle:
 
-## Documentation
+```bash
+npm run preview
+```
 
-Full documentation: https://docs.astro.build
+## Architecture
 
-Consult these guides before working on related tasks:
+- **Framework**: React 19 SPA with `react-router-dom` and Vite.
+- **Styling**: Vanilla CSS tokens and modular stylesheets (`src/home/styles/`).
+- **Entry Point**: `index.html` -> `src/home/main.jsx`.
+- **Data Source**: `src/content/portfolio.ts` & `src/home/content/`.
+- **Routes & Deployment**: `scripts/prepare-routes.mjs` generates static route fallbacks in `dist/` for GitHub Pages.
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)

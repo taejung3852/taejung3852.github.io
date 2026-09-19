@@ -25,8 +25,7 @@
 
 /* Keep the portrait and identity together at every viewport. */
 .profile .identity{display:grid;grid-template-columns:230px minmax(0,1fr);align-items:center;justify-content:start;gap:24px}
-@media(min-width:1400px){.profile .identity{grid-template-columns:207px minmax(0,1fr)}}
-.profile-portrait{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#fff}
+.profile-portrait{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#fff;border-radius:8px}
 .profile-bio{min-width:0}.profile-bio .profile-role{margin-top:10px}
 @media(max-width:1100px){.profile .identity{grid-template-columns:140px minmax(0,1fr);gap:18px}}
 @media(max-width:600px){.profile .identity{grid-template-columns:104px minmax(0,1fr);gap:20px}}
@@ -42,8 +41,15 @@
 /* Home cards are a catalogue: scannable anchors, one question, no paragraphs. */
 .project-period{margin-top:12px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .project-outcome{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;margin-top:26px;padding-top:22px;border-top:1px solid var(--rule);font-size:16px;line-height:1.7;color:var(--ink);word-break:keep-all}
-.project-role{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;margin-top:22px!important;font-size:15px!important;line-height:1.7!important;color:var(--muted)}
+.project-role{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;margin-top:20px!important;font-size:15px!important;line-height:1.7!important;color:var(--muted)}
 .project-role-label{font-size:12px;letter-spacing:.04em;color:var(--muted);flex:0 0 auto}
 .project-stack{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:18px 0 0;padding:0}
 .project-stack li{font-size:13px;line-height:1.6;padding:6px 12px;border-radius:5px;background:var(--surface);color:var(--ink);white-space:nowrap}
 @media(max-width:600px){.project-outcome,.project-role{grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* Hero CTA group */
+.hero-cta-group{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:36px}
+.hero-cta-group .button{margin-top:0}
+.button-secondary{background:transparent!important;color:var(--ink)!important;border:1px solid var(--rule)!important}
+.button-secondary:hover{background:var(--surface)!important;border-color:var(--ink)!important}
+
