@@ -39,16 +39,16 @@ export const projects = [
   },
   {
     name: 'OwnHands',
-    summary: 'AI가 수행한 작업의 실행 증거와 설명을 대조해, 사람이 직접 검증하고 최종 승인하는 Human Review 도구.',
-    role: '제품 방향 설계 · 검증 Core 및 Issue 기반 검증 흐름 설계·개발',
-    status: '개인 프로젝트 · 새 Lifecycle과 Claim 검증은 개발 중',
+    summary: 'AI가 빠르게 개발하더라도 사람이 그 과정을 이해하고, 근거를 확인하며 통제 가능한 결정을 내릴 수 있게 연결하는 AI-native SDLC 개발 Harness.',
+    role: '제품 문제의식 정립 · Clean-slate V2 설계 · Agent Skills 및 검증 파이프라인 설계',
+    status: '개인 프로젝트 · V2 설계 및 검증 파이프라인 구축',
     href: 'https://github.com/taejung3852/OwnHands',
     linkLabel: '저장소 보기',
-    visualTitle: '근거를 확인하고 사람이 판단합니다',
+    visualTitle: '근거를 대조하고 사람이 최종 결정합니다',
     steps: [
-      ['Understand', '무엇이 바뀌었는가'],
-      ['Prove', '어떤 근거로 확인했는가'],
-      ['Decide', '사람이 최종 결정'],
+      ['Intent → Spec → Plan', '작업 의도와 기준선 선언'],
+      ['Fresh Evidence & Verifier', '신선한 실행 증거와 독립 대조'],
+      ['Human Gate', '사람이 책임을 지는 승인 관문'],
     ],
   },
   {
