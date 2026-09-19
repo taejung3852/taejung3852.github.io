@@ -191,12 +191,44 @@ export default function OwnhandsStudy() {
       {/* 02 해결 */}
       <Part n="02" title="해결: AI-Native SDLC와 Thin Harness V2" id="p-solution" />
       <section id="solution" className="fw-section">
-        <Heading n="방법론의 한계" title="Superpowers의 영감과 실행 하네스로의 분기" />
+        <Heading n="선행 방법론 분석" title="Superpowers의 영감과 실행 하네스로의 분기" />
+
+        {/* Superpowers Repository Card */}
+        <a
+          className="oh-repo-card"
+          href="https://github.com/obra/superpowers"
+          target="_blank"
+          rel="noreferrer"
+          title="obra/superpowers GitHub 저장소 보기"
+        >
+          <div className="oh-repo-info">
+            <span className="oh-repo-title">obra/superpowers ↗</span>
+            <span className="oh-repo-desc">
+              에이전트에게 TDD, Planning, Code Review 등 검증된 엔지니어링 방법론을 Skill 단위로 주입하는 오픈소스 프레임워크
+            </span>
+          </div>
+          <div className="oh-repo-meta">
+            ★ 280k+ Stars
+          </div>
+        </a>
+
         <Facts
           items={[
-            ['Superpowers의 영감', 'Planning, TDD, Review 등 개발 프로세스 자체를 Skill 단위로 주입하는 방법론의 가능성 확인'],
-            ['문제의 분기', '다중 프로젝트용 범용 방법론을 넘어, 단일 프로젝트 안에서 의도(Intent)부터 승인(Gate)까지 잇는 실행 하네스 필요'],
-            ['Anthropic SDLC 접목', '코드 생성 전후 단계(Planning, Review, Testing)로 이동한 병목을 해소하기 위한 사전 기준선 확립'],
+            ['영감과 가능성', '단순 프롬프트 테크닉을 넘어, 에이전트의 작업 절차 자체를 엔지니어링 규격으로 통제하는 가능성 확인'],
+            ['문제의 분기', '다중 프로젝트용 범용 방법론을 넘어, 하나의 프로젝트 안에서 의도(Intent)부터 인간 승인(Gate)까지 꿰는 전용 실행 하네스 필요'],
+          ]}
+        />
+
+        <Heading n="기준선의 확립" title="Anthropic The AI-Native SDLC Playbook과의 공명">
+          <Source href="https://claude.com/blog/the-ai-native-sdlc-playbook">
+            Anthropic The AI-Native SDLC Playbook 원문 보기
+          </Source>
+        </Heading>
+        <Facts
+          items={[
+            ['병목의 이동', 'AI가 코드 작성을 가속화할수록 엔지니어링의 병목은 사전 기획(Planning)과 사후 검토(Review·Testing)로 이동'],
+            ['산출물 중심 통제', 'intent.md, spec.md, plan.md 등 버전 관리되는 마크다운 아티팩트로 단계별 엄격한 기준선(Baseline) 수립'],
+            ['Human Gate', 'AI의 자율 완료를 맹신하지 않고, 사람이 관측된 실행 근거를 확인해 최종 승인 책임을 지는 안전장치 배치'],
           ]}
         />
 
@@ -362,6 +394,15 @@ export default function OwnhandsStudy() {
             ['Evidence 포착', '에이전트의 주장을 배제하고 객관적으로 검증 가능한 실행 증거를 수집하는 능력'],
             ['경계선 설계', '자동화할 영역과 사람이 개입할 Human Gate의 경계를 설계하는 능력'],
             ['시스템 품질 평가', '단일 성공에 안주하지 않고 지속적인 Evals로 행동 퇴행을 감시하는 능력'],
+          ]}
+        />
+
+        <Heading n="향후 로드맵" title="Claude Code 및 Google Antigravity로의 환경 확장" />
+        <Facts
+          items={[
+            ['현재 기반', 'Codex 및 GitHub CLI 네이티브 역량을 바탕으로 V2 Thin Harness 구조 구축 완료'],
+            ['차세대 에이전트 확장', '향후 터미널 네이티브 에이전트인 Claude Code 및 Google Antigravity 개발 환경으로 하네스 프로토콜 확장 예정'],
+            ['플랫폼 독립 지향', '특정 AI 툴체인에 종속되지 않고, 모든 코딩 에이전트의 완료 상태와 사람의 승인을 분리하는 범용 규격 지향'],
           ]}
         />
 
