@@ -595,31 +595,32 @@
           <!-- Project 3: OwnHands -->
           <div class="project-card">
             <div class="project-header">
-              <span class="project-title">OwnHands | AI 코딩 작업의 근거(Evidence) 기반 검토 엔진 <a href="https://github.com/taejung3852/OwnHands" target="_blank" style="font-size: 11px; color: #2563eb; text-decoration: none; font-weight: 500;">[GitHub ↗]</a></span>
-              <span class="project-period">2026.09 - 현재 (개인 프로젝트 · 개발 중)</span>
+              <span class="project-title">OwnHands | 사람이 주도하고 검증하는 AI-native SDLC 시스템 <a href="https://github.com/taejung3852/OwnHands" target="_blank" style="font-size: 11px; color: #2563eb; text-decoration: none; font-weight: 500;">[GitHub ↗]</a></span>
+              <span class="project-period">2026.09 - 현재 (개인 프로젝트 · V2 설계 단계)</span>
             </div>
             <div class="project-meta">
-              <span class="badge-role">담당: 제품 아키텍처 설계 / Evidence Core 및 Issue 기반 검증 흐름 개발</span>
+              <span class="badge-role">담당: 제품 문제의식 정립 / Clean-slate V2 설계 / Agent Skills 및 Subagent 구성</span>
               <div class="tech-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">SQLite</span>
-                <span class="tech-tag">MCP</span>
+                <span class="tech-tag">Codex</span>
                 <span class="tech-tag">Agent Skills</span>
+                <span class="tech-tag">Subagents</span>
+                <span class="tech-tag">Continuous Evals</span>
+                <span class="tech-tag">Markdown</span>
               </div>
             </div>
             <div class="task-block">
-              <div class="task-title">완료 조건(Spec) 기반 검증 라이프사이클 설계 및 개발</div>
+              <div class="task-title">자체 도구 과잉 운영(배보다 배꼽) 한계 인식 및 On-demand Explain 전환</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[문제]</span> AI 코딩 도구가 생성한 diff만으로는 사이드 이펙트나 실제 스펙 충족 여부를 검증하기 어려움</div>
-                <div class="desc-line"><span class="label">[해결]</span> 구현 전 완료 조건을 고정하는 <strong>[Issue → Verification Spec → Baseline → 구현 → Review → Human Decision]</strong> 라이프사이클 설계</div>
-                <div class="desc-line"><span class="label">[통제 방식]</span> 사전 정의한 Spec과 테스트 실행 상태를 연결하여 사람이 객관적 근거에 기반해 수용 여부를 결정하도록 통제</div>
+                <div class="desc-line"><span class="label">[문제]</span> V1에서 작업 검증을 위해 대시보드·폴링·캐시 동기화 시스템을 직접 구축했으나, 도구 유지보수 부담이 본래 개발 목적을 압도하는 한계 직면</div>
+                <div class="desc-line"><span class="label">[판단·전환]</span> 상시 최신 화면 유지 책임을 제거하고, 필요 시 호출해 검증 근거와 미확인(unknown) 영역을 밝히는 <strong>On-demand Explain(설명)</strong> 구조로 전환</div>
+                <div class="desc-line"><span class="label">[실행 자산]</span> V1 코드를 태그로 보존 후 <strong>Clean-slate V2</strong> 설계. 설명과 검증을 전담하는 <strong>핵심 Skill 4종(explain, verify 등)</strong> 구축</div>
               </div>
             </div>
             <div class="task-block">
-              <div class="task-title">Claim-Evidence 분리 기반 회귀 판정 코어 엔진 구현</div>
+              <div class="task-title">AI-native SDLC 전 단계 연결 및 플랫폼 네이티브 역량 활용 (Codex-first)</div>
               <div class="task-desc">
-                <div class="desc-line"><span class="label">[해결]</span> AI의 <strong>'주장(Claim)'</strong>과 실제 실행된 <strong>'테스트 로그(Evidence)'</strong>를 분리 저장하는 SQLite Event Store 기반 회귀 판정 엔진 개발</div>
-                <div class="desc-line"><span class="label">[통제 방식]</span> AI의 완료 주장을 맹신하지 않고, 실행 Evidence를 사람이 직접 대조한 뒤 승인(Approval)하는 신뢰 구조 정립</div>
+                <div class="desc-line"><span class="label">[판단·설계]</span> 단편적 검증(Test)에 머무르지 않고 SDLC 전 단계를 연결. Codex 네이티브 기능을 먼저 조사해 <strong>직접 만들 것과 만들지 않을 것을 엄격히 분리</strong></div>
+                <div class="desc-line"><span class="label">[통제·평가]</span> 반복 검토 전담 <strong>커스텀 Subagent 3종(verifier·reviewer·researcher)</strong> 정의 및 시스템 개선을 측정하는 <strong>Continuous Evals</strong> 도입</div>
               </div>
             </div>
           </div>
