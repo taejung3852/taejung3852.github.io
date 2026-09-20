@@ -86,7 +86,7 @@
   color: var(--muted);
 }
 
-/* V2 Principles */
+/* Core Principles */
 .oh-principles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -324,7 +324,7 @@
   flex-shrink: 0;
 }
 
-/* Architecture Comparison Diagram (V1 vs V2) */
+/* Architecture Comparison Diagram */
 .oh-arch-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -341,11 +341,11 @@
   flex-direction: column;
 }
 
-.oh-arch-box.is-v1 {
+.oh-arch-box.is-fat {
   border-top: 3px solid #ef4444;
 }
 
-.oh-arch-box.is-v2 {
+.oh-arch-box.is-thin {
   border-top: 3px solid #10b981;
   background: var(--bg);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
@@ -371,12 +371,12 @@
   border-radius: 4px;
 }
 
-.oh-arch-box.is-v1 .oh-arch-badge {
+.oh-arch-box.is-fat .oh-arch-badge {
   background: rgba(239, 68, 68, 0.1);
   color: #dc2626;
 }
 
-.oh-arch-box.is-v2 .oh-arch-badge {
+.oh-arch-box.is-thin .oh-arch-badge {
   background: rgba(16, 185, 129, 0.1);
   color: #059669;
 }
@@ -530,6 +530,62 @@
   opacity: 0.85;
 }
 
+/* GORE Principle Framework */
+.oh-gore-banner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+
+.oh-gore-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 14px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.oh-gore-item:hover {
+  border-color: var(--ink);
+}
+
+.oh-gore-letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--ink);
+  font-family: var(--font-mono, monospace);
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.oh-gore-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.oh-gore-text strong {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.oh-gore-text span {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .oh-reframe {
@@ -547,6 +603,9 @@
   .oh-agent-grid {
     grid-template-columns: 1fr;
   }
+  .oh-gore-banner {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -561,5 +620,8 @@
   }
   .oh-takeaway-box blockquote {
     font-size: 18px;
+  }
+  .oh-gore-banner {
+    grid-template-columns: 1fr;
   }
 }

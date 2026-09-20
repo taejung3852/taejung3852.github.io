@@ -199,7 +199,7 @@ export default function OwnhandsStudy() {
           </div>
           <div>
             <dt>담당</dt>
-            <dd>V2 아키텍처 설계 · 검증 체계 구축</dd>
+            <dd>Thin Harness 아키텍처 설계 · 검증 체계 구축</dd>
           </div>
           <div>
             <dt>스택</dt>
@@ -266,7 +266,7 @@ export default function OwnhandsStudy() {
       </section>
 
       {/* 02 해결 */}
-      <Part n="02" title="해결: AI-Native SDLC와 Thin Harness V2" id="p-solution" />
+      <Part n="02" title="해결: AI-Native SDLC와 Thin Harness 아키텍처" id="p-solution" />
       <section id="solution" className="fw-section">
         <Heading n="선행 방법론 분석" title="Superpowers의 영감과 실행 하네스로의 분기" />
 
@@ -314,13 +314,13 @@ export default function OwnhandsStudy() {
           ]}
         />
 
-        <Heading n="아키텍처 전환" title="도구 과잉(V1)에서 Native-first 경량 하네스(V2)로" />
+        <Heading n="아키텍처 전환" title="도구 과잉(Fat Harness)에서 Native-first 경량 하네스로" />
 
-        {/* V1 vs V2 Comparison Diagram */}
+        {/* Architecture Comparison Diagram */}
         <div className="oh-arch-comparison">
-          <div className="oh-arch-box is-v1">
+          <div className="oh-arch-box is-fat">
             <div className="oh-arch-header">
-              <span className="oh-arch-title">V1: Fat Harness (과잉 통제)</span>
+              <span className="oh-arch-title">초기 시도: Fat Harness (도구 과잉)</span>
               <span className="oh-arch-badge">OVERHEAD</span>
             </div>
             <div className="oh-arch-chain">
@@ -337,9 +337,9 @@ export default function OwnhandsStudy() {
             </div>
           </div>
 
-          <div className="oh-arch-box is-v2">
+          <div className="oh-arch-box is-thin">
             <div className="oh-arch-header">
-              <span className="oh-arch-title">V2: Thin Harness (Native-first)</span>
+              <span className="oh-arch-title">전환된 구조: Thin Harness (Native-first)</span>
               <span className="oh-arch-badge">OPTIMAL</span>
             </div>
             <div className="oh-arch-chain">
@@ -452,7 +452,46 @@ export default function OwnhandsStudy() {
           </div>
         </div>
 
-        <Heading n="핵심 산출물" title="추측을 배제하는 6대 기준선과 안전장치" />
+        <Heading n="지시와 검증의 규격" title="GORE 원칙으로 확립한 6대 기준선과 안전장치" />
+        <p style={{ color: 'var(--muted)', fontSize: '14px', marginTop: '-6px', marginBottom: '16px', lineHeight: '1.6' }}>
+          프롬프트 및 에이전트 하네스 설계의 핵심인 <strong>GORE(Goal, Output, Rules, Evidence)</strong> 원칙을 마크다운 아티팩트로 체계화하여 모호성을 원천 차단합니다.
+        </p>
+
+        {/* GORE Principle Grid */}
+        <div className="oh-gore-banner">
+          <div className="oh-gore-item">
+            <span className="oh-gore-letter" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#2563eb' }}>G</span>
+            <div className="oh-gore-text">
+              <strong>Goal (목표 선언)</strong>
+              <span>문제 정의 및 작업 의도 고정 (<code>intent.md</code>)</span>
+            </div>
+          </div>
+
+          <div className="oh-gore-item">
+            <span className="oh-gore-letter" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#059669' }}>O</span>
+            <div className="oh-gore-text">
+              <strong>Output (산출 규격)</strong>
+              <span>구조 및 사전 인수 기준 명시 (<code>spec.md</code>)</span>
+            </div>
+          </div>
+
+          <div className="oh-gore-item">
+            <span className="oh-gore-letter" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#dc2626' }}>R</span>
+            <div className="oh-gore-text">
+              <strong>Rules (제약 조건)</strong>
+              <span>비목표(Non-goals) 및 경계 확립 (<code>intent.md</code>)</span>
+            </div>
+          </div>
+
+          <div className="oh-gore-item">
+            <span className="oh-gore-letter" style={{ background: 'rgba(139, 92, 246, 0.1)', color: '#7c3aed' }}>E</span>
+            <div className="oh-gore-text">
+              <strong>Evidence (실행 증거)</strong>
+              <span>주장 배제, 테스트 로그 대조 (<code>Fresh Evidence</code>)</span>
+            </div>
+          </div>
+        </div>
+
         <div className="oh-artifacts-grid">
           <div className="oh-artifact-card">
             <div className="oh-artifact-header">
