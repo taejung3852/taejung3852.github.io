@@ -236,6 +236,31 @@ export default function OwnhandsStudy() {
           ]}
         />
 
+        <figure className="fw-cover oh-bottleneck-figure">
+          <button
+            type="button"
+            className="fw-zoom"
+            aria-label="AI-Native SDLC 병목의 이동 도표 크게 보기"
+            onClick={() =>
+              zoom({
+                src: '/images/sdlc-bottleneck.png',
+                alt: 'Before agents vs After agents — 빌드 시간 단축과 요구사항 및 검증 병목으로의 이동을 나타낸 도표',
+              })
+            }
+          >
+            <img
+              src="/images/sdlc-bottleneck.png"
+              alt="Before agents vs After agents — 빌드 시간 단축과 요구사항 및 검증 병목으로의 이동을 나타낸 도표"
+              width="1024"
+              height="393"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Anthropic AI-Native SDLC Playbook — 에이전트 도입 후 코드 작성(Build) 시간은 극적으로 단축되었지만, 앞단의 요구사항 정의(Requirements)와 뒷단의 검증·승인(Review/Release)이 개발의 새로운 핵심 병목으로 부상함을 보여주는 도표
+          </figcaption>
+        </figure>
+
         <div className="oh-takeaway-box" style={{ margin: '24px 0 0' }}>
           <blockquote style={{ fontSize: '17px', lineHeight: '1.6' }}>
             "남의 도구에 내 개발 방식을 억지로 끼워 맞추는 대신,<br />

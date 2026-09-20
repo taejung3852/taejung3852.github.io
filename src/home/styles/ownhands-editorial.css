@@ -277,6 +277,22 @@
   white-space: nowrap;
 }
 
+/* SDLC Bottleneck Figure */
+.oh-bottleneck-figure {
+  margin: 30px 0 24px !important;
+}
+
+.oh-bottleneck-figure img {
+  display: block;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: #fdfbf7;
+}
+
 /* Agent Ecosystem Grid (Roadmap) */
 .oh-agent-grid {
   display: grid;
