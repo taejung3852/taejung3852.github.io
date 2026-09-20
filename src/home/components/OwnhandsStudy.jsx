@@ -248,6 +248,60 @@ export default function OwnhandsStudy() {
       {/* 02 해결 */}
       <Part n="02" title="해결: 나와 함께 성장하는 나만의 전용 도구" id="p-solution" />
       <section id="solution" className="fw-section">
+        <Heading n="선행 연구와 영감" title="Superpowers의 실증과 Anthropic Playbook의 선언">
+          실무 검증 하네스를 직접 구상하고 설계하는 과정에서 큰 확신과 영감을 준 두 프론티어 레퍼런스입니다.
+        </Heading>
+
+        <div className="oh-influences-grid">
+          <a
+            className="oh-influence-card"
+            href="https://github.com/obra/superpowers"
+            target="_blank"
+            rel="noreferrer"
+            title="obra/superpowers GitHub 저장소 보기"
+          >
+            <div className="oh-influence-header">
+              <span className="oh-influence-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#F59E0B" stroke="#D97706" strokeWidth="1.5" />
+                </svg>
+                obra / superpowers ↗
+              </span>
+              <span className="oh-influence-badge">Practical Proof</span>
+            </div>
+            <p className="oh-influence-thesis">"엄격한 엔지니어링 규약으로 모델 한계를 돌파하다"</p>
+            <p className="oh-influence-desc">
+              TDD, 계획 수립, 체계적 검증 등 소프트웨어 공학 절차를 Skill 규약으로 에이전트에 주입해 실무 신뢰도를 극대화할 수 있음을 실증.
+            </p>
+            <div className="oh-influence-takeaway">
+              내 도구의 접점: 가벼운 마크다운 Skills 규약과 독립 1:1 증거 대조 프로토콜로 흡수
+            </div>
+          </a>
+
+          <a
+            className="oh-influence-card"
+            href="https://claude.com/blog/the-ai-native-sdlc-playbook"
+            target="_blank"
+            rel="noreferrer"
+            title="Anthropic The AI-Native SDLC Playbook 원문 보기"
+          >
+            <div className="oh-influence-header">
+              <span className="oh-influence-title">
+                <img src="/images/claude.webp" alt="Anthropic Claude" width="16" height="16" style={{ objectFit: 'contain' }} />
+                Anthropic SDLC Playbook ↗
+              </span>
+              <span className="oh-influence-badge">Paradigm Shift</span>
+            </div>
+            <p className="oh-influence-thesis">"소프트웨어 개발의 병목이 코드 생산에서 의도와 평가로 이동한다"</p>
+            <p className="oh-influence-desc">
+              개발자의 본질은 타이핑이 아닌 사양(Intent/Spec) 정의와 지속적 평가(Continuous Evals)를 설계하는 감독자가 된다는 패러다임 선언.
+            </p>
+            <div className="oh-influence-takeaway">
+              내 도구의 접점: 의도 선언(intent.md)과 인간 승인(Human Gate), 지속적 자기개선(RSI)의 철학적 기반
+            </div>
+          </a>
+        </div>
+
         <Heading n="도구의 3대 기둥" title="내가 이 도구를 만들며 얻고자 했던 것">
           거창한 데몬이나 복잡한 프레임워크가 아닌, 사람이 직접 읽고 다룰 수 있는 가장 가벼운 마크다운 규격(Thin Harness)과 자기개선 루프로 구축했습니다.
         </Heading>
@@ -357,6 +411,51 @@ export default function OwnhandsStudy() {
             ['살아있는 도구로의 정착', '완제품으로 박제해둔 프로젝트가 아니라, 지금도 매일 내 실무 개발을 직접 수행하며 규칙과 평가 기준을 업데이트하는 재귀적 자기개선(RSI) 하네스로 작동 중'],
           ]}
         />
+
+        <Heading n="현재 상황과 로드맵" title="Codex 실무 적용(진행 중) 및 멀티 에이전트 확장" />
+        <div className="oh-agent-grid">
+          <div className="oh-agent-card">
+            <div className="oh-agent-card-top">
+              <div className="oh-agent-icon-wrap" style={{ background: '#EFF6FF', borderColor: 'rgba(59, 130, 246, 0.25)' }}>
+                <img src="/images/codex.png" alt="Codex 로고" />
+              </div>
+              <span className="oh-agent-status is-progress">IN PROGRESS</span>
+            </div>
+            <h4>Codex (CLI)</h4>
+            <p>
+              현재 내 실무 업무에 직접 연동되어 매일 사용 중인 메인 엔진. 단위 구현과 터미널 실행 증거 수집, 독립 1:1 대조 루프를 안정적으로 수행하고 있습니다.
+            </p>
+            <div className="oh-agent-env">실무 적용 중 · Codex CLI &amp; Git Native</div>
+          </div>
+
+          <div className="oh-agent-card">
+            <div className="oh-agent-card-top">
+              <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
+                <img src="/images/claude.webp" alt="Claude Code 로고" />
+              </div>
+              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+            </div>
+            <h4>Claude Code</h4>
+            <p>
+              대규모 레포지토리 컨텍스트 파악과 사양·계획(Spec &amp; Plan) 수립, 심층 아키텍처 리뷰에 특화된 하네스 스킬 프로토콜로 연동을 확장할 계획입니다.
+            </p>
+            <div className="oh-agent-env">지원 예정 · Claude Code CLI &amp; Agent Skills</div>
+          </div>
+
+          <div className="oh-agent-card">
+            <div className="oh-agent-card-top">
+              <div className="oh-agent-icon-wrap" style={{ background: '#F5F3FF', borderColor: 'rgba(79, 70, 229, 0.25)' }}>
+                <img src="/images/antigravity.webp" alt="Antigravity 로고" />
+              </div>
+              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+            </div>
+            <h4>Google Antigravity</h4>
+            <p>
+              백그라운드 태스크 제어, 브라우저 기반 E2E 시각적 검증 및 복수 서브에이전트 오케스트레이션 도구로 하네스 확장을 검토하고 있습니다.
+            </p>
+            <div className="oh-agent-env">지원 예정 · Antigravity IDE &amp; Subagents</div>
+          </div>
+        </div>
 
         <div className="oh-takeaway-box" style={{ marginTop: '32px' }}>
           <blockquote style={{ fontSize: '18px', lineHeight: '1.6' }}>
