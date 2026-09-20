@@ -4,8 +4,8 @@ import '../styles/fowoco-editorial.css';
 import useTocSpy from './useTocSpy';
 import '../styles/hwpx-editorial.css';
 
-const base = 'https://github.com/taejung3852/hwpx-document-plugin/blob/1a416bca6f35c59856f9b40909337fa443175e42';
-const tree = 'https://github.com/taejung3852/hwpx-document-plugin/tree/1a416bca6f35c59856f9b40909337fa443175e42';
+const base = 'https://github.com/taejung3852/hwpx-document-plugin/blob/c73359a15341977e56d0cfa253f8f4d9fb625ccd';
+const tree = 'https://github.com/taejung3852/hwpx-document-plugin/tree/c73359a15341977e56d0cfa253f8f4d9fb625ccd';
 
 const mapping = [
   ['체류기간 연장허가', '체류기간 연장허가 EXTENSION OF SOJOURN PERIOD'],

@@ -444,7 +444,7 @@
           <div class="header-main">
             <div class="name-title-row">
               <h1 class="name">박태정</h1>
-              <span class="target-role">AI Agent / LLM Application Developer</span>
+              <span class="target-role">AI Engineer | RAG · LLM Agent · LLM Application</span>
             </div>
             <div class="contact-links">
               <span class="contact-item">📧 <a href="mailto:taejung3852@gmail.com">taejung3852@gmail.com</a></span>
@@ -479,7 +479,7 @@
         </section>
 
         <!-- Tech Stacks -->
-        <section class="section" style="margin-bottom: 28px;">
+        <section class="section" style="margin-bottom: 20px;">
           <h2 class="section-title"><span class="bullet">■</span> 기술</h2>
           <ul class="tech-category-list">
             <li class="tech-category-item">
@@ -497,6 +497,10 @@
             <li class="tech-category-item">
               <span class="tech-category-label">LLM 실행</span>
               <span class="tech-category-desc">Ollama · AWS SageMaker JumpStart</span>
+            </li>
+            <li class="tech-category-item">
+              <span class="tech-category-label">API / Backend</span>
+              <span class="tech-category-desc">FastAPI · Spring Boot · HTTP · WebSocket</span>
             </li>
             <li class="tech-category-item">
               <span class="tech-category-label">개발 도구</span>
@@ -561,7 +565,7 @@
 
       <!-- Footer Page 1 -->
       <footer class="page-footer">
-        <span>박태정 이력서 | AI Agent / LLM Application Developer</span>
+        <span>박태정 이력서 | AI Engineer | RAG · LLM Agent · LLM Application</span>
         <span>1 / 2</span>
       </footer>
     </div>
@@ -573,31 +577,7 @@
         <section class="section" style="margin-bottom: 26px;">
           <h2 class="section-title"><span class="bullet">■</span> 주요 프로젝트</h2>
 
-          <!-- Project 3: OwnHands -->
-          <div class="project-card">
-            <div class="project-header">
-              <span class="project-title">OwnHands | 근거 검증과 인간 승인 중심의 AI-native SDLC 하네스 <a href="https://github.com/taejung3852/OwnHands" target="_blank" class="github-link">[GitHub ↗]</a></span>
-              <span class="project-period">2026.09 - 현재 (개인 프로젝트 · 실무 적용 및 운영 중)</span>
-            </div>
-            <div class="project-meta">
-              <span class="badge-role">1인 개발: 제품 문제의식 정립 / Thin Harness 아키텍처 설계 / 독립 검증 체계 및 피드백 루프 구축</span>
-              <div class="tech-tags">
-                <span class="tech-tag">Codex CLI</span>
-                <span class="tech-tag">Thin Harness</span>
-                <span class="tech-tag">Agent Skills</span>
-                <span class="tech-tag">Fresh Evidence</span>
-                <span class="tech-tag">Human Gate</span>
-                <span class="tech-tag">Continuous Evals</span>
-              </div>
-            </div>
-            <ul class="project-bullets">
-              <li>에이전트의 거짓 성공(가짜 테스트 통과 등)으로 인한 통제력 상실을 방지하기 위해, 데몬 과잉 설계를 걷어내고 마크다운 파일 기반 <strong>Thin Harness</strong>로 전면 단순화</li>
-              <li>AI의 완료 주장을 배제하고, 구현체와 분리된 독립 Verifier가 <strong>사전 사양(Spec)과 실제 터미널 실행 로그·Diff를 1:1 대조</strong>하며 사람이 최종 배포를 결정하는 <strong>Human Gate</strong> 구축</li>
-              <li>Codex CLI 환경과 연동해 실무 개발에 매일 활용 중이며, 작업 중 발견한 실패 패턴과 피드백을 규칙(Rules)과 <strong>Continuous Evals</strong>로 축적하는 <strong>피드백 환류 체계</strong> 운영</li>
-            </ul>
-          </div>
-
-          <!-- Project 4: LLM Gateway Service -->
+          <!-- Project 3: LLM Gateway Service -->
           <div class="project-card">
             <div class="project-header">
               <span class="project-title">LLM Gateway Service | 다중 LLM 선택 및 호출 통합 게이트웨이 <a href="https://github.com/taejung3852/llm-gateway" target="_blank" class="github-link">[GitHub ↗]</a></span>
@@ -618,6 +598,30 @@
               <li>모델별 특성 차이와 후보 고갈 문제를 해결하기 위해 <strong>비용·속도·성능·Context Length 4대 기준 Min-Max 정규화</strong> 및 가중치 기반 다기준 상대 평가 라우팅 알고리즘 구현</li>
               <li>SageMaker JumpStart POC 검증 후 자체 GPU 환경에 <strong>오픈소스 LLM(Ollama) 호스팅 및 LangChain4j 연동</strong>으로 상용 API 비용 절감</li>
               <li>초기 WebSocket 도입 후 실제 요구가 단방향 토큰 스트리밍임을 확인하여 <strong>차기 구조로 REST + SSE를 도출</strong>하는 통신 프로토콜 트레이드오프 분석 경험</li>
+            </ul>
+          </div>
+
+          <!-- Project 4: OwnHands -->
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-title">OwnHands | 근거 검증과 인간 승인 중심의 AI-native SDLC 하네스 <a href="https://github.com/taejung3852/OwnHands" target="_blank" class="github-link">[GitHub ↗]</a></span>
+              <span class="project-period">2026.09 - 현재 (개인 프로젝트 · 실무 적용 및 운영 중)</span>
+            </div>
+            <div class="project-meta">
+              <span class="badge-role">1인 개발: 제품 문제의식 정립 / Thin Harness 아키텍처 설계 / 독립 검증 체계 및 피드백 루프 구축</span>
+              <div class="tech-tags">
+                <span class="tech-tag">Codex CLI</span>
+                <span class="tech-tag">Thin Harness</span>
+                <span class="tech-tag">Agent Skills</span>
+                <span class="tech-tag">Fresh Evidence</span>
+                <span class="tech-tag">Human Gate</span>
+                <span class="tech-tag">Continuous Evals</span>
+              </div>
+            </div>
+            <ul class="project-bullets">
+              <li>에이전트의 거짓 성공(가짜 테스트 통과 등)으로 인한 통제력 상실을 방지하기 위해, 데몬 과잉 설계를 걷어내고 마크다운 파일 기반 <strong>Thin Harness</strong>로 전면 단순화</li>
+              <li>AI의 완료 주장을 배제하고, 구현체와 분리된 독립 Verifier가 <strong>사전 사양(Spec)과 실제 터미널 실행 로그·Diff를 1:1 대조</strong>하며 사람이 최종 배포를 결정하는 <strong>Human Gate</strong> 구축</li>
+              <li>Codex CLI 환경과 연동해 실무 개발에 매일 활용 중이며, 작업 중 발견한 실패 패턴과 피드백을 규칙(Rules)과 <strong>Continuous Evals</strong>로 축적하는 <strong>피드백 환류 체계</strong> 운영</li>
             </ul>
           </div>
         </section>
@@ -699,7 +703,7 @@
 
       <!-- Footer Page 2 -->
       <footer class="page-footer">
-        <span>박태정 이력서 | AI Agent / LLM Application Developer</span>
+        <span>박태정 이력서 | AI Engineer | RAG · LLM Agent · LLM Application</span>
         <span>2 / 2</span>
       </footer>
     </div>
