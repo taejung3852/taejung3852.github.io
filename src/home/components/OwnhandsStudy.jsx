@@ -343,7 +343,7 @@ export default function OwnhandsStudy() {
               <p>목적 및 비목표 고정</p>
             </div>
             <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step is-baseline">
+            <div className="oh-flow-step">
               <div className="oh-flow-step-header">
                 <span className="oh-flow-badge">02 SPEC &amp; PLAN</span>
                 <span className="oh-step-icon"><IconSpec /></span>
@@ -370,7 +370,7 @@ export default function OwnhandsStudy() {
               <p>터미널 로그 &amp; Diff 포착</p>
             </div>
             <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step is-gate">
+            <div className="oh-flow-step">
               <div className="oh-flow-step-header">
                 <span className="oh-flow-badge">05 VERIFY</span>
                 <span className="oh-step-icon"><IconVerify /></span>
@@ -379,7 +379,7 @@ export default function OwnhandsStudy() {
               <p>사양 ↔ 증거 교차 검증</p>
             </div>
             <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step is-gate">
+            <div className="oh-flow-step">
               <div className="oh-flow-step-header">
                 <span className="oh-flow-badge">06 HUMAN GATE</span>
                 <span className="oh-step-icon"><IconHumanGate /></span>
@@ -388,7 +388,7 @@ export default function OwnhandsStudy() {
               <p>사각지대 확인 후 머지</p>
             </div>
             <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step is-baseline">
+            <div className="oh-flow-step">
               <div className="oh-flow-step-header">
                 <span className="oh-flow-badge">07 FEEDBACK LOOP</span>
                 <span className="oh-step-icon"><IconRsi /></span>

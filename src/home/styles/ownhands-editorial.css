@@ -154,30 +154,12 @@
   position: relative;
 }
 
-.oh-flow-step.is-baseline {
-  border-color: #3b82f6;
-  background: rgba(59, 130, 246, 0.04);
-}
-
-.oh-flow-step.is-gate {
-  border-color: #10b981;
-  background: rgba(16, 185, 129, 0.04);
-}
-
 .oh-flow-badge {
   font-size: 10px;
   font-weight: 700;
   font-family: var(--font-mono, monospace);
   color: var(--muted);
   margin-bottom: 5px;
-}
-
-.oh-flow-step.is-baseline .oh-flow-badge {
-  color: #2563eb;
-}
-
-.oh-flow-step.is-gate .oh-flow-badge {
-  color: #059669;
 }
 
 .oh-flow-step h4 {
