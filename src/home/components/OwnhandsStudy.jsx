@@ -290,12 +290,12 @@ export default function OwnhandsStudy() {
               </span>
               <span className="oh-influence-badge">★ 280k+ Stars</span>
             </div>
-            <h4 className="oh-influence-thesis">엔지니어링 방법론의 주입</h4>
+            <h4 className="oh-influence-thesis">엔지니어링 규격의 주입</h4>
             <p className="oh-influence-desc">
-              TDD, Planning, Subagent Review 등 검증된 소프트웨어 공학 규격을 Skill 단위로 에이전트에 주입하여 임의 코딩을 방지하는 가능성 실증.
+              TDD, Planning, Review 등 검증된 소프트웨어 공학 절차를 Skill 단위로 에이전트에 주입해 임의 코딩을 방지하는 가능성 실증.
             </p>
             <div className="oh-influence-takeaway">
-              OwnHands 접점: 의도(Intent)부터 승인(Gate)까지 하나의 프로젝트 라이프사이클로 단일화
+              접점: 의도(Intent)부터 승인(Gate)까지 단일 프로젝트 라이프사이클로 통합
             </div>
           </a>
 
@@ -315,10 +315,10 @@ export default function OwnhandsStudy() {
             </div>
             <h4 className="oh-influence-thesis">"Code is no longer the bottleneck"</h4>
             <p className="oh-influence-desc">
-              구현은 순식간에 끝나며 개발의 병목은 기획(Plan)과 검증(Verify)으로 이동. 코드가 아닌 마크다운 아티팩트를 단일 진실 공급원(SSOT)으로 확립.
+              구현 가속 이후 병목이 기획(Plan)과 검증(Verify)으로 이동했음을 선언. 마크다운 아티팩트를 단일 진실 공급원(SSOT)으로 확립.
             </p>
             <div className="oh-influence-takeaway">
-              OwnHands 접점: 수작업 코드 리뷰 마비를 극복하기 위해 Fresh Evidence 기반 Human Gate 구축
+              접점: 수작업 코드 리뷰 한계를 극복하기 위해 Fresh Evidence 기반 Human Gate 구축
             </div>
           </a>
         </div>
@@ -436,7 +436,7 @@ export default function OwnhandsStudy() {
                   <span className="oh-artifact-role">Goal</span>
                 </div>
                 <p className="oh-artifact-text">
-                  "Why before How": 작업 목적과 존재 이유를 고정하고, <strong>비목표(Non-goals)</strong>를 규정해 오버엔지니어링 원천 차단.
+                  작업 목적을 고정하고 <strong>비목표(Non-goals)</strong>를 규정해 오버엔지니어링 원천 차단.
                 </p>
               </div>
               <div className="oh-artifact-mini">
@@ -445,7 +445,7 @@ export default function OwnhandsStudy() {
                   <span className="oh-artifact-role">Refinement</span>
                 </div>
                 <p className="oh-artifact-text">
-                  상위 의도를 측정 가능한 <strong>사전 인수 기준(Acceptance Criteria)</strong>과 아키텍처 인터페이스 규격으로 구체화.
+                  상위 의도를 측정 가능한 <strong>사전 인수 기준(Acceptance Criteria)</strong>과 규격으로 구체화.
                 </p>
               </div>
             </div>
@@ -463,7 +463,7 @@ export default function OwnhandsStudy() {
                   <span className="oh-artifact-role">Operationalize</span>
                 </div>
                 <p className="oh-artifact-text">
-                  작업을 마일스톤 단위로 분해하고, 변경 대상 파일과 단계별 실행·검증 커맨드를 사전에 확정.
+                  작업을 마일스톤으로 분해하고, 단계별 변경 파일과 실행·검증 커맨드를 사전에 확정.
                 </p>
               </div>
               <div className="oh-artifact-mini">
@@ -472,7 +472,7 @@ export default function OwnhandsStudy() {
                   <span className="oh-artifact-role">Evidence</span>
                 </div>
                 <p className="oh-artifact-text">
-                  "동작한다"는 주장을 배제하고, 실제 실행된 <strong>테스트 로그·정적 분석 출력·해시 로그</strong> 수집.
+                  AI 주장을 배제하고, 실제 실행된 <strong>테스트 로그·정적 분석 출력·해시 로그</strong> 수집.
                 </p>
               </div>
             </div>
@@ -490,7 +490,7 @@ export default function OwnhandsStudy() {
                   <span className="oh-artifact-role">Verification</span>
                 </div>
                 <p className="oh-artifact-text">
-                  코드 작성자와 분리된 독립 서브에이전트가 사전 인수 기준과 실행 증거를 <strong>1:1 교차 대조</strong>.
+                  작성자와 분리된 독립 서브에이전트가 사전 인수 기준과 실행 증거를 <strong>1:1 교차 대조</strong>.
                 </p>
               </div>
               <div className="oh-artifact-mini">
@@ -499,7 +499,7 @@ export default function OwnhandsStudy() {
                   <span className="oh-artifact-role">Monitoring</span>
                 </div>
                 <p className="oh-artifact-text">
-                  프롬프트나 룰 수정 시 시스템 전체 행동 양식이 퇴행하지 않는지 벤치마크셋으로 상시 감시.
+                  규칙이나 프롬프트 수정 시 시스템 전체 행동 양식이 퇴행하지 않는지 벤치마크 상시 감시.
                 </p>
               </div>
             </div>
