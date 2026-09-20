@@ -434,107 +434,17 @@ export default function OwnhandsStudy() {
           </div>
         </div>
 
-        <Heading n="지시와 검증의 규격" title="GORE 원칙으로 확립한 6대 기준선과 안전장치" />
-        <p style={{ color: 'var(--muted)', fontSize: '14px', marginTop: '-6px', marginBottom: '16px', lineHeight: '1.6' }}>
-          프롬프트 및 에이전트 하네스 설계의 핵심인 <strong>GORE(Goal, Output, Rules, Evidence)</strong> 원칙을 마크다운 아티팩트로 체계화하여 모호성을 원천 차단합니다.
-        </p>
-
-        {/* GORE Principle Grid */}
-        <div className="oh-gore-banner">
-          <div className="oh-gore-item">
-            <span className="oh-gore-letter" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#2563eb' }}>G</span>
-            <div className="oh-gore-text">
-              <strong>Goal (목표 선언)</strong>
-              <span>문제 정의 및 작업 의도 고정 (<code>intent.md</code>)</span>
-            </div>
-          </div>
-
-          <div className="oh-gore-item">
-            <span className="oh-gore-letter" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#059669' }}>O</span>
-            <div className="oh-gore-text">
-              <strong>Output (산출 규격)</strong>
-              <span>구조 및 사전 인수 기준 명시 (<code>spec.md</code>)</span>
-            </div>
-          </div>
-
-          <div className="oh-gore-item">
-            <span className="oh-gore-letter" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#dc2626' }}>R</span>
-            <div className="oh-gore-text">
-              <strong>Rules (제약 조건)</strong>
-              <span>비목표(Non-goals) 및 경계 확립 (<code>intent.md</code>)</span>
-            </div>
-          </div>
-
-          <div className="oh-gore-item">
-            <span className="oh-gore-letter" style={{ background: 'rgba(139, 92, 246, 0.1)', color: '#7c3aed' }}>E</span>
-            <div className="oh-gore-text">
-              <strong>Evidence (실행 증거)</strong>
-              <span>주장 배제, 테스트 로그 대조 (<code>Fresh Evidence</code>)</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="oh-artifacts-grid">
-          <div className="oh-artifact-card">
-            <div className="oh-artifact-header">
-              <span className="oh-artifact-title">intent.md</span>
-              <span className="oh-artifact-role">의도와 경계</span>
-            </div>
-            <p className="oh-artifact-desc">
-              작업 목적을 명시하고 <strong>무엇을 하지 않을지(Non-goals)</strong>를 규정해 에이전트의 오버엔지니어링 차단.
-            </p>
-          </div>
-
-          <div className="oh-artifact-card">
-            <div className="oh-artifact-header">
-              <span className="oh-artifact-title">spec.md</span>
-              <span className="oh-artifact-role">구조와 기준</span>
-            </div>
-            <p className="oh-artifact-desc">
-              아키텍처 및 인터페이스 규격을 명시하고 사전 인수 기준(Acceptance Criteria) 확정.
-            </p>
-          </div>
-
-          <div className="oh-artifact-card">
-            <div className="oh-artifact-header">
-              <span className="oh-artifact-title">plan.md</span>
-              <span className="oh-artifact-role">단위와 계획</span>
-            </div>
-            <p className="oh-artifact-desc">
-              구현 작업을 단계별로 쪼개고 각 마일스톤별 실행·검증 커맨드 정의.
-            </p>
-          </div>
-
-          <div className="oh-artifact-card">
-            <div className="oh-artifact-header">
-              <span className="oh-artifact-title">Fresh Evidence</span>
-              <span className="oh-artifact-role">관측된 증거</span>
-            </div>
-            <p className="oh-artifact-desc">
-              에이전트의 주장을 배제하고 실제 실행된 테스트 로그, 정적 분석 출력, 해시 로그 수집.
-            </p>
-          </div>
-
-          <div className="oh-artifact-card">
-            <div className="oh-artifact-header">
-              <span className="oh-artifact-title">Verifier Subagent</span>
-              <span className="oh-artifact-role">독립 대조기</span>
-            </div>
-            <p className="oh-artifact-desc">
-              작성자와 분리된 독립 서브에이전트가 인수 기준과 실행 증거를 1:1 교차 검증.
-            </p>
-          </div>
-
-          <div className="oh-artifact-card">
-            <div className="oh-artifact-header">
-              <span className="oh-artifact-title">Continuous Evals</span>
-              <span className="oh-artifact-role">행동 회귀 감지</span>
-            </div>
-            <p className="oh-artifact-desc">
-              프롬프트나 룰 수정 시 시스템 전체의 행동 양식이 퇴행하지 않는지 벤치마크셋으로 상시 감시.
-            </p>
-          </div>
-        </div>
+        <Heading n="요구공학 체계" title="GORE(Goal-Oriented Requirements Engineering) 기반 6대 기준선" />
+        <Facts
+          items={[
+            ['01 Goal (의도 정의)', 'intent.md: "Why before How" — 작업의 존재 이유와 본질적 목적을 고정하고, 비목표(Non-goals)를 선언해 오버엔지니어링 원천 차단'],
+            ['02 Refinement (사양 정제)', 'spec.md: 상위 의도를 측정 가능한 사전 인수 기준(Acceptance Criteria)과 아키텍처 인터페이스 규격으로 구체화'],
+            ['03 Operationalize (실행 계획)', 'plan.md: 작업을 단위 마일스톤으로 분해하고, 변경 대상 파일과 각 단계별 실행·검증 커맨드를 사전에 확정'],
+            ['04 Evidence (관측된 증거)', 'Fresh Evidence: "잘 동작한다"는 AI의 주장을 배제하고, 실제 실행된 테스트 로그·정적 분석 출력·해시 로그 수집'],
+            ['05 Verification (독립 대조)', 'Verifier Subagent: 구현 작성자와 분리된 독립 검증 서브에이전트가 사전 인수 기준과 실행 증거를 1:1 교차 대조'],
+            ['06 Regression Check (감시)', 'Continuous Evals: 프롬프트나 룰 수정 시 시스템 전체의 행동 양식이 퇴행하지 않는지 벤치마크셋으로 상시 감시'],
+          ]}
+        />
       </section>
 
       {/* 03 결과와 회고 */}

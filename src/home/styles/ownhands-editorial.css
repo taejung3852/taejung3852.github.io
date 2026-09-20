@@ -199,49 +199,6 @@
   flex-shrink: 0;
 }
 
-/* Artifacts Grid */
-.oh-artifacts-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin: 28px 0;
-}
-
-.oh-artifact-card {
-  padding: 22px;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-}
-
-.oh-artifact-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.oh-artifact-title {
-  font-family: var(--font-mono, monospace);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.oh-artifact-role {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.oh-artifact-desc {
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--copy, #334155);
-  margin: 0;
-}
 
 /* Quote Takeaway Card */
 .oh-takeaway-box {
@@ -438,61 +395,6 @@
   opacity: 0.85;
 }
 
-/* GORE Principle Framework */
-.oh-gore-banner {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin: 18px 0 24px;
-}
-
-.oh-gore-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px 14px;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  transition: border-color 0.2s ease;
-}
-
-.oh-gore-item:hover {
-  border-color: var(--ink);
-}
-
-.oh-gore-letter {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  background: rgba(15, 23, 42, 0.06);
-  color: var(--ink);
-  font-family: var(--font-mono, monospace);
-  font-size: 14px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.oh-gore-text {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.oh-gore-text strong {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.oh-gore-text span {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.45;
-}
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -502,14 +404,8 @@
   .oh-principles {
     grid-template-columns: 1fr;
   }
-  .oh-artifacts-grid {
-    grid-template-columns: 1fr;
-  }
   .oh-agent-grid {
     grid-template-columns: 1fr;
-  }
-  .oh-gore-banner {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -525,8 +421,5 @@
   }
   .oh-takeaway-box blockquote {
     font-size: 18px;
-  }
-  .oh-gore-banner {
-    grid-template-columns: 1fr;
   }
 }
