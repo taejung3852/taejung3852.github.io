@@ -185,7 +185,7 @@ export default function OwnhandsStudy() {
               사람의 승인을 분리합니다.
             </h1>
             <p className="fw-lead">
-              에이전트에게 끌려다니지 않고 내 작업의 통제권을 쥐기 위해, 사람의 의도와 실행 증거를 1:1로 대조하고 재귀적 자기개선(RSI)으로 나와 함께 성장하는 나만의 실무 개발 하네스.
+              에이전트에게 끌려다니지 않고 내 작업의 통제권을 쥐기 위해, 사람의 의도와 실행 증거를 1:1로 대조하고 실무 피드백을 축적하며 나와 함께 단단해지는 나만의 개발 하네스.
             </p>
           </div>
           <figure className="fw-cover">
@@ -297,13 +297,13 @@ export default function OwnhandsStudy() {
               개발자의 본질은 타이핑이 아닌 사양(Intent/Spec) 정의와 지속적 평가(Continuous Evals)를 설계하는 감독자가 된다는 패러다임 선언.
             </p>
             <div className="oh-influence-takeaway">
-              내 도구의 접점: 의도 선언(intent.md)과 인간 승인(Human Gate), 지속적 자기개선(RSI)의 철학적 기반
+              내 도구의 접점: 의도 선언(intent.md)과 인간 승인(Human Gate), 실무 피드백 환류의 철학적 기반
             </div>
           </a>
         </div>
 
         <Heading n="도구의 3대 기둥" title="내가 이 도구를 만들며 얻고자 했던 것">
-          거창한 데몬이나 복잡한 프레임워크가 아닌, 사람이 직접 읽고 다룰 수 있는 가장 가벼운 마크다운 규격(Thin Harness)과 자기개선 루프로 구축했습니다.
+          거창한 데몬이나 복잡한 프레임워크가 아닌, 사람이 직접 읽고 다룰 수 있는 가장 가벼운 마크다운 규격(Thin Harness)과 피드백 환류 루프로 구축했습니다.
         </Heading>
 
         {/* 3 Core Principles */}
@@ -323,8 +323,8 @@ export default function OwnhandsStudy() {
             </p>
           </div>
           <div className="oh-principle-card">
-            <span className="oh-principle-tag">03 RECURSIVE SELF-IMPROVEMENT</span>
-            <h3>쓸수록 나와 함께 성장한다 (RSI)</h3>
+            <span className="oh-principle-tag">03 CONTINUOUS FEEDBACK</span>
+            <h3>쓸수록 더 단단해진다 (피드백 환류)</h3>
             <p>
               작업에서 발견한 실패 패턴, 엣지 케이스, 내가 내린 피드백이 휘발되지 않고 다음 작업의 규칙(Rules)과 Continuous Evals로 축적되어 도구와 에이전트가 함께 진화합니다.
             </p>
@@ -390,11 +390,11 @@ export default function OwnhandsStudy() {
             <div className="oh-flow-arrow">→</div>
             <div className="oh-flow-step is-baseline">
               <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">07 RSI LOOP</span>
+                <span className="oh-flow-badge">07 FEEDBACK LOOP</span>
                 <span className="oh-step-icon"><IconRsi /></span>
               </div>
-              <h4>재귀적 자기개선</h4>
-              <p>피드백 누적 및 규칙 진화</p>
+              <h4>실무 피드백 환류</h4>
+              <p>실패 패턴 축적 및 규칙 진화</p>
             </div>
           </div>
         </div>
@@ -408,7 +408,7 @@ export default function OwnhandsStudy() {
           items={[
             ['하네스 비대화의 실패', '모든 제어를 자체 데몬과 복잡한 오케스트레이터로 감싸려다 복잡도가 폭증하여 실패 → 사람이 직접 읽고 편집할 수 있는 가장 단순한 마크다운 파일(Thin Harness)과 플랫폼 CLI 네이티브로 전면 단순화'],
             ['거짓 완료의 충격', '에이전트가 가짜 테스트를 만들어 100% 통과를 자축하는 현상을 직접 목격한 후, 구현 에이전트와 독립 검증자(Verifier)를 물리적으로 분리하여 1:1 증거 대조를 강제'],
-            ['살아있는 도구로의 정착', '완제품으로 박제해둔 프로젝트가 아니라, 지금도 매일 내 실무 개발을 직접 수행하며 규칙과 평가 기준을 업데이트하는 재귀적 자기개선(RSI) 하네스로 작동 중'],
+            ['살아있는 도구로의 정착', '완제품으로 박제해둔 프로젝트가 아니라, 지금도 매일 내 실무 개발을 직접 수행하며 실패 패턴과 규칙, 평가 기준을 지속 업데이트하는 피드백 환류 체계로 작동 중'],
           ]}
         />
 
