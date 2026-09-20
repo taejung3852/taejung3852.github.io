@@ -558,11 +558,11 @@ export default function OwnhandsStudy() {
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#F5F3FF', borderColor: 'rgba(79, 70, 229, 0.25)' }}>
-                <img src="/images/antigravity.webp" alt="Google Antigravity" width="28" height="28" />
+                <img src="/images/antigravity.webp" alt="Antigravity (Google)" width="28" height="28" />
               </div>
               <span className="oh-agent-status is-roadmap">ROADMAP · 확장 예정</span>
             </div>
-            <h4>Google Antigravity</h4>
+            <h4>Antigravity (Google)</h4>
             <p>Antigravity IDE 및 agy CLI 환경의 Subagent/Skill 프로토콜과 직접 연동하는 독립 검증 하네스 지원.</p>
             <div className="oh-agent-env">agy cli · antigravity ide</div>
           </div>
