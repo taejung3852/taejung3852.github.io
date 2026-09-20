@@ -186,7 +186,7 @@ export default function OwnhandsStudy() {
               사람의 승인을 분리합니다.
             </h1>
             <p className="fw-lead">
-              에이전트에게 끌려다니지 않고 내 작업의 통제권을 쥐기 위해, 사람의 의도와 실행 증거를 1:1로 대조하고 실무 피드백을 축적하며 나와 함께 단단해지는 나만의 개발 하네스.
+              에이전트의 생성 속도 대신 실행 증거와 인간 승인으로 품질을 통제하는 나만의 개발 하네스.
             </p>
           </div>
           <figure className="fw-cover">
@@ -204,15 +204,15 @@ export default function OwnhandsStudy() {
         <dl className="fw-meta">
           <div>
             <dt>구성</dt>
-            <dd>8단계 라이프사이클 · Human Gate</dd>
+            <dd>2단 라이프사이클 · Human Gate</dd>
           </div>
           <div>
             <dt>담당</dt>
-            <dd>Thin Harness 아키텍처 설계 · 검증 체계 구축</dd>
+            <dd>Thin Harness 설계 · 검증 체계 구축</dd>
           </div>
           <div>
             <dt>스택</dt>
-            <dd>Codex · GitHub Native · Agent Skills · Continuous Evals</dd>
+            <dd>Codex · Git Native · Agent Skills</dd>
           </div>
         </dl>
       </header>
@@ -227,12 +227,12 @@ export default function OwnhandsStudy() {
       {/* 01 문제 */}
       <Part n="01" title="마주한 문제: 빨라진 생성 속도, 잃어버린 통제력" id="p-problem" />
       <section id="problem" className="fw-section">
-        <Heading n="문제 정의" title="에이전트는 빨라졌지만, 내 작업의 통제력을 잃고 있었다" />
+        <Heading n="문제 정의" title="에이전트는 빨라졌지만, 통제력을 잃고 있었다" />
         <Facts
           items={[
-            ['생성의 착시', '에이전트가 수많은 코드를 순식간에 수정하지만, 테스트를 모킹하거나 사양을 누락하는 거짓 성공 때문에 결국 사람이 코드를 전수 검사해야 하는 역병목 발생'],
-            ['통제력 상실', '남들이 만든 범용 AI 도구로는 내 작업 의도(Why)와 세밀한 검증 기준을 끝까지 관철하기 어려움'],
-            ['내 진짜 갈증', '보여주기식 토이 프로젝트가 아니라, 내가 내 매일의 실무 개발에서 진정으로 신뢰하며 쓸 나만의 전용 하네스가 절실했음'],
+            ['생성의 착시', '빨라진 코드 생성 뒤의 거짓 성공(모킹·사양 누락)으로 전수 검사 역병목 발생'],
+            ['통제력 상실', '범용 AI 도구로는 작업 의도(Why)와 세부 검증 기준 관철 불가'],
+            ['진짜 갈증', '전시용 토이가 아닌, 실무에서 믿고 쓸 나만의 개발 하네스 필요'],
           ]}
         />
 
@@ -257,14 +257,13 @@ export default function OwnhandsStudy() {
             />
           </button>
           <figcaption>
-            Anthropic AI-Native SDLC Playbook — 에이전트 도입 후 코드 작성(Build) 시간은 극적으로 단축되었지만, 앞단의 요구사항 정의(Requirements)와 뒷단의 검증·승인(Review/Release)이 개발의 새로운 핵심 병목으로 부상함을 보여주는 도표
+            Anthropic SDLC Playbook — 코드 작성은 순식간이지만, 의도 정의와 검증·승인이 새로운 병목이 됨
           </figcaption>
         </figure>
 
-        <div className="oh-takeaway-box" style={{ margin: '24px 0 0' }}>
-          <blockquote style={{ fontSize: '17px', lineHeight: '1.6' }}>
-            "남의 도구에 내 개발 방식을 억지로 끼워 맞추는 대신,<br />
-            내가 내 작업의 통제권을 쥐고 AI와 신뢰 속에서 일할 수 있는 나만의 도구를 직접 만들기로 했다."
+        <div className="oh-takeaway-box" style={{ margin: '20px 0 0' }}>
+          <blockquote style={{ fontSize: '16.5px', lineHeight: '1.55' }}>
+            "남의 도구에 끼워 맞추지 않고, 내 작업의 통제권을 직접 쥐기 위해 나만의 도구를 만들었다."
           </blockquote>
         </div>
 
@@ -272,11 +271,9 @@ export default function OwnhandsStudy() {
       </section>
 
       {/* 02 해결 */}
-      <Part n="02" title="해결: 나와 함께 성장하는 나만의 전용 도구" id="p-solution" />
+      <Part n="02" title="해결: 의도와 검증을 분리한 2단 파이프라인" id="p-solution" />
       <section id="solution" className="fw-section">
-        <Heading n="영감을 준 레퍼런스" title="Superpowers가 보여준 가능성과 Anthropic이 짚은 방향">
-          실무에서 쓸 검증 하네스를 고민하면서 큰 힌트와 방향성을 얻었던 두 가지 레퍼런스입니다.
-        </Heading>
+        <Heading n="영감을 준 레퍼런스" title="방향성의 힌트를 얻은 두 레퍼런스" />
 
         <div className="oh-influences-grid">
           <a
@@ -295,12 +292,9 @@ export default function OwnhandsStudy() {
               </span>
               <span className="oh-influence-badge">오픈소스 사례</span>
             </div>
-            <p className="oh-influence-thesis">"엄격한 엔지니어링 절차로 모델의 한계를 극복하다"</p>
-            <p className="oh-influence-desc">
-              TDD, 단계별 계획, 검증 전 완료 금지 같은 소프트웨어 공학 규칙을 Skill 형태로 에이전트에 주입해, 실무 개발의 신뢰도를 크게 끌어올릴 수 있음을 직접 보여준 프로젝트.
-            </p>
+            <p className="oh-influence-thesis">"엄격한 절차로 모델의 한계를 극복한다"</p>
             <div className="oh-influence-takeaway">
-              내 도구의 접점: 가벼운 마크다운 Skills 규약과 독립 1:1 증거 대조 프로토콜로 흡수
+              접점: 가벼운 마크다운 Skills 규약과 독립 1:1 증거 대조 프로토콜 차용
             </div>
           </a>
 
@@ -318,54 +312,51 @@ export default function OwnhandsStudy() {
               </span>
               <span className="oh-influence-badge">공식 가이드</span>
             </div>
-            <p className="oh-influence-thesis">"개발의 병목이 '코드 작성'에서 '의도와 평가'로 이동한다"</p>
-            <p className="oh-influence-desc">
-              개발자의 본질은 코드를 직접 타이핑하는 것이 아니라 사양(Intent/Spec)을 정의하고 결과물을 지속해서 평가(Continuous Evals)하는 감독자가 되는 것이라고 짚어준 가이드.
-            </p>
+            <p className="oh-influence-thesis">"개발 병목이 '코드 작성'에서 '의도와 평가'로 이동한다"</p>
             <div className="oh-influence-takeaway">
-              내 도구의 접점: 의도 선언(intent.md)과 인간 승인(Human Gate), 실무 피드백 환류의 철학적 기반
+              접점: 의도 선언(intent.md)과 인간 승인(Human Gate) 설계의 기반
             </div>
           </a>
         </div>
 
-        <Heading n="도구의 3대 기둥" title="내가 이 도구를 만들며 얻고자 했던 것">
-          거창한 데몬이나 복잡한 프레임워크가 아닌, 사람이 직접 읽고 다룰 수 있는 가장 가벼운 마크다운 규격(Thin Harness)과 피드백 환류 루프로 구축했습니다.
+        <Heading n="도구의 3대 기둥" title="도구를 지탱하는 3가지 핵심 원칙">
+          사람이 직접 읽고 다룰 수 있는 마크다운 규격(Thin Harness)과 피드백 체계.
         </Heading>
 
         {/* 3 Core Principles */}
         <div className="oh-principles">
           <div className="oh-principle-card">
             <span className="oh-principle-tag">01 HUMAN-IN-THE-LOOP</span>
-            <h3>시작과 끝은 내가 쥔다</h3>
+            <h3>시작과 끝은 사람이 결정</h3>
             <p>
-              <code>intent.md</code>로 작업 의도와 비목표(Non-goals)를 선언해 오버엔지니어링을 차단하고, 최종 배포 머지(Human Gate)는 반드시 사람이 결정합니다.
+              <code>intent.md</code>로 의도와 비목표를 고정하고, 최종 머지는 사람이 직접 결정합니다.
             </p>
           </div>
           <div className="oh-principle-card">
             <span className="oh-principle-tag">02 FRESH EVIDENCE</span>
-            <h3>말 대신 실제 증거로 대조한다</h3>
+            <h3>말 대신 실제 증거로 대조</h3>
             <p>
-              AI의 "수정 완료했습니다"라는 주장을 배제하고, 실제 터미널 실행 로그·Git Diff·단위 테스트 출력을 독립 검증자가 사전 기준과 1:1 교차 대조합니다.
+              AI 주장 대신 터미널 실행 로그와 Diff를 독립 검증자가 사양과 1:1 대조합니다.
             </p>
           </div>
           <div className="oh-principle-card">
             <span className="oh-principle-tag">03 CONTINUOUS FEEDBACK</span>
-            <h3>쓸수록 더 단단해진다 (피드백 환류)</h3>
+            <h3>쓸수록 단단해지는 체계</h3>
             <p>
-              작업에서 발견한 실패 패턴, 엣지 케이스, 내가 내린 피드백이 휘발되지 않고 다음 작업의 규칙(Rules)과 Continuous Evals로 축적되어 도구와 에이전트가 함께 진화합니다.
+              실무에서 겪은 실패 패턴과 피드백을 Rules와 Evals에 축적해 지속 진화합니다.
             </p>
           </div>
         </div>
 
-        <Heading n="검증 라이프사이클" title="각 단계가 다음 단계의 기준선이 되는 2단 파이프라인">
-          AI의 작업 완료(1단계: 구현·증거 수집)와 사람의 통제권(2단계: 독립 검증·승인 관문)을 물리적으로 분리한 검증 루프.
+        <Heading n="검증 라이프사이클" title="구현과 검증을 물리적으로 분리한 2단 구조">
+          에이전트의 단위 구현(Phase 1)과 독립 검증·승인(Phase 2)의 분리 루프.
         </Heading>
 
         <div className="oh-pipeline-container">
           {/* Phase 1: Forward Implementation & Evidence Collection */}
           <div className="oh-pipeline-track-header">
-            <span className="oh-track-kicker">PHASE 1 · 순방향 구현 및 실행 증거 포착</span>
-            <span className="oh-track-desc">개발자의 의도 선언에서 에이전트의 코드 구현과 실행 증거 포착까지</span>
+            <span className="oh-track-kicker">PHASE 1 · 순방향 구현 및 증거 포착</span>
+            <span className="oh-track-desc">의도 고정부터 에이전트의 코드 작성과 실행 로그 수집까지</span>
           </div>
           <div className="oh-pipeline-row">
             <div className="oh-pipeline-step">
@@ -375,7 +366,7 @@ export default function OwnhandsStudy() {
               </div>
               <h4 className="oh-step-title">의도 선언</h4>
               <span className="oh-step-artifact">intent.md</span>
-              <p className="oh-step-desc">작업의 Why와 비목표(Non-goals)를 먼저 고정</p>
+              <p className="oh-step-desc">작업의 Why와 비목표(Non-goals) 고정</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
@@ -386,7 +377,7 @@ export default function OwnhandsStudy() {
               </div>
               <h4 className="oh-step-title">사양 &amp; 계획</h4>
               <span className="oh-step-artifact">spec.md · plan.md</span>
-              <p className="oh-step-desc">사전 인수 기준(Criteria)과 실행 커맨드 명세</p>
+              <p className="oh-step-desc">사전 인수 기준과 실행 커맨드 명세</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
@@ -397,7 +388,7 @@ export default function OwnhandsStudy() {
               </div>
               <h4 className="oh-step-title">Codex 구현</h4>
               <span className="oh-step-artifact">CLI Headless Task</span>
-              <p className="oh-step-desc">고정된 사양에 맞춰 단위 코드 작성 및 테스트 실행</p>
+              <p className="oh-step-desc">사양에 맞춘 단위 코드 작성 및 테스트</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
@@ -408,21 +399,21 @@ export default function OwnhandsStudy() {
               </div>
               <h4 className="oh-step-title">실행 증거 수집</h4>
               <span className="oh-step-artifact">Logs &amp; Git Diff</span>
-              <p className="oh-step-desc">AI 주장 배제, 터미널 실행 로그 및 Diff 포착</p>
+              <p className="oh-step-desc">AI 주장 배제, 터미널 로그 및 Diff 포착</p>
             </div>
           </div>
 
           {/* Transition Divider */}
           <div className="oh-pipeline-divider">
             <div className="oh-divider-line" />
-            <span className="oh-divider-pill">사양(02) ↔ 실제 증거(04) 1:1 독립 교차 대조선</span>
+            <span className="oh-divider-pill">사양(02) ↔ 실제 증거(04) 1:1 독립 교차 대조</span>
             <div className="oh-divider-line" />
           </div>
 
           {/* Phase 2: Independent Verification & Human Gate */}
           <div className="oh-pipeline-track-header">
-            <span className="oh-track-kicker">PHASE 2 · 독립 검증, 인간 승인 및 피드백 환류</span>
-            <span className="oh-track-desc">거짓 성공을 걸러내고 사람이 최종 배포를 결정하며 규칙을 진화</span>
+            <span className="oh-track-kicker">PHASE 2 · 독립 검증, 승인 및 피드백 환류</span>
+            <span className="oh-track-desc">거짓 성공을 걸러내고 사람이 최종 배포 결정</span>
           </div>
           <div className="oh-pipeline-row">
             <div className="oh-pipeline-step">
@@ -432,7 +423,7 @@ export default function OwnhandsStudy() {
               </div>
               <h4 className="oh-step-title">독립 1:1 대조</h4>
               <span className="oh-step-artifact">Verifier Subagent</span>
-              <p className="oh-step-desc">구현체와 물리적으로 분리된 검증자가 증거 교차 대조</p>
+              <p className="oh-step-desc">독립 검증자가 사양 ↔ 증거 교차 대조</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
@@ -443,7 +434,7 @@ export default function OwnhandsStudy() {
               </div>
               <h4 className="oh-step-title">사람의 최종 승인</h4>
               <span className="oh-step-artifact">Human Approval</span>
-              <p className="oh-step-desc">검증 리포트와 사각지대를 사람이 직접 확인 후 머지</p>
+              <p className="oh-step-desc">검증 리포트 확인 후 사람이 머지 결정</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
@@ -454,7 +445,7 @@ export default function OwnhandsStudy() {
               </div>
               <h4 className="oh-step-title">실무 피드백 환류</h4>
               <span className="oh-step-artifact">Rules &amp; Evals</span>
-              <p className="oh-step-desc">실패 패턴과 피드백을 다음 작업의 룰셋으로 축적</p>
+              <p className="oh-step-desc">실패 패턴과 피드백을 룰셋으로 축적</p>
             </div>
           </div>
         </div>
@@ -466,13 +457,13 @@ export default function OwnhandsStudy() {
         <Heading n="솔직한 시행착오" title="초기 하네스 과잉 설계와 AI 협업의 실패 회고" />
         <Facts
           items={[
-            ['하네스 비대화의 실패', '모든 제어를 자체 데몬과 복잡한 오케스트레이터로 감싸려다 복잡도가 폭증하여 실패 → 사람이 직접 읽고 편집할 수 있는 가장 단순한 마크다운 파일(Thin Harness)과 플랫폼 CLI 네이티브로 전면 단순화'],
-            ['거짓 완료의 충격', '에이전트가 가짜 테스트를 만들어 100% 통과를 자축하는 현상을 직접 목격한 후, 구현 에이전트와 독립 검증자(Verifier)를 물리적으로 분리하여 1:1 증거 대조를 강제'],
-            ['살아있는 도구로의 정착', '완제품으로 박제해둔 프로젝트가 아니라, 지금도 매일 내 실무 개발을 직접 수행하며 실패 패턴과 규칙, 평가 기준을 지속 업데이트하는 피드백 환류 체계로 작동 중'],
+            ['하네스 비대화 실패', '자체 데몬으로 감싸려다 복잡도 폭증 → 마크다운(Thin Harness)과 CLI 네이티브로 전면 단순화'],
+            ['거짓 완료의 충격', '에이전트의 가짜 테스트 통과 목격 → 구현체와 독립 검증자(Verifier)를 분리해 1:1 대조 강제'],
+            ['살아있는 도구', '전시용 데모가 아닌, 매일 실무를 수행하며 룰셋과 평가 기준을 업데이트하는 도구로 정착'],
           ]}
         />
 
-        <Heading n="현재 상황과 로드맵" title="Codex 실무 적용(진행 중) 및 멀티 에이전트 확장" />
+        <Heading n="현재 상황과 로드맵" title="실무 적용 현황 및 확장 로드맵" />
         <div className="oh-agent-grid">
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
@@ -483,7 +474,7 @@ export default function OwnhandsStudy() {
             </div>
             <h4>Codex (CLI)</h4>
             <p>
-              현재 내 실무 업무에 직접 연동되어 매일 사용 중인 메인 엔진. 단위 구현과 터미널 실행 증거 수집, 독립 1:1 대조 루프를 안정적으로 수행하고 있습니다.
+              실무 메인 엔진. 단위 구현, 실행 증거 수집, 1:1 대조 루프를 매일 안정적으로 수행 중.
             </p>
             <div className="oh-agent-env">실무 적용 중 · Codex CLI &amp; Git Native</div>
           </div>
@@ -497,7 +488,7 @@ export default function OwnhandsStudy() {
             </div>
             <h4>Claude Code</h4>
             <p>
-              대규모 레포지토리 컨텍스트 파악과 사양·계획(Spec &amp; Plan) 수립, 심층 아키텍처 리뷰에 특화된 하네스 스킬 프로토콜로 연동을 확장할 계획입니다.
+              대규모 탐색, 사양·계획(Spec &amp; Plan) 수립, 심층 아키텍처 리뷰 특화 연동 확장 예정.
             </p>
             <div className="oh-agent-env">지원 예정 · Claude Code CLI &amp; Agent Skills</div>
           </div>
@@ -511,7 +502,7 @@ export default function OwnhandsStudy() {
             </div>
             <h4>Google Antigravity</h4>
             <p>
-              백그라운드 태스크 제어, 브라우저 기반 E2E 시각적 검증 및 복수 서브에이전트 오케스트레이션 도구로 하네스 확장을 검토하고 있습니다.
+              백그라운드 태스크 제어, 브라우저 E2E 검증 및 서브에이전트 오케스트레이션 검토.
             </p>
             <div className="oh-agent-env">지원 예정 · Antigravity IDE &amp; Subagents</div>
           </div>
@@ -519,7 +510,7 @@ export default function OwnhandsStudy() {
 
         <div className="oh-takeaway-box" style={{ marginTop: '32px' }}>
           <blockquote style={{ fontSize: '18px', lineHeight: '1.6' }}>
-            "OwnHands는 남에게 보여주기 위한 전시용 데모가 아니라,<br />
+            "OwnHands는 남에게 보여주기 위한 데모가 아니라,<br />
             내 실무를 매일 함께 수행하며 나와 함께 성장하는 나만의 개발 하네스다."
           </blockquote>
         </div>
