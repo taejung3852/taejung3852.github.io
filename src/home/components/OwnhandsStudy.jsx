@@ -338,48 +338,6 @@ export default function OwnhandsStudy() {
           ]}
         />
 
-        <Heading n="아키텍처 전환" title="도구 과잉(Fat Harness)에서 Native-first 경량 하네스로" />
-
-        {/* Architecture Comparison Diagram */}
-        <div className="oh-arch-comparison">
-          <div className="oh-arch-box is-fat">
-            <div className="oh-arch-header">
-              <span className="oh-arch-title">초기 시도: Fat Harness (도구 과잉)</span>
-              <span className="oh-arch-badge">OVERHEAD</span>
-            </div>
-            <div className="oh-arch-chain">
-              <div className="oh-arch-node">Custom Runner</div>
-              <div className="oh-arch-node-arrow">↓</div>
-              <div className="oh-arch-node">SQLite Cache & State</div>
-              <div className="oh-arch-node-arrow">↓</div>
-              <div className="oh-arch-node">Polling Daemon Engine</div>
-              <div className="oh-arch-node-arrow">↓</div>
-              <div className="oh-arch-node">Web Dashboard</div>
-            </div>
-            <div className="oh-arch-footer">
-              ⚠️ 도구 유지보수 부담 &gt; 작업 이해 목적의 역설
-            </div>
-          </div>
-
-          <div className="oh-arch-box is-thin">
-            <div className="oh-arch-header">
-              <span className="oh-arch-title">전환된 구조: Thin Harness (Native-first)</span>
-              <span className="oh-arch-badge">OPTIMAL</span>
-            </div>
-            <div className="oh-arch-chain">
-              <div className="oh-arch-node">Platform Native (Codex / Git CLI)</div>
-              <div className="oh-arch-node-arrow">↓</div>
-              <div className="oh-arch-node">Markdown Baseline (intent·spec·plan)</div>
-              <div className="oh-arch-node-arrow">↓</div>
-              <div className="oh-arch-node">Fresh Evidence Observation</div>
-              <div className="oh-arch-node-arrow">↓</div>
-              <div className="oh-arch-node">Human Gate Final Approval</div>
-            </div>
-            <div className="oh-arch-footer">
-              ✅ 운영 오버헤드 0 · 투명한 근거 대조 및 통제권 회복
-            </div>
-          </div>
-        </div>
 
         <div className="oh-principles">
           <div className="oh-principle-card">
