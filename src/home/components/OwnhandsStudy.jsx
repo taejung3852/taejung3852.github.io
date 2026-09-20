@@ -186,7 +186,7 @@ export default function OwnhandsStudy() {
               사람의 승인을 분리합니다.
             </h1>
             <p className="fw-lead">
-              에이전트의 생성 속도 대신 실행 증거와 인간 승인으로 품질을 통제하는 나만의 개발 하네스.
+              AI-Native SDLC에서 생성 속도 대신 실행 증거와 인간 승인으로 품질을 통제하는 나만의 개발 하네스.
             </p>
           </div>
           <figure className="fw-cover">
