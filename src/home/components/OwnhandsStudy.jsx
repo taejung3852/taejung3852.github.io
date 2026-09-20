@@ -204,7 +204,7 @@ export default function OwnhandsStudy() {
         <dl className="fw-meta">
           <div>
             <dt>구성</dt>
-            <dd>2단 라이프사이클 · Human Gate</dd>
+            <dd>구현·검증 분리 · Human Gate</dd>
           </div>
           <div>
             <dt>담당</dt>
@@ -271,7 +271,7 @@ export default function OwnhandsStudy() {
       </section>
 
       {/* 02 해결 */}
-      <Part n="02" title="해결: 의도와 검증을 분리한 2단 파이프라인" id="p-solution" />
+      <Part n="02" title="해결: 구현과 검증을 분리한 독립 검증 체계" id="p-solution" />
       <section id="solution" className="fw-section">
         <Heading n="영감을 준 레퍼런스" title="방향성의 힌트를 얻은 두 레퍼런스" />
 
@@ -348,7 +348,7 @@ export default function OwnhandsStudy() {
           </div>
         </div>
 
-        <Heading n="검증 라이프사이클" title="구현과 검증을 물리적으로 분리한 2단 구조">
+        <Heading n="검증 라이프사이클" title="구현과 검증을 물리적으로 분리한 실행 흐름">
           에이전트의 단위 구현(Phase 1)과 독립 검증·승인(Phase 2)의 분리 루프.
         </Heading>
 
