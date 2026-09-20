@@ -452,7 +452,7 @@ export default function OwnhandsStudy() {
       </section>
 
       {/* 03 결과와 회고 */}
-      <Part n="03" title="결과와 회고: 매일 실무에서 담금질되는 현재진행형" id="p-result" />
+      <Part n="03" title="결과와 회고: 실무 적용과 확장 로드맵" id="p-result" />
       <section id="result" className="fw-section">
         <Heading n="솔직한 시행착오" title="초기 하네스 과잉 설계와 AI 협업의 실패 회고" />
         <Facts
