@@ -126,6 +126,156 @@
   border-radius: 3px;
 }
 
+/* 2-Tier Pipeline Flow */
+.oh-pipeline-container {
+  margin: 24px 0 32px;
+  padding: 24px 22px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.oh-pipeline-track-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.oh-track-kicker {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.oh-track-desc {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.oh-pipeline-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.oh-pipeline-step {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 14px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.oh-pipeline-step:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.oh-pipeline-step.is-human-gate {
+  border-color: rgba(37, 99, 235, 0.4);
+  background: rgba(37, 99, 235, 0.02);
+}
+
+.oh-step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.oh-step-icon-wrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.oh-step-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.oh-step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.oh-step-artifact {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.oh-step-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.oh-pipeline-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 14px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* Downward transition divider */
+.oh-pipeline-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.oh-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.oh-divider-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 3px 12px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
 
 /* Agent Ecosystem Grid (Roadmap) */
 .oh-agent-grid {
@@ -248,6 +398,18 @@
   .oh-principles,
   .oh-agent-grid {
     grid-template-columns: 1fr;
+  }
+  .oh-pipeline-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .oh-pipeline-connector {
+    transform: rotate(90deg);
+    padding: 2px 0;
+  }
+  .oh-pipeline-track-header {
+    flex-direction: column;
+    gap: 4px;
   }
 }
 
