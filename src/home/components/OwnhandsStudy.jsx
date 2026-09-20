@@ -123,6 +123,171 @@ function IconHumanGate() {
   );
 }
 
+function OwnhandsArchitectureSvg() {
+  return (
+    <svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ownhands-arch-title ownhands-arch-desc">
+      <title id="ownhands-arch-title">OwnHands Thin Harness Architecture</title>
+      <desc id="ownhands-arch-desc">System architecture diagram showing developer intent handoff through Markdown artifacts to Codex execution, fresh evidence capture, and independent subagent verification leading to human gate approval.</desc>
+
+      <defs>
+        <marker id="arch-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#475569" />
+        </marker>
+        <marker id="arch-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#eb6c36" />
+        </marker>
+        <marker id="arch-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#2563eb" />
+        </marker>
+      </defs>
+
+      {/* Clean Paper Background */}
+      <rect width="100%" height="100%" fill="#ffffff" />
+
+      {/* ZONE 1: Human Responsibility */}
+      <rect x="36" y="36" width="276" height="356" rx="8" fill="rgba(15,23,42,0.02)" stroke="rgba(15,23,42,0.12)" strokeWidth="0.8" />
+      <rect x="80" y="40" width="188" height="12" rx="2" fill="#ffffff" />
+      <text x="174" y="49" fill="rgba(15,23,42,0.55)" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.14em">
+        ZONE 01 · HUMAN BOUNDARY
+      </text>
+
+      {/* ZONE 2: Execution Harness */}
+      <rect x="340" y="36" width="280" height="356" rx="8" fill="rgba(15,23,42,0.02)" stroke="rgba(15,23,42,0.12)" strokeWidth="0.8" />
+      <rect x="388" y="40" width="184" height="12" rx="2" fill="#ffffff" />
+      <text x="480" y="49" fill="rgba(15,23,42,0.55)" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.14em">
+        ZONE 02 · PLATFORM &amp; HARNESS
+      </text>
+
+      {/* ZONE 3: Independent Verification */}
+      <rect x="648" y="36" width="276" height="356" rx="8" fill="rgba(15,23,42,0.02)" stroke="rgba(15,23,42,0.12)" strokeWidth="0.8" />
+      <rect x="688" y="40" width="196" height="12" rx="2" fill="#ffffff" />
+      <text x="786" y="49" fill="rgba(15,23,42,0.55)" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.14em">
+        ZONE 03 · INDEPENDENT VERIFIER
+      </text>
+
+      {/* ================= CONNECTORS (Drawn BEFORE Nodes) ================= */}
+
+      {/* 1. Human Intent -> Spec & Plan */}
+      <line x1="272" y1="120" x2="372" y2="120" stroke="#2563eb" strokeWidth="1.2" markerEnd="url(#arch-arrow-link)" />
+      <rect x="296" y="102" width="52" height="12" rx="2" fill="#ffffff" />
+      <text x="322" y="111" fill="#2563eb" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">
+        01 INTENT
+      </text>
+
+      {/* 2. Spec & Plan -> Codex CLI */}
+      <line x1="480" y1="156" x2="480" y2="244" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arch-arrow)" />
+      <rect x="490" y="194" width="56" height="12" rx="2" fill="#ffffff" />
+      <text x="518" y="203" fill="#475569" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">
+        02 HANDOFF
+      </text>
+
+      {/* 3. Codex CLI -> Fresh Evidence */}
+      <path d="M 580,272 H 624 Q 632,272 632,264 V 128 Q 632,120 640,120 H 680" fill="none" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arch-arrow)" />
+      <rect x="608" y="184" width="48" height="12" rx="2" fill="#ffffff" />
+      <text x="632" y="193" fill="#475569" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">
+        03 LOGS
+      </text>
+
+      {/* 4. Fresh Evidence -> Verifier Subagent */}
+      <line x1="786" y1="156" x2="786" y2="244" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arch-arrow)" />
+      <rect x="796" y="194" width="60" height="12" rx="2" fill="#ffffff" />
+      <text x="826" y="203" fill="#475569" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">
+        04 EVIDENCE
+      </text>
+
+      {/* 5. Spec & Plan -> Verifier Subagent (Dashed criteria feed) */}
+      <path d="M 580,104 H 636 Q 644,104 644,112 V 280 Q 644,288 652,288 H 680" fill="none" stroke="#2563eb" strokeWidth="1" strokeDasharray="4,3" markerEnd="url(#arch-arrow-link)" />
+      <rect x="612" y="76" width="64" height="12" rx="2" fill="#ffffff" />
+      <text x="644" y="85" fill="#2563eb" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">
+        CRITERIA 1:1
+      </text>
+
+      {/* 6. Verifier Subagent -> Human Gate (Focal Feedback Loop) */}
+      <path d="M 680,312 H 304 Q 296,312 296,304 V 292 Q 296,284 288,284 H 272" fill="none" stroke="#eb6c36" strokeWidth="1.4" markerEnd="url(#arch-arrow-accent)" />
+      <rect x="424" y="296" width="116" height="12" rx="2" fill="#ffffff" />
+      <text x="482" y="305" fill="#eb6c36" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">
+        05 VERIFICATION REPORT
+      </text>
+
+      {/* 7. Human Gate -> Main Merge */}
+      <path d="M 170,320 V 356" fill="none" stroke="#eb6c36" strokeWidth="1.4" markerEnd="url(#arch-arrow-accent)" />
+      <rect x="180" y="332" width="68" height="12" rx="2" fill="#ffffff" />
+      <text x="214" y="341" fill="#eb6c36" fontSize="8" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">
+        06 MAIN MERGE
+      </text>
+
+      {/* ================= NODE BOXES ================= */}
+
+      {/* Node 1: Human Intent */}
+      <rect x="68" y="84" width="204" height="72" rx="6" fill="#ffffff" />
+      <rect x="68" y="84" width="204" height="72" rx="6" fill="rgba(15,23,42,0.02)" stroke="#0f172a" strokeWidth="1" />
+      <rect x="76" y="90" width="44" height="12" rx="2" fill="transparent" stroke="rgba(15,23,42,0.40)" strokeWidth="0.8" />
+      <text x="98" y="99" fill="#0f172a" fontSize="7" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">OPERATOR</text>
+      <text x="170" y="118" fill="#0f172a" fontSize="12" fontWeight="600" fontFamily="'Geist', 'Noto Sans KR', sans-serif" textAnchor="middle">작업 의도 선언</text>
+      <text x="170" y="132" fill="#2563eb" fontSize="9.5" fontFamily="'Geist Mono', monospace" textAnchor="middle">intent.md · Non-goals</text>
+      <text x="170" y="146" fill="#475569" fontSize="8.5" fontFamily="'Noto Sans KR', sans-serif" textAnchor="middle">Why before How · 비목표 고정</text>
+
+      {/* Node 2: Spec & Plan */}
+      <rect x="372" y="84" width="208" height="72" rx="6" fill="#ffffff" />
+      <rect x="372" y="84" width="208" height="72" rx="6" fill="#ffffff" stroke="#0f172a" strokeWidth="1" />
+      <rect x="380" y="90" width="46" height="12" rx="2" fill="transparent" stroke="rgba(15,23,42,0.40)" strokeWidth="0.8" />
+      <text x="403" y="99" fill="#0f172a" fontSize="7" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">BASELINE</text>
+      <text x="476" y="118" fill="#0f172a" fontSize="12" fontWeight="600" fontFamily="'Geist', 'Noto Sans KR', sans-serif" textAnchor="middle">사양 및 실행 계획</text>
+      <text x="476" y="132" fill="#2563eb" fontSize="9.5" fontFamily="'Geist Mono', monospace" textAnchor="middle">spec.md · plan.md</text>
+      <text x="476" y="146" fill="#475569" fontSize="8.5" fontFamily="'Noto Sans KR', sans-serif" textAnchor="middle">사전 인수 기준 &amp; 단위 커맨드</text>
+
+      {/* Node 3: Codex CLI */}
+      <rect x="372" y="244" width="208" height="76" rx="6" fill="#ffffff" />
+      <rect x="372" y="244" width="208" height="76" rx="6" fill="rgba(37,99,235,0.03)" stroke="#0f172a" strokeWidth="1" />
+      <rect x="380" y="250" width="44" height="12" rx="2" fill="transparent" stroke="rgba(15,23,42,0.40)" strokeWidth="0.8" />
+      <text x="402" y="259" fill="#0f172a" fontSize="7" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">RUNTIME</text>
+      <text x="476" y="278" fill="#0f172a" fontSize="12" fontWeight="600" fontFamily="'Geist', 'Noto Sans KR', sans-serif" textAnchor="middle">Codex CLI 실행</text>
+      <text x="476" y="293" fill="#2563eb" fontSize="9.5" fontFamily="'Geist Mono', monospace" textAnchor="middle">codex exec · git branch</text>
+      <text x="476" y="307" fill="#475569" fontSize="8.5" fontFamily="'Noto Sans KR', sans-serif" textAnchor="middle">단위 마일스톤 구현 &amp; 테스트</text>
+
+      {/* Node 4: Fresh Evidence */}
+      <rect x="680" y="84" width="212" height="72" rx="6" fill="#ffffff" />
+      <rect x="680" y="84" width="212" height="72" rx="6" fill="rgba(15,23,42,0.04)" stroke="#475569" strokeWidth="1" />
+      <rect x="688" y="90" width="44" height="12" rx="2" fill="transparent" stroke="rgba(15,23,42,0.40)" strokeWidth="0.8" />
+      <text x="710" y="99" fill="#475569" fontSize="7" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">OBSERVE</text>
+      <text x="786" y="118" fill="#0f172a" fontSize="12" fontWeight="600" fontFamily="'Geist', 'Noto Sans KR', sans-serif" textAnchor="middle">실제 관측 증거</text>
+      <text x="786" y="132" fill="#2563eb" fontSize="9.5" fontFamily="'Geist Mono', monospace" textAnchor="middle">Fresh Evidence Logs</text>
+      <text x="786" y="146" fill="#475569" fontSize="8.5" fontFamily="'Noto Sans KR', sans-serif" textAnchor="middle">터미널 실행 로그 · Git Diff · Hash</text>
+
+      {/* Node 5: Verifier Subagent (FOCAL ACCENT 1) */}
+      <rect x="680" y="244" width="212" height="76" rx="6" fill="#ffffff" />
+      <rect x="680" y="244" width="212" height="76" rx="6" fill="rgba(235,108,54,0.06)" stroke="#eb6c36" strokeWidth="1.4" />
+      <rect x="688" y="250" width="48" height="12" rx="2" fill="transparent" stroke="rgba(235,108,54,0.60)" strokeWidth="0.8" />
+      <text x="712" y="259" fill="#eb6c36" fontSize="7" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">VERIFIER</text>
+      <text x="786" y="278" fill="#0f172a" fontSize="12" fontWeight="600" fontFamily="'Geist', 'Noto Sans KR', sans-serif" textAnchor="middle">독립 검증 서브에이전트</text>
+      <text x="786" y="293" fill="#eb6c36" fontSize="9.5" fontFamily="'Geist Mono', monospace" textAnchor="middle">spec.md ↔ evidence 1:1 대조</text>
+      <text x="786" y="307" fill="#475569" fontSize="8.5" fontFamily="'Noto Sans KR', sans-serif" textAnchor="middle">인수 기준 충족 입증 + 사각지대 보고</text>
+
+      {/* Node 6: Human Gate (FOCAL ACCENT 2) */}
+      <rect x="68" y="248" width="204" height="72" rx="6" fill="#ffffff" />
+      <rect x="68" y="248" width="204" height="72" rx="6" fill="rgba(235,108,54,0.06)" stroke="#eb6c36" strokeWidth="1.4" />
+      <rect x="76" y="254" width="36" height="12" rx="2" fill="transparent" stroke="rgba(235,108,54,0.60)" strokeWidth="0.8" />
+      <text x="94" y="263" fill="#eb6c36" fontSize="7" fontFamily="'Geist Mono', monospace" textAnchor="middle" letterSpacing="0.08em">GATE</text>
+      <text x="170" y="282" fill="#0f172a" fontSize="12" fontWeight="600" fontFamily="'Geist', 'Noto Sans KR', sans-serif" textAnchor="middle">인간 승인 관문</text>
+      <text x="170" y="297" fill="#eb6c36" fontSize="9.5" fontFamily="'Geist Mono', monospace" textAnchor="middle">Human Gate Decision</text>
+      <text x="170" y="310" fill="#475569" fontSize="8.5" fontFamily="'Noto Sans KR', sans-serif" textAnchor="middle">증거 보고서 확인 후 최종 배포 머지</text>
+
+      {/* ================= LEGEND STRIP (Bottom) ================= */}
+      <line x1="36" y1="428" x2="924" y2="428" stroke="rgba(15,23,42,0.12)" strokeWidth="0.8" />
+      <text x="36" y="446" fill="#475569" fontSize="8" fontFamily="'Geist Mono', monospace" letterSpacing="0.14em">LEGEND</text>
+
+      <rect x="120" y="440" width="10" height="10" rx="2" fill="rgba(235,108,54,0.15)" stroke="#eb6c36" strokeWidth="1.2" />
+      <text x="136" y="448" fill="#475569" fontSize="8.5" fontFamily="'Geist Mono', 'Noto Sans KR', sans-serif">Focal Gate / Verifier (핵심 검증·승인점)</text>
+
+      <line x1="380" y1="445" x2="408" y2="445" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arch-arrow)" />
+      <text x="416" y="448" fill="#475569" fontSize="8.5" fontFamily="'Geist Mono', 'Noto Sans KR', sans-serif">Execution &amp; Evidence Flow (실행 및 데이터 흐름)</text>
+
+      <line x1="680" y1="445" x2="708" y2="445" stroke="#2563eb" strokeWidth="1" strokeDasharray="4,3" markerEnd="url(#arch-arrow-link)" />
+      <text x="716" y="448" fill="#475569" fontSize="8.5" fontFamily="'Geist Mono', 'Noto Sans KR', sans-serif">Criteria Baseline Feed (사전 인수 기준 대조선)</text>
+    </svg>
+  );
+}
+
 export default function OwnhandsStudy() {
   useTocSpy();
   const dialog = useRef(null);
@@ -345,80 +510,10 @@ export default function OwnhandsStudy() {
           개발자(의도·승인), 에이전트(구현), 독립 검증자(1:1 대조)의 책임을 물리적으로 분리하여 신뢰할 수 있는 개발 환경을 보장합니다.
         </Heading>
 
-        {/* 3-Lane Responsibility Swimlane Architecture */}
-        <figure className="oh-arch-diagram">
-          <div className="oh-arch-canvas">
-            {/* Lane 1: Human */}
-            <div className="oh-arch-lane is-human">
-              <div className="oh-lane-label">
-                <span className="oh-lane-badge">HUMAN</span>
-                <strong>인간 개발자</strong>
-                <small>의도와 최종 승인</small>
-              </div>
-              <div className="oh-lane-content">
-                <div className="oh-arch-node">
-                  <span className="oh-node-step">01 INTENT</span>
-                  <strong>작업 의도 선언</strong>
-                  <code>intent.md</code>
-                  <span className="oh-node-sub">Why before How · 비목표(Non-goals) 고정</span>
-                </div>
-                <div className="oh-arch-arrow">→</div>
-                <div className="oh-arch-node">
-                  <span className="oh-node-step">04 HUMAN GATE</span>
-                  <strong>최종 승인 및 머지</strong>
-                  <code>Main Branch Merge</code>
-                  <span className="oh-node-sub">검증 보고서와 미관측 영역 확인 후 승인</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Lane 2: Codex & Agent */}
-            <div className="oh-arch-lane is-agent">
-              <div className="oh-lane-label">
-                <span className="oh-lane-badge">CODEX</span>
-                <strong>구현 에이전트</strong>
-                <small>플랫폼 네이티브 실행</small>
-              </div>
-              <div className="oh-lane-content">
-                <div className="oh-arch-node">
-                  <span className="oh-node-step">02 SPEC & PLAN</span>
-                  <strong>사양 및 계획 확정</strong>
-                  <code>spec.md · plan.md</code>
-                  <span className="oh-node-sub">사전 인수 기준 & 단위 실행 커맨드 정의</span>
-                </div>
-                <div className="oh-arch-arrow">→</div>
-                <div className="oh-arch-node">
-                  <span className="oh-node-step">EXECUTION</span>
-                  <strong>Codex CLI / Git</strong>
-                  <code>Working Tree</code>
-                  <span className="oh-node-sub">마일스톤 코드 작성 및 단위 테스트 실행</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Lane 3: Verifier & Evidence */}
-            <div className="oh-arch-lane is-verifier">
-              <div className="oh-lane-label">
-                <span className="oh-lane-badge">VERIFIER</span>
-                <strong>독립 검증 서브에이전트</strong>
-                <small>1:1 증거 교차 대조</small>
-              </div>
-              <div className="oh-lane-content">
-                <div className="oh-arch-node">
-                  <span className="oh-node-step">03 OBSERVATION</span>
-                  <strong>실행 증거 수집</strong>
-                  <code>Fresh Evidence</code>
-                  <span className="oh-node-sub">실제 터미널 로그 · 정적 분석 · Git Diff</span>
-                </div>
-                <div className="oh-arch-arrow">→</div>
-                <div className="oh-arch-node">
-                  <span className="oh-node-step">CROSS-CHECK</span>
-                  <strong>독립 검증 보고서</strong>
-                  <code>spec.md 1:1 대조</code>
-                  <span className="oh-node-sub">인수 기준 충족 입증 + 사각지대 투명 공개</span>
-                </div>
-              </div>
-            </div>
+        {/* Bespoke System Architecture Diagram (Generated via /diagram-design) */}
+        <figure className="oh-arch-figure">
+          <div className="oh-arch-svg-wrap">
+            <OwnhandsArchitectureSvg />
           </div>
           <figcaption>
             OwnHands 시스템 아키텍처: 의도 정의(Human) → 사양·계획 구현(Codex) → 독립 대조(Verifier) → 최종 승인(Human Gate)
