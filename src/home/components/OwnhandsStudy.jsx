@@ -341,6 +341,90 @@ export default function OwnhandsStudy() {
           </div>
         </div>
 
+        <Heading n="시스템 아키텍처" title="역할 분리와 Thin Harness 검증 구조">
+          개발자(의도·승인), 에이전트(구현), 독립 검증자(1:1 대조)의 책임을 물리적으로 분리하여 신뢰할 수 있는 개발 환경을 보장합니다.
+        </Heading>
+
+        {/* 3-Lane Responsibility Swimlane Architecture */}
+        <figure className="oh-arch-diagram">
+          <div className="oh-arch-canvas">
+            {/* Lane 1: Human */}
+            <div className="oh-arch-lane is-human">
+              <div className="oh-lane-label">
+                <span className="oh-lane-badge">HUMAN</span>
+                <strong>인간 개발자</strong>
+                <small>의도와 최종 승인</small>
+              </div>
+              <div className="oh-lane-content">
+                <div className="oh-arch-node">
+                  <span className="oh-node-step">01 INTENT</span>
+                  <strong>작업 의도 선언</strong>
+                  <code>intent.md</code>
+                  <span className="oh-node-sub">Why before How · 비목표(Non-goals) 고정</span>
+                </div>
+                <div className="oh-arch-arrow">→</div>
+                <div className="oh-arch-node">
+                  <span className="oh-node-step">04 HUMAN GATE</span>
+                  <strong>최종 승인 및 머지</strong>
+                  <code>Main Branch Merge</code>
+                  <span className="oh-node-sub">검증 보고서와 미관측 영역 확인 후 승인</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Lane 2: Codex & Agent */}
+            <div className="oh-arch-lane is-agent">
+              <div className="oh-lane-label">
+                <span className="oh-lane-badge">CODEX</span>
+                <strong>구현 에이전트</strong>
+                <small>플랫폼 네이티브 실행</small>
+              </div>
+              <div className="oh-lane-content">
+                <div className="oh-arch-node">
+                  <span className="oh-node-step">02 SPEC & PLAN</span>
+                  <strong>사양 및 계획 확정</strong>
+                  <code>spec.md · plan.md</code>
+                  <span className="oh-node-sub">사전 인수 기준 & 단위 실행 커맨드 정의</span>
+                </div>
+                <div className="oh-arch-arrow">→</div>
+                <div className="oh-arch-node">
+                  <span className="oh-node-step">EXECUTION</span>
+                  <strong>Codex CLI / Git</strong>
+                  <code>Working Tree</code>
+                  <span className="oh-node-sub">마일스톤 코드 작성 및 단위 테스트 실행</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Lane 3: Verifier & Evidence */}
+            <div className="oh-arch-lane is-verifier">
+              <div className="oh-lane-label">
+                <span className="oh-lane-badge">VERIFIER</span>
+                <strong>독립 검증 서브에이전트</strong>
+                <small>1:1 증거 교차 대조</small>
+              </div>
+              <div className="oh-lane-content">
+                <div className="oh-arch-node">
+                  <span className="oh-node-step">03 OBSERVATION</span>
+                  <strong>실행 증거 수집</strong>
+                  <code>Fresh Evidence</code>
+                  <span className="oh-node-sub">실제 터미널 로그 · 정적 분석 · Git Diff</span>
+                </div>
+                <div className="oh-arch-arrow">→</div>
+                <div className="oh-arch-node">
+                  <span className="oh-node-step">CROSS-CHECK</span>
+                  <strong>독립 검증 보고서</strong>
+                  <code>spec.md 1:1 대조</code>
+                  <span className="oh-node-sub">인수 기준 충족 입증 + 사각지대 투명 공개</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            OwnHands 시스템 아키텍처: 의도 정의(Human) → 사양·계획 구현(Codex) → 독립 대조(Verifier) → 최종 승인(Human Gate)
+          </figcaption>
+        </figure>
+
         <Heading n="8단계 흐름" title="각 단계가 다음 단계의 기준선이 되는 검증 루프" />
         <div className="oh-flow-container">
           <div className="oh-flow-track">
