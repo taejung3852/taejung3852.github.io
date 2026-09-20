@@ -39,16 +39,16 @@ export const projects = [
   },
   {
     name: 'OwnHands',
-    summary: 'AI가 빠르게 개발하더라도 사람이 그 과정을 이해하고, 근거를 확인하며 통제 가능한 결정을 내릴 수 있게 연결하는 AI-native SDLC 개발 Harness.',
-    role: '제품 문제의식 정립 · Thin Harness 아키텍처 설계 · Agent Skills 및 검증 파이프라인 설계',
-    status: '개인 프로젝트 · Thin Harness 설계 및 검증 파이프라인 구축',
+    summary: 'AI가 빠르게 개발하더라도 실행 증거와 인간 승인으로 품질을 통제하는 AI-Native SDLC 개발 하네스.',
+    role: 'Thin Harness 설계 · 독립 검증 파이프라인 및 Human Gate 체계 구축',
+    status: '개인 프로젝트 · 실무 적용 및 운영 중',
     href: 'https://github.com/taejung3852/OwnHands',
     linkLabel: '저장소 보기',
-    visualTitle: '근거를 대조하고 사람이 최종 결정합니다',
+    visualTitle: '실행 증거를 대조하고 사람이 최종 승인합니다',
     steps: [
       ['Intent → Spec → Plan', '작업 의도와 기준선 선언'],
       ['Fresh Evidence & Verifier', '신선한 실행 증거와 독립 대조'],
-      ['Human Gate', '사람이 책임을 지는 승인 관문'],
+      ['Human Gate & Feedback', '사람의 최종 승인과 규칙 환류'],
     ],
   },
   {
