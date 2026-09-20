@@ -46,90 +46,7 @@ function Facts({ items }) {
   );
 }
 
-/* Step Icons for Pipeline Track */
-function IconIdea() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 5.5v1.5h8V14.5c1.5-1 3-3 3-5.5a7 7 0 0 0-7-7z" />
-    </svg>
-  );
-}
 
-function IconIntent() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="6" />
-      <circle cx="12" cy="12" r="2" />
-    </svg>
-  );
-}
-
-function IconSpec() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-    </svg>
-  );
-}
-
-function IconPlan() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
-      <rect x="9" y="3" width="6" height="4" rx="2" />
-      <path d="m9 14 2 2 4-4" />
-    </svg>
-  );
-}
-
-function IconBuild() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
-    </svg>
-  );
-}
-
-function IconEvidence() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-      <line x1="11" y1="8" x2="11" y2="14" />
-      <line x1="8" y1="11" x2="14" y2="11" />
-    </svg>
-  );
-}
-
-function IconVerify() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-    </svg>
-  );
-}
-
-function IconHumanGate() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      <polyline points="9 12 11 14 15 10" />
-    </svg>
-  );
-}
-
-function IconRsi() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-    </svg>
-  );
-}
 
 export default function OwnhandsStudy() {
   useTocSpy();
@@ -331,73 +248,18 @@ export default function OwnhandsStudy() {
           </div>
         </div>
 
-        <Heading n="검증 라이프사이클" title="각 단계가 다음 단계의 기준선이 되는 검증 루프" />
-        <div className="oh-flow-container">
-          <div className="oh-flow-track">
-            <div className="oh-flow-step">
-              <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">01 INTENT</span>
-                <span className="oh-step-icon"><IconIntent /></span>
-              </div>
-              <h4>의도 선언</h4>
-              <p>목적 및 비목표 고정</p>
-            </div>
-            <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step">
-              <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">02 SPEC &amp; PLAN</span>
-                <span className="oh-step-icon"><IconSpec /></span>
-              </div>
-              <h4>사양 &amp; 계획</h4>
-              <p>사전 인수 기준 명세</p>
-            </div>
-            <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step">
-              <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">03 BUILD</span>
-                <span className="oh-step-icon"><IconBuild /></span>
-              </div>
-              <h4>Codex 구현</h4>
-              <p>단위 실행 및 코드 작성</p>
-            </div>
-            <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step">
-              <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">04 EVIDENCE</span>
-                <span className="oh-step-icon"><IconEvidence /></span>
-              </div>
-              <h4>실행 증거 수집</h4>
-              <p>터미널 로그 &amp; Diff 포착</p>
-            </div>
-            <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step">
-              <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">05 VERIFY</span>
-                <span className="oh-step-icon"><IconVerify /></span>
-              </div>
-              <h4>독립 1:1 대조</h4>
-              <p>사양 ↔ 증거 교차 검증</p>
-            </div>
-            <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step">
-              <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">06 HUMAN GATE</span>
-                <span className="oh-step-icon"><IconHumanGate /></span>
-              </div>
-              <h4>사람의 최종 승인</h4>
-              <p>사각지대 확인 후 머지</p>
-            </div>
-            <div className="oh-flow-arrow">→</div>
-            <div className="oh-flow-step">
-              <div className="oh-flow-step-header">
-                <span className="oh-flow-badge">07 FEEDBACK LOOP</span>
-                <span className="oh-step-icon"><IconRsi /></span>
-              </div>
-              <h4>실무 피드백 환류</h4>
-              <p>실패 패턴 축적 및 규칙 진화</p>
-            </div>
-          </div>
-        </div>
+        <Heading n="검증 라이프사이클" title="각 단계가 다음 단계의 기준선이 되는 7단계 루프" />
+        <Facts
+          items={[
+            ['01 Intent (의도 선언)', '작업의 존재 이유(Why)와 비목표(Non-goals)를 사전에 고정하여 에이전트의 임의 오버엔지니어링 원천 차단'],
+            ['02 Spec & Plan (사양과 계획)', '측정 가능한 인수 기준(Criteria)과 단계별 실행 커맨드를 명시해 사람과 AI가 합의한 검증 기준선 확립'],
+            ['03 Build (Codex 구현)', '구현 에이전트(Codex)가 합의된 사양과 제약 조건에 맞춰 단위 코드 작성 및 테스트 환경 실행'],
+            ['04 Evidence (실행 증거 수집)', 'AI의 주장을 배제하고 터미널 실행 로그, Git Diff, 단위 테스트 출력 등 실제 관측된 증거 수집'],
+            ['05 Verify (독립 1:1 대조)', '구현 에이전트와 분리된 독립 검증자(Verifier)가 사양(Spec)과 실제 증거(Evidence)를 1:1 교차 대조'],
+            ['06 Human Gate (인간 승인 관문)', '검증 보고서와 잠재적 사각지대를 사람이 최종 확인하고 책임 있는 배포 머지 결정'],
+            ['07 Feedback Loop (실무 피드백 환류)', '작업에서 발견한 실패 패턴, 엣지 케이스, 사용자 피드백을 다음 작업의 규칙(Rules)과 Continuous Evals로 영구 축적'],
+          ]}
+        />
       </section>
 
       {/* 03 결과와 회고 */}
