@@ -303,14 +303,38 @@ export default function OwnhandsStudy() {
 
         <Heading n="기준선의 확립" title="Anthropic The AI-Native SDLC Playbook과의 공명">
           <Source href="https://claude.com/blog/the-ai-native-sdlc-playbook">
-            Anthropic The AI-Native SDLC Playbook 원문 보기
+            원문 보기
           </Source>
         </Heading>
+
+        {/* Anthropic Playbook Card */}
+        <a
+          className="oh-repo-card"
+          href="https://claude.com/blog/the-ai-native-sdlc-playbook"
+          target="_blank"
+          rel="noreferrer"
+          title="Anthropic The AI-Native SDLC Playbook 원문 보기"
+        >
+          <div className="oh-repo-info">
+            <span className="oh-repo-title">
+              <img src="/images/claude.webp" alt="Anthropic Claude" width="18" height="18" style={{ objectFit: 'contain', verticalAlign: 'middle', marginRight: '6px' }} />
+              Anthropic · The AI-Native SDLC Playbook ↗
+            </span>
+            <span className="oh-repo-desc">
+              "Code is no longer the bottleneck" — 코딩 가속 이후 개발의 병목이 기획(Plan)과 검증(Verify)으로 이동했음을 선언한 엔지니어링 가이드
+            </span>
+          </div>
+          <div className="oh-repo-meta">
+            Official Playbook
+          </div>
+        </a>
+
         <Facts
           items={[
-            ['병목의 이동', 'AI가 코드 작성을 가속화할수록 엔지니어링의 병목은 사전 기획(Planning)과 사후 검토(Review·Testing)로 이동'],
-            ['산출물 중심 통제', 'intent.md, spec.md, plan.md 등 버전 관리되는 마크다운 아티팩트로 단계별 엄격한 기준선(Baseline) 수립'],
-            ['Human Gate', 'AI의 자율 완료를 맹신하지 않고, 사람이 관측된 실행 근거를 확인해 최종 승인 책임을 지는 안전장치 배치'],
+            ['핵심 선언', '"코딩은 더 이상 병목이 아니다" — AI 덕분에 구현은 순식간에 끝나며, 병목은 코드 앞단(Plan)과 뒷단(Verify·Review)의 좌우로 이동'],
+            ['수작업 리뷰의 한계', '사람이 짠 코드를 한 줄씩 눈으로 검토하던 기존 방식은 에이전트가 쏟아내는 대량 코드 앞에서 완전히 마비'],
+            ['마크다운 아티팩트 통제', '코드를 직접 보며 씨름하지 않고, intent.md → spec.md → plan.md로 이어지는 문서 규격을 단일 진실 공급원(SSOT)으로 삼음'],
+            ['Human Gate의 책임', '판단(Judgment)은 AI에 위임하지 않으며, 각 단계 산출물의 합의와 최종 머지 권한은 사람(Human Gate)이 행사'],
           ]}
         />
 
