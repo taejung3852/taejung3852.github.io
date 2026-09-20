@@ -248,8 +248,8 @@ export default function OwnhandsStudy() {
       {/* 02 해결 */}
       <Part n="02" title="해결: 나와 함께 성장하는 나만의 전용 도구" id="p-solution" />
       <section id="solution" className="fw-section">
-        <Heading n="선행 연구와 영감" title="Superpowers의 실증과 Anthropic Playbook의 선언">
-          실무 검증 하네스를 직접 구상하고 설계하는 과정에서 큰 확신과 영감을 준 두 프론티어 레퍼런스입니다.
+        <Heading n="영감을 준 레퍼런스" title="Superpowers가 보여준 가능성과 Anthropic이 짚은 방향">
+          실무에서 쓸 검증 하네스를 고민하면서 큰 힌트와 방향성을 얻었던 두 가지 레퍼런스입니다.
         </Heading>
 
         <div className="oh-influences-grid">
@@ -267,11 +267,11 @@ export default function OwnhandsStudy() {
                 </svg>
                 obra / superpowers ↗
               </span>
-              <span className="oh-influence-badge">Practical Proof</span>
+              <span className="oh-influence-badge">오픈소스 사례</span>
             </div>
-            <p className="oh-influence-thesis">"엄격한 엔지니어링 규약으로 모델 한계를 돌파하다"</p>
+            <p className="oh-influence-thesis">"엄격한 엔지니어링 절차로 모델의 한계를 극복하다"</p>
             <p className="oh-influence-desc">
-              TDD, 계획 수립, 체계적 검증 등 소프트웨어 공학 절차를 Skill 규약으로 에이전트에 주입해 실무 신뢰도를 극대화할 수 있음을 실증.
+              TDD, 단계별 계획, 검증 전 완료 금지 같은 소프트웨어 공학 규칙을 Skill 형태로 에이전트에 주입해, 실무 개발의 신뢰도를 크게 끌어올릴 수 있음을 직접 보여준 프로젝트.
             </p>
             <div className="oh-influence-takeaway">
               내 도구의 접점: 가벼운 마크다운 Skills 규약과 독립 1:1 증거 대조 프로토콜로 흡수
@@ -290,11 +290,11 @@ export default function OwnhandsStudy() {
                 <img src="/images/claude.webp" alt="Anthropic Claude" width="16" height="16" style={{ objectFit: 'contain' }} />
                 Anthropic SDLC Playbook ↗
               </span>
-              <span className="oh-influence-badge">Paradigm Shift</span>
+              <span className="oh-influence-badge">공식 가이드</span>
             </div>
-            <p className="oh-influence-thesis">"소프트웨어 개발의 병목이 코드 생산에서 의도와 평가로 이동한다"</p>
+            <p className="oh-influence-thesis">"개발의 병목이 '코드 작성'에서 '의도와 평가'로 이동한다"</p>
             <p className="oh-influence-desc">
-              개발자의 본질은 타이핑이 아닌 사양(Intent/Spec) 정의와 지속적 평가(Continuous Evals)를 설계하는 감독자가 된다는 패러다임 선언.
+              개발자의 본질은 코드를 직접 타이핑하는 것이 아니라 사양(Intent/Spec)을 정의하고 결과물을 지속해서 평가(Continuous Evals)하는 감독자가 되는 것이라고 짚어준 가이드.
             </p>
             <div className="oh-influence-takeaway">
               내 도구의 접점: 의도 선언(intent.md)과 인간 승인(Human Gate), 실무 피드백 환류의 철학적 기반
