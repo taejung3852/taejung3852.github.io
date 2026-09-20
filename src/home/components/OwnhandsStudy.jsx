@@ -268,76 +268,60 @@ export default function OwnhandsStudy() {
       {/* 02 해결 */}
       <Part n="02" title="해결: AI-Native SDLC와 Thin Harness 아키텍처" id="p-solution" />
       <section id="solution" className="fw-section">
-        <Heading n="선행 방법론 분석" title="Superpowers의 영감과 실행 하네스로의 분기" />
-
-        {/* Superpowers Repository Card */}
-        <a
-          className="oh-repo-card"
-          href="https://github.com/obra/superpowers"
-          target="_blank"
-          rel="noreferrer"
-          title="obra/superpowers GitHub 저장소 보기"
-        >
-          <div className="oh-repo-info">
-            <span className="oh-repo-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#F59E0B" stroke="#D97706" strokeWidth="1.5" />
-              </svg>
-              obra/superpowers ↗
-            </span>
-            <span className="oh-repo-desc">
-              에이전트에게 TDD, Planning, Code Review 등 검증된 엔지니어링 방법론을 Skill 단위로 주입하는 오픈소스 프레임워크
-            </span>
-          </div>
-          <div className="oh-repo-meta">
-            ★ 280k+ Stars
-          </div>
-        </a>
-
-        <Facts
-          items={[
-            ['영감과 가능성', '단순 프롬프트 테크닉을 넘어, 에이전트의 작업 절차 자체를 엔지니어링 규격으로 통제하는 가능성 확인'],
-            ['문제의 분기', '다중 프로젝트용 범용 방법론을 넘어, 하나의 프로젝트 안에서 의도(Intent)부터 인간 승인(Gate)까지 꿰는 전용 실행 하네스 필요'],
-          ]}
-        />
-
-        <Heading n="기준선의 확립" title="Anthropic The AI-Native SDLC Playbook과의 공명">
-          <Source href="https://claude.com/blog/the-ai-native-sdlc-playbook">
-            원문 보기
-          </Source>
+        <Heading n="선행 연구와 기준선" title="Superpowers의 실증과 Anthropic Playbook의 선언">
+          단순 프롬프트 엔지니어링을 넘어, 엔지니어링 규격으로 에이전트를 통제하고 검증에 집중하기 위한 토대를 구축했습니다.
         </Heading>
 
-        {/* Anthropic Playbook Card */}
-        <a
-          className="oh-repo-card"
-          href="https://claude.com/blog/the-ai-native-sdlc-playbook"
-          target="_blank"
-          rel="noreferrer"
-          title="Anthropic The AI-Native SDLC Playbook 원문 보기"
-        >
-          <div className="oh-repo-info">
-            <span className="oh-repo-title">
-              <img src="/images/claude.webp" alt="Anthropic Claude" width="18" height="18" style={{ objectFit: 'contain', verticalAlign: 'middle', marginRight: '6px' }} />
-              Anthropic · The AI-Native SDLC Playbook ↗
-            </span>
-            <span className="oh-repo-desc">
-              "Code is no longer the bottleneck" — 코딩 가속 이후 개발의 병목이 기획(Plan)과 검증(Verify)으로 이동했음을 선언한 엔지니어링 가이드
-            </span>
-          </div>
-          <div className="oh-repo-meta">
-            Official Playbook
-          </div>
-        </a>
+        {/* Side-by-Side Influences Grid */}
+        <div className="oh-influences-grid">
+          <a
+            className="oh-influence-card"
+            href="https://github.com/obra/superpowers"
+            target="_blank"
+            rel="noreferrer"
+            title="obra/superpowers GitHub 저장소 보기"
+          >
+            <div className="oh-influence-header">
+              <span className="oh-influence-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#F59E0B" stroke="#D97706" strokeWidth="1.5" />
+                </svg>
+                obra/superpowers ↗
+              </span>
+              <span className="oh-influence-badge">★ 280k+ Stars</span>
+            </div>
+            <h4 className="oh-influence-thesis">엔지니어링 방법론의 주입</h4>
+            <p className="oh-influence-desc">
+              TDD, Planning, Subagent Review 등 검증된 소프트웨어 공학 규격을 Skill 단위로 에이전트에 주입하여 임의 코딩을 방지하는 가능성 실증.
+            </p>
+            <div className="oh-influence-takeaway">
+              OwnHands 접점: 의도(Intent)부터 승인(Gate)까지 하나의 프로젝트 라이프사이클로 단일화
+            </div>
+          </a>
 
-        <Facts
-          items={[
-            ['핵심 선언', '"코딩은 더 이상 병목이 아니다" — AI 덕분에 구현은 순식간에 끝나며, 병목은 코드 앞단(Plan)과 뒷단(Verify·Review)의 좌우로 이동'],
-            ['수작업 리뷰의 한계', '사람이 짠 코드를 한 줄씩 눈으로 검토하던 기존 방식은 에이전트가 쏟아내는 대량 코드 앞에서 완전히 마비'],
-            ['마크다운 아티팩트 통제', '코드를 직접 보며 씨름하지 않고, intent.md → spec.md → plan.md로 이어지는 문서 규격을 단일 진실 공급원(SSOT)으로 삼음'],
-            ['Human Gate의 책임', '판단(Judgment)은 AI에 위임하지 않으며, 각 단계 산출물의 합의와 최종 머지 권한은 사람(Human Gate)이 행사'],
-          ]}
-        />
-
+          <a
+            className="oh-influence-card"
+            href="https://claude.com/blog/the-ai-native-sdlc-playbook"
+            target="_blank"
+            rel="noreferrer"
+            title="Anthropic The AI-Native SDLC Playbook 원문 보기"
+          >
+            <div className="oh-influence-header">
+              <span className="oh-influence-title">
+                <img src="/images/claude.webp" alt="Anthropic Claude" width="18" height="18" style={{ objectFit: 'contain' }} />
+                Anthropic SDLC Playbook ↗
+              </span>
+              <span className="oh-influence-badge">Official Playbook</span>
+            </div>
+            <h4 className="oh-influence-thesis">"Code is no longer the bottleneck"</h4>
+            <p className="oh-influence-desc">
+              구현은 순식간에 끝나며 개발의 병목은 기획(Plan)과 검증(Verify)으로 이동. 코드가 아닌 마크다운 아티팩트를 단일 진실 공급원(SSOT)으로 확립.
+            </p>
+            <div className="oh-influence-takeaway">
+              OwnHands 접점: 수작업 코드 리뷰 마비를 극복하기 위해 Fresh Evidence 기반 Human Gate 구축
+            </div>
+          </a>
+        </div>
 
         <div className="oh-principles">
           <div className="oh-principle-card">
@@ -434,31 +418,126 @@ export default function OwnhandsStudy() {
           </div>
         </div>
 
-        <Heading n="요구공학 체계" title="GORE(Goal-Oriented Requirements Engineering) 기반 6대 기준선">
+        <Heading n="요구공학 체계" title="GORE(Goal-Oriented Requirements Engineering) 기반 아티팩트 체계">
           최상위 의도(Goal)를 정의하고 이를 사양(Spec)·계획(Plan)·증거(Evidence)로 체계적으로 분해하여, 에이전트의 오버엔지니어링을 차단하고 1:1 검증 추적성(Traceability)을 확보합니다.
         </Heading>
-        <Facts
-          items={[
-            ['01 목표 수립', 'intent.md (Goal) — "Why before How": 작업의 본질적 목적을 고정하고, 비목표(Non-goals)를 규정해 오버엔지니어링 원천 차단'],
-            ['02 사양 정제', 'spec.md (Refinement) — 상위 의도를 측정 가능한 사전 인수 기준(Acceptance Criteria)과 아키텍처 인터페이스 규격으로 구체화'],
-            ['03 계획 수립', 'plan.md (Operationalize) — 작업을 단위 마일스톤으로 쪼개고, 각 단계별 변경 파일과 실행·검증 커맨드를 사전에 확정'],
-            ['04 증거 관측', 'Fresh Evidence (Evidence) — "잘 동작한다"는 주장을 배제하고, 실제 실행된 테스트 로그·정적 분석 출력·해시 로그 수집'],
-            ['05 독립 대조', 'Verifier Subagent (Verification) — 코드 작성자와 분리된 독립 서브에이전트가 사전 인수 기준과 실행 증거를 1:1 교차 대조'],
-            ['06 회귀 감시', 'Continuous Evals (Monitoring) — 프롬프트나 룰 수정 시 시스템 전체의 행동 양식이 퇴행하지 않는지 벤치마크셋으로 상시 감시'],
-          ]}
-        />
+
+        {/* 3-Phase GORE Architecture Grid */}
+        <div className="oh-gore-phases">
+          <div className="oh-gore-phase">
+            <div className="oh-phase-header">
+              <span className="oh-phase-num">Phase 01</span>
+              <span className="oh-phase-title">의도와 사양 (Specification)</span>
+            </div>
+            <div className="oh-phase-items">
+              <div className="oh-artifact-mini">
+                <div className="oh-artifact-name-wrap">
+                  <span className="oh-artifact-name">intent.md</span>
+                  <span className="oh-artifact-role">Goal</span>
+                </div>
+                <p className="oh-artifact-text">
+                  "Why before How": 작업 목적과 존재 이유를 고정하고, <strong>비목표(Non-goals)</strong>를 규정해 오버엔지니어링 원천 차단.
+                </p>
+              </div>
+              <div className="oh-artifact-mini">
+                <div className="oh-artifact-name-wrap">
+                  <span className="oh-artifact-name">spec.md</span>
+                  <span className="oh-artifact-role">Refinement</span>
+                </div>
+                <p className="oh-artifact-text">
+                  상위 의도를 측정 가능한 <strong>사전 인수 기준(Acceptance Criteria)</strong>과 아키텍처 인터페이스 규격으로 구체화.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="oh-gore-phase">
+            <div className="oh-phase-header">
+              <span className="oh-phase-num">Phase 02</span>
+              <span className="oh-phase-title">계획과 관측 (Operationalization)</span>
+            </div>
+            <div className="oh-phase-items">
+              <div className="oh-artifact-mini">
+                <div className="oh-artifact-name-wrap">
+                  <span className="oh-artifact-name">plan.md</span>
+                  <span className="oh-artifact-role">Operationalize</span>
+                </div>
+                <p className="oh-artifact-text">
+                  작업을 마일스톤 단위로 분해하고, 변경 대상 파일과 단계별 실행·검증 커맨드를 사전에 확정.
+                </p>
+              </div>
+              <div className="oh-artifact-mini">
+                <div className="oh-artifact-name-wrap">
+                  <span className="oh-artifact-name">Fresh Evidence</span>
+                  <span className="oh-artifact-role">Evidence</span>
+                </div>
+                <p className="oh-artifact-text">
+                  "동작한다"는 주장을 배제하고, 실제 실행된 <strong>테스트 로그·정적 분석 출력·해시 로그</strong> 수집.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="oh-gore-phase">
+            <div className="oh-phase-header">
+              <span className="oh-phase-num">Phase 03</span>
+              <span className="oh-phase-title">대조와 감시 (Verification & Guard)</span>
+            </div>
+            <div className="oh-phase-items">
+              <div className="oh-artifact-mini">
+                <div className="oh-artifact-name-wrap">
+                  <span className="oh-artifact-name">Verifier Subagent</span>
+                  <span className="oh-artifact-role">Verification</span>
+                </div>
+                <p className="oh-artifact-text">
+                  코드 작성자와 분리된 독립 서브에이전트가 사전 인수 기준과 실행 증거를 <strong>1:1 교차 대조</strong>.
+                </p>
+              </div>
+              <div className="oh-artifact-mini">
+                <div className="oh-artifact-name-wrap">
+                  <span className="oh-artifact-name">Continuous Evals</span>
+                  <span className="oh-artifact-role">Monitoring</span>
+                </div>
+                <p className="oh-artifact-text">
+                  프롬프트나 룰 수정 시 시스템 전체 행동 양식이 퇴행하지 않는지 벤치마크셋으로 상시 감시.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* 03 결과와 회고 */}
-      <Part n="03" title="결과와 회고: 책임의 경계와 개발자의 역할" id="p-result" />
+      <Part n="03" title="결과와 솔직한 엔지니어링 회고" id="p-result" />
       <section id="result" className="fw-section">
-        <Heading n="책임의 관문" title="자동 승인이 아닌 사람이 최종 책임을 지는 구조" />
+        <Heading n="운영 원칙" title="자동 승인이 아닌 사람이 최종 책임을 지는 구조" />
         <Facts
           items={[
-            ['검증과 승인의 분리', '에이전트 작업은 검증 보고서 작성(07 Review)에서 종료되며 머지 권한은 사람에 귀속'],
-            ['불확실성 명시', '관측된 증거뿐 아니라 미처 확인하지 못한 영역(unobserved)을 투명하게 보고서에 남김'],
+            ['검증과 승인의 분리', '에이전트 작업은 검증 보고서 작성(07 Review)에서 종료되며 최종 머지 승인 권한은 사람에게 귀속'],
+            ['불확실성의 투명한 공개', '관측된 증거뿐 아니라 미처 확인하지 못한 영역(unobserved)을 숨기지 않고 보고서에 명시하여 사각지대 제거'],
           ]}
         />
+
+        <Heading n="기술적 한계와 반성" title="하네스 자체의 과잉 설계와 AI 협업에서 마주한 실패 회고" />
+        <Facts
+          items={[
+            [
+              '하네스 자체의 오버엔지니어링 (Fat Harness의 실패)',
+              '초기에는 에이전트의 모든 행동(터미널 입출력, 상태 머신, 파일 감시)을 통제하려 무거운 자체 데몬을 구축함. 그러나 하네스 자체를 유지보수하는 비용이 에이전트 개발보다 더 커지고 플랫폼(Codex, Git) 업데이트 시 깨지는 배보다 배꼽이 더 큰 문제 직면 → "플랫폼이 이미 잘하는 것은 플랫폼에 맡긴다(Native-first)"는 원칙 아래 자체 코드를 대거 걷어내고 Markdown 핸드오프 규격만 남긴 경량 Thin Harness로 전면 단순화',
+            ],
+            [
+              '거짓 완료(False Completion)와 테스트의 맹점',
+              '에이전트에게 "테스트를 통과하라"고만 지시했을 때, 비즈니스 핵심 제약(Non-goals)을 어기거나 테스트 코드를 모킹(Mock)으로 변조해 100% 통과를 보고하는 착시 현상 목격 → "AI의 자기 검증은 신뢰할 수 없다"는 것을 깨닫고, 구현자와 분리된 독립 서브에이전트(Verifier)와 실제 커맨드 실행 로그(Fresh Evidence)를 사전 사양(spec.md)과 1:1 대조하는 강제 절차 수립',
+            ],
+            [
+              '완전 자동화(Auto-merge)의 유혹과 Human Gate의 무게',
+              '검증 통과 시 자동으로 머지하려는 유혹이 있었으나, 복잡한 시스템 엣지 케이스와 제품 책임은 결코 AI에게 위임할 수 없음을 절감 → 하네스의 역할은 결정을 대신하는 것이 아니라 사람이 판단할 수 있는 "신선한 증거와 압축된 보고서"를 제공하는 것까지로 명확히 선을 긋고, 최종 결정권(Human Gate)을 사람에게 귀속',
+            ],
+          ]}
+        />
+        <p className="fw-note">
+          * Fat Harness 자체 데몬 폐기, Markdown 기반 Thin Harness 전환, 독립 검증자 분리는 초기 프로토타입 실패를 겪은 후 정립한 엔지니어링 원칙입니다.
+        </p>
 
         <Heading n="향후 로드맵" title="Codex 기준 구축(완성 중) 및 멀티 에이전트 확장" />
 

@@ -1,39 +1,48 @@
 /* OwnHands Editorial Stylesheet */
 
-/* Questions List */
+/* Questions List (2-column compact grid) */
 .oh-questions {
   list-style: none;
-  margin: 24px 0 0;
+  margin: 20px 0 0;
   padding: 0;
   display: grid;
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
 }
 
 .oh-question-item {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  padding: 16px 20px;
+  gap: 12px;
+  padding: 16px 18px;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 8px;
   transition: border-color 0.2s ease;
 }
 
+.oh-question-item:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .oh-question-num {
   font-family: var(--font-mono, monospace);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 2px 7px;
+  border-radius: 4px;
   flex-shrink: 0;
-  padding-top: 2px;
 }
 
 .oh-question-text {
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.55;
   color: var(--ink);
   font-weight: 500;
+  word-break: keep-all;
 }
 
 /* Before & After Reframe */
@@ -226,59 +235,173 @@
   margin: 0;
 }
 
-/* Superpowers Repo Card */
-.oh-repo-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
+/* Influences Grid (Superpowers & Anthropic Playbook) */
+.oh-influences-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin: 22px 0 24px;
+}
+
+.oh-influence-card {
+  padding: 22px;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 8px;
-  margin: 18px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   text-decoration: none;
-  color: var(--ink);
+  color: inherit;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.oh-repo-card:hover {
+.oh-influence-card:hover {
   border-color: var(--ink);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
-.oh-repo-info {
+.oh-influence-header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.oh-repo-title {
+.oh-influence-title {
   font-family: var(--font-mono, monospace);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
+  color: var(--ink);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.oh-repo-desc {
-  font-size: 13.5px;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.oh-repo-meta {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
+.oh-influence-badge {
+  font-size: 11.5px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--muted);
   background: var(--bg);
   border: 1px solid var(--rule);
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 3px 8px;
+  border-radius: 14px;
   flex-shrink: 0;
+}
+
+.oh-influence-thesis {
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 650;
+  color: var(--ink);
+  margin: 0;
+}
+
+.oh-influence-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+.oh-influence-takeaway {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #2563eb;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  margin-top: auto;
+}
+
+/* GORE 3-Phase Architecture */
+.oh-gore-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 22px 0 28px;
+}
+
+.oh-gore-phase {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.oh-gore-phase:hover {
+  border-color: var(--ink);
+}
+
+.oh-phase-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.oh-phase-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.oh-phase-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.oh-phase-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.oh-artifact-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.oh-artifact-name-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.oh-artifact-name {
+  font-family: var(--font-mono, monospace);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.oh-artifact-role {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #2563eb;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.oh-artifact-text {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+  word-break: keep-all;
 }
 
 
@@ -407,9 +530,18 @@
   .oh-agent-grid {
     grid-template-columns: 1fr;
   }
+  .oh-influences-grid {
+    grid-template-columns: 1fr;
+  }
+  .oh-gore-phases {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
+  .oh-questions {
+    grid-template-columns: 1fr;
+  }
   .oh-question-item {
     padding: 14px 16px;
   }
