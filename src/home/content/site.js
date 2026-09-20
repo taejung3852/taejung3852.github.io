@@ -19,7 +19,7 @@ export const homeProjectStories = [
     problem: 'AI의 완료 주장 대신 실행 증거와 인간 승인으로 품질을 통제하는 AI-Native SDLC',
     period: '2026.09 — 현재',
     team: '개인 프로젝트',
-    outcome: '작업 사양과 실행 증거(Logs/Diff)를 1:1 독립 대조하고 사람이 최종 승인하는 Thin Harness 구축',
+    outcome: '모르는 영역을 명시(unknown)하고 실행 증거와 설명(Explain)을 대조하는 검증 체계 구축',
     stack: ['Codex', 'Git Native', 'Agent Skills', 'Continuous Evals'],
   },
   {

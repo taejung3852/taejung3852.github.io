@@ -207,8 +207,8 @@ export default function OwnhandsStudy() {
             <dd>구현·검증 분리 · Human Gate</dd>
           </div>
           <div>
-            <dt>담당</dt>
-            <dd>Thin Harness 설계 · 검증 체계 구축</dd>
+            <dt>운용</dt>
+            <dd>1인 개발 · 실무 적용 및 운영 중</dd>
           </div>
           <div>
             <dt>스택</dt>

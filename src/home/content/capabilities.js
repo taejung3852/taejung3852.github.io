@@ -39,7 +39,7 @@ export const capabilities = {
       title: 'AI 작업 검증',
       points: [
         'AI가 임의로 지어내지 않도록 **확인된 값만 서식에 반영**',
-        '사양과 **실행 증거(Logs/Diff)**를 1:1 대조하는 독립 검증 체계',
+        '모르는 영역을 **명시(unknown)**하고 실행 증거를 남기는 검증 체계',
         'AI의 완료 선언 대신 **사람이 근거를 보고 최종 승인**',
       ],
       projects: ['hwpx', 'ownhands'],

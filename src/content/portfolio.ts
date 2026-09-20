@@ -40,7 +40,7 @@ export const projects = [
   {
     name: 'OwnHands',
     summary: 'AI가 빠르게 개발하더라도 실행 증거와 인간 승인으로 품질을 통제하는 AI-Native SDLC 개발 하네스.',
-    role: 'Thin Harness 설계 · 독립 검증 파이프라인 및 Human Gate 체계 구축',
+    role: '',
     status: '개인 프로젝트 · 실무 적용 및 운영 중',
     href: 'https://github.com/taejung3852/OwnHands',
     linkLabel: '저장소 보기',

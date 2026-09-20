@@ -114,10 +114,12 @@ export default function ProjectList({
                 <span className="project-role-label">결과</span>
                 {homeProjectStories[i].outcome}
               </p>
-              <p className="project-role">
-                <span className="project-role-label">담당</span>
-                {p.role}
-              </p>
+              {p.role && (
+                <p className="project-role">
+                  <span className="project-role-label">담당</span>
+                  {p.role}
+                </p>
+              )}
               <ul className="project-stack">
                 {homeProjectStories[i].stack.map((t) => (
                   <li key={t}>{t}</li>
