@@ -208,36 +208,6 @@
   flex-shrink: 0;
 }
 
-/* Architecture Diagram (Diagram Design SVG Figure) */
-.oh-arch-figure {
-  margin: 28px 0 36px !important;
-  padding: 0;
-}
-
-.oh-arch-svg-wrap {
-  width: 100%;
-  overflow-x: auto;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  padding: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
-}
-
-.oh-arch-svg-wrap svg {
-  width: 100%;
-  min-width: 840px;
-  height: auto;
-  display: block;
-}
-
-.oh-arch-figure figcaption {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 12px;
-  text-align: center;
-  line-height: 1.5;
-}
 
 
 /* Quote Takeaway Card */
