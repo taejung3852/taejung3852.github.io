@@ -534,11 +534,11 @@ export default function OwnhandsStudy() {
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#EFF6FF', borderColor: 'rgba(59, 130, 246, 0.25)' }}>
-                <img src="/images/codex.png" alt="OpenAI Codex" width="28" height="28" />
+                <img src="/images/codex.png" alt="Codex (OpenAI)" width="28" height="28" />
               </div>
               <span className="oh-agent-status is-progress">IN PROGRESS · 완성 중</span>
             </div>
-            <h4>Codex Native (OpenAI)</h4>
+            <h4>Codex (OpenAI)</h4>
             <p>현재 Codex CLI 환경을 기준으로 8단계 검증 라이프사이클 및 Thin Harness 아키텍처를 실증하며 완성해나가는 중입니다.</p>
             <div className="oh-agent-env">codex cli · git native</div>
           </div>
