@@ -389,7 +389,7 @@
   border-top: 1px solid var(--rule);
 }
 
-/* Quote Takeaway Card */
+/* Status callout */
 .oh-takeaway-box {
   margin: 28px 0;
   padding: 26px 30px;
@@ -399,7 +399,7 @@
   border-radius: 8px;
 }
 
-.oh-takeaway-box blockquote {
+.oh-takeaway-box p {
   font-size: 17.5px;
   line-height: 1.6;
   font-weight: 600;
@@ -433,7 +433,7 @@
   .oh-takeaway-box {
     padding: 18px 20px;
   }
-  .oh-takeaway-box blockquote {
+  .oh-takeaway-box p {
     font-size: 15.5px;
   }
 }

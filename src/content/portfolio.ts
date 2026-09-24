@@ -4,7 +4,7 @@ export const profile = {
   email: 'taejung3852@gmail.com',
   github: 'https://github.com/taejung3852',
   headline: ['AI의 작업을 통제하고,', '결과를 검증합니다.'],
-  description: ['생성물을 이해하고 설명하며,', '책임질 수 있는 결과로 만드는 AI-native 개발자를 지향합니다.'],
+  description: ['AI가 만든 결과를 직접 이해하고 설명할 수 있도록 검증하며,', '최종 결과에 책임지는 개발자입니다.'],
   role: ['AI Agent /', 'LLM Application Developer'],
 };
 
@@ -25,12 +25,12 @@ export const projects = [
   },
   {
     name: 'HWPX Document Plugin',
-    summary: '공문서(HWPX)의 XML 구조와 시각 배치를 분석해, AI의 임의 추측 입력을 차단하고 확인된 값만 반영하는 Agent Plugin.',
+    summary: '공문서(HWPX)의 구조와 화면 속 입력칸을 함께 살피고, 입력값 확인과 승인 절차를 거쳐 문서를 편집하는 Agent Plugin.',
     role: 'MCP 도구 25종 및 Agent Skills 설계·구현 · 양식 분석 및 확인·편집 체계 구축',
     status: '2인 팀 프로젝트 · MCP와 Skills 구현',
     href: 'https://github.com/taejung3852/hwpx-document-plugin',
     linkLabel: '저장소 보기',
-    visualTitle: '추측 없이 문서를 채우는 과정',
+    visualTitle: '입력값과 위치를 확인하며 문서를 채우는 과정',
     steps: [
       ['양식 분석', 'XML 구조와 렌더 위치'],
       ['사용자 확인', '입력값과 공란의 의도'],
@@ -39,22 +39,22 @@ export const projects = [
   },
   {
     name: 'OwnHands',
-    summary: 'AI가 빠르게 개발하더라도 실행 증거와 인간 승인으로 품질을 통제하는 AI-Native SDLC 개발 하네스.',
+    summary: 'AI가 만든 코드의 의도와 실행 근거를 남겨 사람이 검토하고 다음 행동을 결정하도록 돕는 개발 도구.',
     role: '',
-    status: '개인 프로젝트 · 실무 적용 및 운영 중',
+    status: '개인 프로젝트 · 핵심 흐름 구현, 실제 프로젝트 검증 준비 중',
     href: 'https://github.com/taejung3852/OwnHands',
     linkLabel: '저장소 보기',
-    visualTitle: '실행 증거를 대조하고 사람이 최종 승인합니다',
+    visualTitle: '실행 근거를 확인하고 사람이 다음 행동을 결정합니다',
     steps: [
       ['Intent → Spec → Plan', '작업 의도와 기준선 선언'],
-      ['Fresh Evidence & Verifier', '신선한 실행 증거와 독립 대조'],
-      ['Human Gate & Feedback', '사람의 최종 승인과 규칙 환류'],
+      ['Fresh Evidence & Verifier', '실행 근거와 기준 대조'],
+      ['Human Gate & Feedback', '사람의 검토와 피드백 기록'],
     ],
   },
   {
     name: 'LLM Gateway Service',
-    summary: '비용·속도·성능·문맥 길이 가중치로 최적 모델을 선별하고, 이종 모델을 단일 규격으로 중계하는 라우팅 서비스.',
-    role: '가중 라우팅 엔진 설계 · 이종 모델 어댑터 계층 구현 · 인프라 전환(AWS → 자체 GPU)',
+    summary: '비용·속도·성능·문맥 길이에 설정한 가중치를 적용해 모델을 선택하고, 서로 다른 모델의 호출 방식을 하나로 묶은 서비스.',
+    role: '모델 메타데이터·성능 가중치 연동 · Provider 어댑터·스트리밍 구현 · 인프라 전환(AWS → 자체 GPU)',
     status: '2인 팀 프로젝트 · 약 3주간 사내 베타 운영',
     href: 'https://github.com/taejung3852/llm-gateway',
     linkLabel: '저장소 보기',

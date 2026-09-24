@@ -118,7 +118,7 @@ export default function HwpxStudy() {
               확인한 값만 반영합니다.
             </h1>
             <p className="fw-lead">
-              공문서(HWPX)의 XML 구조와 시각 배치를 분석해, AI의 임의 추측 입력을 원천 차단하고 확인된 값만 서식에 반영하는 Agent Plugin.
+              공문서(HWPX)의 구조와 화면 속 입력칸을 함께 살핍니다. 입력값을 확인하고 승인받은 뒤 문서에 반영하는 Agent Plugin입니다.
             </p>
           </div>
           <figure className="fw-cover">
@@ -142,7 +142,7 @@ export default function HwpxStudy() {
           </div>
           <div>
             <dt>결과</dt>
-            <dd>임의 추측 입력 원천 차단 · 서명란/공용란 무단 작성 거절</dd>
+            <dd>입력값 확인·승인 절차 구현 · 요청하지 않은 서명란·공용란 쓰기 계획 거절</dd>
           </div>
           <div>
             <dt>스택</dt>
@@ -157,15 +157,15 @@ export default function HwpxStudy() {
         <a href="#p-result">03 결과와 회고</a>
       </nav>
 
-      <Part n="01" title="마주한 문제와 구조적 한계" id="p-problem" />
+      <Part n="01" title="문서 편집에서 마주한 문제" id="p-problem" />
       <section id="problem" className="fw-section">
-        <Heading n="핵심 문제" title="XML 구조와 시각 배치의 괴리, 그리고 임의 추측 입력(환각)" />
+        <Heading n="핵심 문제" title="문서 구조만으로는 입력할 칸을 알기 어려웠습니다" />
         <Facts
           items={[
-            ['도구 부재', 'Word·Excel과 달리 한국 행정 공문서 표준인 HWPX 전용 에이전트 플러그인 부재'],
+            ['도구 부재', 'Word·Excel 문서에 비해 HWPX 서식을 에이전트로 다룰 수 있는 도구가 부족했음'],
             ['FOWOCO에서의 출발', <>체류 서류 자동화를 위해 <Link className="fw-inline-link" to="/projects/fowoco">FOWOCO</Link> 내부 함수로 시작했으나 범용 에이전트 확장을 위해 독립 분리</>],
             ['XML과 배치의 괴리', <><Field>전화번호 Phone No.</Field> 등 동일 문구가 서식 내 4곳에 중복 존재해 단순 텍스트 파싱만으로는 입력 위치 특정 불가</>],
-            ['직접 편집 시 환각', 'LLM(ChatGPT 웹)에 직접 서식 편집 요청 시 13자리 낱칸 뭉개짐, 성별 미체크, 요청하지 않은 서명란/공용란 무단 기입 발생'],
+            ['직접 편집 결과', 'ChatGPT 웹에 서식 편집을 요청한 사례에서 13자리 입력칸 정렬 실패, 성별 미체크, 요청하지 않은 서명란·공용란 입력이 발생'],
           ]}
         />
         <div className="hx-shots">
@@ -213,18 +213,18 @@ export default function HwpxStudy() {
           </figure>
         </div>
         <p className="fw-takeaway">
-          단순한 텍스트 기입 실패가 아닌, <strong>실행마다 달라지는 비결정적 동작과 서명란/공용란 무단 작성(환각)</strong>이 공문서 자동화의 핵심 장애물이었습니다.
+          이 사례에서는 입력칸을 잘못 다루고 요청하지 않은 칸까지 채웠습니다. 그래서 <strong>값과 입력 위치를 확인하고 승인받는 절차</strong>가 필요했습니다.
         </p>
       </section>
 
       <Part n="02" title="설계와 해결" id="p-solution" />
       <section id="solution-hitl" className="fw-section">
-        <Heading n="인간 승인(HITL)" title="시각적 확인 루프(HITL)와 금지 구역 방어" />
+        <Heading n="사용자 확인" title="입력할 칸을 보여주고 승인받는 절차" />
         <Facts
           items={[
             ['시각적 확인 루프', '값을 넣을 칸을 시각적 박스로 하이라이트하여 사람의 승인 후 입력 진행 (반려 시 위치 재조정)'],
             ['입력 단위 그룹화', '인적사항 · 여권 · 주소 · 근무처 등 의미 단위로 묶어 사용자 확인 피로도 최소화'],
-            ['금지 구역 차단', '서명란 · 공용란 등 사용자 권한 밖의 셀에 대한 쓰기 계획은 파이프라인에서 원천 거절'],
+            ['작성 제한 칸', '요청하지 않은 서명란·공용란에 값을 쓰는 계획은 거절하도록 구성'],
           ]}
         />
         <figure className="fw-cover">
@@ -298,7 +298,7 @@ export default function HwpxStudy() {
         </div>
       </section>
 
-      <Part n="03" title="결과와 기술적 성찰" id="p-result" />
+      <Part n="03" title="실행 결과와 남은 문제" id="p-result" />
       <section id="result" className="fw-section">
         <Heading n="정밀 대조" title="서식 반영 결과 및 셀 단위 구조 보존 대조" />
         <div className="hx-side">
@@ -328,13 +328,13 @@ export default function HwpxStudy() {
               onClick={() =>
                 zoom({
                   src: '/images/hwpx-filled.png',
-                  alt: '플러그인으로 작성된 통합신청서 완성본',
+                  alt: '플러그인으로 작성한 통합신청서 실행 결과',
                 })
               }
             >
-              <img src="/images/hwpx-filled.png" alt="플러그인으로 작성된 통합신청서 완성본" width="794" height="1123" loading="lazy" />
+              <img src="/images/hwpx-filled.png" alt="플러그인으로 작성한 통합신청서 실행 결과" width="794" height="1123" loading="lazy" />
             </button>
-            <figcaption>가상 정보가 지정된 칸에 정확히 반영된 결과</figcaption>
+            <figcaption>가상 정보를 넣은 통합신청서. 아래에서 입력 위치가 잘못된 칸도 함께 비교합니다.</figcaption>
           </figure>
         </div>
 
@@ -375,7 +375,7 @@ export default function HwpxStudy() {
                 </tr>
               </tbody>
             </table>
-            <p>웹 직접 실행은 체크 표기 시 기존 문구를 삭제함 vs 플러그인은 원본 문구 완벽 보존</p>
+            <p>이 사례에서 ChatGPT 웹은 체크란의 기존 문구를 삭제했고, 플러그인은 문구를 유지했습니다.</p>
           </div>
           <div className="hx-cells">
             <table>
@@ -420,7 +420,7 @@ export default function HwpxStudy() {
               </tbody>
             </table>
             <p>
-              라벨 칸에 값을 붙인 계획 수립 오류 사례. <strong>실행 검사만으로는 잡을 수 없는 계획 자체의 한계로 솔직히 기록.</strong>
+              이번 실행에서는 소득금액을 입력 대상 칸이 아닌 ‘만원’ 라벨 칸에 넣었습니다. 편집 결과는 계획과 일치했지만, 계획이 올바른 칸을 가리키는지는 검사하지 못했습니다.
             </p>
           </div>
         </div>
@@ -431,16 +431,16 @@ export default function HwpxStudy() {
       </section>
 
       <section id="result-reflection" className="fw-section">
-        <Heading n="기술적 성찰" title="계획대로 실행된 것과, 계획이 옳았던 것의 차이" />
+        <Heading n="남은 검증 과제" title="편집 계획의 입력 위치도 확인해야 합니다" />
         <Facts
           items={[
-            ['현재 검증 범위', '편집 계획대로 정확히 실행되었는지만 검증 (이번 실행은 기대와 전건 일치)'],
-            ['놓치고 있던 것', '그 계획 자체가 옳았는지 여부. 소득금액을 라벨 칸에 넣은 계획의 결함은 그대로 통과'],
-            ['지금 다시 설계한다면', '값을 파일에 쓰기 전에 계획 자체를 검사하고 필드 정당성을 확인하는 사전 검증 단계 필요'],
+            ['현재 검사 범위', '편집 결과가 계획에 지정된 값과 위치를 따랐는지 확인. 이번 실행에서 계획 대비 차이는 없었음'],
+            ['확인하지 못한 것', '계획이 지정한 입력칸 자체가 맞는지 여부. 소득금액을 라벨 칸에 넣는 오류는 통과'],
+            ['개선 방향', '파일을 수정하기 전에 계획의 입력 위치가 양식 문항과 맞는지 검사'],
           ]}
         />
         <p className="fw-note">
-          * 양식 한 종류를 한 번 실행한 대조 기록에서 도출한 관찰입니다. 실제 재설계를 수행한 것은 아닙니다.
+          * 양식 한 종류를 한 번 실행한 결과입니다. 입력 위치를 미리 검사하는 단계는 아직 구현하지 않았습니다.
         </p>
       </section>
 

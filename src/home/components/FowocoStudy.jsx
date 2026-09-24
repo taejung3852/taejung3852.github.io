@@ -133,7 +133,7 @@ export default function FowocoStudy() {
           </div>
           <div>
             <dt>결과</dt>
-            <dd>단일 Dense 99% 적중 확인 · 파이프라인 과잉 설계(60→390ms)와 단순화 회고</dd>
+            <dd>단일 Dense Hit@5 99% 확인 · 복잡한 검색의 지연 증가(60→390ms)를 측정하고 단순화 방향 도출</dd>
           </div>
           <div>
             <dt>스택</dt>
@@ -245,17 +245,17 @@ export default function FowocoStudy() {
           items={[
             ['엄격한 필드 매핑', '확인된 정보만 HWPX 양식 칸에 대입하고, 누락된 값은 임의 추측 없이 빈칸 유지'],
             [
-              '단순 스크립트 대신 MCP',
-              'FOWOCO 단일 서식에 묶인 내부 스크립트에 머무르지 않고, 향후 Claude Code 등 다양한 에이전트와 서식으로 확장 가능한 표준 인터페이스(MCP)로 경계를 설계하여 확장성을 확보',
+              '문서 기능 분리',
+              '문서 기능을 MCP 도구로 분리해 다른 에이전트와 서식에도 연결할 수 있도록 설계',
             ],
             [
               '프로젝트의 확장',
               <>
-                단일 서식 도구에 머무르지 않고 별도 오픈소스로 독립·고도화하여{' '}
+                FOWOCO의 문서 기능은 이후 별도 오픈소스인{' '}
                 <Link className="fw-inline-link" to="/projects/hwpx">
                   HWPX Document Plugin
                 </Link>{' '}
-                프로젝트로 확장
+                프로젝트로 이어졌습니다.
               </>,
             ],
           ]}
@@ -328,25 +328,25 @@ export default function FowocoStudy() {
         </div>
       </section>
 
-      <Part n="03" title="결과와 기술적 성찰" id="p-result" />
+      <Part n="03" title="측정 결과와 설계 판단" id="p-result" />
       <section id="result-evidence" className="fw-section">
         <Heading n="정량 벤치마크" title="가설과 달랐던 측정 결과: 단일 Dense만으로도 충분했다" />
         <div className="fw-findings">
           <article className="fw-benefit">
-            <span className="fw-kicker">단일 Dense 검색 적중률</span>
+            <span className="fw-kicker">단일 Dense 검색 Hit@5</span>
             <strong>99%</strong>
-            <h3>단일 Dense만으로 목표 달성</h3>
-            <p>정제된 외국어 모음집 특성상, 복잡한 파이프라인 없이도 필요한 표현을 1순위에 검색.</p>
+            <h3>단일 Dense 검색 Hit@5 99%</h3>
+            <p>평가 질의의 99%에서 필요한 표현이 검색 결과 상위 5개 안에 들었습니다.</p>
           </article>
           <article className="fw-cost">
             <span className="fw-kicker">복잡도 추가에 따른 지연 시간</span>
             <strong>60 → 390ms</strong>
-            <h3>지연 시간 6.5배 폭증</h3>
-            <p>적중률 차이는 1%p 미만인 반면, 3중 쿼리와 Re-ranking으로 인한 연산 비용과 대기 시간 급증.</p>
+            <h3>검색 지연 시간 6.5배</h3>
+            <p>멀티쿼리와 Re-ranking을 더하자 Hit@5는 1%p 높아졌고, 지연 시간은 60ms에서 390ms로 늘었습니다.</p>
           </article>
         </div>
         <p className="fw-takeaway">
-          정제된 데이터셋에 멀티쿼리와 Re-ranking을 얹은 것은 <strong>성능 향상 없는 과잉 설계</strong>로 확인. 당시 데모 일정이 임박해 파이프라인을 즉시 경량화하지 못하고 완주했으나, 벤치마크를 통해 <strong>데이터 규모 측정 없는 복잡도 추가의 대가</strong>를 명확히 확인.
+          멀티쿼리와 Re-ranking으로 검색 성능은 소폭 높아졌지만 지연 시간이 크게 늘었습니다. 시연 일정 때문에 당시 구성은 유지했고, 측정 결과를 바탕으로 <strong>파이프라인을 단순화할 필요</strong>를 확인했습니다.
         </p>
         <div className="fw-table" role="region" aria-label="검색 구성별 비교표" tabIndex="0">
           <table>
@@ -379,16 +379,16 @@ export default function FowocoStudy() {
       </section>
 
       <section id="result-reflection" className="fw-section">
-        <Heading n="기술적 성찰" title="과잉 설계를 인지하고도 즉시 고치지 못했던 이유와 교훈" />
+        <Heading n="다음 설계 기준" title="측정 결과를 확인한 뒤 내린 판단" />
         <Facts
           items={[
-            ['가설의 오류', '비정형 질의 대응을 위해 최신 RAG 파이프라인을 결합했으나, 실제 정제된 외국어 모음집에서는 단일 Dense만으로도 충분했음을 뒤늦게 확인'],
-            ['일정 제약과 기술 부채', '벤치마크로 과잉 설계를 인지했을 때는 서비스 통합 및 시연 일정이 임박해 즉시 구조를 경량화하지 못한 채 완주'],
-            ['가장 값진 교훈', '기술의 화려함보다 실제 데이터 규모를 먼저 측정(Measure First)하고, 필요한 만큼만 복잡도를 올려야 한다는 실용적 엔지니어링 원칙 습득'],
+            ['검색 가설', '비정형 질문에 대응하려고 검색 단계를 늘렸지만, 정제된 모음집에서는 단일 Dense 검색도 Hit@5 99%를 기록'],
+            ['일정 제약', '벤치마크 결과를 확인했을 때는 통합과 시연 일정이 가까워 구성을 바꾸지 못함'],
+            ['이후 설계 기준', '데이터와 지연 시간을 먼저 측정한 뒤 필요한 검색 단계만 추가'],
           ]}
         />
         <p className="fw-note">
-          프로젝트 시연 완료 후 실제 프로덕션 관점에서 아키텍처의 비용 대비 효용을 비판적으로 재평가한 회고입니다.
+          단순화는 시연 당시 적용한 변경이 아니라, 이후 벤치마크를 검토하며 정한 개선 방향입니다.
         </p>
       </section>
 

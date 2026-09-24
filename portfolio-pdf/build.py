@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-from fontTools.ttLib import TTFont as FontToolsFont
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.styles import ParagraphStyle
@@ -14,8 +13,7 @@ from reportlab.platypus import Paragraph
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = Path(__file__).resolve().parent / "park-taejung-portfolio.pdf"
-FONT_SOURCE = ROOT / "public/fonts/PretendardVariable.woff2"
-FONT_TTF = Path(__file__).resolve().parent / ".pretendard-build.ttf"
+FONT_TTF = ROOT / "node_modules/pretendard/dist/public/variable/PretendardVariable.ttf"
 
 W, H = 595.276, 841.89  # A4
 M = 44
@@ -31,10 +29,8 @@ PALE = colors.HexColor("#E8F3F1")
 
 
 def font_ready():
-    if not FONT_TTF.exists() or FONT_TTF.stat().st_mtime < FONT_SOURCE.stat().st_mtime:
-        source = FontToolsFont(FONT_SOURCE)
-        source.flavor = None
-        source.save(FONT_TTF)
+    if not FONT_TTF.exists():
+        raise FileNotFoundError("Pretendard font is missing. Run npm ci first.")
     pdfmetrics.registerFont(TTFont("Pretendard", str(FONT_TTF)))
 
 
@@ -93,7 +89,7 @@ def overview(c):
     text(c, M, 49, "AI AGENT  /  LLM APPLICATION DEVELOPER", 9, ACCENT)
     text(c, M, 98, "박태정", 32)
     text(c, M, 142, "AI의 작업을 통제하고, 결과를 검증합니다.", 17)
-    para(c, M, 162, "생성물을 이해하고 설명하며 책임질 수 있는 결과로 만드는 개발자를 지향합니다.", CW, 10.5, 17, MUTED)
+    para(c, M, 162, "AI가 만든 결과를 직접 이해하고 설명할 수 있도록 검증하며, 최종 결과에 책임지는 개발자입니다.", CW, 10.5, 17, MUTED)
 
     panel(c, M, 206, CW, 75, WHITE)
     text(c, M + 16, 229, "WEB PORTFOLIO", 8.2, MUTED)
@@ -106,8 +102,8 @@ def overview(c):
 
     rows = [
         ("01", "FOWOCO", "모호한 질문을 공식 표현과 연결하는 EPS 검색 설계", "단일 Dense Hit@5 99%; 복잡한 검색은 60→390ms로 지연", "02", "https://taejung3852.github.io/projects/fowoco"),
-        ("02", "HWPX Document Plugin", "AI의 추측 입력을 막는 공문서 편집 도구", "XML 구조·시각 배치 분석; MCP 도구 25종 구축", "02", "https://taejung3852.github.io/projects/hwpx"),
-        ("03", "OwnHands", "AI의 완료 주장과 실제 실행 증거를 분리해 검증", "독립 대조와 사람의 최종 승인 흐름 운영", "03", "https://taejung3852.github.io/projects/ownhands"),
+        ("02", "HWPX Document Plugin", "입력값과 위치를 확인하는 공문서 편집 도구", "XML 구조·시각 배치 분석; MCP 도구 25종 구축", "02", "https://taejung3852.github.io/projects/hwpx"),
+        ("03", "OwnHands", "AI의 완료 주장과 실행 근거를 구분하는 개발 흐름", "핵심 흐름과 설치 CLI 구현; 전체 흐름 검증 준비 중", "03", "https://taejung3852.github.io/projects/ownhands"),
         ("04", "LLM Gateway Service", "비용·속도·성능 조건에 맞는 모델 선택과 중계", "자체 GPU 전환; 약 3주간 사내 베타 운영", "03", "https://taejung3852.github.io/projects/llm-gateway"),
     ]
     for i, (num, title, problem, outcome, page, url) in enumerate(rows):
@@ -165,26 +161,26 @@ def projects_1(c):
         "HWPX는 XML 구조와 보이는 입력칸이 달라, AI가 위치를 추측하거나 서명란을 임의로 채울 수 있었습니다.",
         "문서 구조와 시각 배치를 함께 분석하고, 확인된 값만 반영하는 MCP 도구 25종과 Agent Skills를 구축했습니다.",
         "입력값 확인·승인·편집·검증 흐름을 마련하고, 요청하지 않은 서명란·공용란 작성을 거절하도록 했습니다.",
-        "한계  |  실행 검사는 구현했지만 편집 계획 자체의 타당성 검사는 추가 과제로 남았습니다.",
+        "확인한 범위  |  실행 결과는 계획과 대조했지만, 계획의 입력 위치 오류는 통과했습니다.",
     )
     c.showPage()
 
 
 def projects_2(c):
-    detail_header(c, 3, "PROJECT NOTES  /  03-04", "실행 증거와 운영 경험", "AI의 결과를 검증하고, 실제 사용 환경에서 설계를 되돌아봤습니다.")
+    detail_header(c, 3, "PROJECT NOTES  /  03-04", "실행 근거와 운영 경험", "AI 작업의 검토 기준을 만들고, 모델 선택 서비스를 사내에서 운영했습니다.")
     detail_card(
-        c, 141, "03", "OwnHands", "2026.09-현재  ·  개인 프로젝트  ·  실무 적용 중",
+        c, 141, "03", "OwnHands", "2026.09-현재  ·  개인 프로젝트  ·  개발 중",
         "https://taejung3852.github.io/projects/ownhands",
         "AI가 완료를 선언해도 요구사항 충족과 테스트 실행 여부를 사람이 확인하기 어려웠습니다.",
-        "작업 의도를 먼저 적고, 구현 단계와 독립 검증 단계를 나눠 실행 로그·차이를 기준과 대조하도록 설계했습니다.",
-        "모르는 영역은 unknown으로 남기고, 검증 결과를 본 사람이 최종 승인하는 흐름을 Codex 작업에 적용 중입니다.",
-        "회고  |  초기 복잡한 구조를 줄이고, 실제 작업에서 필요한 검증 규칙을 계속 다듬고 있습니다.",
+        "작업 의도·설계·계획을 구분해 기록하고, 완료 주장과 실행 근거를 대조하는 검증·리뷰 흐름을 설계했습니다.",
+        "Codex 스킬 6개와 설치 CLI를 구현하고 정적 평가를 수행했습니다. 실제 프로젝트의 전체 흐름 검증은 준비 중입니다.",
+        "현재 범위  |  핵심 기능의 로컬 검증은 마쳤고, 실제 프로젝트에서 처음부터 끝까지 실행한 결과는 남아 있습니다.",
     )
     detail_card(
-        c, 463, "04", "LLM Gateway Service", "2025.04-10  ·  2인 팀  ·  라우팅 엔진 담당",
+        c, 463, "04", "LLM Gateway Service", "2025.04-10  ·  2인 팀  ·  Provider·모델 데이터 담당",
         "https://taejung3852.github.io/projects/llm-gateway",
         "상용 API 비용이 높고 모델마다 요청·응답 형식이 달라, 조건에 맞는 모델 선택과 연결이 어려웠습니다.",
-        "비용·속도·성능·문맥 길이 가중 라우팅과 모델 어댑터를 구현하고, 실행 환경을 AWS에서 자체 GPU로 옮겼습니다.",
+        "팀의 가중 라우팅에 모델 데이터·성능 가중치를 연결하고, Provider 연동과 자체 GPU 실행 환경을 구성했습니다.",
         "클라우드 호스팅 지출을 줄이고, 모델 라우팅·대화 서비스를 약 3주간 사내 베타로 운영했습니다.",
         "회고  |  필수 조건과 선호 점수를 분리하고 단방향 스트리밍을 단순화할 필요를 확인했습니다.",
     )
@@ -201,7 +197,6 @@ def main():
     projects_1(c)
     projects_2(c)
     c.save()
-    FONT_TTF.unlink(missing_ok=True)
     print(OUT)
 
 

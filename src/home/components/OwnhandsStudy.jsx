@@ -182,11 +182,11 @@ export default function OwnhandsStudy() {
           <div className="fw-hero-copy">
             <p className="fw-kicker">개인 프로젝트 · 2026.09 — 현재</p>
             <h1>
-              AI의 작업 완료와<br />
-              사람의 승인을 분리합니다.
+              AI의 완료 주장과<br />
+              사람이 확인한 결과를 구분합니다.
             </h1>
             <p className="fw-lead">
-              AI-Native SDLC에서 생성 속도 대신 실행 증거와 인간 승인으로 품질을 통제하는 나만의 개발 하네스.
+              AI가 작성한 코드의 의도와 실행 근거를 남겨 사람이 검토하고 다음 행동을 결정하도록 돕는 개발 도구입니다. 핵심 작업 흐름과 설치 CLI를 구현했으며, 첫 실제 프로젝트에서 전체 흐름을 확인할 준비를 하고 있습니다.
             </p>
           </div>
           <figure className="fw-cover">
@@ -198,17 +198,17 @@ export default function OwnhandsStudy() {
             >
               <img src="/images/ownhands-cover.png" width="648" height="691" alt="OwnHands 로고 및 검증 프레임워크 개요" loading="eager" />
             </button>
-            <figcaption>OwnHands — 근거 기반 검증과 인간 승인 하네스</figcaption>
+            <figcaption>OwnHands — 실행 근거를 확인하고 사람이 결정하는 개발 도구</figcaption>
           </figure>
         </div>
         <dl className="fw-meta">
           <div>
             <dt>구성</dt>
-            <dd>구현·검증 분리 · Human Gate</dd>
+            <dd>Codex 스킬 · 설치 CLI · 검증·리뷰 흐름</dd>
           </div>
           <div>
             <dt>운용</dt>
-            <dd>1인 개발 · 실무 적용 및 운영 중</dd>
+            <dd>1인 개발 · 핵심 흐름 구현, 실제 프로젝트 검증 준비 중</dd>
           </div>
           <div>
             <dt>스택</dt>
@@ -225,14 +225,14 @@ export default function OwnhandsStudy() {
       </nav>
 
       {/* 01 문제 */}
-      <Part n="01" title="마주한 문제: 빨라진 생성 속도, 잃어버린 통제력" id="p-problem" />
+      <Part n="01" title="AI가 코드를 만든 뒤에도 남는 확인 작업" id="p-problem" />
       <section id="problem" className="fw-section">
-        <Heading n="문제 정의" title="에이전트는 빨라졌지만, 통제력을 잃고 있었다" />
+        <Heading n="문제 정의" title="코드 작성 뒤에는 의도와 실행 결과를 확인해야 합니다" />
         <Facts
           items={[
-            ['생성의 착시', '빨라진 코드 생성 뒤의 거짓 성공(모킹·사양 누락)으로 전수 검사 역병목 발생'],
-            ['통제력 상실', '범용 AI 도구로는 작업 의도(Why)와 세부 검증 기준 관철 불가'],
-            ['진짜 갈증', '전시용 토이가 아닌, 실무에서 믿고 쓸 나만의 개발 하네스 필요'],
+            ['확인 작업 증가', '코드는 빠르게 만들어도 요구사항 충족과 테스트 실행 여부는 별도로 확인해야 함'],
+            ['작업 의도 기록', '코드와 대화만으로는 왜 만들었고 무엇을 확인해야 하는지 다음 단계에 전달하기 어려움'],
+            ['필요한 도구', '기존 개발 도구 사이에 작업 기준과 검토 근거를 남길 연결이 필요했음'],
           ]}
         />
 
@@ -257,23 +257,17 @@ export default function OwnhandsStudy() {
             />
           </button>
           <figcaption>
-            Anthropic SDLC Playbook — 코드 작성은 순식간이지만, 의도 정의와 검증·승인이 새로운 병목이 됨
+            Anthropic SDLC Playbook을 참고한 도표. 코드 작성 뒤에도 의도 정의와 검증·승인 작업이 남습니다.
           </figcaption>
         </figure>
-
-        <div className="oh-takeaway-box" style={{ margin: '20px 0 0' }}>
-          <blockquote style={{ fontSize: '16.5px', lineHeight: '1.55' }}>
-            "남의 도구에 끼워 맞추지 않고, 내 작업의 통제권을 직접 쥐기 위해 나만의 도구를 만들었다."
-          </blockquote>
-        </div>
 
         <Source href={repo}>저장소 둘러보기</Source>
       </section>
 
       {/* 02 해결 */}
-      <Part n="02" title="해결: 구현과 검증을 분리한 독립 검증 체계" id="p-solution" />
+      <Part n="02" title="작업 기준과 검증 근거를 연결하는 흐름" id="p-solution" />
       <section id="solution" className="fw-section">
-        <Heading n="영감을 준 레퍼런스" title="방향성의 힌트를 얻은 두 레퍼런스" />
+        <Heading n="참고한 자료" title="설계에 참고한 두 자료" />
 
         <div className="oh-influences-grid">
           <a
@@ -292,9 +286,9 @@ export default function OwnhandsStudy() {
               </span>
               <span className="oh-influence-badge">오픈소스 사례</span>
             </div>
-            <p className="oh-influence-thesis">"엄격한 절차로 모델의 한계를 극복한다"</p>
+            <p className="oh-influence-thesis">작업 절차를 스킬로 나눠 필요한 때 사용합니다.</p>
             <div className="oh-influence-takeaway">
-              접점: 가벼운 마크다운 Skills 규약과 독립 1:1 증거 대조 프로토콜 차용
+              참고한 점: 작업별 스킬 구성과 검증 역할 분리
             </div>
           </a>
 
@@ -312,15 +306,15 @@ export default function OwnhandsStudy() {
               </span>
               <span className="oh-influence-badge">공식 가이드</span>
             </div>
-            <p className="oh-influence-thesis">"개발 병목이 '코드 작성'에서 '의도와 평가'로 이동한다"</p>
+            <p className="oh-influence-thesis">코드 작성 전후의 의도와 검증 단계도 중요합니다.</p>
             <div className="oh-influence-takeaway">
-              접점: 의도 선언(intent.md)과 인간 승인(Human Gate) 설계의 기반
+              참고한 점: 의도 기록과 사람의 검토 단계
             </div>
           </a>
         </div>
 
-        <Heading n="도구의 3대 기둥" title="도구를 지탱하는 3가지 핵심 원칙">
-          사람이 직접 읽고 다룰 수 있는 마크다운 규격(Thin Harness)과 피드백 체계.
+        <Heading n="설계 기준" title="의도, 실행 근거, 사람의 판단을 연결합니다">
+          작업마다 필요한 기준과 결과를 사람이 읽을 수 있는 문서로 남깁니다.
         </Heading>
 
         {/* 3 Core Principles */}
@@ -329,27 +323,27 @@ export default function OwnhandsStudy() {
             <span className="oh-principle-tag">01 HUMAN-IN-THE-LOOP</span>
             <h3>시작과 끝은 사람이 결정</h3>
             <p>
-              <code>intent.md</code>로 의도와 비목표를 고정하고, 최종 머지는 사람이 직접 결정합니다.
+              <code>intent.md</code>에 작업 의도와 하지 않을 일을 적고, 최종 머지는 사람이 결정합니다.
             </p>
           </div>
           <div className="oh-principle-card">
             <span className="oh-principle-tag">02 FRESH EVIDENCE</span>
-            <h3>말 대신 실제 증거로 대조</h3>
+            <h3>실행 결과를 기준과 대조</h3>
             <p>
-              AI 주장 대신 터미널 실행 로그와 Diff를 독립 검증자가 사양과 1:1 대조합니다.
+              테스트 결과와 변경 내역을 작업 기준에 비춰 검토합니다. 확인하지 못한 항목은 따로 남깁니다.
             </p>
           </div>
           <div className="oh-principle-card">
             <span className="oh-principle-tag">03 CONTINUOUS FEEDBACK</span>
-            <h3>쓸수록 단단해지는 체계</h3>
+            <h3>피드백을 다음 작업에 반영</h3>
             <p>
-              실무에서 겪은 실패 패턴과 피드백을 Rules와 Evals에 축적해 지속 진화합니다.
+              사용 중 발견한 문제를 기록하고, 검토한 뒤 필요한 규칙이나 평가를 바꿉니다.
             </p>
           </div>
         </div>
 
-        <Heading n="검증 라이프사이클" title="구현과 검증을 물리적으로 분리한 실행 흐름">
-          에이전트의 단위 구현(Phase 1)과 독립 검증·승인(Phase 2)의 분리 루프.
+        <Heading n="작업 흐름" title="구현과 검토를 나눠 진행하는 흐름">
+          아래는 설계한 흐름입니다. 첫 실제 프로젝트에서 모든 단계를 끝까지 검증하는 작업은 준비 중입니다.
         </Heading>
 
         <div className="oh-pipeline-container">
@@ -413,7 +407,7 @@ export default function OwnhandsStudy() {
           {/* Phase 2: Independent Verification & Human Gate */}
           <div className="oh-pipeline-track-header">
             <span className="oh-track-kicker">PHASE 2 · 독립 검증, 승인 및 피드백 환류</span>
-            <span className="oh-track-desc">거짓 성공을 걸러내고 사람이 최종 배포 결정</span>
+            <span className="oh-track-desc">실행 근거를 검토하고 사람이 다음 행동 결정</span>
           </div>
           <div className="oh-pipeline-row">
             <div className="oh-pipeline-step">
@@ -452,18 +446,18 @@ export default function OwnhandsStudy() {
       </section>
 
       {/* 03 결과와 회고 */}
-      <Part n="03" title="결과와 회고: 실무 적용과 확장 로드맵" id="p-result" />
+      <Part n="03" title="현재 상태와 다음 검증" id="p-result" />
       <section id="result" className="fw-section">
-        <Heading n="솔직한 시행착오" title="초기 하네스 과잉 설계와 AI 협업의 실패 회고" />
+        <Heading n="설계 변경" title="별도 실행 시스템을 줄이고 기존 도구를 연결했습니다" />
         <Facts
           items={[
-            ['하네스 비대화 실패', '자체 데몬으로 감싸려다 복잡도 폭증 → 마크다운(Thin Harness)과 CLI 네이티브로 전면 단순화'],
-            ['거짓 완료의 충격', '에이전트의 가짜 테스트 통과 목격 → 구현체와 독립 검증자(Verifier)를 분리해 1:1 대조 강제'],
-            ['살아있는 도구', '전시용 데모가 아닌, 매일 실무를 수행하며 룰셋과 평가 기준을 업데이트하는 도구로 정착'],
+            ['구조 단순화', '별도 실행 시스템을 늘리던 초기 구성을 줄이고 Codex와 Git의 기존 기능을 연결'],
+            ['검증 역할 분리', '완료 주장과 테스트 결과를 같은 것으로 취급하지 않도록 검토 역할과 근거를 분리'],
+            ['현재 확인한 범위', '핵심 흐름과 설치 CLI를 구현했고 결정론적 테스트와 정적 평가를 수행'],
           ]}
         />
 
-        <Heading n="현재 상황과 로드맵" title="실무 적용 현황 및 확장 로드맵" />
+        <Heading n="현재 상태" title="첫 실제 프로젝트의 전체 흐름 검증을 준비 중입니다" />
         <div className="oh-agent-grid">
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
@@ -474,9 +468,9 @@ export default function OwnhandsStudy() {
             </div>
             <h4>Codex (CLI)</h4>
             <p>
-              실무 메인 엔진. 단위 구현, 실행 증거 수집, 1:1 대조 루프를 매일 안정적으로 수행 중.
+              Codex 스킬과 설치 CLI를 구현했습니다. 실제 프로젝트에서 작업을 처음부터 끝까지 수행하는 검증은 남아 있습니다.
             </p>
-            <div className="oh-agent-env">실무 적용 중 · Codex CLI &amp; Git Native</div>
+            <div className="oh-agent-env">핵심 흐름 구현 · 전체 흐름 검증 준비 중</div>
           </div>
 
           <div className="oh-agent-card">
@@ -488,7 +482,7 @@ export default function OwnhandsStudy() {
             </div>
             <h4>Claude Code</h4>
             <p>
-              대규모 탐색, 사양·계획(Spec &amp; Plan) 수립, 심층 아키텍처 리뷰 특화 연동 확장 예정.
+              대규모 탐색과 설계 검토에 연결하는 방안을 검토 중입니다.
             </p>
             <div className="oh-agent-env">지원 예정 · Claude Code CLI &amp; Agent Skills</div>
           </div>
@@ -502,17 +496,17 @@ export default function OwnhandsStudy() {
             </div>
             <h4>Google Antigravity</h4>
             <p>
-              백그라운드 태스크 제어, 브라우저 E2E 검증 및 서브에이전트 오케스트레이션 검토.
+              브라우저 검증과 백그라운드 작업에 연결할 수 있을지 검토 중입니다.
             </p>
             <div className="oh-agent-env">지원 예정 · Antigravity IDE &amp; Subagents</div>
           </div>
         </div>
 
         <div className="oh-takeaway-box" style={{ marginTop: '32px' }}>
-          <blockquote style={{ fontSize: '18px', lineHeight: '1.6' }}>
-            "OwnHands는 남에게 보여주기 위한 데모가 아니라,<br />
-            내 실무를 매일 함께 수행하며 나와 함께 성장하는 나만의 개발 하네스다."
-          </blockquote>
+          <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
+            핵심 흐름의 구현과 로컬 검증 결과를 확인했습니다.<br />
+            실제 프로젝트에서 전체 흐름을 마친 결과는 아직 확인하지 못했습니다.
+          </p>
         </div>
       </section>
 

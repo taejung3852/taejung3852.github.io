@@ -4,7 +4,7 @@
 export const capabilities = {
   // Heading claims the three verbs; each card's title is the keyword for one of them.
   // No intro line: the cards answer it faster than a paragraph can.
-  title: '에이전트를 만들고, 붙이고, 검증합니다.',
+  title: '에이전트를 만들어 연결하고, 결과를 검증합니다.',
   // Same grouping as the resume; keep the two in step.
   stack: [
     ['언어', ['Python', 'Java', 'SQL']],
@@ -18,9 +18,9 @@ export const capabilities = {
       icon: 'search',
       title: 'RAG 검색 설계',
       points: [
-        '모호한 자연어 질문에서도 **공식 표준 표현**을 정확히 매칭',
-        '정량 벤치마크로 파이프라인 과잉 설계를 식별하고 **지연 시간 최적화**',
-        '기술적 기교보다 데이터 규모에 맞는 **실용적 아키텍처** 선택',
+        '모호한 질문을 **공식 외국어 모음집의 표현**과 연결',
+        '검색 방식을 비교해 **적중률과 지연 시간** 측정',
+        '측정 결과를 바탕으로 **검색 구조의 단순화 방향** 도출',
       ],
       projects: ['fowoco'],
     },
@@ -29,8 +29,8 @@ export const capabilities = {
       title: 'MCP 도구화',
       points: [
         '문서 편집 기능을 본체에서 **독립된 MCP 도구로 분리**',
-        '도구의 역할을 좁고 명확히 정의해 어디서 불러도 **동일한 동작**',
-        '**Claude Code, Codex** 등 범용 에이전트에 플러그인으로 즉시 연결',
+        '문서 분석·편집 기능을 나눠 **다른 작업에서도 재사용**',
+        '**Claude Code, Codex**에서 쓸 수 있도록 플러그인으로 구성',
       ],
       projects: ['fowoco', 'hwpx'],
     },
@@ -38,9 +38,9 @@ export const capabilities = {
       icon: 'check',
       title: 'AI 작업 검증',
       points: [
-        'AI가 임의로 지어내지 않도록 **확인된 값만 서식에 반영**',
-        '모르는 영역을 **명시(unknown)**하고 실행 증거를 남기는 검증 체계',
-        'AI의 완료 선언 대신 **사람이 근거를 보고 최종 승인**',
+        '입력값과 위치를 확인한 뒤 **승인을 거쳐 문서에 반영**',
+        '확인하지 못한 내용은 **미확인으로 남기고** 실행 근거 기록',
+        'AI의 완료 선언과 근거를 대조해 **사람의 판단을 지원**',
       ],
       projects: ['hwpx', 'ownhands'],
     },
