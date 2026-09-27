@@ -167,16 +167,16 @@ export default function GatewayStudy() {
       </header>
 
       <nav className="fw-toc" aria-label="상세 페이지 목차">
-        <a href="#p-problem">01 출발점</a>
+        <a href="#p-problem">01 문제</a>
         <a href="#p-solution">02 해결</a>
         <a href="#p-result">03 결과와 회고</a>
       </nav>
 
-      {/* 01 출발점 */}
-      <Part n="01" title="이 프로젝트를 시작한 이유" id="p-problem" />
+      {/* 01 문제 */}
+      <Part n="01" title="문제 정의" id="p-problem" />
       <section id="problem" className="fw-section">
-        <Heading n="서비스 출발점" title="여러 LLM 중 상황에 맞는 모델을 고르기 번거로웠습니다">
-          사용자가 비용·속도·성능·문맥 길이를 일일이 비교하는 대신, 한 인터페이스에서 원하는 기준을 정하고 모델을 선택할 수 있도록 만들었습니다.
+        <Heading n="문제" title="여러 LLM 중 상황에 맞는 모델을 고르기 번거로웠습니다">
+          모델마다 비용·속도·성능·문맥 길이가 달라, 사용자가 요청에 맞는 모델을 고르려면 여러 기준을 직접 비교해야 했습니다.
         </Heading>
       </section>
 
