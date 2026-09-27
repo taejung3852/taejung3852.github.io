@@ -15,7 +15,6 @@ const mapping = [
   ['9504125000000', '외국인등록번호 Foreign Resident Registration No.'],
   ['010-0000-0000', '휴대전화 Cell phone No.'],
   ['031-000-0000', '전화번호 Phone No. — 근무처 행'],
-  ['3000', '연 소득금액 Annual Income Amount'],
 ];
 
 function Source({ href, children = '구현 근거' }) {
@@ -154,7 +153,7 @@ export default function HwpxStudy() {
       <nav className="fw-toc" aria-label="상세 페이지 목차">
         <a href="#p-problem">01 문제</a>
         <a href="#p-solution">02 해결</a>
-        <a href="#p-result">03 결과와 회고</a>
+        <a href="#p-result">03 실행 결과</a>
       </nav>
 
       <Part n="01" title="문서 편집에서 마주한 문제" id="p-problem" />
@@ -298,49 +297,29 @@ export default function HwpxStudy() {
         </div>
       </section>
 
-      <Part n="03" title="실행 결과와 남은 문제" id="p-result" />
+      <Part n="03" title="실행 결과" id="p-result" />
       <section id="result" className="fw-section">
-        <Heading n="정밀 대조" title="서식 반영 결과 및 셀 단위 구조 보존 대조" />
-        <div className="hx-side">
-          <div className="fw-table" tabIndex="0" role="region" aria-label="양식의 문항과 입력된 값">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">양식 문항</th>
-                  <th scope="col">반영 값</th>
+        <Heading n="서식 대조" title="입력값과 기존 문구 보존 확인" />
+        <div className="fw-table" tabIndex="0" role="region" aria-label="양식의 문항과 입력된 값">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">양식 문항</th>
+                <th scope="col">반영 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mapping.map(([v, cell]) => (
+                <tr key={v}>
+                  <th scope="row">{cell}</th>
+                  <td>{v}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {mapping.map(([v, cell]) => (
-                  <tr key={v}>
-                    <th scope="row">{cell}</th>
-                    <td>{v}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <figure>
-            <button
-              type="button"
-              className="fw-zoom"
-              aria-label="작성된 신청서 크게 보기"
-              onClick={() =>
-                zoom({
-                  src: '/images/hwpx-filled.png',
-                  alt: '플러그인으로 작성한 통합신청서 실행 결과',
-                })
-              }
-            >
-              <img src="/images/hwpx-filled.png" alt="플러그인으로 작성한 통합신청서 실행 결과" width="794" height="1123" loading="lazy" />
-            </button>
-            <figcaption>가상 정보를 넣은 통합신청서. 아래에서 입력 위치가 잘못된 칸도 함께 비교합니다.</figcaption>
-          </figure>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-        <div className="hx-cells-pair">
-          <div className="hx-cells">
-            <table>
+        <div className="hx-cells">
+          <table>
               <caption>
                 신청 종류 체크란 <span>section0.table0.row7</span>
               </caption>
@@ -374,55 +353,8 @@ export default function HwpxStudy() {
                   </td>
                 </tr>
               </tbody>
-            </table>
-            <p>이 사례에서 ChatGPT 웹은 체크란의 기존 문구를 삭제했고, 플러그인은 문구를 유지했습니다.</p>
-          </div>
-          <div className="hx-cells">
-            <table>
-              <caption>
-                연 소득금액 <span>section0.table0.row26</span>
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">구분</th>
-                  <th scope="col">단위 라벨 칸</th>
-                  <th scope="col">입력 대상 칸</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">원본</th>
-                  <td>
-                    <code>만원(ten thousand won)</code>
-                  </td>
-                  <td className="hx-gone">비어 있음</td>
-                </tr>
-                <tr>
-                  <th scope="row">ChatGPT 웹</th>
-                  <td>
-                    <code>만원(ten thousand won)</code>
-                  </td>
-                  <td>
-                    <code>
-                      <ins>3,000</ins>
-                    </code>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">플러그인</th>
-                  <td>
-                    <code>
-                      <ins>3000</ins> 만원(ten thousand won)
-                    </code>
-                  </td>
-                  <td className="hx-gone">비어 있음</td>
-                </tr>
-              </tbody>
-            </table>
-            <p>
-              이번 실행에서는 소득금액을 입력 대상 칸이 아닌 ‘만원’ 라벨 칸에 넣었습니다. 편집 결과는 계획과 일치했지만, 계획이 올바른 칸을 가리키는지는 검사하지 못했습니다.
-            </p>
-          </div>
+          </table>
+          <p>이 사례에서 ChatGPT 웹은 체크란의 기존 문구를 삭제했고, 플러그인은 문구를 유지했습니다.</p>
         </div>
         <div className="fw-proof-links">
           <Source href={base + '/src/hwp_mcp/server.py'}>compare_document_versions</Source>
@@ -431,16 +363,9 @@ export default function HwpxStudy() {
       </section>
 
       <section id="result-reflection" className="fw-section">
-        <Heading n="남은 검증 과제" title="편집 계획의 입력 위치도 확인해야 합니다" />
-        <Facts
-          items={[
-            ['현재 검사 범위', '편집 결과가 계획에 지정된 값과 위치를 따랐는지 확인. 이번 실행에서 계획 대비 차이는 없었음'],
-            ['확인하지 못한 것', '계획이 지정한 입력칸 자체가 맞는지 여부. 소득금액을 라벨 칸에 넣는 오류는 통과'],
-            ['개선 방향', '파일을 수정하기 전에 계획의 입력 위치가 양식 문항과 맞는지 검사'],
-          ]}
-        />
+        <Heading n="검증 범위" title="더 다양한 양식에서 입력 위치를 확인해야 합니다" />
         <p className="fw-note">
-          * 양식 한 종류를 한 번 실행한 결과입니다. 입력 위치를 미리 검사하는 단계는 아직 구현하지 않았습니다.
+          * 위 비교는 양식 한 종류를 한 번 실행한 기록 중 일부 항목입니다. 다른 양식에서 입력 위치가 항상 맞는지는 추가 검증이 필요합니다.
         </p>
       </section>
 
