@@ -5,10 +5,10 @@ import useTocSpy from './useTocSpy';
 
 const base = 'https://github.com/fowoco/ai/blob/209ebddf3878f750c37e5ebe5651b0fe6aa0a354';
 const rows = [
-  ['단일 Dense', '99%', '0.95', '60ms'],
-  ['단일 Hybrid', '99%', '0.95', '80ms'],
-  ['멀티쿼리 Hybrid', '100%', '0.96', '120ms'],
-  ['멀티쿼리 Hybrid + Re-ranking', '100%', '0.96', '390ms'],
+  ['단일 Dense', '99%', '60ms'],
+  ['단일 Hybrid', '99%', '80ms'],
+  ['멀티쿼리 Hybrid', '100%', '120ms'],
+  ['멀티쿼리 Hybrid + Re-ranking', '100%', '390ms'],
 ];
 
 function Source({ href, children = '구현 근거' }) {
@@ -355,7 +355,6 @@ export default function FowocoStudy() {
               <tr>
                 <th scope="col">검색 구성</th>
                 <th scope="col">검색 성공률(Hit@5)</th>
-                <th scope="col">순위 점수(MRR)</th>
                 <th scope="col">검색 지연 시간</th>
               </tr>
             </thead>
