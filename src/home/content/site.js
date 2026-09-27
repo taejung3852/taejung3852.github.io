@@ -2,7 +2,7 @@ export { profile, projects } from '../../content/portfolio';
 export const projectSlugs = ['fowoco', 'hwpx', 'ownhands', 'llm-gateway'];
 export const homeProjectStories = [
   {
-    problem: '모호한 자연어 질문을 한국산업인력공단 공식 외국어 모음집으로 연결하는 검색 설계',
+    problem: '모호한 자연어 질문을 EPS 공식 외국어 모음집으로 연결하는 검색 설계',
     period: '2026.06 — 2026.08',
     team: '8인 팀',
     outcome: '단일 Dense 검색의 상위 5개 포함 비율 99% 확인 · 복잡한 검색의 지연 증가(60→390ms)를 측정하고 단순화 방향 도출',
@@ -16,11 +16,11 @@ export const homeProjectStories = [
     stack: ['Python', 'MCP', 'Agent Skills', 'HWPX(XML)'],
   },
   {
-    problem: 'AI가 코드를 만든 뒤 요구사항 충족과 테스트 실행 여부를 확인하기 어려운 문제',
+    problem: 'AI 네이티브 SDLC에서 기획·설계, 구현·검증, 사람의 판단을 어떻게 연결할지',
     period: '2026.09 — 현재',
     team: '개인 프로젝트',
-    outcome: '핵심 작업 흐름과 설치 CLI 구현 · 첫 실제 프로젝트의 전체 흐름 검증 준비 중',
-    stack: ['Codex', 'Git Native', 'Agent Skills', 'Continuous Evals'],
+    outcome: 'ChatGPT 기획·설계 스킬과 Codex 작업 스킬·설치 도구 구현 · 전체 연결 흐름 검증 중',
+    stack: ['ChatGPT', 'Codex', 'Git', 'Agent Skills'],
   },
   {
     problem: '비용·속도·성능 조건에 맞는 LLM 선택과 서로 다른 호출 방식의 통합',

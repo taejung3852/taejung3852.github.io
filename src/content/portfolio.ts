@@ -39,7 +39,7 @@ export const projects = [
   },
   {
     name: 'OwnHands',
-    summary: 'ChatGPT의 기획·설계와 Codex의 구현·검증을 Git으로 연결하고, 사용 피드백을 다음 작업에 반영하는 개발 하네스.',
+    summary: 'ChatGPT의 기획·설계와 Codex의 구현·검증을 Git으로 연결하고, 사람의 판단과 피드백 흐름을 발전시키는 개발 하네스.',
     role: '',
     status: '개인 프로젝트 · 핵심 구성 구현, 전체 연결 흐름 검증 중',
     href: 'https://github.com/taejung3852/OwnHands',
