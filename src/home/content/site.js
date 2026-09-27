@@ -26,7 +26,7 @@ export const homeProjectStories = [
     problem: '비용·속도·성능 조건에 맞는 LLM 선택과 서로 다른 호출 방식의 통합',
     period: '2025.04 — 2025.10',
     team: '2인 팀',
-    outcome: '자체 GPU 환경으로 옮겨 외부 API 비용 절감 · 약 3주간 사내 베타 운영',
+    outcome: '보유 GPU로 전환해 AWS 호스팅 비용 제거 · 약 3주간 베타 운영',
     stack: ['Java', 'Spring Boot', 'LangChain4j', 'Ollama', 'WebSocket'],
   },
 ];
