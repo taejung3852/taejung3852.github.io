@@ -315,7 +315,7 @@ export default function OwnhandsStudy() {
 
           <a
             className="oh-influence-card"
-            href="https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map-in-detail-using-coding-agents/"
+            href="https://charonhub.deeplearning.ai/the-ai-engineering-skills-map-in-detail-using-coding-agents/"
             target="_blank"
             rel="noreferrer"
             title="Andrew Ng의 코딩 에이전트 활용 글 보기"
