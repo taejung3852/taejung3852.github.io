@@ -209,14 +209,22 @@ export default function GatewayStudy() {
       </section>
 
       <section id="runtime" className="fw-section">
-        <Heading n="인프라 전환" title="클라우드 기반 빠른 검증 후 자체 GPU 인프라 전환" />
-        <Facts
-          items={[
-            ['1단계 (검증)', 'AWS SageMaker JumpStart를 활용해 인프라 구축 공수 없이 모델 연결성 및 스트리밍 파이프라인 즉시 검증'],
-            ['2단계 (전환)', '지속적인 클라우드 호스팅 비용 절감을 위해 사내 보유 GPU 인프라에 Ollama 서빙 환경 구성 및 마이그레이션'],
-            ['스트리밍 구현', '토큰 생성 이벤트를 WebSocket 파이프라인에 바인딩하여 실시간 응답 전달 및 저장 파이프라인 완성'],
-          ]}
-        />
+        <Heading n="인프라 전환" title="SageMaker로 빠르게 확인하고, 보유 GPU로 옮겼습니다" />
+        <div className="fw-findings">
+          <article className="fw-cost">
+            <span className="fw-kicker">AWS SageMaker JumpStart</span>
+            <strong>검증</strong>
+            <h3>모델 연결과 실시간 응답 확인</h3>
+            <p>인프라를 새로 구축하기 전에 오픈소스 모델을 연결하고, 답변이 전달되는 흐름을 확인했습니다.</p>
+          </article>
+          <article className="fw-benefit">
+            <span className="fw-kicker">보유 GPU · Ollama</span>
+            <strong>전환</strong>
+            <h3>AWS 호스팅 비용 제거</h3>
+            <p>기능을 확인한 뒤 보유 GPU 서버에서 모델을 실행해 외부 클라우드 인스턴스 사용료를 없앴습니다.</p>
+          </article>
+        </div>
+        <p className="fw-process">생성되는 답변은 WebSocket을 통해 사용자 화면에 순서대로 전달했습니다.</p>
         <div className="fw-proof-links">
           {commits.map(([label, sha]) => (
             <Source key={sha} href={repo + '/commit/' + sha}>
@@ -232,11 +240,11 @@ export default function GatewayStudy() {
       {/* 03 결과와 회고 */}
       <Part n="03" title="운영 결과와 다음 설계" id="p-result" />
       <section id="result" className="fw-section">
-        <Heading n="운영 결과" title="자체 GPU 전환과 약 3주간의 사내 베타 운영" />
+        <Heading n="운영 결과" title="자체 GPU 전환과 약 3주간의 베타 운영" />
         <Facts
           items={[
-            ['외부 호스팅 비용', '사내 보유 GPU 서버로 옮겨 외부 클라우드 인스턴스 사용료를 없앰'],
-            ['사내 베타', '약 3주간 사내 사용자에게 모델 라우팅과 대화 서비스 제공'],
+            ['외부 호스팅 비용', '보유 GPU 서버로 옮겨 외부 클라우드 인스턴스 사용료를 없앰'],
+            ['베타 운영', '약 3주간 모델 라우팅과 대화 서비스를 제공'],
             ['첫 응답 대기', '생성된 토큰을 바로 전달해 전체 응답이 끝날 때까지 기다리지 않고 내용을 볼 수 있게 함'],
           ]}
         />

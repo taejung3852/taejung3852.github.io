@@ -55,7 +55,7 @@ export const projects = [
     name: 'LLM Gateway Service',
     summary: '비용·속도·성능·문맥 길이에 설정한 가중치를 적용해 모델을 선택하고, 서로 다른 모델의 호출 방식을 하나로 묶은 서비스.',
     role: '모델 메타데이터 정리 · Provider 어댑터·스트리밍 구현 · 인프라 전환(AWS → 자체 GPU)',
-    status: '2인 팀 프로젝트 · 약 3주간 사내 베타 운영',
+    status: '2인 팀 프로젝트 · 약 3주간 베타 운영',
     href: 'https://github.com/taejung3852/llm-gateway',
     linkLabel: '저장소 보기',
     visualTitle: '단계에 맞춰 실행 환경을 선택',
