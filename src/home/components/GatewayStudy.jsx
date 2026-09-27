@@ -173,38 +173,14 @@ export default function GatewayStudy() {
 
       {/* 02 해결 */}
       <Part n="02" title="설계와 구현 과정" id="p-solution" />
-      <section id="routing" className="fw-section">
-        <Heading n="모델 정보" title="모델별 비용과 성능 지표를 정리했습니다">
-          모델 선택에 쓰이는 데이터를 갱신하고 누락된 메타데이터를 추가했습니다.
-        </Heading>
-      </section>
-
       <section id="integration" className="fw-section">
-        <Heading n="모델 연결성" title="공통 어댑터 계층 직접 구축을 통한 이종 모델 추상화" />
+        <Heading n="모델 연결" title="여러 모델을 같은 방식으로 호출하도록 연결했습니다" />
         <Facts
           items={[
-            ['프레임워크 한계 보완', '개발 당시 LangChain4j 미지원 모델(Gemma 등)의 요청·응답 규격을 어댑터 패턴으로 직접 개발'],
-            ['호출 규격 단일화', '모델별 Payload 직렬화 및 Response 파싱을 변환 계층에서 흡수하여 상위 비즈니스 로직 결합도 차단'],
-            ['동적 라우팅 연동', '선택된 모델 식별자에 따라 런타임에 적절한 Provider 어댑터로 요청 자동 바인딩'],
+            ['지원되지 않던 모델 연결', 'LangChain4j에서 바로 쓸 수 없던 Gemma를 연결하기 위해 전용 어댑터를 구현'],
+            ['호출 방식 통일', '모델마다 다른 요청과 응답 형식을 어댑터에서 맞춰, 서비스가 같은 방식으로 모델을 호출하도록 구성'],
           ]}
         />
-        <figure className="fw-boundary">
-          <article>
-            <span className="fw-kicker">표준 연동</span>
-            <h3>LangChain4j 제공 연동</h3>
-            <p>프레임워크 기본 지원 상용/오픈소스 모델</p>
-          </article>
-          <div className="fw-connection">
-            <span className="fw-connection-label">단일 공통 호출 규격</span>
-            <span className="fw-connection-arrow" aria-hidden="true">↔</span>
-            <small>어댑터 계층에서 파편화 흡수</small>
-          </div>
-          <article>
-            <span className="fw-kicker">직접 구현</span>
-            <h3>GemmaChatModel 등 전용 어댑터</h3>
-            <p>요청 직렬화 및 응답 변환 로직 커스텀 구현</p>
-          </article>
-        </figure>
         <figure className="fw-cover">
           <button
             type="button"
