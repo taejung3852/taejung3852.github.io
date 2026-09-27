@@ -225,7 +225,7 @@ export default function OwnhandsStudy() {
       </nav>
 
       {/* 01 출발점 */}
-      <Part n="01" title="AI와 개발할 때 무엇을 남길지 정했습니다" id="p-problem" />
+      <Part n="01" title="AI 네이티브 SDLC를 어떻게 운영할까?" id="p-problem" />
       <section id="problem" className="fw-section">
         <Heading n="출발점" title="기획·설계·구현에서 남길 내용을 나눴습니다" />
         <Facts
