@@ -3,8 +3,8 @@ export const profile = {
   phone: '010-8373-3852',
   email: 'taejung3852@gmail.com',
   github: 'https://github.com/taejung3852',
-  headline: ['AI의 작업을 통제하고,', '결과를 검증합니다.'],
-  description: ['AI가 만든 결과를 직접 이해하고 설명할 수 있도록 검증하며,', '최종 결과에 책임지는 개발자입니다.'],
+  headline: ['AI를 업무에 연결하고,', '실제 결과를 확인합니다.'],
+  description: ['RAG·에이전트·문서 도구를 만들며,', '선택한 방식의 효과와 한계를 확인하는 개발자입니다.'],
   role: ['AI Agent /', 'LLM Application Developer'],
 };
 
