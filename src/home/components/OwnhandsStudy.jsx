@@ -219,20 +219,21 @@ export default function OwnhandsStudy() {
 
       {/* Table of Contents */}
       <nav className="fw-toc" aria-label="상세 페이지 목차">
-        <a href="#p-problem">01 문제</a>
+        <a href="#p-problem">01 출발점</a>
         <a href="#p-solution">02 해결</a>
         <a href="#p-result">03 결과와 회고</a>
       </nav>
 
-      {/* 01 문제 */}
-      <Part n="01" title="빠른 코드 작성 뒤에 남는 개발의 연결" id="p-problem" />
+      {/* 01 출발점 */}
+      <Part n="01" title="AI와 개발할 때 무엇을 남길지 정했습니다" id="p-problem" />
       <section id="problem" className="fw-section">
-        <Heading n="문제 정의" title="의도와 결과가 다음 단계까지 이어져야 합니다" />
+        <Heading n="출발점" title="기획·설계·구현에서 남길 내용을 나눴습니다" />
         <Facts
           items={[
-            ['기획과 구현의 인계', '대화에서 합의한 목표와 설계가 구현 단계에서도 같은 기준으로 읽혀야 함'],
-            ['결과를 판단할 근거', '코드가 작성된 뒤에는 요구사항 충족과 테스트 결과, 확인하지 못한 부분을 구분해야 함'],
-            ['다음 작업으로 연결', '사용 중 얻은 피드백을 남겨 제품과 에이전트 작업 방식을 함께 개선할 필요가 있음'],
+            ['기획 · 목표', 'ChatGPT에서 문제·목표·제약을 정리하고, 승인한 내용을 intent.md로 남김'],
+            ['설계 · 요구사항', '기능과 완료 기준을 구체화하고, 승인한 내용을 spec.md로 남김'],
+            ['구현 · 실행 계획', 'Codex가 설계를 읽고, 계획이 필요한 작업은 Plan Mode에서 승인받아 plan.md로 남김'],
+            ['다음 작업으로 연결', '구현 결과와 사용 중 얻은 피드백을 기록해 다음 결정에 반영'],
           ]}
         />
 
@@ -257,7 +258,7 @@ export default function OwnhandsStudy() {
             />
           </button>
           <figcaption>
-            Anthropic SDLC Playbook을 참고한 도표. 코드 작성이 빨라지면 기획, 검토, 운영 단계의 연결도 중요해집니다.
+            Anthropic SDLC Playbook을 참고한 도표. 코드 작성이 빨라져도 목표를 정하고 결과를 확인하는 일은 남습니다.
           </figcaption>
         </figure>
 
