@@ -338,7 +338,7 @@ export default function HwpxStudy() {
               loading="lazy"
             />
           </button>
-          <figcaption>가상 정보를 입력한 통합신청서 한 종류의 실행 예시</figcaption>
+          <figcaption>가상 정보를 입력해 작성한 통합신청서 실행 결과</figcaption>
         </figure>
         <div className="hx-cells">
           <table>
