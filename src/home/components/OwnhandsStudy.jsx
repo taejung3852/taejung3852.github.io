@@ -321,7 +321,10 @@ export default function OwnhandsStudy() {
             title="Andrew Ng의 코딩 에이전트 활용 글 보기"
           >
             <div className="oh-influence-header">
-              <span className="oh-influence-title">Andrew Ng / Coding Agents ↗</span>
+              <span className="oh-influence-title">
+                <span className="oh-influence-monogram" aria-hidden="true">AN</span>
+                Andrew Ng / Coding Agents ↗
+              </span>
               <span className="oh-influence-badge">추가 참고</span>
             </div>
             <p className="oh-influence-thesis">개발자가 에이전트의 기획과 실행을 이끄는 역량을 다룹니다.</p>

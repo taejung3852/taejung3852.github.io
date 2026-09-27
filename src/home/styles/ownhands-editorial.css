@@ -43,6 +43,20 @@
   gap: 8px;
 }
 
+.oh-influence-monogram {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 16px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
 .oh-influence-badge {
   font-size: 11px;
   font-weight: 600;
