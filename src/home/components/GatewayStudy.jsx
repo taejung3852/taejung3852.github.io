@@ -5,15 +5,6 @@ import useTocSpy from './useTocSpy';
 
 const repo = 'https://github.com/taejung3852/llm-gateway';
 const src = repo + '/blob/b097447c0896589f59d623e68e810354f124d2da/src/main/java/site/gatein/backend';
-const routeSrc = repo + '/blob/fc82bbce0e04934be88684fe2fd400271998a346/src/main/java/site/gatein/backend/chat/service/RouteService.java';
-
-const criteria = [
-  ['비용', 'per 1M tokens', '낮을수록 높은 점수 (역정규화)', '비용 효율성 확보'],
-  ['속도', 'tokens/second', '높을수록 높은 점수 (정규화)', '응답 지연 최소화'],
-  ['성능', 'intelligence · math · coding', '높을수록 높은 점수 (정규화)', '추론 복잡도 대응'],
-  ['Context Length', '토큰 수', '높을수록 높은 점수 (정규화)', '긴 문맥 유지'],
-];
-
 const commits = [
   ['AWS SageMaker JumpStart 연결 구성', 'b097447c0896589f59d623e68e810354f124d2da'],
   ['AWS SageMaker JumpStart 연동 비활성화', 'cbdec737db45b6132156ac6d9e668aabf47560f8'],
@@ -157,7 +148,7 @@ export default function GatewayStudy() {
           </div>
           <div>
             <dt>담당</dt>
-            <dd>모델 메타데이터·성능 가중치 연동 · Provider 어댑터·스트리밍 구현 · 인프라 전환(AWS → Ollama)</dd>
+            <dd>모델 메타데이터 정리 · Provider 어댑터·스트리밍 구현 · 인프라 전환(AWS → Ollama)</dd>
           </div>
           <div>
             <dt>스택</dt>
@@ -183,43 +174,9 @@ export default function GatewayStudy() {
       {/* 02 해결 */}
       <Part n="02" title="설계와 구현 과정" id="p-solution" />
       <section id="routing" className="fw-section">
-        <Heading n="모델 선택" title="팀의 가중 라우팅에 모델 데이터와 성능 가중치를 연결" />
-        <Facts
-          items={[
-            ['팀의 모델 선택 로직', '비용·속도·성능·문맥 길이를 0~1로 환산하고 사용자 가중치를 적용해 모델을 선택'],
-            ['내가 맡은 연결', '성능 가중치를 요청·저장 데이터에 연결하고 RouteService의 변환 필드에 반영'],
-            ['모델 데이터 보완', '모델별 비용과 성능 지표를 갱신하고 누락된 메타데이터를 추가'],
-          ]}
-        />
-        <div className="fw-table" role="region" aria-label="모델 선택 기준 4종" tabIndex="0">
-          <table>
-            <caption>라우팅 환산 4대 기준</caption>
-            <thead>
-              <tr>
-                <th scope="col">기준</th>
-                <th scope="col">단위</th>
-                <th scope="col">방향</th>
-                <th scope="col">고려 목적</th>
-              </tr>
-            </thead>
-            <tbody>
-              {criteria.map(([k, u, d, p]) => (
-                <tr key={k}>
-                  <th scope="row">{k}</th>
-                  <td>{u}</td>
-                  <td>{d}</td>
-                  <td>{p}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="fw-note">
-          * 가중 점수 계산은 팀원이 구현했습니다. 박태정의 성능 가중치 연결과 모델 메타데이터 변경은 저장소의 변경 이력에서 확인할 수 있습니다.
-        </p>
-        <div className="fw-proof-links">
-          <Source href={routeSrc}>RouteService.java · 팀의 모델 선택 구현</Source>
-        </div>
+        <Heading n="모델 정보" title="모델별 비용과 성능 지표를 정리했습니다">
+          모델 선택에 쓰이는 데이터를 갱신하고 누락된 메타데이터를 추가했습니다.
+        </Heading>
       </section>
 
       <section id="integration" className="fw-section">
