@@ -446,7 +446,7 @@ export default function OwnhandsStudy() {
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#EFF6FF', borderColor: 'rgba(59, 130, 246, 0.25)' }}>
-                <img src="/images/chatgpt-mark.png" alt="ChatGPT 로고" />
+                <img src="/images/github-mark.png" alt="ChatGPT 로고" />
               </div>
               <span className="oh-agent-status is-progress">IN PROGRESS</span>
             </div>
@@ -460,7 +460,7 @@ export default function OwnhandsStudy() {
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
-                <img src="/images/github-mark.png" alt="GitHub 로고" />
+                <img src="/images/chatgpt-mark.png" alt="GitHub 로고" />
               </div>
               <span className="oh-agent-status is-progress">IN PROGRESS</span>
             </div>
