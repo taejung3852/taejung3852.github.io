@@ -177,6 +177,7 @@ export default function OwnhandsStudy() {
         <div className="fw-topbar">
           <Link className="fw-back" to="/#projects">← 주요 프로젝트</Link>
           <span>OwnHands</span>
+          <a className="fw-repo-link" href={repo} target="_blank" rel="noreferrer" aria-label="OwnHands GitHub 저장소 보기, 새 탭">GitHub 저장소 <span aria-hidden="true">↗</span></a>
         </div>
         <div className="fw-hero-split">
           <div className="fw-hero-copy">

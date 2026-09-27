@@ -4,8 +4,9 @@ import '../styles/fowoco-editorial.css';
 import useTocSpy from './useTocSpy';
 import '../styles/hwpx-editorial.css';
 
-const base = 'https://github.com/taejung3852/hwpx-document-plugin/blob/c73359a15341977e56d0cfa253f8f4d9fb625ccd';
-const tree = 'https://github.com/taejung3852/hwpx-document-plugin/tree/c73359a15341977e56d0cfa253f8f4d9fb625ccd';
+const repo = 'https://github.com/taejung3852/hwpx-document-plugin';
+const base = repo + '/blob/c73359a15341977e56d0cfa253f8f4d9fb625ccd';
+const tree = repo + '/tree/c73359a15341977e56d0cfa253f8f4d9fb625ccd';
 
 const mapping = [
   ['체류기간 연장허가', '체류기간 연장허가 EXTENSION OF SOJOURN PERIOD'],
@@ -107,6 +108,7 @@ export default function HwpxStudy() {
             ← 주요 프로젝트
           </Link>
           <span>HWPX Document Plugin</span>
+          <a className="fw-repo-link" href={repo} target="_blank" rel="noreferrer" aria-label="HWPX Document Plugin GitHub 저장소 보기, 새 탭">GitHub 저장소 <span aria-hidden="true">↗</span></a>
         </div>
         <div className="fw-hero-split">
           <div className="fw-hero-copy">

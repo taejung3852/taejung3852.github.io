@@ -114,6 +114,7 @@ export default function GatewayStudy() {
             ← 주요 프로젝트
           </Link>
           <span>LLM Gateway Service</span>
+          <a className="fw-repo-link" href={repo} target="_blank" rel="noreferrer" aria-label="LLM Gateway Service GitHub 저장소 보기, 새 탭">GitHub 저장소 <span aria-hidden="true">↗</span></a>
         </div>
         <div className="fw-hero-split">
           <div className="fw-hero-copy">

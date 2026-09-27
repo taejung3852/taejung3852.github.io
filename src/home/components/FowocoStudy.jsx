@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import '../styles/fowoco-editorial.css';
 import useTocSpy from './useTocSpy';
 
-const base = 'https://github.com/fowoco/ai/blob/209ebddf3878f750c37e5ebe5651b0fe6aa0a354';
+const repo = 'https://github.com/fowoco/ai';
+const base = repo + '/blob/209ebddf3878f750c37e5ebe5651b0fe6aa0a354';
 const rows = [
   ['단일 Dense', '99%', '60ms'],
   ['단일 Hybrid', '99%', '80ms'],
@@ -97,6 +98,7 @@ export default function FowocoStudy() {
             ← 주요 프로젝트
           </Link>
           <span>FOWOCO</span>
+          <a className="fw-repo-link" href={repo} target="_blank" rel="noreferrer" aria-label="FOWOCO GitHub 저장소 보기, 새 탭">GitHub 저장소 <span aria-hidden="true">↗</span></a>
         </div>
         <div className="fw-hero-split">
           <div className="fw-hero-copy">

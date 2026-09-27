@@ -55,9 +55,12 @@
 @media(max-width:700px){.fw-meta{grid-template-columns:minmax(0,1fr);gap:16px}}
 
 /* The back link alone left a bare band at the top; name the page there. */
-.fw-topbar{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:48px}
+.fw-topbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px;margin-bottom:48px}
 .fw-topbar .fw-back{margin-bottom:0}
-.fw-topbar>span{font-size:14px;color:var(--muted);letter-spacing:-.01em}
+.fw-topbar>span{margin-left:auto;font-size:14px;color:var(--muted);letter-spacing:-.01em}
+.fw-topbar .fw-repo-link{display:inline-flex;align-items:center;gap:14px;min-height:40px;padding:7px 12px;border:1px solid var(--ink);font-size:13px;font-weight:600;white-space:nowrap}
+.fw-topbar .fw-repo-link:hover{background:var(--ink);color:var(--bg)}
+@media(max-width:600px){.fw-topbar .fw-repo-link{margin-left:auto}}
 /* Prose links read as plain text at --muted; lift to --ink and underline them.
    The page is monochrome, so brightness is the accent. */
 .fw-study .fw-inline-link{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px}
