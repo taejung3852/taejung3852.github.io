@@ -11,7 +11,7 @@ export const homeProjectStories = [
     period: '2026.07 — 현재',
     team: '2인 팀',
     outcome: '문서 구조와 화면 배치를 함께 분석하고 승인 기반 편집·검증 흐름 구축 · MCP 도구 25종 구현',
-    stack: ['Python', 'MCP', 'Agent Skills', 'HWPX(XML)'],
+    stack: ['Python', 'MCP', 'Agent Skills', 'HWPX'],
   },
   {
     period: '2026.09 — 현재',
