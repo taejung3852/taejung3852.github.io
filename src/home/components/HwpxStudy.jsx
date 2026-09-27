@@ -163,7 +163,7 @@ export default function HwpxStudy() {
           items={[
             ['도구 부재', 'Word·Excel 문서에 비해 HWPX 서식을 에이전트로 다룰 수 있는 도구가 부족했음'],
             ['FOWOCO에서의 출발', <>체류 서류 자동화를 위해 <Link className="fw-inline-link" to="/projects/fowoco">FOWOCO</Link> 내부 함수로 시작했으나 범용 에이전트 확장을 위해 독립 분리</>],
-            ['XML과 배치의 괴리', <><Field>전화번호 Phone No.</Field> 등 동일 문구가 서식 내 4곳에 중복 존재해 단순 텍스트 파싱만으로는 입력 위치 특정 불가</>],
+            ['XML과 배치의 괴리', <><Field>전화번호</Field> <Field>Phone</Field> <Field>No.</Field> 등 동일 문구가 서식 내 4곳에 중복 존재해 단순 텍스트 파싱만으로는 입력 위치 특정 불가</>],
             ['직접 편집 결과', 'ChatGPT 웹에 서식 편집을 요청한 사례에서 13자리 입력칸 정렬 실패, 성별 미체크, 요청하지 않은 서명란·공용란 입력이 발생'],
           ]}
         />
