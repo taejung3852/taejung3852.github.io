@@ -344,43 +344,43 @@ export default function OwnhandsStudy() {
           ]}
         />
 
-        <Heading n="설계 기준" title="의도, 실행 근거, 사람의 판단을 연결합니다">
-          작업마다 필요한 기준과 결과를 사람이 읽을 수 있는 문서로 남깁니다.
+        <Heading n="설계 기준" title="작업 규칙을 정하고, 결과를 직접 확인합니다">
+          사용 중 발견한 문제는 필요한 것만 골라 다음 작업에 반영합니다.
         </Heading>
 
         {/* 3 Core Principles */}
         <div className="oh-principles">
           <div className="oh-principle-card">
-            <span className="oh-principle-tag">01 HUMAN-IN-THE-LOOP</span>
-            <h3>시작과 끝은 사람이 결정</h3>
+            <span className="oh-principle-tag">01 작업 기준</span>
+            <h3>공통 규칙과 이번 목표를 구분</h3>
             <p>
-              <code>intent.md</code>에 작업 의도와 하지 않을 일을 적고, 최종 머지는 사람이 결정합니다.
+              <code>AGENTS.md</code>는 에이전트의 공통 작업 규칙, <code>intent.md</code>와 <code>spec.md</code>는 계획이 필요한 작업의 목표와 완료 기준을 담습니다. 중요한 결정은 사람이 승인합니다.
             </p>
           </div>
           <div className="oh-principle-card">
-            <span className="oh-principle-tag">02 FRESH EVIDENCE</span>
-            <h3>실행 결과를 기준과 대조</h3>
+            <span className="oh-principle-tag">02 결과 확인</span>
+            <h3>완료했다면 실제로 확인</h3>
             <p>
-              테스트 결과와 변경 내역을 작업 기준에 비춰 검토합니다. 확인하지 못한 항목은 따로 남깁니다.
+              에이전트의 완료 설명만으로 끝내지 않고, 이번 변경의 테스트 결과나 화면을 확인해 작업 기준과 비교합니다. 확인하지 못한 항목은 따로 남깁니다.
             </p>
           </div>
           <div className="oh-principle-card">
-            <span className="oh-principle-tag">03 CONTINUOUS FEEDBACK</span>
-            <h3>피드백을 다음 작업에 반영</h3>
+            <span className="oh-principle-tag">03 다음 개선</span>
+            <h3>실제 사용에서 배운 점 반영</h3>
             <p>
-              사용 중 발견한 문제를 기록하고, 검토한 뒤 필요한 규칙이나 평가를 바꿉니다.
+              사용자 교정이나 검사 실패를 기록하고, 필요한 변경만 검토해 다음 작업 방식에 반영합니다.
             </p>
           </div>
         </div>
 
         <Heading n="작업 흐름" title="ChatGPT의 설계와 Codex의 구현을 Git으로 잇습니다">
-          아래는 현재 구성한 흐름입니다. 구성 요소의 로컬 검증과 전체 연결 흐름의 실제 사용 결과는 구분해 확인하고 있습니다.
+          아래는 현재 다루는 기획·설계·구현·검증·피드백 흐름입니다. 배포와 유지보수는 이후 연결할 범위입니다.
         </Heading>
 
         <div className="oh-pipeline-container">
           {/* Phase 1: Chat planning, Git handoff, and Codex build */}
           <div className="oh-pipeline-track-header">
-            <span className="oh-track-kicker">PHASE 1 · 기획·설계와 구현 인계</span>
+            <span className="oh-track-kicker">기획·설계 → 구현</span>
             <span className="oh-track-desc">ChatGPT에서 정한 기준을 Git에 남기고 Codex로 연결</span>
           </div>
           <div className="oh-pipeline-row">
@@ -437,7 +437,7 @@ export default function OwnhandsStudy() {
 
           {/* Phase 2: Verification, human decisions, and feedback */}
           <div className="oh-pipeline-track-header">
-            <span className="oh-track-kicker">PHASE 2 · 검증, 사람의 판단과 피드백</span>
+            <span className="oh-track-kicker">검증 → 사람의 판단 → 피드백</span>
             <span className="oh-track-desc">결과를 확인하고 다음 작업에 경험을 반영</span>
           </div>
           <div className="oh-pipeline-row">
@@ -493,7 +493,7 @@ export default function OwnhandsStudy() {
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#EFF6FF', borderColor: 'rgba(59, 130, 246, 0.25)' }}>
-                <span>CHAT</span>
+                <img src="/images/chatgpt-mark.png" alt="ChatGPT 로고" />
               </div>
               <span className="oh-agent-status is-progress">IN PROGRESS</span>
             </div>
@@ -507,11 +507,11 @@ export default function OwnhandsStudy() {
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
-                <span>GIT</span>
+                <img src="/images/github-mark.png" alt="GitHub 로고" />
               </div>
               <span className="oh-agent-status is-progress">IN PROGRESS</span>
             </div>
-            <h4>Git · 승인 내용의 인계</h4>
+            <h4>GitHub · 승인 내용의 인계</h4>
             <p>
               저장하기로 한 승인 문서를 작업 브랜치에 남기는 흐름입니다. Issue 사용은 팀의 방식에 따라 선택합니다.
             </p>
@@ -530,6 +530,20 @@ export default function OwnhandsStudy() {
               작업 스킬과 설치 CLI를 구현했습니다. 승인 문서부터 결과와 피드백까지의 전체 흐름은 더 검증해야 합니다.
             </p>
             <div className="oh-agent-env">Build · Verify · Feedback</div>
+          </div>
+
+          <div className="oh-agent-card">
+            <div className="oh-agent-card-top">
+              <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
+                <img src="/images/claude.webp" alt="Claude Code 로고" />
+              </div>
+              <span className="oh-agent-status is-roadmap">검토 중</span>
+            </div>
+            <h4>Claude Code · 확장 검토</h4>
+            <p>
+              다른 실행 환경으로 지원할지 검토하고 있습니다. 지원 방식은 실제 필요를 확인한 뒤 정할 계획입니다.
+            </p>
+            <div className="oh-agent-env">지원 방식 미정 · 미구현</div>
           </div>
         </div>
 
