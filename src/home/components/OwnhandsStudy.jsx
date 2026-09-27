@@ -335,45 +335,6 @@ export default function OwnhandsStudy() {
           </a>
         </div>
 
-        <Heading n="역할 분담" title="기획 대화와 코드 실행에 맞는 도구를 나눴습니다" />
-        <Facts
-          items={[
-            ['ChatGPT에서 기획·설계', '긴 대화로 목표와 요구를 정리하는 방식이 제 작업에 잘 맞아, 직접 만든 OwnHands 플러그인의 스킬을 사용'],
-            ['Codex 사용량 배분', '기획·설계 대화에 Codex를 쓰지 않고, Codex 사용량은 구현과 검증 작업에 남겨둠'],
-            ['Git으로 기준 인계', '저장하기로 한 승인 문서를 작업 브랜치에 기록. Issue는 팀의 방식에 따라 선택'],
-            ['Codex에서 구현·검증', '기록된 기준을 읽고 필요한 경우 구현 계획을 승인받아 실행과 결과 확인에 집중'],
-          ]}
-        />
-
-        <Heading n="설계 기준" title="작업 규칙을 정하고, 결과를 직접 확인합니다">
-          사용 중 발견한 문제는 필요한 것만 골라 다음 작업에 반영합니다.
-        </Heading>
-
-        {/* 3 Core Principles */}
-        <div className="oh-principles">
-          <div className="oh-principle-card">
-            <span className="oh-principle-tag">01 작업 기준</span>
-            <h3>공통 규칙과 이번 목표를 구분</h3>
-            <p>
-              <code>AGENTS.md</code>는 에이전트의 공통 작업 규칙, <code>intent.md</code>와 <code>spec.md</code>는 계획이 필요한 작업의 목표와 완료 기준을 담습니다. 중요한 결정은 사람이 승인합니다.
-            </p>
-          </div>
-          <div className="oh-principle-card">
-            <span className="oh-principle-tag">02 결과 확인</span>
-            <h3>완료했다면 실제로 확인</h3>
-            <p>
-              에이전트의 완료 설명만으로 끝내지 않고, 이번 변경의 테스트 결과나 화면을 확인해 작업 기준과 비교합니다. 확인하지 못한 항목은 따로 남깁니다.
-            </p>
-          </div>
-          <div className="oh-principle-card">
-            <span className="oh-principle-tag">03 다음 개선</span>
-            <h3>실제 사용에서 배운 점 반영</h3>
-            <p>
-              사용자 교정이나 검사 실패를 기록하고, 필요한 변경만 검토해 다음 작업 방식에 반영합니다.
-            </p>
-          </div>
-        </div>
-
         <Heading n="작업 흐름" title="ChatGPT의 설계와 Codex의 구현을 Git으로 잇습니다">
           아래는 현재 다루는 기획·설계·구현·검증·피드백 흐름입니다. 배포와 유지보수는 이후 연결할 범위입니다.
         </Heading>
@@ -480,15 +441,6 @@ export default function OwnhandsStudy() {
       {/* 03 결과와 회고 */}
       <Part n="03" title="현재 구현과 남은 검증" id="p-result" />
       <section id="result" className="fw-section">
-        <Heading n="설계 변경" title="별도 실행 시스템을 줄이고 기존 도구를 연결했습니다" />
-        <Facts
-          items={[
-            ['구조 단순화', '별도 실행 시스템을 늘리던 초기 구성을 줄이고 ChatGPT·Git·Codex의 기존 기능을 연결'],
-            ['검증 기준 유지', '완료 주장과 테스트 결과를 구분하고, 제품 결과와 에이전트 작업 방식을 따로 평가'],
-            ['현재 확인한 범위', 'Codex 스킬과 설치 CLI, Chat 기획 스킬을 작성하고 로컬 검사 및 일부 사용 경험을 기록'],
-          ]}
-        />
-
         <Heading n="현재 상태" title="구성 요소를 만들고 전체 연결 흐름을 확인하고 있습니다" />
         <div className="oh-agent-grid">
           <div className="oh-agent-card">
