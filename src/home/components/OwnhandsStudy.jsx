@@ -537,13 +537,13 @@ export default function OwnhandsStudy() {
               <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
                 <img src="/images/claude.webp" alt="Claude Code 로고" />
               </div>
-              <span className="oh-agent-status is-roadmap">검토 중</span>
+              <span className="oh-agent-status is-roadmap">확장 예정</span>
             </div>
-            <h4>Claude Code · 확장 검토</h4>
+            <h4>Claude Code · 확장 예정</h4>
             <p>
-              다른 실행 환경으로 지원할지 검토하고 있습니다. 지원 방식은 실제 필요를 확인한 뒤 정할 계획입니다.
+              Claude Code에서도 OwnHands를 사용할 수 있도록 확장할 예정입니다. 지원 방식은 실제 필요를 확인한 뒤 정합니다.
             </p>
-            <div className="oh-agent-env">지원 방식 미정 · 미구현</div>
+            <div className="oh-agent-env">지원 예정 · 방식 미정</div>
           </div>
         </div>
 
