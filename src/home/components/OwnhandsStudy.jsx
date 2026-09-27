@@ -322,7 +322,7 @@ export default function OwnhandsStudy() {
           >
             <div className="oh-influence-header">
               <span className="oh-influence-title">
-                <span className="oh-influence-monogram" aria-hidden="true">AN</span>
+                <img className="oh-influence-portrait" src="/images/andrew-ng-portrait.png" alt="" width="20" height="20" loading="lazy" />
                 Andrew Ng / Coding Agents ↗
               </span>
               <span className="oh-influence-badge">추가 참고</span>
