@@ -188,11 +188,6 @@
   transform: translateY(-2px);
 }
 
-.oh-pipeline-step.is-human-gate {
-  border-color: rgba(37, 99, 235, 0.4);
-  background: rgba(37, 99, 235, 0.02);
-}
-
 .oh-step-header {
   display: flex;
   align-items: center;

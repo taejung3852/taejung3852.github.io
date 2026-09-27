@@ -452,7 +452,7 @@ export default function OwnhandsStudy() {
             </div>
             <div className="oh-pipeline-connector">→</div>
 
-            <div className="oh-pipeline-step is-human-gate">
+            <div className="oh-pipeline-step">
               <div className="oh-step-header">
                 <span className="oh-step-icon-wrap"><IconHumanGate /></span>
                 <span className="oh-step-badge">06 HUMAN GATE</span>
