@@ -182,11 +182,11 @@ export default function OwnhandsStudy() {
           <div className="fw-hero-copy">
             <p className="fw-kicker">개인 프로젝트 · 2026.09 — 현재</p>
             <h1>
-              AI의 완료 주장과<br />
-              사람이 확인한 결과를 구분합니다.
+              AI와 함께하는 개발을<br />
+              의도부터 피드백까지 잇습니다.
             </h1>
             <p className="fw-lead">
-              AI가 작성한 코드의 의도와 실행 근거를 남겨 사람이 검토하고 다음 행동을 결정하도록 돕는 개발 도구입니다. 핵심 작업 흐름과 설치 CLI를 구현했으며, 첫 실제 프로젝트에서 전체 흐름을 확인할 준비를 하고 있습니다.
+              OwnHands는 ChatGPT에서 정한 작업 의도와 설계를 Git에 남기고, Codex의 구현·검증과 사용 피드백으로 이어가는 개발 하네스입니다. 현재 구성 요소를 만들고 있으며, 전체 연결 흐름은 실제 작업에서 계속 확인하고 있습니다.
             </p>
           </div>
           <figure className="fw-cover">
@@ -196,9 +196,9 @@ export default function OwnhandsStudy() {
               aria-label="OwnHands 개요 크게 보기"
               onClick={() => zoom({ src: '/images/ownhands-cover.png', alt: 'OwnHands 로고 및 검증 프레임워크 개요' })}
             >
-              <img src="/images/ownhands-cover.png" width="648" height="691" alt="OwnHands 로고 및 검증 프레임워크 개요" loading="eager" />
+              <img src="/images/ownhands-cover.png" width="648" height="691" alt="OwnHands 로고 및 개발 흐름 개요" loading="eager" />
             </button>
-            <figcaption>OwnHands — 실행 근거를 확인하고 사람이 결정하는 개발 도구</figcaption>
+            <figcaption>OwnHands — 작업의 기준과 결과를 연결하고 사람이 결정하는 개발 하네스</figcaption>
           </figure>
         </div>
         <dl className="fw-meta">
@@ -208,7 +208,7 @@ export default function OwnhandsStudy() {
           </div>
           <div>
             <dt>운용</dt>
-            <dd>1인 개발 · 핵심 흐름 구현, 실제 프로젝트 검증 준비 중</dd>
+            <dd>1인 개발 · 핵심 구성 구현, 전체 연결 흐름 검증 중</dd>
           </div>
           <div>
             <dt>스택</dt>
@@ -225,14 +225,14 @@ export default function OwnhandsStudy() {
       </nav>
 
       {/* 01 문제 */}
-      <Part n="01" title="AI가 코드를 만든 뒤에도 남는 확인 작업" id="p-problem" />
+      <Part n="01" title="빠른 코드 작성 뒤에 남는 개발의 연결" id="p-problem" />
       <section id="problem" className="fw-section">
-        <Heading n="문제 정의" title="코드 작성 뒤에는 의도와 실행 결과를 확인해야 합니다" />
+        <Heading n="문제 정의" title="의도와 결과가 다음 단계까지 이어져야 합니다" />
         <Facts
           items={[
-            ['확인 작업 증가', '코드는 빠르게 만들어도 요구사항 충족과 테스트 실행 여부는 별도로 확인해야 함'],
-            ['작업 의도 기록', '코드와 대화만으로는 왜 만들었고 무엇을 확인해야 하는지 다음 단계에 전달하기 어려움'],
-            ['필요한 도구', '기존 개발 도구 사이에 작업 기준과 검토 근거를 남길 연결이 필요했음'],
+            ['기획과 구현의 인계', '대화에서 합의한 목표와 설계가 구현 단계에서도 같은 기준으로 읽혀야 함'],
+            ['결과를 판단할 근거', '코드가 작성된 뒤에는 요구사항 충족과 테스트 결과, 확인하지 못한 부분을 구분해야 함'],
+            ['다음 작업으로 연결', '사용 중 얻은 피드백을 남겨 제품과 에이전트 작업 방식을 함께 개선할 필요가 있음'],
           ]}
         />
 
@@ -257,7 +257,7 @@ export default function OwnhandsStudy() {
             />
           </button>
           <figcaption>
-            Anthropic SDLC Playbook을 참고한 도표. 코드 작성 뒤에도 의도 정의와 검증·승인 작업이 남습니다.
+            Anthropic SDLC Playbook을 참고한 도표. 코드 작성이 빨라지면 기획, 검토, 운영 단계의 연결도 중요해집니다.
           </figcaption>
         </figure>
 
@@ -265,9 +265,9 @@ export default function OwnhandsStudy() {
       </section>
 
       {/* 02 해결 */}
-      <Part n="02" title="작업 기준과 검증 근거를 연결하는 흐름" id="p-solution" />
+      <Part n="02" title="의도부터 피드백까지 연결하는 흐름" id="p-solution" />
       <section id="solution" className="fw-section">
-        <Heading n="참고한 자료" title="설계에 참고한 두 자료" />
+        <Heading n="참고한 자료" title="개발 방향에 참고한 자료" />
 
         <div className="oh-influences-grid">
           <a
@@ -306,12 +306,39 @@ export default function OwnhandsStudy() {
               </span>
               <span className="oh-influence-badge">공식 가이드</span>
             </div>
-            <p className="oh-influence-thesis">코드 작성 전후의 의도와 검증 단계도 중요합니다.</p>
+            <p className="oh-influence-thesis">기획부터 유지보수까지 개발 단계를 연결합니다.</p>
             <div className="oh-influence-takeaway">
-              참고한 점: 의도 기록과 사람의 검토 단계
+              참고한 점: 단계별 산출물과 사람의 판단
+            </div>
+          </a>
+
+          <a
+            className="oh-influence-card"
+            href="https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map-in-detail-using-coding-agents/"
+            target="_blank"
+            rel="noreferrer"
+            title="Andrew Ng의 코딩 에이전트 활용 글 보기"
+          >
+            <div className="oh-influence-header">
+              <span className="oh-influence-title">Andrew Ng / Coding Agents ↗</span>
+              <span className="oh-influence-badge">추가 참고</span>
+            </div>
+            <p className="oh-influence-thesis">개발자가 에이전트의 기획과 실행을 이끄는 역량을 다룹니다.</p>
+            <div className="oh-influence-takeaway">
+              현재 방향과 맞닿은 관점: 에이전트 활용과 개발자의 판단
             </div>
           </a>
         </div>
+
+        <Heading n="역할 분담" title="기획 대화와 코드 실행에 맞는 도구를 나눴습니다" />
+        <Facts
+          items={[
+            ['ChatGPT에서 기획·설계', '긴 대화로 목표와 요구를 정리하는 방식이 제 작업에 잘 맞아, 직접 만든 OwnHands 플러그인의 스킬을 사용'],
+            ['Codex 사용량 배분', '기획·설계 대화에 Codex를 쓰지 않고, Codex 사용량은 구현과 검증 작업에 남겨둠'],
+            ['Git으로 기준 인계', '저장하기로 한 승인 문서를 작업 브랜치에 기록. Issue는 팀의 방식에 따라 선택'],
+            ['Codex에서 구현·검증', '기록된 기준을 읽고 필요한 경우 구현 계획을 승인받아 실행과 결과 확인에 집중'],
+          ]}
+        />
 
         <Heading n="설계 기준" title="의도, 실행 근거, 사람의 판단을 연결합니다">
           작업마다 필요한 기준과 결과를 사람이 읽을 수 있는 문서로 남깁니다.
@@ -342,72 +369,72 @@ export default function OwnhandsStudy() {
           </div>
         </div>
 
-        <Heading n="작업 흐름" title="구현과 검토를 나눠 진행하는 흐름">
-          아래는 설계한 흐름입니다. 첫 실제 프로젝트에서 모든 단계를 끝까지 검증하는 작업은 준비 중입니다.
+        <Heading n="작업 흐름" title="ChatGPT의 설계와 Codex의 구현을 Git으로 잇습니다">
+          아래는 현재 구성한 흐름입니다. 구성 요소의 로컬 검증과 전체 연결 흐름의 실제 사용 결과는 구분해 확인하고 있습니다.
         </Heading>
 
         <div className="oh-pipeline-container">
-          {/* Phase 1: Forward Implementation & Evidence Collection */}
+          {/* Phase 1: Chat planning, Git handoff, and Codex build */}
           <div className="oh-pipeline-track-header">
-            <span className="oh-track-kicker">PHASE 1 · 순방향 구현 및 증거 포착</span>
-            <span className="oh-track-desc">의도 고정부터 에이전트의 코드 작성과 실행 로그 수집까지</span>
+            <span className="oh-track-kicker">PHASE 1 · 기획·설계와 구현 인계</span>
+            <span className="oh-track-desc">ChatGPT에서 정한 기준을 Git에 남기고 Codex로 연결</span>
           </div>
           <div className="oh-pipeline-row">
             <div className="oh-pipeline-step">
               <div className="oh-step-header">
                 <span className="oh-step-icon-wrap"><IconIntent /></span>
-                <span className="oh-step-badge">01 INTENT</span>
+                <span className="oh-step-badge">01 PLAN &amp; DESIGN</span>
               </div>
-              <h4 className="oh-step-title">의도 선언</h4>
-              <span className="oh-step-artifact">intent.md</span>
-              <p className="oh-step-desc">작업의 Why와 비목표(Non-goals) 고정</p>
+              <h4 className="oh-step-title">ChatGPT에서 기획·설계</h4>
+              <span className="oh-step-artifact">intent.md · spec.md</span>
+              <p className="oh-step-desc">목표, 제약, 요구사항과 수용 기준을 함께 정리</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
             <div className="oh-pipeline-step">
               <div className="oh-step-header">
                 <span className="oh-step-icon-wrap"><IconSpec /></span>
-                <span className="oh-step-badge">02 SPEC &amp; PLAN</span>
+                <span className="oh-step-badge">02 GIT HANDOFF</span>
               </div>
-              <h4 className="oh-step-title">사양 &amp; 계획</h4>
-              <span className="oh-step-artifact">spec.md · plan.md</span>
-              <p className="oh-step-desc">사전 인수 기준과 실행 커맨드 명세</p>
+              <h4 className="oh-step-title">승인된 내용 기록</h4>
+              <span className="oh-step-artifact">작업 브랜치 · Git</span>
+              <p className="oh-step-desc">저장하기로 한 승인 문서를 인계. Issue는 필요할 때만 사용</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
             <div className="oh-pipeline-step">
               <div className="oh-step-header">
-                <span className="oh-step-icon-wrap"><IconBuild /></span>
-                <span className="oh-step-badge">03 BUILD</span>
+                <span className="oh-step-icon-wrap"><IconPlan /></span>
+                <span className="oh-step-badge">03 CODEX PLAN</span>
               </div>
-              <h4 className="oh-step-title">Codex 구현</h4>
-              <span className="oh-step-artifact">CLI Headless Task</span>
-              <p className="oh-step-desc">사양에 맞춘 단위 코드 작성 및 테스트</p>
+              <h4 className="oh-step-title">구현 계획 구체화</h4>
+              <span className="oh-step-artifact">Codex Plan Mode · plan.md</span>
+              <p className="oh-step-desc">필요한 작업은 계획을 승인받고 실행 순서를 기록</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
             <div className="oh-pipeline-step">
               <div className="oh-step-header">
                 <span className="oh-step-icon-wrap"><IconEvidence /></span>
-                <span className="oh-step-badge">04 EVIDENCE</span>
+                <span className="oh-step-badge">04 BUILD</span>
               </div>
-              <h4 className="oh-step-title">실행 증거 수집</h4>
-              <span className="oh-step-artifact">Logs &amp; Git Diff</span>
-              <p className="oh-step-desc">AI 주장 배제, 터미널 로그 및 Diff 포착</p>
+              <h4 className="oh-step-title">구현과 결과 기록</h4>
+              <span className="oh-step-artifact">변경 코드 · 실행 근거</span>
+              <p className="oh-step-desc">Codex가 구현하고 해당 작업의 검사 결과를 남김</p>
             </div>
           </div>
 
           {/* Transition Divider */}
           <div className="oh-pipeline-divider">
             <div className="oh-divider-line" />
-            <span className="oh-divider-pill">사양(02) ↔ 실제 증거(04) 1:1 독립 교차 대조</span>
+            <span className="oh-divider-pill">승인된 기준 ↔ 구현 결과와 검증 근거 대조</span>
             <div className="oh-divider-line" />
           </div>
 
-          {/* Phase 2: Independent Verification & Human Gate */}
+          {/* Phase 2: Verification, human decisions, and feedback */}
           <div className="oh-pipeline-track-header">
-            <span className="oh-track-kicker">PHASE 2 · 독립 검증, 승인 및 피드백 환류</span>
-            <span className="oh-track-desc">실행 근거를 검토하고 사람이 다음 행동 결정</span>
+            <span className="oh-track-kicker">PHASE 2 · 검증, 사람의 판단과 피드백</span>
+            <span className="oh-track-desc">결과를 확인하고 다음 작업에 경험을 반영</span>
           </div>
           <div className="oh-pipeline-row">
             <div className="oh-pipeline-step">
@@ -415,9 +442,9 @@ export default function OwnhandsStudy() {
                 <span className="oh-step-icon-wrap"><IconVerify /></span>
                 <span className="oh-step-badge">05 VERIFY</span>
               </div>
-              <h4 className="oh-step-title">독립 1:1 대조</h4>
-              <span className="oh-step-artifact">Verifier Subagent</span>
-              <p className="oh-step-desc">독립 검증자가 사양 ↔ 증거 교차 대조</p>
+              <h4 className="oh-step-title">결과 검증</h4>
+              <span className="oh-step-artifact">수용 기준 · 실행 근거</span>
+              <p className="oh-step-desc">기준 충족과 미확인 항목을 구분해 검토</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
@@ -426,9 +453,9 @@ export default function OwnhandsStudy() {
                 <span className="oh-step-icon-wrap"><IconHumanGate /></span>
                 <span className="oh-step-badge">06 HUMAN GATE</span>
               </div>
-              <h4 className="oh-step-title">사람의 최종 승인</h4>
-              <span className="oh-step-artifact">Human Approval</span>
-              <p className="oh-step-desc">검증 리포트 확인 후 사람이 머지 결정</p>
+              <h4 className="oh-step-title">사람의 단계별 판단</h4>
+              <span className="oh-step-artifact">Review · Human Gate</span>
+              <p className="oh-step-desc">검토 결과를 보고 다음 변경을 결정</p>
             </div>
             <div className="oh-pipeline-connector">→</div>
 
@@ -437,75 +464,75 @@ export default function OwnhandsStudy() {
                 <span className="oh-step-icon-wrap"><IconRsi /></span>
                 <span className="oh-step-badge">07 FEEDBACK LOOP</span>
               </div>
-              <h4 className="oh-step-title">실무 피드백 환류</h4>
-              <span className="oh-step-artifact">Rules &amp; Evals</span>
-              <p className="oh-step-desc">실패 패턴과 피드백을 룰셋으로 축적</p>
+              <h4 className="oh-step-title">사용 경험을 다음 작업에</h4>
+              <span className="oh-step-artifact">Feedback · Evals</span>
+              <p className="oh-step-desc">관측한 문제를 기록하고 개선 후보로 검토</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* 03 결과와 회고 */}
-      <Part n="03" title="현재 상태와 다음 검증" id="p-result" />
+      <Part n="03" title="현재 구현과 남은 검증" id="p-result" />
       <section id="result" className="fw-section">
         <Heading n="설계 변경" title="별도 실행 시스템을 줄이고 기존 도구를 연결했습니다" />
         <Facts
           items={[
-            ['구조 단순화', '별도 실행 시스템을 늘리던 초기 구성을 줄이고 Codex와 Git의 기존 기능을 연결'],
-            ['검증 역할 분리', '완료 주장과 테스트 결과를 같은 것으로 취급하지 않도록 검토 역할과 근거를 분리'],
-            ['현재 확인한 범위', '핵심 흐름과 설치 CLI를 구현했고 결정론적 테스트와 정적 평가를 수행'],
+            ['구조 단순화', '별도 실행 시스템을 늘리던 초기 구성을 줄이고 ChatGPT·Git·Codex의 기존 기능을 연결'],
+            ['검증 기준 유지', '완료 주장과 테스트 결과를 구분하고, 제품 결과와 에이전트 작업 방식을 따로 평가'],
+            ['현재 확인한 범위', 'Codex 스킬과 설치 CLI, Chat 기획 스킬을 작성하고 로컬 검사 및 일부 사용 경험을 기록'],
           ]}
         />
 
-        <Heading n="현재 상태" title="첫 실제 프로젝트의 전체 흐름 검증을 준비 중입니다" />
+        <Heading n="현재 상태" title="구성 요소를 만들고 전체 연결 흐름을 확인하고 있습니다" />
         <div className="oh-agent-grid">
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#EFF6FF', borderColor: 'rgba(59, 130, 246, 0.25)' }}>
-                <img src="/images/codex.png" alt="Codex 로고" />
+                <span>CHAT</span>
               </div>
               <span className="oh-agent-status is-progress">IN PROGRESS</span>
             </div>
-            <h4>Codex (CLI)</h4>
+            <h4>ChatGPT · 기획과 설계</h4>
             <p>
-              Codex 스킬과 설치 CLI를 구현했습니다. 실제 프로젝트에서 작업을 처음부터 끝까지 수행하는 검증은 남아 있습니다.
+              직접 만든 플러그인의 기획·설계 스킬을 사용하고 있습니다. 최신 Git 인계 흐름은 더 확인하고 있습니다.
             </p>
-            <div className="oh-agent-env">핵심 흐름 구현 · 전체 흐름 검증 준비 중</div>
+            <div className="oh-agent-env">별도 Chat Plugin · 계획·설계</div>
           </div>
 
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#FFF7ED', borderColor: 'rgba(217, 119, 6, 0.25)' }}>
-                <img src="/images/claude.webp" alt="Claude Code 로고" />
+                <span>GIT</span>
               </div>
-              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+              <span className="oh-agent-status is-progress">IN PROGRESS</span>
             </div>
-            <h4>Claude Code</h4>
+            <h4>Git · 승인 내용의 인계</h4>
             <p>
-              대규모 탐색과 설계 검토에 연결하는 방안을 검토 중입니다.
+              저장하기로 한 승인 문서를 작업 브랜치에 남기는 흐름입니다. Issue 사용은 팀의 방식에 따라 선택합니다.
             </p>
-            <div className="oh-agent-env">지원 예정 · Claude Code CLI &amp; Agent Skills</div>
+            <div className="oh-agent-env">문서 기록 · 선택적 Issue</div>
           </div>
 
           <div className="oh-agent-card">
             <div className="oh-agent-card-top">
               <div className="oh-agent-icon-wrap" style={{ background: '#F5F3FF', borderColor: 'rgba(79, 70, 229, 0.25)' }}>
-                <img src="/images/antigravity.webp" alt="Antigravity 로고" />
+                <img src="/images/codex.png" alt="Codex 로고" />
               </div>
-              <span className="oh-agent-status is-roadmap">ROADMAP</span>
+              <span className="oh-agent-status is-progress">IN PROGRESS</span>
             </div>
-            <h4>Google Antigravity</h4>
+            <h4>Codex · 구현과 검증</h4>
             <p>
-              브라우저 검증과 백그라운드 작업에 연결할 수 있을지 검토 중입니다.
+              작업 스킬과 설치 CLI를 구현했습니다. 승인 문서부터 결과와 피드백까지의 전체 흐름은 더 검증해야 합니다.
             </p>
-            <div className="oh-agent-env">지원 예정 · Antigravity IDE &amp; Subagents</div>
+            <div className="oh-agent-env">Build · Verify · Feedback</div>
           </div>
         </div>
 
         <div className="oh-takeaway-box" style={{ marginTop: '32px' }}>
           <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
-            핵심 흐름의 구현과 로컬 검증 결과를 확인했습니다.<br />
-            실제 프로젝트에서 전체 흐름을 마친 결과는 아직 확인하지 못했습니다.
+            각 구성 요소와 로컬 검사 결과를 확인했습니다.<br />
+            ChatGPT에서 Codex까지 이어지는 최신 흐름은 실제 작업으로 더 확인할 예정입니다.
           </p>
         </div>
       </section>

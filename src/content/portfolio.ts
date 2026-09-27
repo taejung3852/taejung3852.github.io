@@ -39,16 +39,16 @@ export const projects = [
   },
   {
     name: 'OwnHands',
-    summary: 'AI가 만든 코드의 의도와 실행 근거를 남겨 사람이 검토하고 다음 행동을 결정하도록 돕는 개발 도구.',
+    summary: 'ChatGPT의 기획·설계와 Codex의 구현·검증을 Git으로 연결하고, 사용 피드백을 다음 작업에 반영하는 개발 하네스.',
     role: '',
-    status: '개인 프로젝트 · 핵심 흐름 구현, 실제 프로젝트 검증 준비 중',
+    status: '개인 프로젝트 · 핵심 구성 구현, 전체 연결 흐름 검증 중',
     href: 'https://github.com/taejung3852/OwnHands',
     linkLabel: '저장소 보기',
-    visualTitle: '실행 근거를 확인하고 사람이 다음 행동을 결정합니다',
+    visualTitle: '의도부터 검증과 피드백까지 연결합니다',
     steps: [
-      ['Intent → Spec → Plan', '작업 의도와 기준선 선언'],
-      ['Fresh Evidence & Verifier', '실행 근거와 기준 대조'],
-      ['Human Gate & Feedback', '사람의 검토와 피드백 기록'],
+      ['Chat Plan & Design', '의도와 설계를 대화로 정리'],
+      ['Git → Codex', '승인한 기준을 구현·검증으로 인계'],
+      ['Human Gate & Feedback', '사람의 판단과 피드백 기록'],
     ],
   },
   {
