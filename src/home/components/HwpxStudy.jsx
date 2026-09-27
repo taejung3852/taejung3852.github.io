@@ -318,6 +318,28 @@ export default function HwpxStudy() {
             </tbody>
           </table>
         </div>
+        <figure className="fw-cover">
+          <button
+            type="button"
+            className="fw-zoom"
+            aria-label="작성된 통합신청서 크게 보기"
+            onClick={() =>
+              zoom({
+                src: '/images/hwpx-filled.png',
+                alt: '가상 정보를 입력해 작성한 통합신청서 실행 결과',
+              })
+            }
+          >
+            <img
+              src="/images/hwpx-filled.png"
+              alt="가상 정보를 입력해 작성한 통합신청서 실행 결과"
+              width="794"
+              height="1123"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>가상 정보를 입력해 작성한 통합신청서 실행 결과</figcaption>
+        </figure>
         <div className="hx-cells">
           <table>
               <caption>
