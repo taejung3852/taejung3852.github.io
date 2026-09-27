@@ -258,8 +258,9 @@ export default function HwpxStudy() {
         <Heading n="플러그인 구조" title="단위 기능 도구(MCP)와 실행 절차(Agent Skills)의 분리" />
         <Facts
           items={[
-            ['도구-절차 분리', '문서를 조작하는 단위 기능 도구 25종(MCP)과 작업 순서를 강제하는 워크플로 5종(Agent Skills)으로 분리'],
-            ['순서 오류 방어', '분석 전 조회, 위치 확인 생략 등 비정상적 도구 호출을 거절하고 규정된 프로토콜 준수 강제'],
+            ['도구-절차 분리', '문서를 조작하는 MCP 도구 25종과 작업 순서를 안내하는 Agent Skills 5종으로 분리'],
+            ['Skill 역할', '문서 작업 진입 · 양식 작성 · 글자 서식 · 결과 검증 · 그림 작업 안내'],
+            ['순서 오류 방어', 'MCP 서버가 분석 전 조회, 위치 확인 생략 등 비정상적 도구 호출을 거절'],
             ['원클릭 배포', 'mcp.json과 skills/를 plugin.json 하나로 패키징해 Claude Code, Codex 등 범용 에이전트에 즉시 연동'],
           ]}
         />
@@ -285,7 +286,7 @@ export default function HwpxStudy() {
             <p>
               진입 스킬 1 + 작업별 4
               <br />
-              언제 무엇을 호출할지 순서 강제
+              언제 무엇을 호출할지 안내
             </p>
           </article>
           <figcaption>2인 팀 프로젝트이며, 저장소 내 WASM 뷰어 실험은 팀원 담당</figcaption>
