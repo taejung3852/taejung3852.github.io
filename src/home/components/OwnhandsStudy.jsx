@@ -186,7 +186,7 @@ export default function OwnhandsStudy() {
               의도부터 피드백까지 잇습니다.
             </h1>
             <p className="fw-lead">
-              OwnHands는 ChatGPT에서 정한 작업 의도와 설계를 Git에 남기고, Codex의 구현·검증과 사용 피드백으로 이어가는 개발 하네스입니다. 현재 구성 요소를 만들고 있으며, 전체 연결 흐름은 실제 작업에서 계속 확인하고 있습니다.
+              OwnHands는 AI 에이전트와 함께 소프트웨어 개발 생애주기(SDLC)를 어떻게 운영할지 탐구하는 개인 하네스입니다. AI 네이티브 개발의 새로운 흐름을 실제 작업에서 시험하고 피드백을 반영하며, 저와 함께 성장하는 도구로 만들고 있습니다.
             </p>
           </div>
           <figure className="fw-cover">
