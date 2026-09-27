@@ -338,7 +338,7 @@ export default function HwpxStudy() {
               loading="lazy"
             />
           </button>
-          <figcaption>가상 정보를 입력해 작성한 통합신청서 실행 결과</figcaption>
+          <figcaption>가상 정보를 입력한 통합신청서 한 종류의 실행 예시</figcaption>
         </figure>
         <div className="hx-cells">
           <table>
@@ -382,13 +382,6 @@ export default function HwpxStudy() {
           <Source href={base + '/src/hwp_mcp/server.py'}>compare_document_versions</Source>
           <Source href={base + '/src/hwp_mcp/vision.py'}>review_document_vision</Source>
         </div>
-      </section>
-
-      <section id="result-reflection" className="fw-section">
-        <Heading n="검증 범위" title="더 다양한 양식에서 입력 위치를 확인해야 합니다" />
-        <p className="fw-note">
-          * 위 비교는 양식 한 종류를 한 번 실행한 기록 중 일부 항목입니다. 다른 양식에서 입력 위치가 항상 맞는지는 추가 검증이 필요합니다.
-        </p>
       </section>
 
       <footer className="fw-footer">
