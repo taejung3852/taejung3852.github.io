@@ -167,15 +167,18 @@ export default function GatewayStudy() {
       </header>
 
       <nav className="fw-toc" aria-label="상세 페이지 목차">
-        <a href="#p-problem">01 문제</a>
+        <a href="#p-problem">01 출발점</a>
         <a href="#p-solution">02 해결</a>
         <a href="#p-result">03 결과와 회고</a>
       </nav>
 
-      {/* 01 문제 */}
-      <Part n="01" title="마주한 문제와 구조적 한계" id="p-problem" />
+      {/* 01 출발점과 개발 과정의 제약 */}
+      <Part n="01" title="시작한 이유와 개발 중 마주한 제약" id="p-problem" />
       <section id="problem" className="fw-section">
-        <Heading n="문제 정의" title="상용 API 비용 부담, 모델별 규격 파편화, 단순 하드 필터링의 한계" />
+        <Heading n="서비스 출발점" title="여러 LLM 중 상황에 맞는 모델을 고르기 번거로웠습니다">
+          사용자가 비용·속도·성능·문맥 길이를 일일이 비교하는 대신, 한 인터페이스에서 원하는 기준을 정하고 모델을 선택할 수 있도록 만들었습니다.
+        </Heading>
+        <Heading n="개발 과정의 제약" title="모델을 실제로 연결하면서 해결해야 했던 문제들" />
         <Facts
           items={[
             ['상용 API 비용 부담', '외부 유료 LLM API의 높은 호출 단가로 인한 운영 비용 급증 및 내부 데이터 격리 서빙 필요'],
