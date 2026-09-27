@@ -289,7 +289,6 @@ export default function HwpxStudy() {
               언제 무엇을 호출할지 안내
             </p>
           </article>
-          <figcaption>2인 팀 프로젝트이며, 저장소 내 WASM 뷰어 실험은 팀원 담당</figcaption>
         </figure>
         <div className="fw-proof-links">
           <Source href={tree + '/src/hwp_mcp'}>MCP 구현</Source>
