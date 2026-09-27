@@ -249,22 +249,9 @@ export default function GatewayStudy() {
           ]}
         />
 
-        <Heading n="다음 설계" title="필수 조건을 먼저 확인하고 전송 방식을 단순화하려 합니다" />
-        <Facts
-          items={[
-            [
-              '라우팅 제약 미분리 (Hard vs Soft)',
-              '현재는 문맥 길이·예산 같은 필수 조건과 선호 점수를 함께 계산합니다. 다음 설계에서는 필수 조건을 먼저 검사한 뒤 남은 모델에 가중치를 적용할 예정입니다.',
-            ],
-            [
-              '프로토콜 오버엔지니어링 (WebSocket vs SSE)',
-              '토큰을 한쪽으로 전달하는 기능에 WebSocket을 사용했습니다. 다시 설계한다면 REST와 SSE로 전송 구조를 단순화할 계획입니다.',
-            ],
-          ]}
-        />
-        <p className="fw-note">
-          * SSE 전환 및 Hard/Soft 분리 파이프라인은 사후 기술 검토를 통해 도출한 재설계 방향입니다.
-        </p>
+        <Heading n="다음 설계" title="답변 스트리밍은 SSE로 단순화하려 합니다">
+          다시 구현한다면 질문은 HTTP로 보내고, 생성되는 답변만 SSE로 전달하겠습니다.
+        </Heading>
       </section>
 
       <footer className="fw-footer">
