@@ -284,7 +284,7 @@ export default function OwnhandsStudy() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#F59E0B" stroke="#D97706" strokeWidth="1.5" />
                 </svg>
-                obra / superpowers ↗
+                obra / superpowers&nbsp;↗
               </span>
               <span className="oh-influence-badge">오픈소스 사례</span>
             </div>
@@ -304,7 +304,7 @@ export default function OwnhandsStudy() {
             <div className="oh-influence-header">
               <span className="oh-influence-title">
                 <img src="/images/claude.webp" alt="Anthropic Claude" width="16" height="16" style={{ objectFit: 'contain' }} />
-                Anthropic SDLC Playbook ↗
+                Anthropic SDLC Playbook&nbsp;↗
               </span>
               <span className="oh-influence-badge">공식 가이드</span>
             </div>
@@ -324,7 +324,7 @@ export default function OwnhandsStudy() {
             <div className="oh-influence-header">
               <span className="oh-influence-title">
                 <img className="oh-influence-portrait" src="/images/andrew-ng-portrait.png" alt="" width="20" height="20" loading="lazy" />
-                Andrew Ng / Coding Agents ↗
+                Andrew Ng / Coding Agents&nbsp;↗
               </span>
               <span className="oh-influence-badge">추가 참고</span>
             </div>
