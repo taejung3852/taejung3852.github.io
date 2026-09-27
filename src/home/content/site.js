@@ -2,28 +2,24 @@ export { profile, projects } from '../../content/portfolio';
 export const projectSlugs = ['fowoco', 'hwpx', 'ownhands', 'llm-gateway'];
 export const homeProjectStories = [
   {
-    problem: '질문에 맞는 EPS 공식 외국어 표현 찾기',
     period: '2026.06 — 2026.08',
     team: '8인 팀',
     outcome: '단일 Dense 검색의 상위 5개 포함 비율 99% 확인 · 복잡한 검색의 지연 증가(60→390ms)를 측정하고 단순화 방향 도출',
     stack: ['Python', 'LangGraph', 'Qdrant', 'Hybrid Search', 'MCP'],
   },
   {
-    problem: 'HWPX 문서의 잘못된 입력 위치와 값',
     period: '2026.07 — 현재',
     team: '2인 팀',
     outcome: '문서 구조와 화면 배치를 함께 분석하고 승인 기반 편집·검증 흐름 구축 · MCP 도구 25종 구현',
     stack: ['Python', 'MCP', 'Agent Skills', 'HWPX(XML)'],
   },
   {
-    problem: 'AI 개발 전 과정에서 주도권 유지하기',
     period: '2026.09 — 현재',
     team: '개인 프로젝트',
     outcome: 'ChatGPT 기획·설계 스킬과 Codex 작업 스킬·설치 도구 구현 · 전체 연결 흐름 검증 중',
     stack: ['ChatGPT', 'Codex', 'Git', 'Agent Skills'],
   },
   {
-    problem: '상황에 맞는 LLM을 고르는 번거로움',
     period: '2025.04 — 2025.10',
     team: '2인 팀',
     outcome: '보유 GPU로 전환해 AWS 호스팅 비용 제거 · 약 3주간 베타 운영',

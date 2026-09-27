@@ -20,7 +20,7 @@ export default function ProjectList({
                 <span className="section-index">{sectionNumber} /</span>
                 <h2 id="projects-title">주요 프로젝트</h2>
               </div>
-              <p className="section-intro">마주한 문제와 그에 대한 설계 판단을 소개합니다.</p>
+              <p className="section-intro">프로젝트의 결과와 맡은 일을 소개합니다.</p>
             </div>
           )}
           <article className="project-row">
@@ -109,7 +109,6 @@ export default function ProjectList({
               </div>
             </div>
             <div className="project-details">
-              <p className="project-question">{homeProjectStories[i].problem}</p>
               <p className="project-outcome">
                 <span className="project-role-label">결과</span>
                 {homeProjectStories[i].outcome}
