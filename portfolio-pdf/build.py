@@ -101,7 +101,7 @@ def overview(c):
     text(c, M, 349, "네 가지 문제, 네 가지 설계 판단", 17)
 
     rows = [
-        ("01", "FOWOCO", "모호한 질문을 공식 표현과 연결하는 EPS 검색 설계", "단일 Dense Hit@5 99%; 복잡한 검색은 60→390ms로 지연", "02", "https://taejung3852.github.io/projects/fowoco"),
+        ("01", "FOWOCO", "모호한 질문을 공식 표현과 연결하는 EPS 검색 설계", "단일 Dense 상위 5개 포함 비율 99%; 복잡한 검색은 60→390ms로 지연", "02", "https://taejung3852.github.io/projects/fowoco"),
         ("02", "HWPX Document Plugin", "입력값과 위치를 확인하는 공문서 편집 도구", "XML 구조·시각 배치 분석; MCP 도구 25종 구축", "02", "https://taejung3852.github.io/projects/hwpx"),
         ("03", "OwnHands", "AI의 완료 주장과 실행 근거를 구분하는 개발 흐름", "핵심 흐름과 설치 CLI 구현; 전체 흐름 검증 준비 중", "03", "https://taejung3852.github.io/projects/ownhands"),
         ("04", "LLM Gateway Service", "비용·속도·성능 조건에 맞는 모델 선택과 중계", "자체 GPU 전환; 약 3주간 사내 베타 운영", "03", "https://taejung3852.github.io/projects/llm-gateway"),
@@ -152,7 +152,7 @@ def projects_1(c):
         "https://taejung3852.github.io/projects/fowoco",
         "E-9 근로자의 구어체·오타가 행정 용어를 왜곡하고, HR 담당자는 서식을 반복 작성해야 했습니다.",
         "공식 EPS 외국어 모음집 검색을 설계·구현하고, HWPX 서식 기능을 독립 MCP 도구로 분리했습니다.",
-        "평가 데이터셋에서 단일 Dense 검색 Hit@5 99%를 확인했습니다. 멀티쿼리·재정렬은 지연을 60ms에서 390ms로 늘렸습니다.",
+        "평가 질의의 99%에서 필요한 표현이 단일 Dense 검색 상위 5개에 포함됐습니다. 멀티쿼리·재정렬은 지연을 60ms에서 390ms로 늘렸습니다.",
         "회고  |  복잡한 파이프라인은 당시 데모에 사용됐으며, 측정 후 단순화 필요성을 확인했습니다.",
     )
     detail_card(

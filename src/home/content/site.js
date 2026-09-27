@@ -5,7 +5,7 @@ export const homeProjectStories = [
     problem: '모호한 자연어 질문을 한국산업인력공단 공식 외국어 모음집으로 연결하는 검색 설계',
     period: '2026.06 — 2026.08',
     team: '8인 팀',
-    outcome: '단일 Dense 검색 Hit@5 99% 확인 · 복잡한 검색의 지연 증가(60→390ms)를 측정하고 단순화 방향 도출',
+    outcome: '단일 Dense 검색의 상위 5개 포함 비율 99% 확인 · 복잡한 검색의 지연 증가(60→390ms)를 측정하고 단순화 방향 도출',
     stack: ['Python', 'LangGraph', 'Qdrant', 'Hybrid Search', 'MCP'],
   },
   {

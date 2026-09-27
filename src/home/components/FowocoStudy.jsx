@@ -133,7 +133,7 @@ export default function FowocoStudy() {
           </div>
           <div>
             <dt>결과</dt>
-            <dd>단일 Dense Hit@5 99% 확인 · 복잡한 검색의 지연 증가(60→390ms)를 측정하고 단순화 방향 도출</dd>
+            <dd>단일 Dense 검색의 상위 5개 포함 비율 99% 확인 · 복잡한 검색의 지연 증가(60→390ms)를 측정하고 단순화 방향 도출</dd>
           </div>
           <div>
             <dt>스택</dt>
@@ -333,16 +333,16 @@ export default function FowocoStudy() {
         <Heading n="정량 벤치마크" title="가설과 달랐던 측정 결과: 단일 Dense만으로도 충분했다" />
         <div className="fw-findings">
           <article className="fw-benefit">
-            <span className="fw-kicker">단일 Dense 검색 Hit@5</span>
+            <span className="fw-kicker">단일 Dense 검색 결과</span>
             <strong>99%</strong>
-            <h3>단일 Dense 검색 Hit@5 99%</h3>
+            <h3>필요한 표현의 상위 5개 포함 비율 99%</h3>
             <p>평가 질의의 99%에서 필요한 표현이 검색 결과 상위 5개 안에 들었습니다.</p>
           </article>
           <article className="fw-cost">
             <span className="fw-kicker">복잡도 추가에 따른 지연 시간</span>
             <strong>60 → 390ms</strong>
             <h3>검색 지연 시간 6.5배</h3>
-            <p>멀티쿼리와 Re-ranking을 더하자 Hit@5는 1%p 높아졌고, 지연 시간은 60ms에서 390ms로 늘었습니다.</p>
+            <p>멀티쿼리와 Re-ranking을 더하자 상위 5개 포함 비율은 1%p 높아졌고, 지연 시간은 60ms에서 390ms로 늘었습니다.</p>
           </article>
         </div>
         <p className="fw-takeaway">
@@ -354,7 +354,7 @@ export default function FowocoStudy() {
             <thead>
               <tr>
                 <th scope="col">검색 구성</th>
-                <th scope="col">검색 성공률(Hit@5)</th>
+                <th scope="col">필요한 표현의 상위 5개 포함 비율</th>
                 <th scope="col">검색 지연 시간</th>
               </tr>
             </thead>
@@ -381,7 +381,7 @@ export default function FowocoStudy() {
         <Heading n="다음 설계 기준" title="측정 결과를 확인한 뒤 내린 판단" />
         <Facts
           items={[
-            ['검색 가설', '비정형 질문에 대응하려고 검색 단계를 늘렸지만, 정제된 모음집에서는 단일 Dense 검색도 Hit@5 99%를 기록'],
+            ['검색 가설', '비정형 질문에 대응하려고 검색 단계를 늘렸지만, 정제된 모음집에서는 단일 Dense 검색도 평가 질의의 99%에서 필요한 표현을 상위 5개 안에 찾음'],
             ['일정 제약', '벤치마크 결과를 확인했을 때는 통합과 시연 일정이 가까워 구성을 바꾸지 못함'],
             ['이후 설계 기준', '데이터와 지연 시간을 먼저 측정한 뒤 필요한 검색 단계만 추가'],
           ]}
