@@ -66,7 +66,7 @@
 .fw-study .fw-inline-link{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px}
 .fw-study .fw-inline-link:hover{color:var(--project-highlight);text-decoration-thickness:2px}
 
-/* Images open in place instead of a new tab (same pattern as the Gateway page). */
+/* Images open in a dialog, with the original available for browser zoom. */
 .fw-zoom{display:block;width:100%;padding:0;border:0;background:none;color:inherit;cursor:zoom-in}
 .fw-zoom:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
 .fw-dialog{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:64px 24px 24px;border:0;background:transparent;color:#fff;overflow:hidden}
@@ -74,7 +74,10 @@
 .fw-dialog::backdrop{background:rgb(0 0 0 / .85)}
 .fw-dialog img{display:block;width:auto;height:auto;max-width:min(1200px,100%);max-height:calc(100dvh - 88px)}
 .fw-dialog-close{position:fixed;top:12px;right:16px;display:grid;place-items:center;width:44px;height:44px;padding:10px;background:transparent;color:#fff;border:0;cursor:pointer}
-.fw-dialog-close:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.fw-dialog-original{position:fixed;top:12px;left:16px;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid rgb(255 255 255 / .4);border-radius:4px;background:rgb(0 0 0 / .4);color:#fff;font-size:14px;text-decoration:none}
+.fw-study .fw-dialog-original:hover{color:#fff;background:rgb(255 255 255 / .15);text-decoration:underline}
+.fw-study .fw-dialog-original:focus-visible,.fw-dialog-close:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:760px){.fw-dialog{padding:64px 16px 16px}.fw-dialog img{max-height:calc(100dvh - 80px)}.fw-dialog-original{top:8px;left:8px}.fw-dialog-close{top:8px;right:8px}}
 
 /* The one claim on this page that is enforced in code, not just described. */
 .hx-boundary-note{max-width:820px;margin-top:34px;padding:26px 0 0;border-top:1px solid var(--rule)}
@@ -98,13 +101,10 @@
   width:min(140px,calc((100vw - 1080px)/2 + 28px));
   flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;
   border-top:0;padding-top:0;border-left:1px solid var(--rule);font-size:14px}
- /* The rail reports position; it does not navigate. Pointer events off removes a
-    whole class of click-vs-scroll mismatch. Keyboard focus still reaches the links,
-    and below 1200px the same list is an ordinary clickable table of contents. */
- .fw-toc{pointer-events:none}
- .fw-toc a{pointer-events:none;padding:11px 0 11px 16px;margin-left:-1px;border-left:2px solid transparent;
+ .fw-toc a{padding:11px 0 11px 16px;margin-left:-1px;border-left:2px solid transparent;
   color:var(--muted);line-height:1.4;word-break:keep-all;text-decoration:none;
   transition:color .3s var(--ease),border-color .3s var(--ease),padding-left .3s var(--ease)}
+ .fw-toc a:hover{color:var(--ink);border-left-color:var(--muted);text-decoration:underline}
  .fw-toc a[aria-current]{color:var(--ink);border-left-color:var(--ink);font-weight:550;padding-left:22px}
  @media(prefers-reduced-motion:reduce){.fw-toc a{transition:none}}
 }

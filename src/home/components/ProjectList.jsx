@@ -7,13 +7,13 @@ import {
 } from '../content/site';
 
 export default function ProjectList({
-  sectionNumber = '02',
+  sectionNumber = '01',
   showFooter = false,
 }) {
   return (
     <section className="projects shell" id="projects" aria-labelledby="projects-title">
       {projects.map((p, i) => (
-        <div className="home-project-scene" key={p.name}>
+        <div className="home-project-scene" id={`project-${projectSlugs[i]}`} key={p.name}>
           {i === 0 && (
             <div className="projects-heading">
               <div className="section-heading">

@@ -6,9 +6,9 @@ import {useEffect} from 'react';
 // boundary, and then two sections match at once and the earlier one wins wrongly.
 export default function useTocSpy() {
   useEffect(() => {
-    const links = [...document.querySelectorAll('.fw-toc a[href^="#"]')];
+    const links = [...document.querySelectorAll('.fw-toc a')];
     if (!links.length) return;
-    const ids = links.map(a => a.getAttribute('href').slice(1));
+    const ids = links.map(a => a.hash.slice(1));
     // The rail hides its text at narrow widths and shows it via content:attr(data-label).
     links.forEach(a => { a.dataset.label = a.textContent.trim(); });
 

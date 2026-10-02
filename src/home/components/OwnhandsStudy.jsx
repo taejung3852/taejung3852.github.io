@@ -169,13 +169,20 @@ export default function OwnhandsStudy() {
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
-        {shot && <img src={shot.src} alt={shot.alt} />}
+        {shot && (
+          <>
+            <a className="fw-dialog-original" href={shot.src} target="_blank" rel="noreferrer">
+              원본 이미지 보기 ↗
+            </a>
+            <img src={shot.src} alt={shot.alt} />
+          </>
+        )}
       </dialog>
 
       {/* Hero Header */}
       <header className="fw-hero">
         <div className="fw-topbar">
-          <Link className="fw-back" to="/#projects">← 주요 프로젝트</Link>
+          <Link className="fw-back" to="/#project-ownhands">← 주요 프로젝트</Link>
           <span>OwnHands</span>
           <a className="fw-repo-link" href={repo} target="_blank" rel="noreferrer" aria-label="OwnHands GitHub 저장소 보기, 새 탭">GitHub 저장소 <span aria-hidden="true">↗</span></a>
         </div>
@@ -220,9 +227,9 @@ export default function OwnhandsStudy() {
 
       {/* Table of Contents */}
       <nav className="fw-toc" aria-label="상세 페이지 목차">
-        <a href="#p-problem">01 출발점</a>
-        <a href="#p-solution">02 해결</a>
-        <a href="#p-result">03 결과와 회고</a>
+        <Link to="#p-problem">01 출발점</Link>
+        <Link to="#p-solution">02 해결</Link>
+        <Link to="#p-result">03 결과와 회고</Link>
       </nav>
 
       {/* 01 출발점 */}

@@ -99,12 +99,19 @@ export default function HwpxStudy() {
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
-        {shot && <img src={shot.src} alt={shot.alt} />}
+        {shot && (
+          <>
+            <a className="fw-dialog-original" href={shot.src} target="_blank" rel="noreferrer">
+              원본 이미지 보기 ↗
+            </a>
+            <img src={shot.src} alt={shot.alt} />
+          </>
+        )}
       </dialog>
 
       <header className="fw-hero">
         <div className="fw-topbar">
-          <Link className="fw-back" to="/#projects">
+          <Link className="fw-back" to="/#project-hwpx">
             ← 주요 프로젝트
           </Link>
           <span>HWPX Document Plugin</span>
@@ -153,9 +160,9 @@ export default function HwpxStudy() {
       </header>
 
       <nav className="fw-toc" aria-label="상세 페이지 목차">
-        <a href="#p-problem">01 문제</a>
-        <a href="#p-solution">02 해결</a>
-        <a href="#p-result">03 실행 결과</a>
+        <Link to="#p-problem">01 문제</Link>
+        <Link to="#p-solution">02 해결</Link>
+        <Link to="#p-result">03 실행 결과</Link>
       </nav>
 
       <Part n="01" title="문서 편집에서 마주한 문제" id="p-problem" />
@@ -387,7 +394,7 @@ export default function HwpxStudy() {
       </section>
 
       <footer className="fw-footer">
-        <Link to="/#projects">← 주요 프로젝트</Link>
+        <Link to="/#project-hwpx">← 주요 프로젝트</Link>
         <Link to="/projects/ownhands">다음 프로젝트 · OwnHands →</Link>
       </footer>
     </div>

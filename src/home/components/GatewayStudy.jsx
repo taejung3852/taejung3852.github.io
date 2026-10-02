@@ -96,12 +96,19 @@ export default function GatewayStudy() {
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
-        {shot && <img src={shot.src} alt={shot.alt} />}
+        {shot && (
+          <>
+            <a className="fw-dialog-original" href={shot.src} target="_blank" rel="noreferrer">
+              원본 이미지 보기 ↗
+            </a>
+            <img src={shot.src} alt={shot.alt} />
+          </>
+        )}
       </dialog>
 
       <header className="fw-hero">
         <div className="fw-topbar">
-          <Link className="fw-back" to="/#projects">
+          <Link className="fw-back" to="/#project-llm-gateway">
             ← 주요 프로젝트
           </Link>
           <span>LLM Gateway Service</span>
@@ -158,9 +165,9 @@ export default function GatewayStudy() {
       </header>
 
       <nav className="fw-toc" aria-label="상세 페이지 목차">
-        <a href="#p-problem">01 문제</a>
-        <a href="#p-solution">02 해결</a>
-        <a href="#p-result">03 결과와 회고</a>
+        <Link to="#p-problem">01 문제</Link>
+        <Link to="#p-solution">02 해결</Link>
+        <Link to="#p-result">03 결과와 회고</Link>
       </nav>
 
       {/* 01 문제 */}
@@ -255,7 +262,7 @@ export default function GatewayStudy() {
       </section>
 
       <footer className="fw-footer">
-        <Link to="/#projects">← 주요 프로젝트</Link>
+        <Link to="/#project-llm-gateway">← 주요 프로젝트</Link>
         <Link to="/projects/ownhands">이전 프로젝트 · OwnHands ←</Link>
       </footer>
     </div>
