@@ -31,15 +31,3 @@
 
 /* Anchors for scanning: the point stays readable, the keywords step forward. */
 .capability-points strong{color:var(--ink);font-weight:600}
-
-/* A screener matching a job description shouldn't have to assemble the stack
-   from four project cards. Label reads as a heading, not a caption. */
-.capability-stack{margin:0 0 56px;border-top:2px solid var(--ink)}
-.capability-stack>div{display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;padding:20px 0;align-items:center;border-bottom:1px solid var(--rule)}
-.capability-stack dt{font-size:18px;font-weight:600;letter-spacing:-.02em;word-break:keep-all}
-.capability-stack dd{margin:0;min-width:0}
-.capability-stack .project-stack{margin:0;gap:10px}
-.capability-stack .project-stack li{font-size:16px;padding:8px 14px}
-.capabilities-intro{margin-top:24px;max-width:60ch;font-size:19px;line-height:1.8;color:var(--copy);word-break:keep-all;text-wrap:pretty}
-@media(max-width:600px){.capabilities-intro{font-size:17px}.capability-stack{margin-bottom:40px}}
-@media(max-width:600px){.capability-stack>div{grid-template-columns:minmax(0,1fr);gap:12px;padding:16px 0}}

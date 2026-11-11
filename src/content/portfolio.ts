@@ -6,6 +6,12 @@ export const profile = {
   headline: ['AI를 업무에 연결하고,', '실제 결과를 확인합니다.'],
   description: ['RAG·에이전트·문서 도구를 만들며,', '선택한 방식의 효과와 한계를 확인하는 개발자입니다.'],
   role: ['AI Agent /', 'LLM Application Developer'],
+  // One-line summary of Credentials.jsx for the first screen; keep the two in step.
+  facts: [
+    ['학력', '상명대학교 소프트웨어학과 · 3.95 / 4.5'],
+    ['교육', 'KT AIVLE School 9기 · AI Developer 과정'],
+    ['자격', '정보처리기사 · SQLD · ADsP · AICE · ISTQB CTFL'],
+  ],
 };
 
 export const projects = [

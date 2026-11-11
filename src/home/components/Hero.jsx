@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { profile } from '../content/site';
+import { capabilities } from '../content/capabilities';
 import ProfileCard from './ProfileCard';
 
+// The first screen has to introduce the person on its own: role, strengths, background, stack.
 export default function Hero(){
   return (
     <section className="hero shell" aria-labelledby="hero-title">
@@ -11,6 +13,14 @@ export default function Hero(){
           {profile.headline.map(line => <span key={line}>{line}</span>)}
         </h1>
         <p className="hero-description">{profile.description.join(' ')}</p>
+        <ul className="hero-strengths" aria-label="핵심 역량">
+          {capabilities.items.map(item => (
+            <li key={item.title}>
+              <b>{item.title}</b>
+              <span>{item.summary}</span>
+            </li>
+          ))}
+        </ul>
 
         <div className="hero-cta-group">
           <Link className="button" to="/#projects">
@@ -22,7 +32,14 @@ export default function Hero(){
         </div>
       </div>
       <ProfileCard/>
+      <dl className="hero-stack" aria-label="기술 스택">
+        {capabilities.stack.map(([group, tags]) => (
+          <div key={group}>
+            <dt>{group}</dt>
+            <dd><ul className="project-stack">{tags.map(t => <li key={t}>{t}</li>)}</ul></dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }
-
