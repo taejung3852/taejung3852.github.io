@@ -16,8 +16,8 @@ export const capabilities = {
     {
       icon: 'search',
       title: 'RAG 검색 설계',
-      // One line with its evidence, shown on the first screen.
-      summary: '검색 구성 4종을 벤치마크해 상위 5개 포함 비율 99% 확인',
+      // A few words of evidence, shown on the first screen. Keep it a fragment, not a sentence.
+      summary: '상위 5개 포함 비율 99%',
       points: [
         '모호한 질문을 **공식 외국어 모음집의 표현**과 연결',
         '검색 방식을 비교해 **적중률과 지연 시간** 측정',
@@ -28,8 +28,8 @@ export const capabilities = {
     {
       icon: 'wrench',
       title: 'MCP 도구화',
-      // One line with its evidence, shown on the first screen.
-      summary: '문서 분석·편집 기능을 MCP 도구 25종과 플러그인으로 구현',
+      // A few words of evidence, shown on the first screen. Keep it a fragment, not a sentence.
+      summary: 'MCP 도구 25종 · 플러그인',
       points: [
         '문서 편집 기능을 본체에서 **독립된 MCP 도구로 분리**',
         '문서 분석·편집 기능을 나눠 **다른 작업에서도 재사용**',
@@ -40,8 +40,8 @@ export const capabilities = {
     {
       icon: 'check',
       title: 'AI 작업 검증',
-      // One line with its evidence, shown on the first screen.
-      summary: '입력값과 위치를 확인받고 승인된 계획만 문서에 반영',
+      // A few words of evidence, shown on the first screen. Keep it a fragment, not a sentence.
+      summary: '승인 기반 문서 편집',
       points: [
         '입력값과 위치를 확인한 뒤 **승인을 거쳐 문서에 반영**',
         '확인하지 못한 내용은 **미확인으로 남기고** 실행 근거 기록',

@@ -8,8 +8,8 @@ export const profile = {
   role: ['AI Agent /', 'LLM Application Developer'],
   // One-line summary of Credentials.jsx for the first screen; keep the two in step.
   facts: [
-    ['학력', '상명대학교 소프트웨어학과 · 3.95 / 4.5'],
-    ['교육', 'KT AIVLE School 9기 · AI Developer 과정'],
+    ['학력', '상명대 소프트웨어학과 · 3.95 / 4.5'],
+    ['교육', 'KT AIVLE School 9기'],
     ['자격', '정보처리기사 · SQLD · ADsP · AICE · ISTQB CTFL'],
   ],
 };

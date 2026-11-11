@@ -12,7 +12,6 @@ export default function Hero(){
         <h1 id="hero-title">
           {profile.headline.map(line => <span key={line}>{line}</span>)}
         </h1>
-        <p className="hero-description">{profile.description.join(' ')}</p>
         <ul className="hero-strengths" aria-label="핵심 역량">
           {capabilities.items.map(item => (
             <li key={item.title}>
