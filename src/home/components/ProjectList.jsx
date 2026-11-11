@@ -13,11 +13,11 @@ const covers = {
     width: 2380,
     height: 1334,
   },
-  hwpx: {
-    src: '/images/hwpx-cover.png',
-    alt: 'HWPX Document Plugin — XML 구조와 렌더된 문서를 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 작업 흐름 개요',
-    width: 1672,
-    height: 941,
+  'llm-gateway': {
+    src: '/images/gateway-input.png',
+    alt: 'GateIn에서 가성비·속도·성능·기억력의 중요도를 조절하고 질문하는 화면',
+    width: 1515,
+    height: 1038,
   },
 };
 
@@ -26,8 +26,38 @@ const entries = projects.map((p, i) => ({
   slug: projectSlugs[i],
   story: homeProjectStories[i],
 }));
-const main = entries.filter((e) => !e.story.more);
+const main = entries.filter((e) => !e.story.more && !e.story.under);
 const more = entries.filter((e) => e.story.more);
+
+function Work({ story, wide }) {
+  return (
+    <div className={wide ? 'project-card-main project-card-main-wide' : 'project-card-main'}>
+      <div>
+        <span className="project-role-label">한 일</span>
+        <ul className="project-did">
+          {story.did.map(([keyword, tail]) => (
+            <li key={keyword}>
+              <b>{keyword}</b>
+              <span>{tail}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <span className="project-role-label">결과</span>
+        <ul className="project-metrics">
+          {story.metrics.map(([value, label]) => (
+            <li key={label}>
+              <b>{value}</b>
+              <span>{label}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="project-result">{story.outcome}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function ProjectList({ sectionNumber = '01' }) {
   return (
@@ -70,32 +100,27 @@ export default function ProjectList({ sectionNumber = '01' }) {
                 {story.goal}
               </p>
             </div>
-            <div className="project-card-main">
-              <div>
-                <span className="project-role-label">한 일</span>
-                <ul className="project-did">
-                  {story.did.map(([keyword, tail]) => (
-                    <li key={keyword}>
-                      <b>{keyword}</b>
-                      <span>{tail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <span className="project-role-label">결과</span>
-                <ul className="project-metrics">
-                  {story.metrics.map(([value, label]) => (
-                    <li key={label}>
-                      <b>{value}</b>
-                      <span>{label}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="project-result">{story.outcome}</p>
-              </div>
-            </div>
+            <Work story={story} />
           </div>
+          {entries
+            .filter((e) => e.story.under === slug)
+            .map((sub) => (
+              <section className="project-sub" id={`project-${sub.slug}`} key={sub.p.name}>
+                <header className="project-card-head">
+                  <span className="project-role-label">{p.name}에서 분리 · 확장</span>
+                  <h4>
+                    <Link to={`/projects/${sub.slug}`}>
+                      {sub.p.name} <span aria-hidden="true">→</span>
+                    </Link>
+                  </h4>
+                  <p className="project-period">
+                    {sub.story.period} · {sub.story.team}
+                  </p>
+                </header>
+                <p className="project-goal">{sub.story.goal}</p>
+                <Work story={sub.story} wide />
+              </section>
+            ))}
           <footer className="project-card-foot">
             <ul className="project-stack">
               {story.stack.map((t) => (
