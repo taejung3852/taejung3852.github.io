@@ -31,7 +31,16 @@ export default function About({ sectionNumber = '02' }) {
           <span className="section-index" aria-hidden="true">{sectionNumber} /</span>
           <h2 id="about-title">{capabilities.title}</h2>
         </div>
+        <p className="capabilities-intro">{capabilities.intro}</p>
       </div>
+      <dl className="capability-stack">
+        {capabilities.stack.map(([group, tags]) => (
+          <div key={group}>
+            <dt>{group}</dt>
+            <dd><ul className="project-stack">{tags.map(t => <li key={t}>{t}</li>)}</ul></dd>
+          </div>
+        ))}
+      </dl>
       <ol className="capability-list">
         {capabilities.items.map(item => (
           <li className="capability" key={item.title}>
@@ -49,14 +58,6 @@ export default function About({ sectionNumber = '02' }) {
           </li>
         ))}
       </ol>
-      <dl className="capability-stack">
-        {capabilities.stack.map(([group, tags]) => (
-          <div key={group}>
-            <dt>{group}</dt>
-            <dd><ul className="project-stack">{tags.map(t => <li key={t}>{t}</li>)}</ul></dd>
-          </div>
-        ))}
-      </dl>
     </section>
   );
 }

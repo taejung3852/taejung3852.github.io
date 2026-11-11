@@ -6,21 +6,48 @@ import {
   homeProjectStories,
 } from '../content/site';
 
-export default function ProjectList({
-  sectionNumber = '01',
-  showFooter = false,
-}) {
+const covers = {
+  fowoco: {
+    src: '/images/fowoco-cover.png',
+    alt: 'FOWOCO — AI 기반 제조업 E-9 외국인력 HR 업무보조 플랫폼',
+    width: 2380,
+    height: 1334,
+  },
+  hwpx: {
+    src: '/images/hwpx-cover.png',
+    alt: 'HWPX Document Plugin — XML 구조와 렌더된 문서를 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 작업 흐름 개요',
+    width: 1672,
+    height: 941,
+  },
+  'llm-gateway': {
+    src: '/images/gateway-input.png',
+    alt: '가성비·속도·성능·기억력의 중요도를 설정하는 GateIn 화면',
+    width: 1515,
+    height: 1038,
+    className: ' gateway-input-cover',
+  },
+};
+
+const entries = projects.map((p, i) => ({
+  p,
+  slug: projectSlugs[i],
+  story: homeProjectStories[i],
+}));
+const main = entries.filter((e) => !e.story.more);
+const more = entries.filter((e) => e.story.more);
+
+export default function ProjectList({ sectionNumber = '01' }) {
   return (
     <section className="projects shell" id="projects" aria-labelledby="projects-title">
-      {projects.map((p, i) => (
-        <div className="home-project-scene" id={`project-${projectSlugs[i]}`} key={p.name}>
+      {main.map(({ p, slug, story }, i) => (
+        <div className="home-project-scene" id={`project-${slug}`} key={p.name}>
           {i === 0 && (
             <div className="projects-heading">
               <div className="section-heading">
                 <span className="section-index">{sectionNumber} /</span>
                 <h2 id="projects-title">주요 프로젝트</h2>
               </div>
-              <p className="section-intro">프로젝트의 결과와 맡은 일을 소개합니다.</p>
+              <p className="section-intro">프로젝트마다 목표와 제가 한 일, 결과를 정리했습니다.</p>
             </div>
           )}
           <article className="project-row">
@@ -28,106 +55,60 @@ export default function ProjectList({
               <span className="project-number">{String(i + 1).padStart(2, '0')}</span>
               <div className="project-identity">
                 <h3>
-                  <Link to={`/projects/${projectSlugs[i]}`}>{p.name}</Link>
+                  <Link to={`/projects/${slug}`}>{p.name}</Link>
                 </h3>
                 <p className="project-period">
-                  {homeProjectStories[i].period} · {homeProjectStories[i].team}
+                  {story.period} · {story.team}
                 </p>
-                {projectSlugs[i] === 'fowoco' && (
-                  <Link
-                    className="project-cover"
-                    to="/projects/fowoco"
-                    aria-label="FOWOCO 프로젝트 페이지 보기"
-                  >
-                    <img
-                      src="/images/fowoco-cover.png"
-                      alt="FOWOCO — AI 기반 제조업 E-9 외국인력 HR 업무보조 플랫폼"
-                      width="2380"
-                      height="1334"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </Link>
-                )}
-                {projectSlugs[i] === 'hwpx' && (
-                  <Link
-                    className="project-cover"
-                    to="/projects/hwpx"
-                    aria-label="HWPX Document Plugin 프로젝트 페이지 보기"
-                  >
-                    <img
-                      src="/images/hwpx-cover.png"
-                      alt="HWPX Document Plugin — XML 구조와 렌더된 문서를 연결해 입력칸을 파악하고, 값 확인·승인·편집·검증으로 이어지는 작업 흐름 개요"
-                      width="1672"
-                      height="941"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </Link>
-                )}
-                {projectSlugs[i] === 'ownhands' && (
-                  <Link
-                    className="project-cover"
-                    to="/projects/ownhands"
-                    aria-label="OwnHands 프로젝트 페이지 보기"
-                  >
-                    <img
-                      src="/images/ownhands-cover.png"
-                      alt="OwnHands 로고 — 터미널 화면을 얼굴로 한 캐릭터와 상자 모양 캐릭터가 하네스를 차고, 검사 표시가 달린 사각 프레임 안에 서 있는 그림"
-                      width="1672"
-                      height="941"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </Link>
-                )}
-                {projectSlugs[i] === 'llm-gateway' && (
-                  <Link
-                    className="project-cover gateway-input-cover"
-                    to="/projects/llm-gateway"
-                    aria-label="LLM Gateway 프로젝트 페이지 보기"
-                  >
-                    <img
-                      src="/images/gateway-input.png"
-                      alt="가성비·속도·성능·기억력의 중요도를 설정하는 GateIn 화면"
-                      width="1515"
-                      height="1038"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </Link>
-                )}
-                {!['fowoco', 'llm-gateway', 'hwpx', 'ownhands'].includes(projectSlugs[i]) && (
-                  <div
-                    className="project-cover project-cover-guide"
-                    role="img"
-                    aria-label={`${p.name} 이미지 예정 영역`}
-                  >
-                    프로젝트 이미지
-                  </div>
-                )}
+                <Link
+                  className={'project-cover' + (covers[slug].className ?? '')}
+                  to={`/projects/${slug}`}
+                  aria-label={`${p.name} 프로젝트 페이지 보기`}
+                >
+                  <img
+                    src={covers[slug].src}
+                    alt={covers[slug].alt}
+                    width={covers[slug].width}
+                    height={covers[slug].height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </Link>
               </div>
             </div>
             <div className="project-details">
-              <p className="project-outcome">
-                <span className="project-role-label">결과</span>
-                {homeProjectStories[i].outcome}
+              <p className="project-block">
+                <span className="project-role-label">목표</span>
+                {story.goal}
               </p>
-              {p.role && (
-                <p className="project-role">
-                  <span className="project-role-label">담당</span>
-                  {p.role}
-                </p>
-              )}
+              <div className="project-block">
+                <span className="project-role-label">한 일</span>
+                <ul className="project-did">
+                  {story.did.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="project-block">
+                <span className="project-role-label">결과</span>
+                <div>
+                  <dl className="project-metrics">
+                    {story.metrics.map(([value, label]) => (
+                      <div key={label}>
+                        <dt>{label}</dt>
+                        <dd>{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <p>{story.outcome}</p>
+                </div>
+              </div>
               <ul className="project-stack">
-                {homeProjectStories[i].stack.map((t) => (
+                {story.stack.map((t) => (
                   <li key={t}>{t}</li>
                 ))}
               </ul>
-              <Link
-                className="project-detail-link"
-                to={`/projects/${projectSlugs[i]}`}
-              >
+              <Link className="project-detail-link" to={`/projects/${slug}`}>
                 문제와 해결 과정 보기 <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -144,14 +125,20 @@ export default function ProjectList({
               </span>
             </a>
           </article>
-          {i === projects.length - 1 && showFooter && (
-            <footer className="home-inline-footer">
-              <Link to="/">박태정</Link>
-              <a href="/documents/taejung-resume.pdf" download>
-                이력서 다운로드 ↗
-              </a>
-            </footer>
-          )}
+        </div>
+      ))}
+      {more.map(({ p, slug, story }) => (
+        <div className="home-project-scene project-more" id={`project-${slug}`} key={p.name}>
+          <p className="project-role-label">진행 중인 프로젝트</p>
+          <h3>
+            <Link to={`/projects/${slug}`}>
+              {p.name} <span aria-hidden="true">→</span>
+            </Link>
+          </h3>
+          <p className="project-period">
+            {story.period} · {story.team}
+          </p>
+          <p className="project-more-summary">{p.summary}</p>
         </div>
       ))}
     </section>

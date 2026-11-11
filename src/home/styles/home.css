@@ -52,3 +52,19 @@
 .hero-cta-group .button{margin-top:0}
 .button-secondary{background:transparent!important;color:var(--ink)!important;border:1px solid var(--rule)!important}
 .button-secondary:hover{background:var(--surface)!important;border-color:var(--ink)!important}
+
+/* Home cards read goal → what I did → result without opening the detail page. */
+.project-block{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;font-size:16px;line-height:1.7;color:var(--ink);word-break:keep-all}
+.project-block+.project-block{margin-top:22px}
+.project-did{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.project-did li{position:relative;padding-left:16px}
+.project-did li::before{content:'';position:absolute;left:0;top:.82em;width:7px;height:1px;background:var(--muted)}
+/* The figures are what a screener's eye should land on first. */
+.project-metrics{display:flex;flex-wrap:wrap;gap:16px 40px;margin:0 0 14px}
+.project-metrics>div{display:flex;flex-direction:column-reverse;gap:4px}
+.project-metrics dd{margin:0;font-size:clamp(28px,2.6vw,38px);font-weight:650;letter-spacing:-.04em;line-height:1.15;font-variant-numeric:tabular-nums;white-space:nowrap}
+.project-metrics dt{font-size:13px;line-height:1.5;color:var(--muted)}
+.project-more h3{margin-top:4px;font-size:clamp(22px,2vw,28px);font-weight:550;letter-spacing:-.04em}
+.project-more h3 a:hover{text-decoration:underline;text-underline-offset:6px}
+.project-more-summary{margin-top:16px;max-width:60ch;font-size:16px;line-height:1.7;color:var(--muted);word-break:keep-all}
+@media(max-width:600px){.project-block{grid-template-columns:minmax(0,1fr);gap:4px}}

@@ -3,8 +3,9 @@
 // Points are fragments, not sentences: the column is narrow and they are meant to be scanned.
 export const capabilities = {
   // Heading claims the three verbs; each card's title is the keyword for one of them.
-  // No intro line: the cards answer it faster than a paragraph can.
   title: '에이전트를 만들어 연결하고, 결과를 검증합니다.',
+  // Short self-introduction: this section now comes before the projects, so it has to say who I am.
+  intro: '소프트웨어학과를 졸업하고 KT AIVLE School에서 AI 개발 과정을 마쳤습니다. 팀 프로젝트에서 검색 파이프라인과 문서 도구를 맡아 구현했고, 만든 결과를 측정해 다음 설계의 기준으로 삼았습니다.',
   // Same grouping as the resume; keep the two in step.
   stack: [
     ['언어', ['Python', 'Java', 'SQL']],
