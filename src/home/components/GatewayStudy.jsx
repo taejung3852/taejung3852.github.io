@@ -151,7 +151,7 @@ export default function GatewayStudy() {
         <dl className="fw-meta">
           <div>
             <dt>구성</dt>
-            <dd>모델 선택 기준 4종 · 공통 어댑터 변환 · WebSocket 스트리밍</dd>
+            <dd>선택 대상 LLM 50종 · 모델 선택 기준 4종 · 공통 어댑터 변환 · WebSocket 스트리밍</dd>
           </div>
           <div>
             <dt>담당</dt>
@@ -184,6 +184,7 @@ export default function GatewayStudy() {
         <Heading n="모델 연결" title="여러 모델을 같은 방식으로 호출하도록 연결했습니다" />
         <Facts
           items={[
+            ['선택 대상 LLM', 'OpenAI · Google · Anthropic · Ollama 모델 50종의 메타데이터를 정리해 선택 대상으로 등록'],
             ['지원되지 않던 모델 연결', 'LangChain4j에서 바로 쓸 수 없던 Gemma를 연결하기 위해 전용 어댑터를 구현'],
             ['호출 방식 통일', '모델마다 다른 요청과 응답 형식을 어댑터에서 맞춰, 서비스가 같은 방식으로 모델을 호출하도록 구성'],
           ]}

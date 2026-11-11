@@ -29,16 +29,21 @@ const entries = projects.map((p, i) => ({
 const main = entries.filter((e) => !e.story.more && !e.story.under);
 const more = entries.filter((e) => e.story.more);
 
-function Work({ story, wide }) {
+function Work({ story }) {
   return (
-    <div className={wide ? 'project-card-main project-card-main-wide' : 'project-card-main'}>
+    <div className="project-card-main">
       <div>
         <span className="project-role-label">한 일</span>
         <ul className="project-did">
-          {story.did.map(([keyword, tail]) => (
-            <li key={keyword}>
+          {story.did.map(([keyword, tail, slug]) => (
+            <li key={keyword} id={slug && `project-${slug}`}>
               <b>{keyword}</b>
               <span>{tail}</span>
+              {slug && (
+                <Link to={`/projects/${slug}`}>
+                  {projects[projectSlugs.indexOf(slug)].name} 보기 <span aria-hidden="true">→</span>
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -102,25 +107,6 @@ export default function ProjectList({ sectionNumber = '01' }) {
             </div>
             <Work story={story} />
           </div>
-          {entries
-            .filter((e) => e.story.under === slug)
-            .map((sub) => (
-              <section className="project-sub" id={`project-${sub.slug}`} key={sub.p.name}>
-                <header className="project-card-head">
-                  <span className="project-role-label">{p.name}에서 분리 · 확장</span>
-                  <h4>
-                    <Link to={`/projects/${sub.slug}`}>
-                      {sub.p.name} <span aria-hidden="true">→</span>
-                    </Link>
-                  </h4>
-                  <p className="project-period">
-                    {sub.story.period} · {sub.story.team}
-                  </p>
-                </header>
-                <p className="project-goal">{sub.story.goal}</p>
-                <Work story={sub.story} wide />
-              </section>
-            ))}
           <footer className="project-card-foot">
             <ul className="project-stack">
               {story.stack.map((t) => (
@@ -128,7 +114,11 @@ export default function ProjectList({ sectionNumber = '01' }) {
               ))}
             </ul>
             <div className="project-card-links">
-              <Link className="project-detail-link" to={`/projects/${slug}`}>
+              <Link
+                className="project-detail-link"
+                to={`/projects/${slug}`}
+                aria-label={`${p.name} 문제와 해결 과정 보기`}
+              >
                 문제와 해결 과정 보기 <span aria-hidden="true">→</span>
               </Link>
               <a
