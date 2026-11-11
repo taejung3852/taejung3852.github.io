@@ -395,7 +395,7 @@ export default function HwpxStudy() {
 
       <footer className="fw-footer">
         <Link to="/#project-hwpx">← 주요 프로젝트</Link>
-        <Link to="/projects/ownhands">다음 프로젝트 · OwnHands →</Link>
+        <Link to="/projects/llm-gateway">다음 프로젝트 · LLM Gateway Service →</Link>
       </footer>
     </div>
   );

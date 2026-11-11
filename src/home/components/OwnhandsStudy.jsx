@@ -517,11 +517,11 @@ export default function OwnhandsStudy() {
 
       {/* Footer Navigation */}
       <footer className="fw-footer">
-        <Link className="fw-back" to="/projects/hwpx">
-          ← 이전 프로젝트 · HWPX Document Plugin
+        <Link className="fw-back" to="/#project-ownhands">
+          ← 주요 프로젝트
         </Link>
         <Link className="fw-inline-link" to="/projects/llm-gateway">
-          다음 프로젝트 · LLM Gateway Service →
+          이전 프로젝트 · LLM Gateway Service ←
         </Link>
       </footer>
     </div>

@@ -264,7 +264,7 @@ export default function GatewayStudy() {
 
       <footer className="fw-footer">
         <Link to="/#project-llm-gateway">← 주요 프로젝트</Link>
-        <Link to="/projects/ownhands">이전 프로젝트 · OwnHands ←</Link>
+        <Link to="/projects/ownhands">다음 프로젝트 · OwnHands →</Link>
       </footer>
     </div>
   );
