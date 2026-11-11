@@ -49,7 +49,7 @@ export const homeProjectStories = [
       ['인프라 전환', 'AWS SageMaker JumpStart로 확인한 뒤 보유 GPU · Ollama로 이전'],
     ],
     metrics: [
-      ['4종', '모델 선택 기준'],
+      ['약 40종', '선택 대상 LLM'],
       ['약 3주', '베타 운영'],
     ],
     outcome: '보유 GPU 서버로 옮겨 외부 클라우드 인스턴스 사용료 제거 · 다시 구현한다면 답변 스트리밍은 SSE로 단순화',
