@@ -18,7 +18,7 @@ const iconPaths = {
 
 const Icon = ({ name }) => (
   <svg className="capability-icon" viewBox="0 0 24 24" width="26" height="26" fill="none"
-    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     {iconPaths[name]}
   </svg>
 );

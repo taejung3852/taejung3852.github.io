@@ -92,14 +92,14 @@ export default function ProjectList({ sectionNumber = '01' }) {
               <div className="project-block">
                 <span className="project-role-label">결과</span>
                 <div>
-                  <dl className="project-metrics">
+                  <ul className="project-metrics">
                     {story.metrics.map(([value, label]) => (
-                      <div key={label}>
-                        <dt>{label}</dt>
-                        <dd>{value}</dd>
-                      </div>
+                      <li key={label}>
+                        <b>{value}</b>
+                        <span>{label}</span>
+                      </li>
                     ))}
-                  </dl>
+                  </ul>
                   <p>{story.outcome}</p>
                 </div>
               </div>

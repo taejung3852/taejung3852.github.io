@@ -31,7 +31,7 @@ export default function Hero(){
         </div>
       </div>
       <ProfileCard/>
-      <dl className="hero-stack" aria-label="기술 스택">
+      <dl className="hero-stack">
         {capabilities.stack.map(([group, tags]) => (
           <div key={group}>
             <dt>{group}</dt>

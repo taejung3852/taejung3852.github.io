@@ -21,10 +21,10 @@
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.oh-influence-card:hover {
+@media(hover:hover){.oh-influence-card:hover{
   border-color: var(--ink);
   transform: translateY(-2px);
-}
+}}
 
 .oh-influence-header {
   display: flex;
@@ -135,10 +135,10 @@
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.oh-pipeline-step:hover {
+@media(hover:hover){.oh-pipeline-step:hover{
   border-color: var(--ink);
   transform: translateY(-2px);
-}
+}}
 
 .oh-step-header {
   display: flex;
@@ -268,10 +268,10 @@
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.oh-agent-card:hover {
+@media(hover:hover){.oh-agent-card:hover{
   border-color: var(--ink);
   transform: translateY(-2px);
-}
+}}
 
 .oh-agent-card-top {
   display: flex;
