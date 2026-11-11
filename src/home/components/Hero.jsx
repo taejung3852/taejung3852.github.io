@@ -35,7 +35,14 @@ export default function Hero(){
         {capabilities.stack.map(([group, tags]) => (
           <div key={group}>
             <dt>{group}</dt>
-            <dd><ul className="project-stack">{tags.map(t => <li key={t}>{t}</li>)}</ul></dd>
+            <dd><ul className="project-stack">{tags.map(t => (
+              <li key={t}>
+                {capabilities.stackLogos[t] && (
+                  <img className="stack-logo" src={'/images/stack/' + capabilities.stackLogos[t]} alt="" width="18" height="18" decoding="async"/>
+                )}
+                {t}
+              </li>
+            ))}</ul></dd>
           </div>
         ))}
       </dl>

@@ -128,3 +128,7 @@
 .hero-copy{align-self:center}
 /* Theme toggle: every color transition would fire at once and smear. */
 .theme-switching *{transition:none!important}
+/* Brand logos beside the tag names. Several marks are black, so dark mode gives each a white tile. */
+.hero-stack .project-stack li{display:inline-flex;align-items:center;gap:7px}
+.stack-logo{flex:none;width:18px;height:18px;object-fit:contain}
+[data-theme=dark] .stack-logo{padding:2px;border-radius:4px;background:#fff}

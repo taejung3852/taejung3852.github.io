@@ -12,6 +12,24 @@ export const capabilities = {
     ['LLM 실행', ['Ollama', 'AWS SageMaker JumpStart']],
     ['개발 도구', ['Git', 'GitHub']],
   ],
+  // Official logos in public/images/stack (devicon, lobehub icons, GitHub org avatars).
+  // Concepts without a logo (SQL, Agent Skills, Hybrid Search, Embedding) stay text-only.
+  stackLogos: {
+    Python: 'python.svg',
+    Java: 'java.svg',
+    LangGraph: 'langgraph-color.svg',
+    LangChain4j: 'langchain4j.png',
+    MCP: 'mcp.svg',
+    'Claude Code': 'claudecode-color.svg',
+    Codex: 'codex-color.svg',
+    Qdrant: 'qdrant.png',
+    MySQL: 'mysql.svg',
+    SQLite: 'sqlite.svg',
+    Ollama: 'ollama.svg',
+    'AWS SageMaker JumpStart': 'aws-color.svg',
+    Git: 'git.svg',
+    GitHub: 'github.svg',
+  },
   items: [
     {
       icon: 'search',
