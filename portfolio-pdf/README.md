@@ -1,11 +1,11 @@
 # 제출용 포트폴리오 PDF
 
-`park-taejung-portfolio.pdf`는 웹 포트폴리오의 4개 프로젝트를 3쪽으로 요약한 제출용 파일입니다. PDF의 프로젝트 제목과 링크에서 상세 페이지를 열 수 있습니다.
+`park-taejung-portfolio.pdf`는 웹 포트폴리오 홈 화면을 그대로 인쇄한 3쪽짜리 제출용 파일입니다. 1쪽은 소개·기술 스택·역량, 2쪽은 주요 프로젝트, 3쪽은 그 외 프로젝트와 학력·자격입니다. PDF 안의 링크는 배포된 사이트의 상세 페이지로 연결됩니다.
 
-내용을 수정하려면 `build.py`를 편집하세요. `npm ci`로 Pretendard 글꼴을 준비하고 Python 환경에 `reportlab`을 설치한 뒤 저장소 루트에서 다시 생성할 수 있습니다.
+내용은 홈 화면에서 고칩니다. 홈을 수정한 뒤 저장소 루트에서 다시 생성하세요. Chrome과 Playwright가 필요합니다.
 
 ```bash
-python3 portfolio-pdf/build.py
+npm run build && node portfolio-pdf/build.mjs
 ```
 
-PDF의 주장은 `src/content/portfolio.ts`와 `src/home/components/*Study.jsx`의 게시 내용을 바탕으로 작성했습니다. 상세 페이지 내용이 바뀌면 PDF도 다시 생성하세요.
+Playwright가 이 저장소에 설치되어 있지 않으면 `PLAYWRIGHT=<playwright 모듈 경로>`로 위치를 알려줍니다.
