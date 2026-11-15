@@ -4,7 +4,7 @@ import '../styles/fowoco-editorial.css';
 import '../styles/ownhands-editorial.css';
 import useTocSpy from './useTocSpy';
 
-const repo = 'https://github.com/taejung3852/OwnHands';
+const repo = 'https://github.com/taejung3852/OwnHands-Codex';
 
 function Source({ href, children = '저장소 보기' }) {
   return (

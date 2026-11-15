@@ -7,7 +7,7 @@ export const projectStudies={
   toc:[{label:'이름과 단계',href:'#naming'},{label:'검증 흐름',href:'#lifecycle'},{label:'검토 산출물',href:'#artifact'},{label:'사람의 판단',href:'#decision'},{label:'결과·근거',href:'#evidence'}],
   headline:['AI가 남긴 작업을,','내가 판단할 수 있도록.'],
   intro:'작업의 변화와 근거를 함께 놓고, 사람이 검토할 수 있는 흐름을 구성합니다.',
-  source:'https://github.com/taejung3852/OwnHands/blob/779b5568c38a154b4dc7b55818e806a5e53639f0/README.md',
+  source:'https://github.com/taejung3852/OwnHands-Codex/blob/779b5568c38a154b4dc7b55818e806a5e53639f0/README.md',
   note:'개발이 진행 중인 프로젝트입니다. 아래는 제품 방향과 현재 실행해 보일 수 있는 범위를 구분해 적은 것이며, 저장소의 중간 상태를 완성된 기능으로 제시하지 않습니다.',
   figureNote:'제품 방향 도식 · 완성된 제품 화면이 아님',
   overviewLabels:['작업 기록','근거 확인','사람의 판단'],
