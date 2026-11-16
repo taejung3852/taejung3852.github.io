@@ -5,6 +5,7 @@ import {
   projectSlugs,
   homeProjectStories,
 } from '../content/site';
+import { capabilities } from '../content/capabilities';
 
 const covers = {
   fowoco: {
@@ -110,7 +111,20 @@ export default function ProjectList({ sectionNumber = '01' }) {
           <footer className="project-card-foot">
             <ul className="project-stack">
               {story.stack.map((t) => (
-                <li key={t}>{t}</li>
+                <li key={t}>
+                  {capabilities.stackLogos[t] && (
+                    <img
+                      className="stack-logo"
+                      src={'/images/stack/' + capabilities.stackLogos[t]}
+                      alt=""
+                      width="18"
+                      height="18"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  {t}
+                </li>
               ))}
             </ul>
             <div className="project-card-links">

@@ -17,6 +17,7 @@ export const capabilities = {
   stackLogos: {
     Python: 'python.svg',
     Java: 'java.svg',
+    'Spring Boot': 'spring.svg',
     LangGraph: 'langgraph-color.svg',
     LangChain4j: 'langchain4j.png',
     MCP: 'mcp.svg',
